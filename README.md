@@ -1,2 +1,2 @@
-# ITP-Project
- Surplus Food Reduction and Redistribution System
+# Surplus Food Reduction and Redistribution System
+---
