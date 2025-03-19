@@ -65,8 +65,26 @@ const displayDonation = async (req, res) => {
     console.error("Error fetching donations:", error.message);
     return res.status(500).json({ message: "Internal Server Error" });
   }
+
 };
 
+const displayByID = async(req,res)=>{
+    const id = req.params.id;
+
+    try {
+       const donation = await donationModel.findById(id);
+        if(!donation){
+            return res.status(404).json({message:"donation not found"})
+        }
+        return res.status(200).json({message: "donation found successfully",donation});
+    } catch (error) {
+        console.log("Error fetching donations:", error.message);
+        return res.status(500).json({message:"Internal server Error"});
+    }
+}
+
+exports.displayByID = displayByID;
 exports.addDonation = addDonation;
 exports.displayDonation = displayDonation;
+
 
