@@ -3,8 +3,8 @@ const router = express.Router();
 const donationCon = require("../../controllers/gihanController/donationController");
 
     router.post("/add",donationCon.addDonation);
-
     router.get("/display",donationCon.displayDonation);
+    router.get("/getID/:id",donationCon.displayByID);
 
 module.exports = router;
 
