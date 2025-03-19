@@ -65,44 +65,99 @@ const displayDonation = async (req, res) => {
     console.error("Error fetching donations:", error.message);
     return res.status(500).json({ message: "Internal Server Error" });
   }
-
 };
 
-const displayByID = async(req,res)=>{
-    const id = req.params.id;
+const displayByID = async (req, res) => {
+  const id = req.params.id;
 
-    try {
-       const donation = await donationModel.findById(id);
-        if(!donation){
-            return res.status(404).json({message:"donation not found"})
-        }
-        return res.status(200).json({message: "donation found successfully",donation});
-    } catch (error) {
-        console.log("Error fetching donations:", error.message);
-        return res.status(500).json({message:"Internal server Error"});
+  try {
+    const donation = await donationModel.findById(id);
+    if (!donation) {
+      return res.status(404).json({ message: "donation not found" });
     }
-}
+    return res
+      .status(200)
+      .json({ message: "donation found successfully", donation });
+  } catch (error) {
+    console.log("Error fetching donations:", error.message);
+    return res.status(500).json({ message: "Internal server Error" });
+  }
+};
 
-const deleteDonation = async(req,res)=>{
+const deleteDonation = async (req, res) => {
+  const id = req.params.id;
 
-    const id = req.params.id;
+  try {
+    const deletedDonation = await donationModel.findByIdAndDelete(id);
 
-    try {
-        const deletedDonation = await donationModel.findByIdAndDelete(id);
-
-        if(!deletedDonation){
-            return res.status(404).json({message : "donation not found & Cannot delete"})
-        }
-        return res.status(200).json({message : "donation deleted Successfully ", deletedDonation});
-    } catch (error) {
-        console.log("error deleting donation" + error.message);
-        return res.status(500).json({message:"Internal server Error"});
+    if (!deletedDonation) {
+      return res
+        .status(404)
+        .json({ message: "donation not found & Cannot delete" });
     }
-}
+    return res
+      .status(200)
+      .json({ message: "donation deleted Successfully ", deletedDonation });
+  } catch (error) {
+    console.log("error deleting donation" + error.message);
+    return res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+const updateDonation = async (req, res) => {
+  const id = req.params.id;
+  const {
+    foodCategory,
+    foodItem,
+    storageCondition,
+    donationDate,
+    expiryDate,
+    collectionAddress,
+    imageOfFoods,
+    notes,
+    status,
+  } = req.body;
+
+  if (expiryDate <= donationDate) {
+    return res
+      .status(400)
+      .json({ message: "Expiry date must be after the donation date" });
+  }
+
+  try {
+    const updatedDonation = await donationModel.findByIdAndUpdate(
+      id,
+      {
+        foodCategory,
+        foodItem,
+        storageCondition,
+        donationDate,
+        expiryDate,
+        collectionAddress,
+        imageOfFoods,
+        notes,
+        status,
+      },
+      { new: true}
+    );
+
+    if (!updatedDonation) {
+      return res
+        .status(404)
+        .json({ message: "donation not found and cannot update" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "donation updated successfull", updatedDonation });
+  } catch (error) {
+    console.log("Error updating donation" + error.message);
+    return res.status(500).json({ message: "Internal server Error" });
+  }
+};
 
 exports.displayByID = displayByID;
 exports.addDonation = addDonation;
 exports.displayDonation = displayDonation;
 exports.deleteDonation = deleteDonation;
-
-
+exports.updateDonation = updateDonation;
