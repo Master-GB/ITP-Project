@@ -6,8 +6,6 @@ const dotenv = require("dotenv");
 require("dotenv").config();
 const app = express();
 
-//ghgjhghgj
-
 const donorRoute = require("./routes/gihanRoute/donorRoute")
 
 const PORT = process.env.PORT || 8090;
