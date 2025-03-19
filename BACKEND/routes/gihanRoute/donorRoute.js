@@ -5,6 +5,7 @@ const donationCon = require("../../controllers/gihanController/donationControlle
     router.post("/add",donationCon.addDonation);
     router.get("/display",donationCon.displayDonation);
     router.get("/getID/:id",donationCon.displayByID);
+    router.delete("/delete/:id",donationCon.deleteDonation);
 
 module.exports = router;
 

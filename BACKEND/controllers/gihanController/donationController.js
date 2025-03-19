@@ -83,8 +83,26 @@ const displayByID = async(req,res)=>{
     }
 }
 
+const deleteDonation = async(req,res)=>{
+
+    const id = req.params.id;
+
+    try {
+        const deletedDonation = await donationModel.findByIdAndDelete(id);
+
+        if(!deletedDonation){
+            return res.status(404).json({message : "donation not found & Cannot delete"})
+        }
+        return res.status(200).json({message : "donation deleted Successfully ", deletedDonation});
+    } catch (error) {
+        console.log("error deleting donation" + error.message);
+        return res.status(500).json({message:"Internal server Error"});
+    }
+}
+
 exports.displayByID = displayByID;
 exports.addDonation = addDonation;
 exports.displayDonation = displayDonation;
+exports.deleteDonation = deleteDonation;
 
 
