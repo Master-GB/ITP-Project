@@ -4,5 +4,7 @@ const donationCon = require("../../controllers/gihanController/donationControlle
 
     router.post("/add",donationCon.addDonation);
 
+    router.get("/display",donationCon.displayDonation);
+
 module.exports = router;
 
