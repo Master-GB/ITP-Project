@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8090;
 
 app.use(cors());
 app.use(bodyParser.json());
-//app.use("/donors",donorRoute);
+app.use("/donations",donorRoute);
 
 const URL = process.env.MONGODB_URL;
 
