@@ -47,6 +47,9 @@ const Nav = () => {
 
               <ul className="side-nav-links">
                 <li>
+                  <Link t0 ="/dashboard">Dashboard</Link>
+                </li>
+                <li>
                   <Link to="/profile">Profile</Link>
                 </li>
                 <li>
@@ -68,22 +71,24 @@ const Nav = () => {
 
         {/* Logo Section */}
         <div className="logo-container">
-        <Link to="/" className="logo-container">
-          <img
-            src="/Resources/gihanRes/donationRes/mainlogo.png"
-            alt="Logo"
-            className="logo-img"
-          />
-          <div className="logo-text">
-            <span className="top-text">හොද</span>
-            <span className="bottom-text">හිත</span>
-          </div>
-          </Link >
+          <Link to="/" className="logo-container">
+            <img
+              src="/Resources/gihanRes/donationRes/mainlogo.png"
+              alt="Logo"
+              className="logo-img"
+            />
+            <div className="logo-text">
+              <span className="top-text">හොද</span>
+              <span className="bottom-text">
+                හිත<span className="lk-text">.lk</span>
+              </span>
+            </div>
+          </Link>
         </div>
 
         {/* Main Navigation Links */}
         <div className="nav-links">
-          <Link to="/">Home</Link>
+          <Link to="/">Dashboard</Link>
           <Link to="/products">Donate Now</Link>
           <Link to="/features">My Donation</Link>
           <Link to="/about">Contribution</Link>
