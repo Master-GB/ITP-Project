@@ -22,7 +22,6 @@ const Nav = () => {
           </button>
           {isSideNavOpen && (
             <div className="side-nav-content">
-              {/* Cancel (Close) Icon */}
               <button className="close-icon" onClick={toggleSideNav}>
                 <img
                   src="/Resources/gihanRes/donationRes/cancel.png"
@@ -30,18 +29,26 @@ const Nav = () => {
                 />
               </button>
 
-              <div className="profile-section">
-                <img
-                  src="https://via.placeholder.com/50"
-                  alt="Profile"
-                  className="profile-photo"
-                />
+              <div className="profile-container">
+                <div className="profile-photo-cover">
+                  <img
+                    src="/Resources/gihanRes/donationRes/dp.png"
+                    alt="Profile"
+                    className="profile-photo"
+                  />
+                </div>
                 <div className="profile-info">
                   <p className="donor-name">Gihan</p>
                   <p className="donor-email">gihan@example.com</p>
                 </div>
               </div>
+
+              <div className="separator"></div>
+
               <ul className="side-nav-links">
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
                 <li>
                   <Link to="/about-us">About Us</Link>
                 </li>
@@ -51,7 +58,7 @@ const Nav = () => {
                 <li>
                   <Link to="/support">Support</Link>
                 </li>
-                <li>
+                <li className="sign-out">
                   <Link to="/sign-out">Sign Out</Link>
                 </li>
               </ul>
@@ -61,11 +68,17 @@ const Nav = () => {
 
         {/* Logo Section */}
         <div className="logo-container">
+        <Link to="/" className="logo-container">
+          <img
+            src="/Resources/gihanRes/donationRes/mainlogo.png"
+            alt="Logo"
+            className="logo-img"
+          />
           <div className="logo-text">
             <span className="top-text">හොද</span>
             <span className="bottom-text">හිත</span>
           </div>
-          <img src="/icons/logo.png" alt="Logo" className="logo-img" />
+          </Link >
         </div>
 
         {/* Main Navigation Links */}
@@ -73,7 +86,7 @@ const Nav = () => {
           <Link to="/">Home</Link>
           <Link to="/products">Donate Now</Link>
           <Link to="/features">My Donation</Link>
-          <Link to="/about"></Link>
+          <Link to="/about">Contribution</Link>
         </div>
 
         {/* Search Bar */}
