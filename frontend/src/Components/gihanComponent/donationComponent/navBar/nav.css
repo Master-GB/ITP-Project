@@ -1,0 +1,245 @@
+/* General Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  background-color: #000;
+  color: white;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Overlay for dimming effect */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 900; 
+}
+
+/* Side Navigation (Hamburger Menu) */
+.side-nav {
+  position: relative;
+}
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Side Navigation Content */
+.side-nav-content {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  width: 250px;
+  height: 100vh;
+  background-color: #222;
+  padding: 20px;
+  border-radius:0px 20px 0px 0px;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1100;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.donor-name {
+  font-weight: bold;
+}
+
+.donor-email {
+  font-size: 12px;
+  color: #ccc;
+}
+
+
+.side-nav-links {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-top: 20px; 
+}
+
+.side-nav-links li {
+    margin: 20px 0; 
+    padding-left: 10px; 
+  }
+  
+  .side-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+  .side-nav-links a:hover {
+    color: #2aaaef;
+  }
+
+
+/* Logo */
+.logo a {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between text and logo */
+  }
+  
+  /* Logo Text */
+  .logo-text {
+    display: flex;
+    flex-direction: column; /* Stack text vertically */
+    text-align: center; /* Center text */
+    line-height: 1.2; /* Adjust spacing between lines */
+  }
+  
+  .top-text, .bottom-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* Logo Image */
+  .logo-img {
+    width: 40px; /* Adjust as needed */
+    height: auto;
+  }
+  
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 20px; 
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+
+.nav-links a:hover {
+  color: #148af2;
+}
+
+.chatbot-icon img,
+.messages-icon img,
+.notification-icon img,
+.close-icon img,
+.search-icon img {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.chatbot-icon img:hover,
+.messages-icon img:hover,
+.notification-icon img:hover,
+.search-icon img:hover {
+  transform: scale(1.2); /* Slight zoom effect */
+  filter: invert(0.7); /* Lighten icon */
+}
+
+/* Close Icon Hover Effect */
+.close-icon img:hover {
+  transform: rotate(90deg); /* Rotate effect */
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+}
+
+/* Icons */
+.ai-chatbot, .communicate, .notifications {
+  margin-left: 20px;
+}
+
+.search-icon img {
+  width: 24px;
+  cursor: pointer;
+}
+
+.chatbot-icon, .messages-icon, .notification-icon, .close-icon,.search-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .messages-icon img,
+  .notification-icon img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    filter: invert(1); 
+  }
+
+  .chatbot-icon img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    filter: invert(1); 
+  }
+
+  .close-icon img{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }

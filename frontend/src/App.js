@@ -3,6 +3,7 @@ import NavigationBar from "./Components/gihanComponent/donationComponent/navBar/
 
 function App() {
   return (
+  
     <div className="App">
       <NavigationBar/>
     </div>
