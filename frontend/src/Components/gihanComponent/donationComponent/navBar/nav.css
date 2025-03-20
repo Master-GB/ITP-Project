@@ -1,16 +1,15 @@
-/* General Navbar Styling */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px;
+  padding: 0px 20px;
   background-color: #000;
   color: white;
   position: relative;
   z-index: 1000;
 }
 
-/* Overlay for dimming effect */
 .overlay {
   position: fixed;
   top: 0;
@@ -30,89 +29,161 @@
   background: none;
   border: none;
   color: white;
-  font-size: 24px;
+  font-size: 30px;
   cursor: pointer;
 }
 
 /* Side Navigation Content */
 .side-nav-content {
-  position: fixed;
-  top: 0;
-  left: 0px;
-  width: 250px;
-  height: 100vh;
-  background-color: #222;
-  padding: 20px;
-  border-radius:0px 20px 0px 0px;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-  z-index: 1100;
-  transition: transform 0.3s ease-in-out;
-}
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 250px;
+    height: 100vh;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 0px 20px 0px 0px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Profile Section */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Profile Picture Cover */
+  .profile-photo-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* Background around the image */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); /* Soft shadow */
+  }
 
+  /* Hamburger Menu Icon */
+.hamburger-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hover Effect for Hamburger Menu */
+  .hamburger-menu:hover {
+    transform: scale(1.2);
+  }
 
-.close-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
-.close-icon img {
-  width: 24px;
-  height: 24px;
-}
-
-.profile-section {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.profile-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.profile-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.donor-name {
-  font-weight: bold;
-}
-
-.donor-email {
-  font-size: 12px;
-  color: #ccc;
-}
-
-
-.side-nav-links {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  margin-top: 20px; 
-}
-
-.side-nav-links li {
-    margin: 20px 0; 
-    padding-left: 10px; 
+  .side-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .side-nav-links li {
+    padding: 10px 20px;
+    transition: background 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+  
+  /* Whole Section Hover Effect */
+  .side-nav-links li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Profile Image */
+  .profile-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  
+  /* Profile Info */
+  .profile-info {
+    text-align: center;
+    margin-top: 0; 
+    padding: 0; 
+  }
+  
+  
+  .donor-name {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    margin: 0; 
+    padding: 2px; 
+    line-height: 1;
+  }
+  
+  .donor-email {
+    font-size: 12px;
+    color: #aaa;
+    margin: 0; 
+    padding: 2px; 
+    line-height: 1;
+  }
+  
+  /* Separator Line */
+  .separator {
+    width: 90%;
+    height: 3px;
+    background-color: #555;
+    margin: 15px 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Side Navigation Links */
+  .side-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .side-nav-links li {
+    padding: 10px 20px;
   }
   
   .side-nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
+    display: block;
+    transition: color 0.3s ease-in-out;
   }
   
+  /* Hover Effects */
   .side-nav-links a:hover {
-    color: #2aaaef;
+    color: #2aaaef; 
   }
+  
+  .side-nav-links .sign-out a:hover {
+    color: red; 
+  }
+
 
 
 /* Logo */
@@ -127,26 +198,36 @@
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between text and logo */
+    text-decoration: none;
+    gap: 0px; /* Space between text and logo */
   }
   
   /* Logo Text */
   .logo-text {
     display: flex;
-    flex-direction: column; /* Stack text vertically */
-    text-align: center; /* Center text */
-    line-height: 1.2; /* Adjust spacing between lines */
+    text-decoration: none;
+    flex-direction: column;
+    line-height: 0.9; /* Adjust spacing between lines */
   }
   
-  .top-text, .bottom-text {
-    font-size: 24px;
+  .top-text{
+    font-size: 35px;
     font-weight: bold;
-    color: white;
+    color: rgb(0, 123, 238);
+    text-decoration: none;
+  }
+
+  .bottom-text{
+    font-size: 35px;
+    font-weight: bold;
+    color: rgb(0, 123, 238);
+    padding-left:45px;
+    text-decoration: none;
   }
   
   /* Logo Image */
   .logo-img {
-    width: 40px; /* Adjust as needed */
+    width: 80px; 
     height: auto;
   }
   
