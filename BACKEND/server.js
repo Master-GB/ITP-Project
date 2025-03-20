@@ -5,11 +5,14 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 require("dotenv").config();
 const app = express();
+const router=require("./routes/imalshaRoute/FeedbackRoute");
 
 const donorRoute = require("./routes/gihanRoute/donorRoute")
 
 const PORT = process.env.PORT || 8090;
 
+app.use(express.json());
+app.use("/feedbacks",router);
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/donations",donorRoute);
