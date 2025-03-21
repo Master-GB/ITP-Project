@@ -9,16 +9,22 @@ const router=require("./routes/imalshaRoute/FeedbackRoute");
 const userRouter = require('./routes/imalshaRoute/UserRoute');
 
 const donorRoute = require("./routes/gihanRoute/donorRoute")
+const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
 
 const PORT = process.env.PORT || 8090;
 
 app.use(express.json());
+
 app.use("/users",userRouter);
 app.use(express.json());
+
+app.use("/Requests",RequestRoute);
 app.use("/feedbacks",router);
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/donations",donorRoute);
+
 
 const URL = process.env.MONGODB_URL;
 
