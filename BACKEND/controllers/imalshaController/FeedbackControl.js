@@ -137,4 +137,4 @@ exports.getAllFeedbacks = getAllFeedbacks;
 exports.createFeedback = createFeedback;
 exports.getFeedbackById = getFeedbackById;
 exports.updateFeedback = updateFeedback;
-exports.deleteFeedback = deleteFeedback;
+exports.deleteFeedback = deleteFeedback; 
