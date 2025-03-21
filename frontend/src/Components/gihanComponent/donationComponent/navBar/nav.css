@@ -1,0 +1,337 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #000;
+  color: white;
+  position: relative;
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 900;
+}
+
+/* Side Navigation (Hamburger Menu) */
+.side-nav {
+  position: relative;
+}
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Side Navigation Content */
+.side-nav-content {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 250px;
+    height: 100vh;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 0px 20px 0px 0px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Profile Section */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Profile Picture Cover */
+  .profile-photo-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* Background around the image */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); /* Soft shadow */
+  }
+
+  /* Hamburger Menu Icon */
+.hamburger-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hover Effect for Hamburger Menu */
+  .hamburger-menu:hover {
+    transform: scale(1.2);
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .side-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .side-nav-links li {
+    padding: 10px 20px;
+    transition: background 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+  
+  /* Whole Section Hover Effect */
+  .side-nav-links li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Profile Image */
+  .profile-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  
+  /* Profile Info */
+  .profile-info {
+    text-align: center;
+    margin-top: 0; 
+    padding: 0; 
+  }
+  
+  
+  .donor-name {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    margin: 0; 
+    padding: 2px; 
+    line-height: 1;
+  }
+  
+  .donor-email {
+    font-size: 12px;
+    color: #aaa;
+    margin: 0; 
+    padding: 2px; 
+    line-height: 1;
+  }
+  
+  /* Separator Line */
+  .separator {
+    width: 90%;
+    height: 3px;
+    background-color: #555;
+    margin: 15px 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Side Navigation Links */
+  .side-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .side-nav-links li {
+    padding: 10px 20px;
+  }
+  
+  .side-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  /* Hover Effects */
+  .side-nav-links a:hover {
+    color: #2aaaef; 
+  }
+  
+  .side-nav-links .sign-out a:hover {
+    color: red; 
+  }
+
+
+
+/* Logo */
+.logo a {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 1px; 
+  }
+  
+  /* Logo Text */
+  .logo-text {
+    padding-left:0px;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    line-height: 0.9; /* Adjust spacing between lines */
+    margin-left: -30px; 
+  }
+  
+  .top-text{
+    font-size: 35px;
+    font-weight: bold;
+    color: rgb(0, 123, 238);
+    text-decoration: none;
+    padding-left:0px;
+  }
+
+  .bottom-text{
+    font-size: 35px;
+    font-weight: bold;
+    color: rgb(0, 123, 238);
+    padding-left:60px;
+    text-decoration: none;
+  }
+
+ 
+  .lk-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(0, 123, 238);
+   }
+  
+  
+  /* Logo Image */
+  .logo-img {
+    width: 80px; 
+    height: auto;
+  }
+  
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 20px; 
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+
+.nav-links a:hover {
+  color: #148af2;
+}
+
+.chatbot-icon img,
+.messages-icon img,
+.notification-icon img,
+.close-icon img,
+.search-icon img {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.chatbot-icon img:hover,
+.messages-icon img:hover,
+.notification-icon img:hover,
+.search-icon img:hover {
+  transform: scale(1.2); /* Slight zoom effect */
+  filter: invert(0.7); /* Lighten icon */
+}
+
+/* Close Icon Hover Effect */
+.close-icon img:hover {
+  transform: rotate(90deg); /* Rotate effect */
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+}
+
+/* Icons */
+.ai-chatbot, .communicate, .notifications {
+  margin-left: 20px;
+}
+
+.search-icon img {
+  width: 24px;
+  cursor: pointer;
+}
+
+.chatbot-icon, .messages-icon, .notification-icon, .close-icon,.search-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .messages-icon img,
+  .notification-icon img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    filter: invert(1); 
+  }
+
+  .chatbot-icon img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    filter: invert(1); 
+  }
+
+  .close-icon img{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
