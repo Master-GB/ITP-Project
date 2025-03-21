@@ -2,10 +2,16 @@ import './App.css';
 import NavigationBar from "./Components/gihanComponent/donationComponent/navBar/nav"
 import Footer from './Components/gihanComponent/donationComponent/footer/footer';
 
+
 function App() {
   return (
   
     <div className="App">
+
+     <NavigationBar/>
+ 
+
+
       <NavigationBar/>
       <div className="main-content">
         {/* Your main content goes here */}

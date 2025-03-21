@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 require("dotenv").config();
 const app = express();
 const router=require("./routes/imalshaRoute/FeedbackRoute");
+const userRouter = require('./routes/imalshaRoute/UserRoute');
 
 const donorRoute = require("./routes/gihanRoute/donorRoute")
 const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
@@ -13,6 +14,9 @@ const trackingRoute = require("./routes/sashiniRoute/trackingRoute");
 
 const PORT = process.env.PORT || 8090;
 
+app.use(express.json());
+
+app.use("/users",userRouter);
 app.use(express.json());
 
 app.use("/Requests",RequestRoute);
