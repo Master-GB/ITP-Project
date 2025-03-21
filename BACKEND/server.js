@@ -7,12 +7,16 @@ require("dotenv").config();
 const app = express();
 
 const donorRoute = require("./routes/gihanRoute/donorRoute")
+const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
 
 const PORT = process.env.PORT || 8090;
 
+app.use(express.json());
+app.use("/Requests",RequestRoute);
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/donations",donorRoute);
+
 
 const URL = process.env.MONGODB_URL;
 
