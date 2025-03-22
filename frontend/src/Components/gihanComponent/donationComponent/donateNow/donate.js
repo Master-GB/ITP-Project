@@ -69,10 +69,6 @@ export default function Donate() {
         newErrors.donationDate = "Donation date must be after the current date.";
     }
 
-    if(!inputs.donationDate){
-        newErrors.donationDate = "Donation date is required"
-    }
-
     // Validate expiry date
     if (!inputs.expiryDate) {
       newErrors.expiryDate = "Expiry date is required";
