@@ -25,11 +25,12 @@ const addDonation = async (req, res) => {
 
   let donate;
   const quantityWithUnit = `${quantity} ${quantityUnit}`;
+  const finalFoodItem = foodItem || foodCategory;
 
   try {
     donate = new donationModel({
       foodCategory,
-      foodItem,
+      foodItem : finalFoodItem,
       storageCondition,
       donationDate,
       expiryDate,

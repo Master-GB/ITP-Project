@@ -63,7 +63,7 @@ export default function Donate() {
     // Validate donation date
     if (!inputs.donationDate) {
       newErrors.donationDate = "Donation date is required";
-    }else if(new Date()> new Date(inputs.donationDate)){
+    }else if(new Date().setHours(0, 0, 0, 0) > new Date(inputs.donationDate).setHours(0, 0, 0, 0)){
         newErrors.donationDate = "Donation date must be after the current date.";
     }
 
