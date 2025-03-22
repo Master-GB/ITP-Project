@@ -1,18 +1,19 @@
-import './App.css';
-import NavigationBar from "./Components/gihanComponent/donationComponent/navBar/nav"
-import Footer from './Components/gihanComponent/donationComponent/footer/footer';
+import "./App.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
+import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
 
 function App() {
   return (
-  
-    <div className="App">
-      <NavigationBar/>
-      <div className="main-content">
-        {/* Your main content goes here */}
-        <h1>Welcome to the Donation Platform</h1>
-        <p>This is the main content of the page.</p>
-      </div>
-      <Footer/>
+    <div className="main-content">
+      <React.Fragment>
+        <Routes>
+          <Route path="/" exact element={<Dashboard/>}/>
+          <Route path ="/dashboard" element={ <Dashboard/>}/>
+          <Route path ="/donate" element={<Donate/>}/>
+        </Routes>
+      </React.Fragment>
     </div>
   );
 }

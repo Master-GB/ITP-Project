@@ -6,8 +6,11 @@
   padding: 0px 20px;
   background-color: #000;
   color: white;
-  position: relative;
-  z-index: 1000;
+  position: fixed;  /* Fix it to the top */
+  top: 0;           /* Align at the top */
+  left: 0;
+  width: 100%;      /* Full width */
+  z-index: 1000;    /* High z-index to stay on top */
 }
 
 .overlay {
@@ -209,7 +212,7 @@
     text-decoration: none;
     flex-direction: column;
     line-height: 0.9; /* Adjust spacing between lines */
-    margin-left: -30px; 
+    margin-left: -2px; 
   }
   
   .top-text{
@@ -284,18 +287,23 @@
   transform: rotate(90deg); /* Rotate effect */
 }
 
-/* Search Bar */
 .search-bar {
   display: flex;
   align-items: center;
   background: white;
-  border-radius: 20px;
-  padding: 5px 10px;
+  border-radius: 15px;  /* Reduce rounded corners */
+  padding: 3px 12px;  /* Reduce height */
+  width: 230px; /* Increase width */
+  height: 35px; /* Reduce height */
+  margin-right: 0px;
 }
 
 .search-bar input {
+  flex: 1;
   border: none;
   outline: none;
+  padding: 3px;
+  font-size: 14px; /* Adjust font size */
 }
 
 /* Icons */
@@ -321,13 +329,17 @@
     height: 30px;
     cursor: pointer;
     filter: invert(1); 
+    margin-right: 50px;
   }
+
+  
 
   .chatbot-icon img{
     width: 50px;
     height: 50px;
     cursor: pointer;
     filter: invert(1); 
+    margin-left: 50px;
   }
 
   .close-icon img{
@@ -335,3 +347,5 @@
     height: 40px;
     cursor: pointer;
   }
+
+  

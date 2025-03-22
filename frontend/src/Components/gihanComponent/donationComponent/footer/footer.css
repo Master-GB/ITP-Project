@@ -1,8 +1,18 @@
-/* Ensure the body takes up the full height of the viewport */
-html, body {
+/* Ensure the body, root, and main content take full height */
+html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Main content wrapper to push footer down */
+.main-content {
+  flex: 1 0 auto; /* Ensures footer will be pushed to the bottom when content is short */
+  padding-bottom: 20px; /* Add padding to prevent overlap with footer */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Footer Container */
@@ -11,28 +21,21 @@ html, body {
   color: #ffffff;
   padding: 20px;
   font-family: Arial, sans-serif;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px; 
-  position: fixed; /* Stick the footer to the bottom */
-  bottom: 0; /* Align to the bottom of the viewport */
-  left: 0; /* Stretch across the full width */
-  right: 0; /* Stretch across the full width */
-  z-index: 800; 
+  justify-content: space-between; /* Space out sections */
+  align-items: flex-start; /* Align items to the start */
+  margin-top: auto; /* Push the footer to the bottom */
 }
-
-/* Add padding to the main content to prevent overlap with the footer */
-.main-content {
-  padding-bottom: 150px; /* Adjust this value based on the height of your footer */
-}
-/* Footer Container */
-
 
 /* First Section */
 .footer-first-section {
   display: flex;
   justify-content: space-between;
-  gap: 10px; /* Reduced gap */
+  gap: 20px; /* Increased gap between sections */
+  flex-wrap: wrap; /* Ensure responsiveness */
+  width: 100%;
 }
 
 /* Left Column */
@@ -82,7 +85,8 @@ html, body {
   padding: 8px;
   border: none;
   border-radius: 5px;
-  width: 200px;
+  width: 100%; /* Make it responsive */
+  max-width: 250px; /* Set a max width for input */
 }
 
 .newsletter-form button {
@@ -92,6 +96,8 @@ html, body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 10%;
+  white-space: nowrap; 
 }
 
 .newsletter-form button:hover {
@@ -103,7 +109,7 @@ html, body {
   flex: 1 1 60%;
   display: flex;
   justify-content: space-between;
-  gap: 10px; /* Reduced gap */
+  gap: 10px; /* Increased gap */
 }
 
 /* About Us */
@@ -192,9 +198,25 @@ html, body {
   font-size: 14px;
 }
 
+/* Contact Us Icons - Individual Sizes */
+.contact-us ul li:nth-child(1) img {
+  width: 22px; /* Custom size for Phone icon */
+  height: 22px;
+}
+
+.contact-us ul li:nth-child(2) img {
+  width: 22px; /* Custom size for Email icon */
+  height: 22px;
+}
+
+.contact-us ul li:nth-child(3) img {
+  width: 22px; /* Custom size for Location icon */
+  height: 22px;
+}
+
+/* Change Contact Us Icon Color to White */
 .contact-us ul li img {
-  width: 16px;
-  height: 16px;
+  filter: brightness(0) invert(1); /* Change black to white */
 }
 
 /* Horizontal Separator */
@@ -210,6 +232,8 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Ensure responsiveness */
+  width: 100%;
 }
 
 /* Social Media Links */
@@ -221,30 +245,30 @@ html, body {
 .social-icons {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
-.social-icons img {
-  width: 30px;
-  height: 30px;
+/* Social Media Icons - Individual Sizes */
+.social-icons .facebook img {
+  width: 34px; /* Custom size for Facebook */
+  height: 34px;
+  margin-bottom: 2px;
 }
 
-facebook {
-  width: 30px;
-  height: 30px;
-}
-.insta{
-  width: 40px;
-  height: 0px;
+.social-icons .twitter-x img {
+  width: 51px; /* Custom size for Twitter */
+  height: 40px;
+  padding-left: 7px;
 }
 
-.twitter{
-  width: 30px;
-  height: 30px;
+.social-icons .insta img {
+  width: 50px; /* Custom size for Instagram */
+  height: 55px;
 }
 
-.linkedin{
-  width: 30px;
-  height: 30px;
+.social-icons .linkedin img {
+  width: 58px; /* Custom size for LinkedIn */
+  height: 58px;
 }
 
 /* Legal and Compliance */
@@ -287,7 +311,18 @@ facebook {
   justify-content: flex-end; /* Align logos to the right */
 }
 
-.logos img {
-  width: 60px;
+/* Partner Logos - Individual Sizes */
+.logos img:nth-child(1) {
+  width: 70px; /* Custom size for Partner 1 */
+  height: auto;
+}
+
+.logos img:nth-child(2) {
+  width: 90px; /* Custom size for Partner 2 */
+  height: auto;
+}
+
+.logos img:nth-child(3) {
+  width: 80px; /* Custom size for Partner 3 */
   height: auto;
 }
