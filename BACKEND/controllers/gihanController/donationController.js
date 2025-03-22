@@ -1,4 +1,5 @@
 const donationModel = require("../../models/gihanModel/donationModel");
+const upload = require("./multerConfig");
 
 const addDonation = async (req, res) => {
   const {
@@ -7,11 +8,14 @@ const addDonation = async (req, res) => {
     storageCondition,
     donationDate,
     expiryDate,
+    quantity,
+    quantityUnit,
     collectionAddress,
-    imageOfFoods,
     notes,
     status,
   } = req.body;
+
+  const imageOfFoods = req.file ? req.file.buffer : null;
 
   if (expiryDate <= donationDate) {
     return res
@@ -20,6 +24,7 @@ const addDonation = async (req, res) => {
   }
 
   let donate;
+  const quantityWithUnit = `${quantity} ${quantityUnit}`;
 
   try {
     donate = new donationModel({
@@ -28,6 +33,7 @@ const addDonation = async (req, res) => {
       storageCondition,
       donationDate,
       expiryDate,
+      quantity : quantityWithUnit,
       collectionAddress,
       imageOfFoods,
       notes,
@@ -112,6 +118,7 @@ const updateDonation = async (req, res) => {
     storageCondition,
     donationDate,
     expiryDate,
+    quantity,
     collectionAddress,
     imageOfFoods,
     notes,
@@ -133,6 +140,7 @@ const updateDonation = async (req, res) => {
         storageCondition,
         donationDate,
         expiryDate,
+        quantity,
         collectionAddress,
         imageOfFoods,
         notes,
