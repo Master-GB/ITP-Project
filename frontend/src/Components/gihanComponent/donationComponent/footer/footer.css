@@ -4,15 +4,27 @@ html, body, #root {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* Main content wrapper to push footer down */
-.main-content {
-  flex: 1 0 auto; /* Ensures footer will be pushed to the bottom when content is short */
-  padding-bottom: 20px; /* Add padding to prevent overlap with footer */
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+/* Ensure the page container takes full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page container to hold content and footer */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+}
+
+/* Content wrapper to grow and push the footer down */
+.content-wrap {
+  flex: 1; /* This makes the content take up remaining space */
 }
 
 /* Footer Container */
@@ -22,28 +34,24 @@ html, body, #root {
   padding: 20px;
   font-family: Arial, sans-serif;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Space out sections */
-  align-items: flex-start; /* Align items to the start */
-  margin-top: auto; /* Push the footer to the bottom */
+  flex-shrink: 0; /* Prevent footer from shrinking */
 }
 
 /* First Section */
 .footer-first-section {
   display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Increased gap between sections */
+  justify-content: space-between; /* Space out sections */
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Add gap between sections */
   flex-wrap: wrap; /* Ensure responsiveness */
-  width: 100%;
 }
 
-/* Left Column */
-.left-column {
-  flex: 1 1 40%;
+/* Platform Information and Newsletter */
+.platform-and-newsletter {
+  flex: 1 1 40%; /* Take 40% of the width */
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Reduced gap */
+  gap: 10px; /* Add gap between Platform Information and Newsletter */
 }
 
 /* Platform Information */
@@ -51,17 +59,17 @@ html, body, #root {
   text-align: left;
 }
 
-.logo-container img {
+.platform-info .logo-container img {
   width: 80px;
   height: auto;
 }
 
-.tagline {
+.platform-info .tagline {
   font-size: 14px;
   margin-top: 5px;
 }
 
-/* Newsletter Signup */
+/* Newsletter Section */
 .newsletter-section {
   text-align: left;
 }
@@ -78,7 +86,7 @@ html, body, #root {
 
 .newsletter-form {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .newsletter-form input {
@@ -90,13 +98,13 @@ html, body, #root {
 }
 
 .newsletter-form button {
-  padding: 8px 16px;
+  padding: 8px 10px;
   background-color: #e67e22;
   color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 10%;
+  width: 16%;
   white-space: nowrap; 
 }
 
@@ -104,119 +112,65 @@ html, body, #root {
   background-color: #d35400;
 }
 
-/* Right Column */
-.right-column {
-  flex: 1 1 60%;
+/* Right Sections: About Us, Donor Resources, and Contact Us */
+.right-sections {
+  padding-right: 10px;
+  flex: 1 1 58%; /* Take 50% of the width */
   display: flex;
-  justify-content: space-between;
-  gap: 10px; /* Increased gap */
+  justify-content: space-between; /* Space out sections */
+  gap: 0px; /* Add gap between sections */
 }
 
-/* About Us */
-.about-us {
-  flex: 1 1 30%;
+/* About Us, Donor Resources, and Contact Us */
+.about-us, .donor-resources, .contact-us {
+  flex: 1 1 30%; /* Equal width for all sections */
   text-align: left;
 }
 
-.about-us h3 {
+.contact-us{
+  margin-right: 15px;
+}
+
+.about-us h3, .donor-resources h3, .contact-us h3 {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-.about-us ul {
+.about-us ul, .donor-resources ul, .contact-us ul {
   list-style: none;
   padding: 0;
 }
 
-.about-us ul li {
+.about-us ul li, .donor-resources ul li {
   margin-bottom: 8px;
-}
-
-.about-us ul li a {
-  color: #888; /* Grey color */
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.about-us ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Donor Resources */
-.donor-resources {
-  flex: 1 1 30%;
-  text-align: left;
-}
-
-.donor-resources h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.donor-resources ul {
-  list-style: none;
-  padding: 0;
-}
-
-.donor-resources ul li {
-  margin-bottom: 8px;
-}
-
-.donor-resources ul li a {
-  color: #888; /* Grey color */
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.donor-resources ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Contact Us */
-.contact-us {
-  flex: 1 1 30%;
-  text-align: left;
-}
-
-.contact-us h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.contact-us ul {
-  list-style: none;
-  padding: 0;
 }
 
 .contact-us ul li {
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically center align items */
+  gap: 9px; /* Add gap between icon and text */
+  color: #888; /* Grey color */
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.about-us ul li a, .donor-resources ul li a {
   color: #888; /* Grey color */
   text-decoration: none;
   font-size: 14px;
 }
 
-/* Contact Us Icons - Individual Sizes */
-.contact-us ul li:nth-child(1) img {
-  width: 22px; /* Custom size for Phone icon */
-  height: 22px;
+.about-us ul li a:hover, .donor-resources ul li a:hover {
+  text-decoration: underline;
 }
 
-.contact-us ul li:nth-child(2) img {
-  width: 22px; /* Custom size for Email icon */
-  height: 22px;
-}
-
-.contact-us ul li:nth-child(3) img {
-  width: 22px; /* Custom size for Location icon */
-  height: 22px;
-}
-
-/* Change Contact Us Icon Color to White */
+/* Contact Us Icons */
 .contact-us ul li img {
+  width: 22px; /* Custom size for icons */
+  height: 22px;
+  padding-top: 2px;
   filter: brightness(0) invert(1); /* Change black to white */
+  vertical-align: middle; /* Align icons vertically with text */
 }
 
 /* Horizontal Separator */

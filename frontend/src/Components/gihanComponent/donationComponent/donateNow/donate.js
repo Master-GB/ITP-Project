@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./donate.css";
-import Nav from "../navBar/nav";
-import Footer from "../footer/footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -157,9 +155,7 @@ export default function Donate() {
   };
 
   return (
-    <div className="main-content-wrapper">
-      <Nav />
-      <main className="main-content">
+      <main className="main-content" id="back">
         <div className="donate-container">
           <h1>Donate Food</h1>
           <p>Fill in the details below to make your food donation</p>
@@ -442,7 +438,5 @@ export default function Donate() {
           </form>
         </div>
       </main>
-      <Footer />
-    </div>
   );
 }

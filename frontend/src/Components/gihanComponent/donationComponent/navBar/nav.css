@@ -212,7 +212,7 @@
     text-decoration: none;
     flex-direction: column;
     line-height: 0.9; /* Adjust spacing between lines */
-    margin-left: -2px; 
+    margin-left: -25px; 
   }
   
   .top-text{

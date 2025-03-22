@@ -6,8 +6,8 @@ const Footer = () => {
     <footer className="footer">
       {/* First Section */}
       <div className="footer-first-section">
-        {/* Left Column */}
-        <div className="left-column">
+        {/* Platform Information and Newsletter */}
+        <div className="platform-and-newsletter">
           {/* Platform Information */}
           <div className="platform-info">
             <div className="logo-container">
@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Newsletter Signup */}
+          {/* Newsletter Section */}
           <div className="newsletter-section">
             <h2>Stay Updated!</h2>
             <p>Subscribe to our newsletter for the latest news, updates, and impact stories.</p>
@@ -31,9 +31,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="right-column">
-          {/* About Us */}
+        {/* About Us, Donor Resources, and Contact Us */}
+        <div className="right-sections">
           <div className="about-us">
             <h3>About Us</h3>
             <ul>
@@ -43,7 +42,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Donor Resources */}
           <div className="donor-resources">
             <h3>Donor Resources</h3>
             <ul>
@@ -52,21 +50,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Us */}
           <div className="contact-us">
             <h3>Contact Us</h3>
             <ul>
               <li>
                 <img src="/Resources/gihanRes/donationRes/footerRes/phone.png" alt="Phone" className="contact-icon" />
-                +(65) 6653 8065
+                +(94) 77 2525 320 
               </li>
               <li>
                 <img src="/Resources/gihanRes/donationRes/footerRes/email.png" alt="Email" className="contact-icon" />
-                hello@futuremarketer.co
+                hithahoda@gmail.com
               </li>
               <li>
                 <img src="/Resources/gihanRes/donationRes/footerRes/location.png" alt="Address" className="contact-icon" />
-                One Neil Road #02-02, Singapore 088804
+                 101/B,Bangalawatha road,Kothalawala,Kaduwela
               </li>
             </ul>
           </div>

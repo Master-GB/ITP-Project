@@ -90,7 +90,7 @@ const Nav = () => {
         <div className="nav-links">
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/donate">Donate Now</Link>
-          <Link to="/features">My Donation</Link>
+          <Link to="/myDonate">My Donation</Link>
           <Link to="/about">Contribution</Link>
         </div>
 
