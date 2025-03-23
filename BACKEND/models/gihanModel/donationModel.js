@@ -32,6 +32,16 @@ const donationSchema = new Schema({
     type: String,
     required: [true, "Quantity is required"],
   },
+
+  quantityUnit: {
+    type: String,
+    required: [true, "Quantity is required"],
+  },
+
+  finalQuantity:{
+    type: String,
+    default: "",
+  },
   
   collectionAddress: {
     type: String,

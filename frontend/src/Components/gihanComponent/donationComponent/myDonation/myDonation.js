@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./myDonation.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function MyDonation() {
@@ -59,14 +59,6 @@ export default function MyDonation() {
       default:
         return "black";
     }
-  };
-
-  const navigate = useNavigate();
-
-  // Handle Update Action
-  const handleUpdate = (id) => {
-    console.log(`Update donation with ID: ${id}`);
-    // Add your update logic here
   };
 
   
@@ -129,7 +121,6 @@ export default function MyDonation() {
             <th>Quantity</th>
             <th>Additional Note</th>
             <th>Status</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -141,19 +132,18 @@ export default function MyDonation() {
                 <td>{donation.storageCondition}</td>
                 <td>{new Date(donation.donationDate).toLocaleDateString()}</td>
                 <td>{new Date(donation.expiryDate).toLocaleDateString()}</td>
-                <td>{donation.quantity}</td>
+                <td>{donation.finalQuantity}</td>
                 <td>{donation.notes}</td>
                 <td style={{ color: getStatusColor(donation.status) }}>
                   {donation.status}
                 </td>
                 <td>
                   {donation.status === "Pending" && (
-                    <button
-                      onClick={() => handleUpdate(donation.id)}
-                      className="update-button"
-                    >
+                    <Link to = {`/myDonate/${donation._id}`}>
+                    <button className="update-button">
                       Edit
                     </button>
+                    </Link>
                   )}
                   <button
                     onClick={() => handleDelete(donation._id)}
