@@ -10,6 +10,7 @@ const addDonation = async (req, res) => {
     expiryDate,
     quantity,
     quantityUnit,
+    finalQuantity,
     collectionAddress,
     notes,
     status,
@@ -23,6 +24,10 @@ const addDonation = async (req, res) => {
       .json({ message: "Expiry date must be after the donation date" });
   }
 
+  if (quantity <= 0) {
+    return res.status(400).json({ message: "Quantity must be a positive number" });
+  }
+
   let donate;
   const quantityWithUnit = `${quantity} ${quantityUnit}`;
   const finalFoodItem = foodItem || foodCategory;
@@ -34,7 +39,9 @@ const addDonation = async (req, res) => {
       storageCondition,
       donationDate,
       expiryDate,
-      quantity : quantityWithUnit,
+      quantity,
+      quantityUnit,
+      finalQuantity : quantityWithUnit,
       collectionAddress,
       imageOfFoods,
       notes,
@@ -120,10 +127,10 @@ const updateDonation = async (req, res) => {
     donationDate,
     expiryDate,
     quantity,
+    quantityUnit,
     collectionAddress,
     imageOfFoods,
-    notes,
-    status,
+    notes
   } = req.body;
 
   if (expiryDate <= donationDate) {
@@ -132,20 +139,30 @@ const updateDonation = async (req, res) => {
       .json({ message: "Expiry date must be after the donation date" });
   }
 
-  try {
+
+  const quantityWithUnit = `${quantity} ${quantityUnit}`;
+  const finalFoodItem = foodItem || foodCategory;
+
+    try {
+      // Convert the file buffer to base64 if it exists
+      let imageOfFoods = null;
+      if (req.file) {
+        imageOfFoods = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
+      }
     const updatedDonation = await donationModel.findByIdAndUpdate(
       id,
       {
         foodCategory,
-        foodItem,
+        foodItem : finalFoodItem,
         storageCondition,
         donationDate,
         expiryDate,
         quantity,
+        quantityUnit,
+        finalQuantity : quantityWithUnit,
         collectionAddress,
         imageOfFoods,
-        notes,
-        status,
+        notes
       },
       { new: true}
     );
