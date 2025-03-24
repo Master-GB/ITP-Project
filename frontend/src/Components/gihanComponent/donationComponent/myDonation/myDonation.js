@@ -53,9 +53,11 @@ export default function MyDonation() {
       case "Collected":
         return "yellow";
       case "Packaging":
+        return "pink";
+      case "Delivery":
         return "blue";
-      case "Delivered":
-        return "green";
+      case "Completed":
+        return "green"
       default:
         return "black";
     }
@@ -92,7 +94,8 @@ export default function MyDonation() {
             <option value="Pending">Pending</option>
             <option value="Collected">Collected</option>
             <option value="Packaging">Packaging</option>
-            <option value="Delivered">Delivered</option>
+            <option value="Delivery">Delivered</option>
+            <option value = "Completed">Completed</option>
           </select>
         </div>
 
