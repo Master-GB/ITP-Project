@@ -1,4 +1,4 @@
-const tracking = require("../../../models/sashiniModel/trackingModel");
+const tracking = require("../../models/sashiniModel/trackingModel");
 
 //data display
 const getAlltrackings = async (req, res, next) => {
@@ -98,7 +98,7 @@ const deletetracking = async (req, res, next) => {
     return res.status(200).json({ tracking });
 };
 
-exports.grtAlltrackings = getAlltrackings;
+exports.getAlltrackings = getAlltrackings;
 exports.addtrackings = addtrackings;
 exports.getById = getById;
 exports.updatetracking = updatetracking;

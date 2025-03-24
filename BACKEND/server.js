@@ -10,7 +10,7 @@ const userRouter = require('./routes/imalshaRoute/UserRoute');
 
 const donorRoute = require("./routes/gihanRoute/donorRoute")
 const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
-const trackingRoute = require("./routes/sashiniRoute/trackingRoute");
+const trackingRouter = require("./routes/sashiniRoute/trackingRoute");
 
 const PORT = process.env.PORT || 8090;
 
@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use("/Requests",RequestRoute);
 app.use("/feedbacks",router);
-app.use("/trackings",router);
+app.use("/trackings",trackingRouter);
 
 app.use(cors());
 app.use(bodyParser.json());
