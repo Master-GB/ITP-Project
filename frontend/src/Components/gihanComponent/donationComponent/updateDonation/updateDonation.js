@@ -75,7 +75,7 @@ export default function UpdateDonation() {
     };
   
     fetchDonation();
-  }, [id]); 
+  },[id]); 
   
 
   console.log(" After featching Data",inputs);
