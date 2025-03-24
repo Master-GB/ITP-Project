@@ -1,0 +1,262 @@
+/* dashboard.css */
+body .dashboard-background {
+    background: linear-gradient(135deg, #49545c, #e6f7ff) !important; /* Force the gradient */
+    min-height: 100vh !important; /* Force full height */
+    padding: 20px !important; /* Force padding */
+    margin: 0 !important; /* Remove default margin */
+  }
+
+.advanced-donor-dashboard {
+    padding: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    padding-top: 70px;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    margin-bottom: 2px;
+    padding-bottom: 0px;
+    margin: 0;
+    font-size: 30px;
+  }
+  
+  .header p {
+    padding-top:0px ;
+    margin-top: 0px;
+    color: #666;
+  }
+  
+  .statistics {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .statistics-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #e0e0e0;
+  }
+
+  /* Values Container for Total Food Donated */
+.stat-card .values {
+    display: flex;
+    align-items: center; /* Align vertically */
+    margin-top: 10px;
+    gap: 30px; /* Gap between kg and unit */
+  }
+  
+  .stat-card .values .kg-value,
+  .stat-card .values .unit-value {
+    font-size: 1.2rem; /* Smaller font size to fit within the card */
+    font-weight: bold;
+    color: #000; /* Black font color */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .stat-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #000; /* Black icon color */
+  }
+  
+  .stat-card h2 {
+    margin: 0 0 10px;
+    font-size: 1rem; /* Smaller font size */
+    color: #666; /* Grey font color */
+  }
+  
+  .stat-card p {
+    font-size: 1.8rem; /* Larger font size */
+    font-weight: bold;
+    margin: 0;
+    color: #000; /* Black font color */
+  }
+  
+  /* Progress Bar Styles (Second Section Only) */
+  .progress-bar {
+    background: #e0e0e0;
+    border-radius: 5px;
+    height: 8px;
+    margin-top: 15px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    border-radius: 5px;
+  }
+  
+  .progress.blue {
+    background: #007bff; /* Blue progress bar */
+  }
+  
+  .progress.green {
+    background: #28a745; /* Green progress bar */
+  }
+  
+  /* Hover Effects */
+  .stat-card.total-donations:hover {
+    background: #e3f2fd;
+  }
+  
+  .stat-card.completed:hover {
+    background: #e8f5e9;
+  }
+  
+  .stat-card.pending:hover {
+    background: #fff3e0;
+  }
+  
+  .stat-card.upcoming:hover {
+    background: #fbe9e7;
+  }
+  
+  .stat-card.total-food:hover {
+    background: #f3e5f5;
+  }
+  
+  .stat-card.people-helped:hover {
+    background: #e0f7fa;
+  }
+  
+  .stat-card.completion-rate:hover {
+    background: #fff8e1;
+  }
+
+  /* Button Section */
+.button-section {
+    display: flex;
+    margin-top: 10px;
+    gap: 5px; /* Gap between buttons */
+  }
+  
+  .button-section button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    /*transition: background-color 0.3s ease, transform 0.3s ease;*/
+  }
+  
+  /* View All Donation Button */
+  .button-section .view-all-button {
+    background-color: #3385dc; /* Blue color */
+    color: white;
+  }
+  
+  .button-section .view-all-button:hover {
+    background-color: #539ae7; /* Darker blue on hover */
+    /*transform: translateY(-2px); /* Slight lift on hover */
+  }
+  
+  /* Create New Donation Button */
+  .button-section .create-new-button {
+    background-color:#3385dc; /* Green color */
+    color: white;
+  }
+  
+  .button-section .create-new-button:hover {
+    background-color: #539ae7; /* Darker green on hover */
+    /*transform: translateY(-2px); /* Slight lift on hover */
+  }
+  
+ /* Recent Donations Table */
+.recent-donations {
+    margin-bottom: 30px;
+  }
+
+  .recent-donations h2 {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+  }
+  
+  .recent-donations table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+  }
+  
+  .recent-donations th,
+  .recent-donations td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .recent-donations th {
+    background: #f1f1f1;
+  }
+  
+  /* Status Text Background Colors */
+  .recent-donations .status {
+    padding: 5px 3px;
+    border-radius: 5px;
+    color: black; /* White text for better contrast */
+    font-weight: bold;
+  }
+  
+  .recent-donations .status-pending {
+    border-radius: 15px;
+    padding: 3px 5px;
+    background-color: #ff44445b; /* Red */
+  }
+  
+  .recent-donations .status-collected {
+    border-radius: 15px;
+    padding: 3px 5px;
+    background-color: #ffcc0054; /* Yellow */
+  }
+  
+  .recent-donations .status-packaging {
+    border-radius: 15px;
+    padding: 3px 5px;
+    background-color: #ff66ff52; /* Pink */
+  }
+  
+  .recent-donations .status-delivery {
+    border-radius: 15px;
+    padding: 3px 5px;
+    background-color: #3399ff5e; /* Blue */
+  }
+  
+  .recent-donations .status-completed {
+    border-radius: 15px;
+    padding: 3px 5px;
+    background-color: #00cc6657; /* Green */
+  }
+  
+  .chart-section {
+    margin-bottom: 30px;
+  }
+  
+  .map-section {
+    margin-bottom: 30px;
+  }

@@ -1,0 +1,596 @@
+/* Ensure the body and root take up the full height */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+#back{
+        background: linear-gradient(135deg, #76afe1, #c6e2ff); /* Light blue gradient */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+}
+
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #108dc7;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000; /* Ensures it's above other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 100px; /* Adjust this based on your navbar's height */
+    padding-bottom: 60px;
+    z-index: 10;
+}
+
+/* Donation Form Container */
+.donate-container {
+    width: 60%; /* Increased width to 60% of the body section */
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Allow to go up to 100% of body width */
+    background-color: #ffffff; /* White background for the form */
+}
+
+.donate-container h1 {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center; /* Center the main title */
+}
+
+.donate-container p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.storage-lable, .quan-lable {
+    font-size: 16px;
+    color: #333;
+    font-weight: lighter;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.storage-lable{
+    padding-top: 5px;
+}
+
+
+/* Uniform Labels */
+label {
+    font-size: 19px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Food Category and Food Item Fields */
+.food-details-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.food-category-group, .food-item-group {
+    width: 48%; /* Space for both dropdowns side by side */
+    margin-bottom: 0px;
+}
+
+.food-category-group{
+    
+    margin-right:20px ;
+}
+
+.food-item-group{
+    margin-right: 1px;
+}
+
+.food-category-group select, .food-item-group select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.food-category-group select:hover, .food-item-group select:hover {
+    border-color: #108dc7;
+}
+
+/* Storage & Date Section */
+.storage-date-section {
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.storage-condition-group {
+    margin-bottom: 16px;
+}
+
+.storage-condition-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.storage-condition-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Date Fields */
+.date-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px; /* Increased gap between date fields */
+}
+
+.donation-date-group, .expiration-date-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.donation-date-group{
+    margin-right: 10px;
+}
+
+.expiration-date-group{
+    margin-right: 20px;
+}
+
+.donation-date-group input, .expiration-date-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.donation-date-group input:hover, .expiration-date-group input:hover {
+    border-color: #108dc7;
+}
+
+.quantity-section {
+    padding-top: 10px;
+    width: 59%; /* Full width for the Quantity section */
+    margin-bottom: 20px; /* Space between Quantity and Collection Address sections */
+}
+
+.collection-address-section {
+    padding-top: 10px;
+    width: 45.3%; /* Full width for the Collection Address section */
+    margin-bottom: 20px; /* Space below the Collection Address section */
+}
+
+.quantity-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.quantity-input:hover {
+    border-color: #108dc7;
+}
+
+.quantity-radio-group {
+    display: flex;
+    gap: 0px;
+}
+
+.quantity-radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.collection-address-section input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.collection-address-section input:hover {
+    border-color: #108dc7;
+}
+
+/* Food Images Section */
+.food-images-section {
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.file-input-container {
+    position: relative;
+    height: 150px; /* Adjust height as needed */
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.file-input-container:hover {
+    border-color: #108dc7;
+    background-color: #f0f8ff;
+}
+
+.upload-icon svg {
+    width: 40px;
+    height: 40px;
+    color: #108dc7;
+}
+
+.drag-drop-text {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.browse-files-text {
+    font-size: 16px;
+    color: #108dc7;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.browse-files-text label {
+    cursor: pointer;
+}
+
+#file-upload {
+    display: none; /* Hide the default file input */
+}
+
+.uploaded-image-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uploaded-image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: cover; /* Ensure the image fits within the container */
+}
+
+.file-input-container.drag-over {
+    border-color: #108dc7;
+    background-color: #f0f8ff;
+}
+
+/* Additional Notes Section */
+.additional-notes-section {
+    margin-top: 20px; /* Add space between image input and notes */
+    text-align: left; /* Align label and textarea to the left */
+    padding-top: 10px;
+}
+
+.additional-notes-section textarea {
+    width: 98%; /* Full width of the container */
+    height: 100px; /* Default height */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical; /* Allow vertical resizing */
+    font-family: inherit; /* Inherit font from parent */
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.additional-notes-section textarea:hover {
+    border-color: #108dc7;
+}
+
+/* Checkbox Section */
+.checkbox-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.checkbox-section label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.checkbox-section input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 40%;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-b {
+    margin-left: 260px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Footer */
+.footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    position: relative;
+    z-index: 800;
+    margin-top: auto;
+}
+
+
+/* Add a smooth transition to all elements */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Style for focused input fields */
+input:focus, select:focus, textarea:focus {
+    border-color: #108dc7;
+    box-shadow: 0 0 5px rgba(16, 141, 199, 0.5);
+    outline: none;
+}
+
+/* Style for disabled buttons */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background-color: #ccc;
+}
+
+/* Add a hover effect for radio buttons and checkboxes */
+input[type="radio"]:hover, input[type="checkbox"]:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* Add a custom scrollbar for textarea */
+textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #108dc7 #f9f9f9;
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: #f9f9f9;
+    border-radius: 6px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #108dc7;
+    border-radius: 6px;
+    border: 2px solid #f9f9f9;
+}
+
+/* Add a hover effect for the submit button */
+button[type="submit"]:hover {
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Add a hover effect for the file upload container */
+.file-input-container:hover {
+    transform: scale(1.02); /* Slightly enlarge the container on hover */
+}
+
+/* Add a hover effect for the add category button */
+.add-category-button:hover {
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Add a hover effect for the browse files text */
+.browse-files-text:hover {
+    text-decoration: underline; /* Underline the text on hover */
+}
+
+/* Add a hover effect for the quantity radio buttons */
+.quantity-radio-group label:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the storage condition radio buttons */
+.storage-condition-options label:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the checkbox label */
+.checkbox-section label:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the food category and item dropdowns */
+.food-category-group select:hover, .food-item-group select:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the date inputs */
+.donation-date-group input:hover, .expiration-date-group input:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the quantity input */
+.quantity-input:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the collection address input */
+.collection-address-section input:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the additional notes textarea */
+.additional-notes-section textarea:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the checkbox */
+.checkbox-section input[type="checkbox"]:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover */
+}
+
+/* Add a hover effect for the submit button */
+button[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Add a hover effect for the file upload container */
+.file-input-container:hover {
+    border-color: #108dc7; /* Change border color on hover */
+    background-color: #f0f8ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the drag and drop text */
+.drag-drop-text:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the upload icon */
+.upload-icon svg:hover {
+    color: #0e76a8; /* Darker blue on hover */
+}
+
+/* Add a hover effect for the browse files text */
+.browse-files-text:hover {
+    color: #0e76a8; /* Darker blue on hover */
+}
+
+/* Add a hover effect for the uploaded image preview */
+.uploaded-image-preview img:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover */
+}
+
+/* Add a hover effect for the add category button */
+.add-category-button:hover {
+    background-color: #0e76a8; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Add a hover effect for the quantity radio buttons */
+.quantity-radio-group label:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the storage condition radio buttons */
+.storage-condition-options label:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the checkbox label */
+.checkbox-section label:hover {
+    color: #108dc7; /* Change text color on hover */
+}
+
+/* Add a hover effect for the food category and item dropdowns */
+.food-category-group select:hover, .food-item-group select:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the date inputs */
+.donation-date-group input:hover, .expiration-date-group input:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the quantity input */
+.quantity-input:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the collection address input */
+.collection-address-section input:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the additional notes textarea */
+.additional-notes-section textarea:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+/* Add a hover effect for the checkbox */
+.checkbox-section input[type="checkbox"]:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover */
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+  }
