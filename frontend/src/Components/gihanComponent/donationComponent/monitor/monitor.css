@@ -1,0 +1,228 @@
+body .monitor-background {
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important; /* Force the gradient */
+    min-height: 100vh !important; /* Force full height */
+    padding: 20px !important; /* Force padding */
+    margin: 0 !important; /* Remove default margin */
+  }
+
+.donor-analytics-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Milestones Section */
+  .milestones-section {
+    padding-top: 30px;
+    margin-bottom: 3rem;
+  }
+  
+  .milestones-section h2 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .milestones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .milestone-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .milestone-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .milestone-card.achieved {
+    border-top: 4px solid #27ae60;
+  }
+  
+  .milestone-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .milestone-card h3 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .milestone-card p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  /* Chart Sections */
+  .chart-section {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .chart-section h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 0.5rem;
+  }
+  
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .filter-select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .filter-select:hover {
+    border-color: #3498db;
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* PDF Buttons */
+  .pdf-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .pdf-button {
+    flex: 1;
+    min-width: 250px;
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .pdf-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  /* Social Sharing */
+  .social-sharing {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .social-sharing h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .social-sharing p {
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 100px;
+  }
+  
+  .social-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .social-button span {
+    font-size: 0.8rem;
+    color: #333;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .milestones-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .pdf-buttons {
+      flex-direction: column;
+    }
+  
+    .chart-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .milestones-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .donor-analytics-dashboard {
+      padding: 1rem;
+    }
+  }
+

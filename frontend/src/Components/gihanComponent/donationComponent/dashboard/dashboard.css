@@ -1,6 +1,6 @@
 /* dashboard.css */
 body .dashboard-background {
-    background: linear-gradient(135deg, #49545c, #e6f7ff) !important; /* Force the gradient */
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important; /* Force the gradient */
     min-height: 100vh !important; /* Force full height */
     padding: 20px !important; /* Force padding */
     margin: 0 !important; /* Remove default margin */
@@ -28,7 +28,7 @@ body .dashboard-background {
   .header p {
     padding-top:0px ;
     margin-top: 0px;
-    color: #666;
+    color: #1d1a1a;
   }
   
   .statistics {
@@ -131,7 +131,7 @@ body .dashboard-background {
     background: #fff3e0;
   }
   
-  .stat-card.upcoming:hover {
+  .stat-card.cancel:hover {
     background: #fbe9e7;
   }
   
@@ -251,6 +251,12 @@ body .dashboard-background {
     border-radius: 15px;
     padding: 3px 5px;
     background-color: #00cc6657; /* Green */
+  }
+
+  .recent-donations .status-cancel {
+    border-radius: 15px;
+    padding: 3px 5px;
+    background-color: #ff44445b;; /* Green */
   }
   
   .chart-section {

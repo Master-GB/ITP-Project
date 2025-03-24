@@ -1,3 +1,12 @@
+body .myBack {
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff); /* Force the gradient */
+    min-height: 60vh; /* Force full height */
+    padding: 20px ;/* Force padding */
+    padding-bottom: 0px;
+    margin: 0 ; /* Remove default margin */
+  }
+
+
 /* Ensure the body and root take up the full height */
 html, body, #root {
     height: 100%;
@@ -6,11 +15,12 @@ html, body, #root {
     font-family: 'Arial', sans-serif;
 }
 #back{
-        background: linear-gradient(135deg, #76afe1, #c6e2ff); /* Light blue gradient */
+     background: linear-gradient(135deg, #b4d2e8, #e6f7ff); /* Light blue gradient */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
 }
+
 
 /* Navigation Bar */
 .navbar {

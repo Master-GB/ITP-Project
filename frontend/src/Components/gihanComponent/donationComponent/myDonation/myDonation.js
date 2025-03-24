@@ -58,6 +58,8 @@ export default function MyDonation() {
         return "blue";
       case "Completed":
         return "green"
+      case "Cancel":
+        return "red"
       default:
         return "black";
     }
@@ -79,6 +81,7 @@ export default function MyDonation() {
   };
 
   return (
+    <div className="myBack">
     <div className="my-donation-container">
       {/* Filter and Search Bar */}
       <div className="filter-search-container">
@@ -95,7 +98,8 @@ export default function MyDonation() {
             <option value="Collected">Collected</option>
             <option value="Packaging">Packaging</option>
             <option value="Delivery">Delivered</option>
-            <option value = "Completed">Completed</option>
+            <option value ="Completed">Completed</option>
+            <option value ="Cancel">Cancel</option>
           </select>
         </div>
 
@@ -124,6 +128,7 @@ export default function MyDonation() {
             <th>Quantity</th>
             <th>Additional Note</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -164,6 +169,7 @@ export default function MyDonation() {
           )}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }

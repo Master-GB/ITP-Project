@@ -7,6 +7,7 @@ import MyDonation from "./Components/gihanComponent/donationComponent/myDonation
 import Nav from "./Components/gihanComponent/donationComponent/navBar/nav";
 import Footer from "./Components/gihanComponent/donationComponent/footer/footer";
 import UpdateDonation from "./Components/gihanComponent/donationComponent/updateDonation/updateDonation";
+import MonitorPage from "./Components/gihanComponent/donationComponent/monitor/monitor";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path ="/donate" element={<Donate/>}/>
           <Route path = "/myDonate" element = {<MyDonation/>}/>
           <Route path = "/myDonate/:id" element = {<UpdateDonation/>}/>
+          <Route path = "/monitor" element = {<MonitorPage/>}/>
         </Routes>       
       </React.Fragment>
       </div>
