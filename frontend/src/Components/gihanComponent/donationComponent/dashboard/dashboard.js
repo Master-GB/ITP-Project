@@ -121,6 +121,7 @@ const AdvancedDonorDashboard = () => {
   const totalDonations = donations.length;
   const totalCompleted = donations.filter((d) => d.status === "Completed").length;
   const totalPending = donations.filter((d) => d.status === "Pending").length;
+  const totalCancel = donations.filter((d)=>d.status==="Cancel").length;
   let kgQuantity = 0;
   let unitQuantity = 0;
   for (let i = 0; i < totalDonations; i++) {
@@ -298,15 +299,10 @@ const AdvancedDonorDashboard = () => {
             <h2>Pending</h2>
             <p>{totalPending}</p>
           </div>
-          <div className="stat-card upcoming">
-            <i className="fas fa-calendar-alt stat-icon"></i>
-            <h2>Upcoming</h2>
-            <p>
-              {
-                donations.filter((d) => new Date(d.donationDate) > new Date())
-                  .length
-              }
-            </p>
+          <div className="stat-card cancel">
+            <i className="fas fa-cancel stat-icon"></i>
+            <h2>Cancel</h2>
+            <p>{totalCancel}</p>
           </div>
         </div>
 

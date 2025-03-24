@@ -91,7 +91,7 @@ const Nav = () => {
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/donate">Donate Now</Link>
           <Link to="/myDonate">My Donation</Link>
-          <Link to="/about">Contribution</Link>
+          <Link to="/monitor">Analytics</Link>
         </div>
 
         {/* Search Bar */}
