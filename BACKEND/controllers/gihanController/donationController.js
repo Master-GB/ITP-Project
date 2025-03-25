@@ -120,6 +120,29 @@ const deleteDonation = async (req, res) => {
 
 const updateDonation = async (req, res) => {
   const id = req.params.id;
+
+  if (Object.keys(req.body).length === 1 && req.body.status) {
+    try {
+      const updatedDonation = await donationModel.findByIdAndUpdate(
+        id,
+        { status: req.body.status },
+        { new: true }
+      );
+      
+      if (!updatedDonation) {
+        return res.status(404).json({ message: "Donation not found" });
+      }
+      
+      return res.status(200).json({ 
+        message: "Status updated successfully",
+        updatedDonation 
+      });
+    } catch (error) {
+      console.error("Status update error:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
+  
   const {
     foodCategory,
     foodItem,

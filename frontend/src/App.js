@@ -8,26 +8,45 @@ import Nav from "./Components/gihanComponent/donationComponent/navBar/nav";
 import Footer from "./Components/gihanComponent/donationComponent/footer/footer";
 import UpdateDonation from "./Components/gihanComponent/donationComponent/updateDonation/updateDonation";
 import MonitorPage from "./Components/gihanComponent/donationComponent/monitor/monitor";
+import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
+import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
+
+
+const DonorLayout = () => (
+  <div className="page-container">
+    <Nav />
+    <div className="page-content">
+      <Routes>
+        <Route path="/" exact element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/myDonate" element={<MyDonation />} />
+        <Route path="/myDonate/:id" element={<UpdateDonation />} />
+        <Route path="/monitor" element={<MonitorPage />} />
+      </Routes>
+    </div>
+    <Footer />
+  </div>
+);
+
+const OperatingManagerLayout = () => (
+  <div className="operating-manager-container">
+    <OperatingManagerSidebar />
+    <div className="operating-manager-content">
+      <Routes>
+         <Route path="/foodManagement" element = {<FoodDonationPage/>}/>
+      </Routes>
+    </div>
+  </div>
+);
 
 function App() {
   return (
-
-    <div className="page-container">
-      <Nav/>
-       <div className="page-content">
-      <React.Fragment>
-        <Routes>
-          <Route path="/" exact element={<Dashboard/>}/>
-          <Route path ="/dashboard" element={ <Dashboard/>}/>
-          <Route path ="/donate" element={<Donate/>}/>
-          <Route path = "/myDonate" element = {<MyDonation/>}/>
-          <Route path = "/myDonate/:id" element = {<UpdateDonation/>}/>
-          <Route path = "/monitor" element = {<MonitorPage/>}/>
-        </Routes>       
-      </React.Fragment>
-      </div>
-      <Footer/>
-    </div>
+    <Routes>
+      <Route path="/*" element={<OperatingManagerLayout />} />
+      <Route path="/donorrrr/*" element={<DonorLayout />} />
+      
+    </Routes>
   );
 }
 

@@ -33,7 +33,9 @@ const AdvancedDonorDashboard = () => {
 
   // Fetch donations from the backend
   const fetchDonation = async () => {
-    return await axios.get("http://localhost:8090/donations/display").then((res) => res.data);
+    return await axios.get("http://localhost:8090/donations/display")
+    .then((res) => res.data)
+    .catch(()=> console.log("Donation Not featching"));
   };
 
   useEffect(() => {
