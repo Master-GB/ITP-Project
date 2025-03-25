@@ -34,3 +34,37 @@ footer {
   text-align: center;
   flex-shrink: 0; /* Prevent footer from shrinking */
 }
+
+.operating-manager-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.operating-manager-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; 
+}
+
+.nav-link, 
+.profile-section, 
+.sign-out {
+  text-decoration: none;  
+  color: inherit;     
+  display: flex;
+  align-items: center;
+  padding: 5px 0px;
+  transition: background 0.3s ease-in-out;
+}
+
+.nav-link:hover, 
+.profile-section:hover, 
+.sign-out:hover {
+  background: rgba(0, 0, 0, 0.1); 
+}
+
+.nav-link:focus, 
+.profile-section:focus, 
+.sign-out:focus {
+  outline: none;
+}
