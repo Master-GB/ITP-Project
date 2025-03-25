@@ -1,36 +1,46 @@
-/* Ensure the page container takes full height */
-html, body, #root {
-  height: 100%;
-  margin: 0;
+.App {
+  padding: 20px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.loading, .error {
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+.error {
+  color: red;
+}
+
+.needy-list {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.needy-list ul {
+  list-style: none;
   padding: 0;
 }
 
-/* Page container to hold content and footer */
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+.needy-list li {
+  padding: 8px;
+  margin: 5px 0;
+  background: #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-/* Navbar */
-nav {
-  background-color: #333; /* Example color */
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-/* Main content */
-.main-content {
-  flex: 1; /* Grow to fill remaining space */
-  padding: 20px; /* Add some padding */
-}
-
-/* Footer */
-footer {
-  background-color: #2c3e50; /* Example color */
-  color: white;
-  padding: 0px;
-  text-align: center;
-  flex-shrink: 0; /* Prevent footer from shrinking */
+.needy-list li:hover {
+  background: #d0d0d0;
 }
