@@ -46,11 +46,13 @@ const OperatingManagerLayout = () => (
 
 function App() {
   return (
-    <Routes>
-      <Route path="/*" element={<OperatingManagerLayout />} />
-      <Route path="/h/*" element={<DonorLayout />} />
-      
-    </Routes>
+
+      <Routes>
+        <Route path="/jkj/*" element={<OperatingManagerLayout />} />
+        <Route path="/jh/*" element={<DonorLayout />} /> 
+        <Route path="/*" element={<VolunteerCoordinatorLayout/>}/>
+        <Route path="/hgg/" element={<VolunteerDeliveryStaffLayout/>}/>
+      </Routes>
   );
 }
 
