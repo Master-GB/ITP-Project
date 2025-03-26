@@ -60,6 +60,8 @@
   }
   
   .profile-photo-cover {
+    margin-top: 30px;
+    padding-top: 10px;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -111,12 +113,14 @@
   }
   
   .profile-photo {
+    margin-top: 5px;
     width: 90px;
     height: 90px;
     border-radius: 50%;
   }
   
   .profile-info {
+    margin-top: 5px;
     text-align: center;
     margin-top: 0; 
     padding: 0; 
@@ -250,7 +254,7 @@
   }
 
 .nav-links a:hover {
-  color: #148af2;
+  color: #656e75;
 }
 
 .chatbot-icon img,

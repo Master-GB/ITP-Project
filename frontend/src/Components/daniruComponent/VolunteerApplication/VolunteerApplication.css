@@ -10,12 +10,12 @@
     text-align: center;
   }
   
-  h2 {
+  .volunteer-application-name{
     font-family: 'Arial', sans-serif;
     color: #2c3e50; /* Updated to the desired form title color */
     margin-bottom: 20px;
-    font-size: 2rem;
     font-weight: bold;
+    font-size: 1.5rem;
   }
   
   /* Form styling */
@@ -89,8 +89,5 @@
       padding: 20px;
     }
   
-    h2 {
-      font-size: 1.5rem;
-    }
   }
   

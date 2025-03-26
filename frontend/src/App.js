@@ -20,12 +20,14 @@ import Reports from "./Components/daniruComponent/Reports";
 import Volunteers from "./Components/daniruComponent/Volunteers";
 import VolunteerCDashboard from "./Components/daniruComponent/VolunteerCDashboard";
 import UpdateTask from "./Components/daniruComponent/UpdateTask";
-import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDStaff/VolunteerDStaffDashboard";
-import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
-import VolunteerTasks from "./Components/daniruComponent/VolunteerDStaff/VolunteerTasks";
 import VolunteerTaskDisplay from "./Components/daniruComponent/VolunteerDStaff/VolunteerTaskDisplay";
-import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
+import VolunteerTasks from "./Components/daniruComponent/VolunteerDStaff/VolunteerTasks";
 import Task from "./Components/daniruComponent/Task";
+import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDStaff/VolunteerDStaffDashboard";
+import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
+import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
+
+
 
 const DonorLayout = () => (
   <div className="page-container">
@@ -55,6 +57,34 @@ const OperatingManagerLayout = () => (
       </Routes>
     </div>
   </div>
+);
+
+
+import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
+import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
+import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
+import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
+import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
+import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
+import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
+
+const RequestsLayout = () => (
+  <div className="App">
+  <NavBarP/>
+  <div className="main-content">
+  <React.Fragment>
+      <Routes>
+        <Route path="/" element={<ProfileP />} />
+        <Route path="/add-requests" element={<AddRequests />} />
+        <Route path="/display-requests" element={<FoodRequests />} />
+        <Route path="/profile" element={<ProfileP />} />
+        <Route path="/funds" element={<PaymentForm />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/display-requests/:id" element={<UpdateRequests />} />
+      </Routes>
+    </React.Fragment>
+  </div>
+</div>
 );
 
 const VolunteerCoordinatorLayout = () => (
@@ -98,11 +128,13 @@ const VolunteerDeliveryStaffLayout = () => (
 function App() {
   return (
 
-      <Routes>
+  
+        <Route path="/*" element={<RequestsLayout/>}/>
         <Route path="/jkj/*" element={<OperatingManagerLayout />} />
         <Route path="/jh/*" element={<DonorLayout />} /> 
         <Route path="/ijjj/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
+
       </Routes>
   );
 }

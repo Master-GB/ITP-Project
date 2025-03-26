@@ -69,7 +69,7 @@ function VolunteerForm() {
 
   return (
     <div className="volunteer-application-form-container">
-      <h2>Volunteer Application</h2>
+      <h2 className="volunteer-application-name">Volunteer Application</h2>
 
       {error && <div className="error-message">{error}</div>}  {/* Display error */}
       {success && <div className="success-message">{success}</div>}  {/* Display success */}
