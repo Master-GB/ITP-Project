@@ -1,4 +1,36 @@
 
+import Userdetails from "./Components/imalshaComponent/UserDetails/Users";
+import NavigationBar from './Components/imalshaComponent/unavbar/Navigationbar';
+import AddUser from './Components/imalshaComponent/AddUser/AddUser';
+import UpdateUser from './Components/imalshaComponent/UpdateUser/UpdateUser';
+import Login from './Components/imalshaComponent/login/Login';
+import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks'
+import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackForm';
+import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
+import Dashboard from './Components/imalshaComponent/Dashboard/Dashboard';
+
+     
+const UserLayout=()=>(
+  <div className='app-container' >
+    <div classNmae='app-content'>
+    <Routes> 
+    <Route path="/" element={<NavigationBar />} />
+        <Route path="/userdetails" element={<Userdetails/>} />
+        <Route path="/adduser" element={<AddUser/>} />
+        <Route path="/userdetails/:id" element={<UpdateUser/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path='/feedback'element={<FeedbackDetails/>}/>   
+        <Route path='/feedbackForm'element={<FeedbackForm/>}/>
+        <Route path='/feedback/:id'element={<FeedbackDetails/>}/>
+        <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
+        <Route path="/dashbord" element={<Dashboard/>}/>
+ 
+</Routes>
+     </div>
+    </div>
+)
+
+
 import './App.css';
 import Task from "./Components/daniruComponent/Task";
 import React from "react";
@@ -27,7 +59,6 @@ import OperatingManagerSidebar from "./Components/gihanComponent/operatingManage
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
 import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
-
 
 const VolunteerCoordinatorLayout = () => (
   <div className="volunteer-coordinator-container">
@@ -106,7 +137,6 @@ function App() {
         <Route path="/ghj/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/yu/*" element={<VolunteerDeliveryStaffLayout/>}/>
       </Routes>
-
   );
 }
 

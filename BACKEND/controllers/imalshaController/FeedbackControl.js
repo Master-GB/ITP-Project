@@ -1,5 +1,6 @@
 const Feedback=require('../../models/imalshaModel/FeedbackModel');
 
+
 //display all feedbacks
 const getAllFeedbacks = async (req, res,next) => {
     let feedbacks;
@@ -26,19 +27,15 @@ const getAllFeedbacks = async (req, res,next) => {
 
 //data insert
 const createFeedback = async (req, res,next) => {
-    const { name, gmail, role, feedbackType, message, rating,createdAt } = req.body;
+    const { message, rating} = req.body;
 
     let newFeedback;
 
     try{
         newFeedback = new Feedback({
-            name,
-            gmail,
-            role,
-            feedbackType,
             message,
             rating,
-            createdAt
+           
         });
         await newFeedback.save();
     }
@@ -84,13 +81,13 @@ const getFeedbackById = async (req, res,next) => {
 
 const updateFeedback = async (req, res,next) => {
     const feedbackId = req.params.fid;
-    const { name, gmail, role, feedbackType, message, rating,createdAt } = req.body;
+    const {  message, rating } = req.body;
 
     let feedback;
 
     try {
 
-        feedback= await Feedback.findByIdAndUpdate(feedbackId,{name:name, gmail:gmail, role:role, feedbackType:feedbackType, message:message, rating:rating,createdAt:createdAt});
+        feedback= await Feedback.findByIdAndUpdate(feedbackId,{  message:message, rating:rating});
         feedback= await Feedback.save();
 
     }
@@ -133,9 +130,11 @@ const deleteFeedback = async (req, res,next) => {
     });
 }
 
+
+
+
 exports.getAllFeedbacks = getAllFeedbacks;
 exports.createFeedback = createFeedback;
 exports.getFeedbackById = getFeedbackById;
 exports.updateFeedback = updateFeedback;
-
 exports.deleteFeedback = deleteFeedback; 
