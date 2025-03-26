@@ -49,6 +49,7 @@ function App() {
     <Routes>
       <Route path="/hh/*" element={<OperatingManagerLayout />} />
       <Route path="/*" element={<DonorLayout />} />     
+     <Route path="/*" element={<DonorLayout />} />     
     </Routes>
   );
 }
