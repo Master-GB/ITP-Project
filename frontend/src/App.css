@@ -1,3 +1,4 @@
+/* Ensure the page container takes full height */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -61,6 +62,7 @@ footer {
 .sign-out:hover {
   background: rgba(0, 0, 0, 0.1); 
 }
+
 .nav-link:focus, 
 .profile-section:focus, 
 .sign-out:focus {
