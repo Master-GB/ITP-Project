@@ -79,6 +79,7 @@
   justify-content: flex-end; /* Align items to the left */
   align-items: center;
   margin-top: 80px;
+  padding-bottom: 7px;
   gap: 10px; /* Add 4px gap between filter and search sections */
 }
 
@@ -129,5 +130,102 @@
 
 .search-button:hover {
   background-color: #45a049;
+}
+
+
+.my-donation-container .donation-workflow-wrapper {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+
+.my-donation-container .donation-workflow-title {
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.my-donation-container .donation-steps-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.my-donation-container .donation-status-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.my-donation-container .donation-status-step.active {
+  opacity: 1;
+}
+
+.my-donation-container .donation-step-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.my-donation-container .donation-status-step.active .donation-step-number {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.my-donation-container .donation-step-name {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.my-donation-container .donation-step-connector {
+  font-size: 1.5rem;
+  color: #ddd;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+}
+
+.my-donation-container .donation-step-connector.active {
+  color: #4CAF50;
+}
+
+.donation-arrow{
+  margin-bottom: 17px;
+  font-size: 40px;
+}
+
+.my-donation-container .donation-arrow {
+  margin-top: -5px;
+}
+
+.my-donation-container .donation-current-status {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.my-donation-container table.donation-table tbody tr.donation-selected-row {
+  background-color: #78b6d2 !important;
+}
+
+.my-donation-container table.donation-table tbody tr {
+  cursor: pointer;
+  user-select: none;
 }
 

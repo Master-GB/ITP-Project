@@ -6,12 +6,19 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import RequestIcon from '@mui/icons-material/RequestQuote';
 import PartnersIcon from '@mui/icons-material/Handshake';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'; 
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const OperatingManagerSidebar = () => {
   const navItems = [
+    { name: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
+    { name: 'Inventory', icon: <InventoryIcon />, path: '/inventoryManagement' },
+    { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },
+    { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/partnerManagement' },
+    { name: 'Volunteer', icon: <VolunteerActivismIcon />, path: '/volunteersManagement' }, 
+    { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' }
     { name: 'Dashboard', icon: <DashboardIcon />, path: '/operating-manager/dashboard' },
     { name: 'Inventory', icon: <InventoryIcon />, path: '/operating-manager/inventory' },
     { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },

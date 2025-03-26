@@ -10,6 +10,8 @@ import UpdateDonation from "./Components/gihanComponent/donationComponent/update
 import MonitorPage from "./Components/gihanComponent/donationComponent/monitor/monitor";
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
+import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
+import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
 
 
 const DonorLayout = () => (
@@ -35,6 +37,8 @@ const OperatingManagerLayout = () => (
     <div className="operating-manager-content">
       <Routes>
          <Route path="/foodManagement" element = {<FoodDonationPage/>}/>
+         <Route path ="/inventoryManagement" element={<InventoryManagement/>}/>
+         <Route path ="/partnerManagement" element={<PartnerCollaboration/>}/>
       </Routes>
     </div>
   </div>
@@ -43,9 +47,8 @@ const OperatingManagerLayout = () => (
 function App() {
   return (
     <Routes>
-      <Route path="/*" element={<OperatingManagerLayout />} />
-      <Route path="/donorrrr/*" element={<DonorLayout />} />
-      
+      <Route path="/hh/*" element={<OperatingManagerLayout />} />
+     <Route path="/*" element={<DonorLayout />} />     
     </Routes>
   );
 }
