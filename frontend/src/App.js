@@ -130,7 +130,6 @@ const OperatingManagerLayout = () => (
 
 function App() {
   return (
-
       <Routes>
         <Route path="/*" element={<OperatingManagerLayout />} />
         <Route path="/ghgy/*" element={<DonorLayout />} /> 
