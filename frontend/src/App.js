@@ -134,8 +134,8 @@ function App() {
 
       <Routes>
         <Route path="/ji/*" element={<RequestsLayout/>}/>
-        <Route path="/*" element={<OperatingManagerLayout />} />
-        <Route path="/h/*" element={<DonorLayout />} /> 
+        <Route path="/jk/*" element={<OperatingManagerLayout />} />
+        <Route path="/*" element={<DonorLayout />} /> 
         <Route path="/ijjj/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
 

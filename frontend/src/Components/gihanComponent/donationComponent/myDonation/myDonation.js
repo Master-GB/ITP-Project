@@ -25,18 +25,15 @@ export default function MyDonation() {
       .catch((error) => console.error("Error fetching donations:", error));
   }, []);
 
-  // Handle search and filter
   useEffect(() => {
     let filtered = donations;
 
-    // Filter by search query (food item)
     if (searchQuery) {
       filtered = filtered.filter((donation) =>
         donation.foodItem.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
-    // Filter by status
     if (statusFilter !== "All") {
       filtered = filtered.filter(
         (donation) => donation.status === statusFilter
@@ -107,9 +104,7 @@ export default function MyDonation() {
   return (
     <div className="myBack">
       <div className="my-donation-container">
-        {/* Filter and Search Bar */}
         <div className="filter-search-container">
-          {/* Status Filter */}
           <div className="filter-container">
             <label htmlFor="status-filter">Filter by Status:</label>
             <select
@@ -127,7 +122,6 @@ export default function MyDonation() {
             </select>
           </div>
 
-          {/* Search Bar */}
           <div className="search-container">
             <input
               type="text"
@@ -140,7 +134,6 @@ export default function MyDonation() {
           </div>
         </div>
 
-        {/* Donation Table */}
         <table className="donation-table">
           <thead>
             <tr>
@@ -203,7 +196,7 @@ export default function MyDonation() {
           </tbody>
         </table>
 
-        {/* Workflow Visualization - Only show for non-canceled donations */}
+
 {selectedDonation && selectedDonation.status !== "Cancel" && (
   <div className="donation-workflow-wrapper">
     <h3 className="donation-workflow-title">Donation Workflow</h3>
