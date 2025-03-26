@@ -201,7 +201,7 @@ export default function UpdateDonation() {
   };
 
   return (
-    <main className="main-content" id="back">
+    <main className="main-content" id="update-back">
       <div className="donate-container">
         <h1>Update Donation</h1>
         <p>Update the details below to modify your food donation</p>

@@ -157,7 +157,16 @@ export default function Donate() {
   };
 
   return (
-      <main className="main-content" id="back">
+      <main className="main-content" id="back" style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('/Resources/gihanRes/donationRes/donatebg2.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh", 
+        width: "100%"
+      }}
+
+        >
         <div className="donate-container">
           <h1>Donate Food</h1>
           <p>Fill in the details below to make your food donation</p>
@@ -338,7 +347,6 @@ export default function Donate() {
               </div>
             </div>
 
-            {/* Food Images Section */}
             <div className="food-images-section">
               <label>Food Images:</label>
               <div

@@ -3,7 +3,6 @@ import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
 import MyDonation from "./Components/gihanComponent/donationComponent/myDonation/myDonation";
@@ -30,7 +29,6 @@ import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDSta
 import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 
-
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
 import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
 import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
@@ -39,13 +37,6 @@ import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRe
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 
-import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
-import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
-import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
-import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
-import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
-import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
-import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 
 
 const DonorLayout = () => (
@@ -98,6 +89,7 @@ const RequestsLayout = () => (
 </div>
 );
 
+
 const VolunteerCoordinatorLayout = () => (
   <div className="volunteer-coordinator-container">
     <React.Fragment>
@@ -136,14 +128,14 @@ const VolunteerDeliveryStaffLayout = () => (
   </div>
 );
 
+
 function App() {
   return (
 
-
-        <Route path="/*" element={<RequestsLayout/>}/>
-        <Route path="/jkj/*" element={<OperatingManagerLayout />} />
-        <Route path="/jh/*" element={<DonorLayout />} /> 
-       
+      <Routes>
+        <Route path="/ji/*" element={<RequestsLayout/>}/>
+        <Route path="/*" element={<OperatingManagerLayout />} />
+        <Route path="/h/*" element={<DonorLayout />} /> 
         <Route path="/ijjj/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
 
