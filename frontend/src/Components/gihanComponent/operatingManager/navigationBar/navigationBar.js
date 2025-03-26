@@ -17,8 +17,10 @@ const OperatingManagerSidebar = () => {
     { name: 'Inventory', icon: <InventoryIcon />, path: '/inventoryManagement' },
     { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },
     { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/partnerManagement' },
+
     { name: 'Volunteer', icon: <VolunteerActivismIcon />, path: '/volunteersManagement' }, // New Section Added
     { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' }
+
   ];
 
   return (
