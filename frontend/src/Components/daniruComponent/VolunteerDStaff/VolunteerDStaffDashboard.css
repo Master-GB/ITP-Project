@@ -1,5 +1,5 @@
 /* General styles */
-body {
+body.volunteer-delivery-staff-dashboard {
   font-family: 'Poppins', sans-serif;
   background-color: #f4f7fc;
   margin: 0;
@@ -7,14 +7,14 @@ body {
 }
 
 /* Container */
-.container {
+.container.volunteer-delivery-staff-dashboard {
   padding: 40px;
   max-width: 1200px;
   margin: auto;
 }
 
 /* Dashboard Title */
-.dashboard-title {
+.dashboard-title.volunteer-delivery-staff-dashboard {
   font-size: 2.8rem;
   font-weight: 700;
   color: #2c3e50;
@@ -23,7 +23,7 @@ body {
 }
 
 /* Stats Section */
-.stats {
+.stats.volunteer-delivery-staff-dashboard {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -31,7 +31,7 @@ body {
 }
 
 /* Stat Cards */
-.card {
+.card.volunteer-delivery-staff-dashboard {
   background: linear-gradient(145deg, #ffffff, #e3e9f1);
   padding: 25px;
   border-radius: 15px;
@@ -42,30 +42,30 @@ body {
   position: relative;
 }
 
-.card:hover {
+.card.volunteer-delivery-staff-dashboard:hover {
   transform: translateY(-10px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-.card h3 {
+.card.volunteer-delivery-staff-dashboard h3 {
   font-size: 2.2rem;
   margin: 10px 0;
   font-weight: 700;
   color: #1abc9c;
 }
 
-.card p {
+.card.volunteer-delivery-staff-dashboard p {
   font-size: 1rem;
   color: #555;
 }
 
-.card span.green {
+.card.volunteer-delivery-staff-dashboard span.green {
   color: #2ecc71;
   font-size: 0.9rem;
 }
 
 /* Task Section */
-.section-title {
+.section-title.volunteer-delivery-staff-dashboard {
   font-size: 2.2rem;
   color: #2c3e50;
   margin-top: 40px;
@@ -74,14 +74,14 @@ body {
 }
 
 /* Task Cards */
-.tasks {
+.tasks.volunteer-delivery-staff-dashboard {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.task {
+.task.volunteer-delivery-staff-dashboard {
   background: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -92,25 +92,25 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.task:hover {
+.task.volunteer-delivery-staff-dashboard:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.task h4 {
+.task.volunteer-delivery-staff-dashboard h4 {
   font-size: 1.4rem;
   font-weight: 600;
   color: #333;
 }
 
-.task p {
+.task.volunteer-delivery-staff-dashboard p {
   font-size: 1rem;
   color: #666;
   margin: 5px 0;
 }
 
 /* Task Status Badges */
-.status {
+.status.volunteer-delivery-staff-dashboard {
   font-size: 0.9rem;
   padding: 6px 12px;
   border-radius: 8px;
@@ -119,26 +119,26 @@ body {
   text-transform: uppercase;
 }
 
-.status.in-progress {
+.status.volunteer-delivery-staff-dashboard.in-progress {
   background-color: #f39c12;
 }
 
-.status.pending {
+.status.volunteer-delivery-staff-dashboard.pending {
   background-color: #e74c3c;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .stats {
+  .stats.volunteer-delivery-staff-dashboard {
     flex-direction: column;
     align-items: center;
   }
 
-  .card {
+  .card.volunteer-delivery-staff-dashboard {
     width: 100%;
   }
 
-  .tasks {
+  .tasks.volunteer-delivery-staff-dashboard {
     flex-direction: column;
   }
 }
