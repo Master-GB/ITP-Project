@@ -54,7 +54,6 @@ body .dashboard-background {
     border: 2px solid #e0e0e0;
   }
 
-  /* Values Container for Total Food Donated */
 .stat-card .values {
     display: flex;
     align-items: center; /* Align vertically */
