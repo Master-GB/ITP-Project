@@ -12,8 +12,9 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['Donor', 'Recipient', 'Volunteer', 'Admin'],
+        enum: ['Donor', 'Delivary Volunteer', 'Volunteer', 'PartnerShip','Admin'],
         required: true,
+        default:'Doner'
     },
     contactNumber: {
         type: Number,
