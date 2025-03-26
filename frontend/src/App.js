@@ -57,6 +57,33 @@ const OperatingManagerLayout = () => (
   </div>
 );
 
+import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
+import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
+import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
+import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
+import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
+import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
+import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
+
+const RequestsLayout = () => (
+  <div className="App">
+  <NavBarP/>
+  <div className="main-content">
+  <React.Fragment>
+      <Routes>
+        <Route path="/" element={<ProfileP />} />
+        <Route path="/add-requests" element={<AddRequests />} />
+        <Route path="/display-requests" element={<FoodRequests />} />
+        <Route path="/profile" element={<ProfileP />} />
+        <Route path="/funds" element={<PaymentForm />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/display-requests/:id" element={<UpdateRequests />} />
+      </Routes>
+    </React.Fragment>
+  </div>
+</div>
+);
+
 const VolunteerCoordinatorLayout = () => (
   <div className="volunteer-coordinator-container">
     <React.Fragment>
@@ -98,7 +125,8 @@ const VolunteerDeliveryStaffLayout = () => (
 function App() {
   return (
 
-      <Routes>
+  
+        <Route path="/*" element={<RequestsLayout/>}/>
         <Route path="/jkj/*" element={<OperatingManagerLayout />} />
         <Route path="/jh/*" element={<DonorLayout />} /> 
         <Route path="/*" element={<VolunteerCoordinatorLayout/>}/>
