@@ -11,14 +11,9 @@ const donorRoute = require("./routes/gihanRoute/donorRoute");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
-const donorRoute = require("./routes/gihanRoute/donorRoute")
 const operatingManagerRoute = require("./routes/gihanRoute/operatingMangerRoute")
 
 const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
-
-const PORT = process.env.PORT || 8090;
-
 
 const taskRoute = require("./routes/daniruRoute/TaskRoutes");
 const volunteerRoute = require("./routes/daniruRoute/VolunteerRoutes");

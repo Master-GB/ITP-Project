@@ -1,0 +1,87 @@
+.donation-request-container {
+    max-width: 500px; /* Reduced from 600px */
+    margin: 0 auto;
+    padding: 15px; /* Reduced padding */
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+  
+  }
+  
+  .donation-request-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 25px; /* Smaller font size */
+  }
+  
+  .donation-request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap */
+  }
+  
+  .donation-request-field-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .donation-request-label {
+    margin-bottom: 3px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px; /* Smaller label font */
+  }
+  
+  .donation-request-input,
+  .donation-request-select,
+  .donation-request-textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px; /* Reduced font size */
+  }
+  
+  .donation-request-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .donation-request-select {
+    width: 100%;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 25px;
+    text-align: center;
+  }
+  
+  .donation-request-textarea {
+    resize: vertical;
+    min-height: 80px; /* Reduced height */
+  }
+  
+  .donation-request-submit-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 30px; /* Increased horizontal padding to make button longer */
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 5px;
+    width: 450px; /* Added fixed width to ensure consistent button length */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 400px) {
+    .donation-request-container {
+      width: 100%;
+      padding: 10px;
+    }
+  }
