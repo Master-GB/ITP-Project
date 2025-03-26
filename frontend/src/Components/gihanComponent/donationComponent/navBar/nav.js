@@ -94,16 +94,20 @@ const Nav = () => {
           <Link to="/monitor">Analytics</Link>
         </div>
 
-        {/* Search Bar */}
-        <div className="search-bar">
-          <input type="text" placeholder="Search" />
-          <button className="search-icon">
-            <img
-              src="/Resources/gihanRes/donationRes/search.png"
-              alt="Search"
-            />
-          </button>
-        </div>
+        <div className="nav-search-container">
+  <input 
+    type="text" 
+    placeholder="Search" 
+    className="nav-search-input"
+  />
+  <button className="nav-search-button">
+    <img
+      src="/Resources/gihanRes/donationRes/search.png"
+      alt="Search"
+      className="nav-search-icon"
+    />
+  </button>
+</div>
 
           
         {/* AI Chatbot */}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Donate() {
   const [isDragOver, setIsDragOver] = useState(false);
-  const [errors, setErrors] = useState({}); // State to store validation errors
+  const [errors, setErrors] = useState({});
 
   const [inputs, setInputs] = useState({
     foodCategory: "",
@@ -30,11 +30,13 @@ export default function Donate() {
   const navigate = useNavigate();
 
   const foodCategoryMap = {
-    Meat: ["Chicken", "Fish", "Pork"],
-    Rice: [],
+    Meat: ["Chicken", "Fish", "Pork","Ambul Thiyal","Mutton"],
+    Rice: ["Fried Rice","white Rice","Biriyani","Milk Rice","Yellow Rice"],
+    Baked:["Egg Rolls","Patties","Kimbula Banis","Paan","Sausage Buns","Fish Buns"],
+    Desserts :["Watalappan","Ice cream","Fruit Salad","Cake"],
     Koththu: [],
-    Noodless: [],
-    Curry: ["Parippu", "kola mellum", "Bathala"],
+    Noodles: [],
+    Curry: ["Dhal Curry","Soya Curry","Manioc Curry","Bonchi Curry","Polos Curry","Kiri Kos Curry","Batu Moju ","Ala Curry","Kola Mallum","Kaju Curry","Kehel Muwa Curry","Mushroom Curry"],
   };
 
   // Frontend validation function

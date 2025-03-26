@@ -232,13 +232,13 @@ body .dashboard-background {
   .recent-donations .status-collected {
     border-radius: 15px;
     padding: 3px 5px;
-    background-color: #ffcc0054; /* Yellow */
+    background-color:rgba(239, 47, 239, 0.341); /* Yellow */
   }
   
   .recent-donations .status-packaging {
     border-radius: 15px;
     padding: 3px 5px;
-    background-color: #ff66ff52; /* Pink */
+    background-color:rgba(217, 127, 142, 0.371); /* Pink */
   }
   
   .recent-donations .status-delivery {
@@ -256,7 +256,7 @@ body .dashboard-background {
   .recent-donations .status-cancel {
     border-radius: 15px;
     padding: 3px 5px;
-    background-color: #ff44445b;; /* Green */
+    background-color: #ff44445b;; 
   }
   
   .chart-section {
