@@ -101,10 +101,10 @@ function App() {
   return (
 
       <Routes>
-        <Route path="/*" element={<OperatingManagerLayout />} />
-        <Route path="/ghgy/*" element={<DonorLayout />} /> 
-        <Route path="/ghj/*" element={<VolunteerCoordinatorLayout/>}/>
-        <Route path="/yu/*" element={<VolunteerDeliveryStaffLayout/>}/>
+        <Route path="/jkj/*" element={<OperatingManagerLayout />} />
+        <Route path="/jh/*" element={<DonorLayout />} /> 
+        <Route path="/*" element={<VolunteerCoordinatorLayout/>}/>
+        <Route path="/hgg/" element={<VolunteerDeliveryStaffLayout/>}/>
       </Routes>
 
   );
