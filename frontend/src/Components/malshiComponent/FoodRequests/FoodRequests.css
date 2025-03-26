@@ -1,4 +1,4 @@
-.request-search {
+.food-request-search {
     width: 100%;
     max-width: 400px;
     padding: 10px;
@@ -10,12 +10,12 @@
     margin-left: 400px;
 }
 
-.request-search:focus {
+.food-request-search:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-button {
+.food-request-button {
     padding: 10px 15px;
     margin-left: 10px;
     font-size: 16px;
@@ -27,6 +27,6 @@ button {
     transition: background-color 0.3s ease-in-out;
 }
 
-button:hover {
+.food-request-button:hover {
     background-color: #0056b3;
 }

@@ -1,6 +1,9 @@
-import "./App.css";
+
+import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+
+
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
 import MyDonation from "./Components/gihanComponent/donationComponent/myDonation/myDonation";
@@ -36,6 +39,15 @@ import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRe
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 
+import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
+import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
+import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
+import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
+import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
+import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
+import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
+
+
 const DonorLayout = () => (
   <div className="page-container">
     <Nav />
@@ -65,7 +77,6 @@ const OperatingManagerLayout = () => (
     </div>
   </div>
 );
-
 
 
 const RequestsLayout = () => (
@@ -128,7 +139,7 @@ const VolunteerDeliveryStaffLayout = () => (
 function App() {
   return (
 
-  <Routes>
+
         <Route path="/*" element={<RequestsLayout/>}/>
         <Route path="/jkj/*" element={<OperatingManagerLayout />} />
         <Route path="/jh/*" element={<DonorLayout />} /> 
