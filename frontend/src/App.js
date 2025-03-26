@@ -1,19 +1,107 @@
 import './App.css';
-import NavigationBar from "./Components/gihanComponent/donationComponent/navBar/nav"
-import Footer from './Components/gihanComponent/donationComponent/footer/footer';
+import Task from "./Components/daniruComponent/Task";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import CreateTask from "./Components/daniruComponent/CreateTask";
+import ViewTasks from "./Components/daniruComponent/ViewTasks";
+import Tracking from "./Components/daniruComponent/Tracking";
+import Reports from "./Components/daniruComponent/Reports";
+import Volunteers from "./Components/daniruComponent/Volunteers";
+import VolunteerCDashboard from "./Components/daniruComponent/VolunteerCDashboard";
+import UpdateTask from "./Components/daniruComponent/UpdateTask";
+import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDStaff/VolunteerDStaffDashboard";
+import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
+import VolunteerTasks from "./Components/daniruComponent/VolunteerDStaff/VolunteerTasks";
+import VolunteerTaskDisplay from "./Components/daniruComponent/VolunteerDStaff/VolunteerTaskDisplay";
+import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
+import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
+import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
+import MyDonation from "./Components/gihanComponent/donationComponent/myDonation/myDonation";
+import Nav from "./Components/gihanComponent/donationComponent/navBar/nav";
+import Footer from "./Components/gihanComponent/donationComponent/footer/footer";
+import UpdateDonation from "./Components/gihanComponent/donationComponent/updateDonation/updateDonation";
+import MonitorPage from "./Components/gihanComponent/donationComponent/monitor/monitor";
+import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
+import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
+import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
+import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
+
+const VolunteerCoordinatorLayout = () => (
+  <div className="volunteer-coordinator-container">
+    <React.Fragment>
+      <Routes>
+        <Route path="/" element={<VolunteerCDashboard />} />
+        <Route path="/dashboard" element={<VolunteerCDashboard />} />
+        <Route path="/volunteers" element={<Volunteers />} />
+        <Route path="/createtask" element={<CreateTask />} />
+        <Route path="/volunteercdashboard" element={<VolunteerCDashboard />} />
+        <Route path="/viewtasks" element={<Task />} />
+        <Route path="/task/:id" element={<UpdateTask />} />
+        <Route path="/tracking" element={<Tracking />} />
+        <Route path="/reports" element={<Reports />} />
+      </Routes>
+    </React.Fragment>
+  </div>
+);
+
+const VolunteerDeliveryStaffLayout = () => (
+  <div className="volunteer-delivery-staff-container">
+    <React.Fragment>
+      <Routes>
+        <Route path="/" element={<VolunteerDStaffDashboard />} />
+        <Route
+          path="/volunteerdstaffdashboard"
+          element={<VolunteerDStaffDashboard />}
+        />
+        <Route path="/volunteertask" element={<VolunteerTask />} />
+        <Route path="/volunteer/:volunteerName" element={<VolunteerTask />} />
+        <Route
+          path="/volunteerapplication"
+          element={<VolunteerApplication />}
+        />
+      </Routes>
+    </React.Fragment>
+  </div>
+);
+
+const DonorLayout = () => (
+  <div className="page-container">
+    <Nav />
+    <div className="page-content">
+      <Routes>
+        <Route path="/" exact element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/myDonate" element={<MyDonation />} />
+        <Route path="/myDonate/:id" element={<UpdateDonation />} />
+        <Route path="/monitor" element={<MonitorPage />} />
+      </Routes>
+    </div>
+    <Footer />
+  </div>
+);
+
+const OperatingManagerLayout = () => (
+  <div className="operating-manager-container">
+    <OperatingManagerSidebar />
+    <div className="operating-manager-content">
+      <Routes>
+         <Route path="/foodManagement" element = {<FoodDonationPage/>}/>
+         <Route path ="/inventoryManagement" element={<InventoryManagement/>}/>
+         <Route path ="/partnerManagement" element={<PartnerCollaboration/>}/>
+      </Routes>
+    </div>
+  </div>
+);
 
 function App() {
   return (
-  
-    <div className="App">
-      <NavigationBar/>
-      <div className="main-content">
-        {/* Your main content goes here */}
-        <h1>Welcome to the Donation Platform</h1>
-        <p>This is the main content of the page.</p>
-      </div>
-      <Footer/>
-    </div>
+      <Routes>
+        <Route path="/*" element={<OperatingManagerLayout />} />
+        <Route path="/ghgy/*" element={<DonorLayout />} /> 
+        <Route path="/ghj/*" element={<VolunteerCoordinatorLayout/>}/>
+        <Route path="/yu/*" element={<VolunteerDeliveryStaffLayout/>}/>
+      </Routes>
   );
 }
 
