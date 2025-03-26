@@ -1,0 +1,369 @@
+/* Base Styles */
+.operating-manager-container {
+    padding: 20px;
+    max-width: 1500px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Status Cards */
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 15px;
+  }
+  
+  .status-card {
+    flex: 1;
+    min-width: 180px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+  }
+  
+  .status-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .status-card h3 {
+    font-size: 28px;
+    margin: 0 0 5px 0;
+  }
+  
+  .status-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  /* Additional Card Colors */
+.collected-card {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffb300;
+  }
+  .collected-card:hover {
+    background-color: #ffe082;
+  }
+  .collected-card h3 {
+    color: #ffb300;
+  }
+  
+  .packaging-card {
+    background-color: #e1f5fe;
+    border-left: 4px solid #039be5;
+  }
+  .packaging-card:hover {
+    background-color: #81d4fa;
+  }
+  .packaging-card h3 {
+    color: #039be5;
+  }
+  
+  .delivery-card {
+    background-color: #ede7f6;
+    border-left: 4px solid #673ab7;
+  }
+  .delivery-card:hover {
+    background-color: #b39ddb;
+  }
+  .delivery-card h3 {
+    color: #673ab7;
+  }
+  
+  /* Card Colors */
+  .pending-card {
+    background-color: #fff3e0;
+    border-left: 4px solid #e67e22;
+  }
+  .pending-card:hover {
+    background-color: #ffe0b2;
+  }
+  .pending-card h3 {
+    color: #e67e22;
+  }
+  
+  .new-card {
+    background-color: #e3f2fd;
+    border-left: 4px solid #3498db;
+  }
+  .new-card:hover {
+    background-color: #bbdefb;
+  }
+  .new-card h3 {
+    color: #3498db;
+  }
+  
+  .expiring-card {
+    background-color: #ffebee;
+    border-left: 4px solid #e74c3c;
+  }
+  .expiring-card:hover {
+    background-color: #ffcdd2;
+  }
+  .expiring-card h3 {
+    color: #e74c3c;
+  }
+  
+  .completed-card {
+    background-color: #e8f5e9;
+    border-left: 4px solid #2ecc71;
+  }
+  .completed-card:hover {
+    background-color: #c8e6c9;
+  }
+  .completed-card h3 {
+    color: #2ecc71;
+  }
+  
+  .canceled-card {
+    background-color: #efebe9;
+    border-left: 4px solid #795548;
+  }
+  .canceled-card:hover {
+    background-color: #d7ccc8;
+  }
+  .canceled-card h3 {
+    color: #795548;
+  }
+  
+  .section-divider {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+  }
+  
+  /* Table Controls */
+  .table-controls-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .sort-control, .filter-control, .search-control {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid #2ecc71;
+    background-color: white;
+  }
+  
+  .sort-control select, .filter-control select {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .search-control {
+    margin-left: auto;
+  }
+  
+  .search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    fill: #7f8c8d;
+  }
+  
+  .search-control input {
+    padding: 8px 12px 8px 32px;
+    border-radius: 4px;
+    border: none;
+    width: 250px;
+    font-size: 14px;
+    background-color: transparent;
+  }
+  
+  /* Table Styles */
+  .table-responsive-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .donation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+  
+  .donation-table th, .donation-table td {
+    padding: 5px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .donation-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    position: sticky;
+    top: 0;
+    height: 40px;
+  }
+  
+  .donation-table tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .selected-row {
+    background-color: #9acaec !important;
+  }
+  
+  .status-dropdown {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .status-dropdown.pending { border-color: #e67e22; color: #e67e22; }
+  .status-dropdown.collected { border-color: #f39c12; color: #f39c12; }
+  .status-dropdown.packaging { border-color: #3498db; color: #3498db; }
+  .status-dropdown.delivery { border-color: #9b59b6; color: #9b59b6; }
+  .status-dropdown.completed { border-color: #2ecc71; color: #2ecc71; }
+  .status-dropdown.cancel { border-color: #e74c3c; color: #e74c3c; }
+  
+  /* Workflow Visualization */
+  .workflow-container {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .workflow-container h4 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .workflow-steps {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .step-indicator {
+    background-color:green;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  
+  /* Communication Panel */
+  .communication-panel {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .communication-panel h4 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .communication-panel textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 80px;
+    margin-bottom: 10px;
+    font-family: inherit;
+  }
+  
+  .communication-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .send-button, .template-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .send-button {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .send-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  .template-button {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card-container {
+      flex-wrap: wrap;
+    }
+    
+    .status-card {
+      min-width: calc(50% - 10px);
+    }
+    
+    .table-controls-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+    
+    .sort-control, .filter-control, .search-control {
+      width: 100%;
+    }
+    
+    .search-control {
+      margin-left: 0;
+    }
+    
+    .search-control input {
+      width: 100%;
+    }
+  }
