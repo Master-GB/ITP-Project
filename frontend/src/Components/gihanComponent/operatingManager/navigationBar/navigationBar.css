@@ -1,0 +1,113 @@
+.operating-manager-sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  
+  .sidebar-header {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .sidebar-logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .organization-name {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .sidebar-divider {
+    width: 80%;
+    margin: 10px auto;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-nav li {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar-nav li:hover {
+    background-color: #34495e;
+  }
+  
+  .nav-icon {
+    margin-right: 10px;
+  }
+  
+  .sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .profile-section:hover {
+    background-color: #34495e;
+  }
+  
+  .profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .profile-info h4 {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .profile-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #bdc3c7;
+  }
+  
+  .sign-out {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sign-out:hover {
+    background-color: #e74c3c;
+  }
+  
+  .sign-out span {
+    margin-left: 10px;
+  }
+
+  

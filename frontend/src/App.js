@@ -1,3 +1,4 @@
+
 import './App.css';
 import Task from "./Components/daniruComponent/Task";
 import React from "react";
@@ -14,6 +15,7 @@ import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/Voluntee
 import VolunteerTasks from "./Components/daniruComponent/VolunteerDStaff/VolunteerTasks";
 import VolunteerTaskDisplay from "./Components/daniruComponent/VolunteerDStaff/VolunteerTaskDisplay";
 import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
+
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
 import MyDonation from "./Components/gihanComponent/donationComponent/myDonation/myDonation";
@@ -25,6 +27,7 @@ import OperatingManagerSidebar from "./Components/gihanComponent/operatingManage
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
 import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
+
 
 const VolunteerCoordinatorLayout = () => (
   <div className="volunteer-coordinator-container">
@@ -96,12 +99,14 @@ const OperatingManagerLayout = () => (
 
 function App() {
   return (
+
       <Routes>
         <Route path="/*" element={<OperatingManagerLayout />} />
         <Route path="/ghgy/*" element={<DonorLayout />} /> 
         <Route path="/ghj/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/yu/*" element={<VolunteerDeliveryStaffLayout/>}/>
       </Routes>
+
   );
 }
 

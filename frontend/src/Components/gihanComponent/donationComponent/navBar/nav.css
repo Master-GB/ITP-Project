@@ -6,8 +6,11 @@
   padding: 0px 20px;
   background-color: #000;
   color: white;
-  position: relative;
-  z-index: 1000;
+  position: fixed;  
+  top: 0;         
+  left: 0;
+  width: 100%;     
+  z-index: 1000;   
 }
 
 .overlay {
@@ -20,7 +23,6 @@
   z-index: 900;
 }
 
-/* Side Navigation (Hamburger Menu) */
 .side-nav {
   position: relative;
 }
@@ -33,7 +35,6 @@
   cursor: pointer;
 }
 
-/* Side Navigation Content */
 .side-nav-content {
     position: fixed;
     top: 0;
@@ -51,7 +52,6 @@
     align-items: center;
   }
   
-  /* Profile Section */
   .profile-container {
     display: flex;
     flex-direction: column;
@@ -59,7 +59,6 @@
     margin-bottom: 10px;
   }
   
-  /* Profile Picture Cover */
   .profile-photo-cover {
     width: 80px;
     height: 80px;
@@ -68,11 +67,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white; /* Background around the image */
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); /* Soft shadow */
+    background-color: white; 
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); 
   }
 
-  /* Hamburger Menu Icon */
 .hamburger-menu {
     background: none;
     border: none;
@@ -82,7 +80,6 @@
     transition: transform 0.3s ease-in-out;
   }
   
-  /* Hover Effect for Hamburger Menu */
   .hamburger-menu:hover {
     transform: scale(1.2);
   }
@@ -109,19 +106,16 @@
     border-radius: 5px;
   }
   
-  /* Whole Section Hover Effect */
   .side-nav-links li:hover {
     background: rgba(255, 255, 255, 0.2);
   }
   
-  /* Profile Image */
   .profile-photo {
     width: 90px;
     height: 90px;
     border-radius: 50%;
   }
   
-  /* Profile Info */
   .profile-info {
     text-align: center;
     margin-top: 0; 
@@ -146,7 +140,6 @@
     line-height: 1;
   }
   
-  /* Separator Line */
   .separator {
     width: 90%;
     height: 3px;
@@ -155,7 +148,7 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   }
   
-  /* Side Navigation Links */
+
   .side-nav-links {
     list-style: none;
     padding: 0;
@@ -174,8 +167,8 @@
     display: block;
     transition: color 0.3s ease-in-out;
   }
-  
-  /* Hover Effects */
+
+
   .side-nav-links a:hover {
     color: #2aaaef; 
   }
@@ -194,7 +187,6 @@
   text-decoration: none;
 }
 
-/* Logo Container */
 .logo-container {
     display: flex;
     align-items: center;
@@ -202,20 +194,19 @@
     gap: 1px; 
   }
   
-  /* Logo Text */
   .logo-text {
     padding-left:0px;
     display: flex;
     text-decoration: none;
     flex-direction: column;
-    line-height: 0.9; /* Adjust spacing between lines */
-    margin-left: -30px; 
+    line-height: 0.9;
+    margin-left: -25px; 
   }
   
   .top-text{
     font-size: 35px;
     font-weight: bold;
-    color: rgb(0, 123, 238);
+    color: rgb(246, 246, 246);
     text-decoration: none;
     padding-left:0px;
   }
@@ -223,7 +214,7 @@
   .bottom-text{
     font-size: 35px;
     font-weight: bold;
-    color: rgb(0, 123, 238);
+    color: rgb(255, 255, 255);
     padding-left:60px;
     text-decoration: none;
   }
@@ -232,11 +223,10 @@
   .lk-text {
     font-size: 24px;
     font-weight: bold;
-    color: rgb(0, 123, 238);
+    color: rgb(255, 255, 255);
    }
   
   
-  /* Logo Image */
   .logo-img {
     width: 80px; 
     height: auto;
@@ -274,39 +264,57 @@
 .chatbot-icon img:hover,
 .messages-icon img:hover,
 .notification-icon img:hover,
-.search-icon img:hover {
-  transform: scale(1.2); /* Slight zoom effect */
-  filter: invert(0.7); /* Lighten icon */
+.nav-search-icon:hover {
+  transform: scale(1.2); 
+  filter: invert(0.7); 
 }
 
-/* Close Icon Hover Effect */
+
 .close-icon img:hover {
-  transform: rotate(90deg); /* Rotate effect */
+  transform: rotate(90deg); 
 }
 
-/* Search Bar */
-.search-bar {
+.nav-search-container {
   display: flex;
   align-items: center;
   background: white;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 5px 10px;
+  width: 230px;
+  height: 40px;
+  margin-right: 20px;
 }
 
-.search-bar input {
+.nav-search-input {
+  flex: 1;
   border: none;
   outline: none;
+  padding: 5px;
+  font-size: 14px;
+  background: transparent;
 }
 
-/* Icons */
+.nav-search-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-search-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+
 .ai-chatbot, .communicate, .notifications {
   margin-left: 20px;
 }
 
-.search-icon img {
-  width: 24px;
-  cursor: pointer;
-}
 
 .chatbot-icon, .messages-icon, .notification-icon, .close-icon,.search-icon {
     background: none;
@@ -321,13 +329,17 @@
     height: 30px;
     cursor: pointer;
     filter: invert(1); 
+    margin-right: 50px;
   }
+
+  
 
   .chatbot-icon img{
     width: 50px;
     height: 50px;
     cursor: pointer;
     filter: invert(1); 
+    margin-left: 50px;
   }
 
   .close-icon img{
@@ -335,3 +347,5 @@
     height: 40px;
     cursor: pointer;
   }
+
+  

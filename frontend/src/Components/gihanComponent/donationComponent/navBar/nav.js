@@ -47,7 +47,7 @@ const Nav = () => {
 
               <ul className="side-nav-links">
                 <li>
-                  <Link t0 ="/dashboard">Dashboard</Link>
+                  <Link to ="/dashboard">Dashboard</Link>
                 </li>
                 <li>
                   <Link to="/profile">Profile</Link>
@@ -56,7 +56,7 @@ const Nav = () => {
                   <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/guidance">Guidance</Link>
+                  <Link to="/guidance">guidelines</Link>
                 </li>
                 <li>
                   <Link to="/support">Support</Link>
@@ -88,23 +88,28 @@ const Nav = () => {
 
         {/* Main Navigation Links */}
         <div className="nav-links">
-          <Link to="/">Dashboard</Link>
-          <Link to="/products">Donate Now</Link>
-          <Link to="/features">My Donation</Link>
-          <Link to="/about">Contribution</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/donate">Donate Now</Link>
+          <Link to="/myDonate">My Donation</Link>
+          <Link to="/monitor">Analytics</Link>
         </div>
 
-        {/* Search Bar */}
-        <div className="search-bar">
-          <input type="text" placeholder="Search" />
-          <button className="search-icon">
-            <img
-              src="/Resources/gihanRes/donationRes/search.png"
-              alt="Search"
-            />
-          </button>
-        </div>
+        <div className="nav-search-container">
+  <input 
+    type="text" 
+    placeholder="Search" 
+    className="nav-search-input"
+  />
+  <button className="nav-search-button">
+    <img
+      src="/Resources/gihanRes/donationRes/search.png"
+      alt="Search"
+      className="nav-search-icon"
+    />
+  </button>
+</div>
 
+          
         {/* AI Chatbot */}
         <div className="ai-chatbot">
           <button className="chatbot-icon">
