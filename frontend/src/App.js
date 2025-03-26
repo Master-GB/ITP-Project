@@ -28,6 +28,13 @@ import VolunteerApplication from "./Components/daniruComponent/VolunteerApplicat
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 
 
+import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
+import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
+import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
+import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
+import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
+import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
+import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 
 const DonorLayout = () => (
   <div className="page-container">
@@ -60,13 +67,6 @@ const OperatingManagerLayout = () => (
 );
 
 
-import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
-import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
-import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
-import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
-import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
-import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
-import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 
 const RequestsLayout = () => (
   <div className="App">
