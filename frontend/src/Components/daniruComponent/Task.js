@@ -43,21 +43,21 @@ function Task() {
   }
 
   return (
-    <div className="app-container">
+    <div className="task-app-container">
       <StandardNav />
       <div className="task-container">
-        <header className="header">
+        <header className="task-header">
           <h1>Task Management</h1>
           <h2>Manage & track volunteer tasks</h2>
           <Link to={"/createtask"}>
           <Button className="create-task-button">+ Create New Task</Button>
           </Link>
         </header>
-        <div className="search-container">
-          <FiSearch className="search-icon" />
-          <input onChange={(e)=> setSearchQuery(e.target.value)} name="search" type="text" placeholder="Search tasks..." className="search-input" />
+        <div className="task-search-container">
+          <FiSearch className="task-search-icon" />
+          <input onChange={(e)=> setSearchQuery(e.target.value)} name="search" type="text" placeholder="Search tasks..." className="task-search-input" />
 
-          <button onClick={handleSearch} className="search-button">Search</button>
+          <button onClick={handleSearch} className="task-search-button">Search</button>
 
         </div>
 
