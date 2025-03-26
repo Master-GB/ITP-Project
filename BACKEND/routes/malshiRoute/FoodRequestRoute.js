@@ -10,7 +10,7 @@ router.get("/", FoodRequestController.getAllRequests);
 router.post("/", FoodRequestController.addRequests);
 router.get("/:requestId", FoodRequestController.getById);
 router.put("/:requestId", FoodRequestController.updateRequest);
-router.delete("/:requestId", FoodRequestController.deleteUser);
+router.delete("/:requestId", FoodRequestController.deleteRequest);
 
 //Export
 module.exports = router;

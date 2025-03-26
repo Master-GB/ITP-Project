@@ -28,6 +28,9 @@ const FoodRequestSchema = new Schema({
         type: String,
         required: false,
     },
+    status: {
+         type: String,
+        default: "pending" }
 });
 
 module.exports = mongoose.model("FoodRequest", FoodRequestSchema);
