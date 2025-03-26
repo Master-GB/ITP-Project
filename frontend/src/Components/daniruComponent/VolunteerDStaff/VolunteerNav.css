@@ -1,5 +1,5 @@
 /* General styles*/
-body {
+volunteer-nav-body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f7fc; /* Light background */
   margin: 0;
@@ -7,7 +7,7 @@ body {
 }
 
 /* Navigation Bar */
-.navbar {
+.volunteer-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +19,7 @@ body {
 }
 
 /* Logo Styling */
-.logo {
+.volunteer-nav-logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: #1abc9c;
@@ -27,22 +27,22 @@ body {
   transition: transform 0.3s ease;
 }
 
-.logo:hover {
+.volunteer-nav-logo:hover {
   transform: scale(1.1);
 }
 
 /* Navigation Links */
-.nav-links {
+.volunteer-nav-links {
   display: flex;
   gap: 25px;
   list-style: none;
 }
 
-.nav-links li {
+.volunteer-nav-links li {
   list-style: none;
 }
 
-.nav-links a {
+.volunteer-nav-links a {
   text-decoration: none;
   color: white;
   font-size: 1.2rem;
@@ -53,19 +53,19 @@ body {
 }
 
 /* Hover Effects */
-.nav-links a:hover {
+.volunteer-nav-links a:hover {
   background: #1abc9c;
   color: #2c3e50;
   transform: translateY(-3px);
 }
 
 /* Active/Pressed Effect */
-.nav-links a:active {
+.volunteer-nav-links a:active {
   transform: translateY(1px);
 }
 
 /* Logout Button */
-.logout-btn {
+.volunteer-nav-logout-btn {
   background: #e74c3c;
   color: white;
   border: none;
@@ -76,28 +76,28 @@ body {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.logout-btn:hover {
+.volunteer-nav-logout-btn:hover {
   background: #c0392b;
   transform: translateY(-2px);
 }
 
-.logout-btn:active {
+.volunteer-nav-logout-btn:active {
   transform: translateY(1px);
 }
 
 /* Responsive Navigation */
 @media (max-width: 768px) {
-  .navbar {
+  .volunteer-navbar {
     flex-direction: column;
     text-align: center;
   }
 
-  .nav-links {
+  .volunteer-nav-links {
     flex-direction: column;
     gap: 15px;
   }
 
-  .logout-btn {
+  .volunteer-nav-logout-btn {
     margin-top: 10px;
   }
 }
