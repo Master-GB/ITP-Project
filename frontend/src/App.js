@@ -1,4 +1,5 @@
-import "./App.css";
+
+import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -28,6 +29,13 @@ import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDSta
 import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 
+import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
+import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
+import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
+import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
+import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
+import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
+import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 
 
 
@@ -62,9 +70,24 @@ const OperatingManagerLayout = () => (
 );
 
 
-
-
-
+const RequestsLayout = () => (
+  <div className="App">
+  <NavBarP/>
+  <div className="main-content">
+  <React.Fragment>
+      <Routes>
+        <Route path="/" element={<ProfileP />} />
+        <Route path="/add-requests" element={<AddRequests />} />
+        <Route path="/display-requests" element={<FoodRequests />} />
+        <Route path="/profile" element={<ProfileP />} />
+        <Route path="/funds" element={<PaymentForm />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/display-requests/:id" element={<UpdateRequests />} />
+      </Routes>
+    </React.Fragment>
+  </div>
+</div>
+);
 
 
 const VolunteerCoordinatorLayout = () => (
@@ -110,12 +133,16 @@ function App() {
   return (
 
       <Routes>
-  
-        
-        <Route path="/*" element={<OperatingManagerLayout />} />
-        <Route path="/jh/*" element={<DonorLayout />} /> 
+
+
+
+        <Route path="/ji/*" element={<RequestsLayout/>}/>
+        <Route path="/jkj/*" element={<OperatingManagerLayout />} />
+        <Route path="/*" element={<DonorLayout />} /> 
+       
         <Route path="/ijjj/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
+
 
       </Routes>
   );
