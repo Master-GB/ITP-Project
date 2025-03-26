@@ -8,7 +8,7 @@ const donationSchema = new Schema({
   },
   foodItem: {
     type: String,
-    required: [true, "Food item is required"],
+    default: "",
   },
   storageCondition: {
     type: String,
@@ -28,6 +28,21 @@ const donationSchema = new Schema({
       message: "Expiry date must be after the donation date",
     }
   },
+  quantity: {
+    type: String,
+    required: [true, "Quantity is required"],
+  },
+
+  quantityUnit: {
+    type: String,
+    required: [true, "Quantity is required"],
+  },
+
+  finalQuantity:{
+    type: String,
+    default: "",
+  },
+  
   collectionAddress: {
     type: String,
     required: [true, "Collection address is required"], 

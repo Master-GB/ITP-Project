@@ -1,0 +1,174 @@
+/* General Styles */
+.volunteercdashboard-volunteer-hub {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+}
+
+/* Main Content */
+.volunteercdashboard-main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f4f7f6;
+  margin-left: 260px; /* Adding left margin to avoid overlap with the fixed sidebar */
+}
+
+.volunteercdashboard-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.volunteercdashboard-welcome-message {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Stats Section */
+.volunteercdashboard-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.volunteercdashboard-stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.volunteercdashboard-stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.volunteercdashboard-stat-card h3 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.volunteercdashboard-stat-card p {
+  color: #666;
+  margin: 5px 0;
+}
+
+.volunteercdashboard-stat-label {
+  font-weight: bold;
+  color: #1abc9c;
+}
+
+/* Active Tasks Section */
+.volunteercdashboard-active-tasks {
+  margin-top: 30px;
+}
+
+.volunteercdashboard-section-title {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.volunteercdashboard-task-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.volunteercdashboard-task-card:hover {
+  transform: translateY(-5px);
+}
+
+.volunteercdashboard-task-card h4 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.volunteercdashboard-task-card p {
+  color: #666;
+}
+
+/* Align Create Task Button to the Right */
+.volunteercdashboard-create-task-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.volunteercdashboard-create-task-button {
+  background: linear-gradient(90deg, #1abc9c, #16a085);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.volunteercdashboard-create-task-button:hover {
+  background: linear-gradient(90deg, #16a085, #1abc9c);
+}
+
+.volunteercdashboard-task-status {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.volunteercdashboard-status-in-progress {
+  color: #f39c12;
+}
+
+.volunteercdashboard-status-urgent {
+  color: #e74c3c;
+}
+
+/* Recent Updates Section */
+.volunteercdashboard-recent-updates {
+  margin-top: 30px;
+}
+
+.volunteercdashboard-update-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.volunteercdashboard-update-card:hover {
+  transform: translateY(-5px);
+}
+
+.volunteercdashboard-update-card strong {
+  color: #333;
+  font-size: 16px;
+}
+
+.volunteercdashboard-update-card span {
+  color: #666;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Footer */
+.volunteercdashboard-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
