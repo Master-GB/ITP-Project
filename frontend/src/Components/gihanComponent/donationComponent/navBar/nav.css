@@ -17,7 +17,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5); 
-  z-index: 900; 
+  z-index: 900;
 }
 
 /* Side Navigation (Hamburger Menu) */
@@ -44,7 +44,7 @@
     padding: 20px;
     border-radius: 0px 20px 0px 0px;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-    z-index: 1100;
+    z-index: 1500;
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -199,15 +199,17 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 0px; /* Space between text and logo */
+    gap: 1px; 
   }
   
   /* Logo Text */
   .logo-text {
+    padding-left:0px;
     display: flex;
     text-decoration: none;
     flex-direction: column;
     line-height: 0.9; /* Adjust spacing between lines */
+    margin-left: -30px; 
   }
   
   .top-text{
@@ -215,15 +217,24 @@
     font-weight: bold;
     color: rgb(0, 123, 238);
     text-decoration: none;
+    padding-left:0px;
   }
 
   .bottom-text{
     font-size: 35px;
     font-weight: bold;
     color: rgb(0, 123, 238);
-    padding-left:45px;
+    padding-left:60px;
     text-decoration: none;
   }
+
+ 
+  .lk-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(0, 123, 238);
+   }
+  
   
   /* Logo Image */
   .logo-img {

@@ -12,18 +12,32 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
+<<<<<<< HEAD
+=======
+const donorRoute = require("./routes/gihanRoute/donorRoute")
+const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
+>>>>>>> e9a9862c2b7ef69a5b2343d7c42b1a3ca16d6514
 
 const PORT = process.env.PORT || 8090;
 
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/users",userRouter);
 app.use(express.json());
+
+app.use("/Requests",RequestRoute);
 app.use("/feedbacks",router);
+<<<<<<< HEAD
+=======
+
+app.use(cors());
+>>>>>>> e9a9862c2b7ef69a5b2343d7c42b1a3ca16d6514
 app.use(bodyParser.json());
 app.use("/donations",donorRoute);
 const User = require('./models/imalshaModel/UserModel');
+
 
 const URL = process.env.MONGODB_URL;
 

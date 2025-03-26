@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //import './App.css';
 //import NavigationBar from "./Components/gihanComponent/donationComponent/navBar/nav"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -35,13 +36,36 @@ const UserLayout=()=>(
 
 
 
+=======
+import './App.css';
+import NavigationBar from "./Components/gihanComponent/donationComponent/navBar/nav"
+import Footer from './Components/gihanComponent/donationComponent/footer/footer';
+>>>>>>> e9a9862c2b7ef69a5b2343d7c42b1a3ca16d6514
 
 
 function App() {
   return (
+<<<<<<< HEAD
     <Routes>
       <Route path="/*" element={< UserLayout/>}/>
     </Routes>
+=======
+  
+    <div className="App">
+
+     <NavigationBar/>
+ 
+
+
+      <NavigationBar/>
+      <div className="main-content">
+        {/* Your main content goes here */}
+        <h1>Welcome to the Donation Platform</h1>
+        <p>This is the main content of the page.</p>
+      </div>
+      <Footer/>
+    </div>
+>>>>>>> e9a9862c2b7ef69a5b2343d7c42b1a3ca16d6514
   );
 }
 
