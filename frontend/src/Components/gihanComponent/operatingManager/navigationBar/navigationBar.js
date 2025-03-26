@@ -17,16 +17,14 @@ const OperatingManagerSidebar = () => {
     { name: 'Inventory', icon: <InventoryIcon />, path: '/inventoryManagement' },
     { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },
     { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/partnerManagement' },
-
     { name: 'Volunteer', icon: <VolunteerActivismIcon />, path: '/volunteersManagement' }, // New Section Added
     { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' }
-
   ];
 
   return (
     <div className="operating-manager-sidebar">
       <div className="sidebar-header">
-        <img src="/logo.png" alt="Organization Logo" className="sidebar-logo" />
+        <img src="/Resources/gihanRes/donationRes/mainlogo.png" alt="Organization Logo" className="sidebar-logo" />
         <h2 className="organization-name">FoodShare Network</h2>
       </div>
       

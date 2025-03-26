@@ -26,8 +26,8 @@ const AdvancedDonorDashboard = () => {
     joinDate: "2023-01-01",
   });
   const [donations, setDonations] = useState([]);
-  const [filter, setFilter] = useState("month"); // Default filter: month
-  const [geocodedDonations, setGeocodedDonations] = useState([]); // State for geocoded data
+  const [filter, setFilter] = useState("month"); 
+  const [geocodedDonations, setGeocodedDonations] = useState([]); 
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -323,7 +323,7 @@ const AdvancedDonorDashboard = () => {
             <div className="progress-bar">
               <div
                 className="progress blue"
-                style={{ width: `${(kgQuantity / 100) * 100}%` }}
+                style={{ width: `${(kgQuantity / 500) * 100}%` }}
               ></div>
             </div>
           </div>
@@ -335,7 +335,7 @@ const AdvancedDonorDashboard = () => {
               <div
                 className="progress green"
                 style={{
-                  width: `${(Math.floor((kgQuantity + unitQuantity) / 2) / 100) * 100}%`,
+                  width: `${(Math.floor((kgQuantity + unitQuantity) / 2) / 500) * 100}%`,
                 }}
               ></div>
             </div>
