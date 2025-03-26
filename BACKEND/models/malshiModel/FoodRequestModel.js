@@ -17,7 +17,7 @@ const FoodRequestSchema = new Schema({
     foodType: {
         type: String,
         required: true,
-        enum: ["Type01", "Type02", "Type03", "Others"],
+        enum: ["Milk Rice", "White Rice", "Biriyani", "Yellow Rice", "Noodles", "Koththu"],
     },
     quantity: {
         type: Number,

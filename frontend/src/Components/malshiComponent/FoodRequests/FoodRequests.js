@@ -141,8 +141,8 @@ function FoodRequests() {
                 placeholder="Search requests"
                 className="request-search"
             />
-            <button onClick={handleSearch}>Search</button>
-            <button onClick={generatePDF}>Generate PDF</button>
+            <button onClick={handleSearch} className="food-request-button">Search</button>
+            <button onClick={generatePDF} className="food-request-button">Generate PDF</button>
 
             {noResults ? (
                 <div>
