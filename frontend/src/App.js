@@ -102,7 +102,7 @@ function App() {
         <Route path="/jkj/*" element={<OperatingManagerLayout />} />
         <Route path="/jh/*" element={<DonorLayout />} /> 
         <Route path="/*" element={<VolunteerCoordinatorLayout/>}/>
-        <Route path="/hgg/" element={<VolunteerDeliveryStaffLayout/>}/>
+        <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
       </Routes>
   );
 }
