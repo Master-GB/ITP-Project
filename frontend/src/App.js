@@ -20,12 +20,14 @@ import Reports from "./Components/daniruComponent/Reports";
 import Volunteers from "./Components/daniruComponent/Volunteers";
 import VolunteerCDashboard from "./Components/daniruComponent/VolunteerCDashboard";
 import UpdateTask from "./Components/daniruComponent/UpdateTask";
-import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDStaff/VolunteerDStaffDashboard";
-import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
-import VolunteerTasks from "./Components/daniruComponent/VolunteerDStaff/VolunteerTasks";
 import VolunteerTaskDisplay from "./Components/daniruComponent/VolunteerDStaff/VolunteerTaskDisplay";
-import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
+import VolunteerTasks from "./Components/daniruComponent/VolunteerDStaff/VolunteerTasks";
 import Task from "./Components/daniruComponent/Task";
+import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDStaff/VolunteerDStaffDashboard";
+import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
+import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
+
+
 
 const DonorLayout = () => (
   <div className="page-container">
@@ -56,6 +58,7 @@ const OperatingManagerLayout = () => (
     </div>
   </div>
 );
+
 
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
 import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
@@ -129,8 +132,7 @@ function App() {
         <Route path="/*" element={<RequestsLayout/>}/>
         <Route path="/jkj/*" element={<OperatingManagerLayout />} />
         <Route path="/jh/*" element={<DonorLayout />} /> 
-        <Route path="/*" element={<VolunteerCoordinatorLayout/>}/>
-        <Route path="/hgg/" element={<VolunteerDeliveryStaffLayout/>}/>
+
       </Routes>
   );
 }

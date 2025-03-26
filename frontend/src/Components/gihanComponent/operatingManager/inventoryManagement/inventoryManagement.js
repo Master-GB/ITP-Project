@@ -364,7 +364,7 @@ const InventoryManagement = () => {
 
   return (
     <div className="inventory-container">
-      <div className="dashboard-cards">
+      <div className="dashboard-Mcards">
         <div className="card total-stock">
           <h3>Total Stock</h3>
           <div className="quantity-display">
