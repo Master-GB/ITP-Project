@@ -1,0 +1,132 @@
+.food-display-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .food-display-header {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  
+  .food-display-empty {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 18px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  
+  .food-display-table-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+  
+  .food-display-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .food-display-row {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .food-display-row:last-child {
+    border-bottom: none;
+  }
+  
+  .food-display-label {
+    width: 35%;
+    padding: 15px 20px;
+    font-weight: bold;
+    color: #555;
+    background-color: #f7f7f7;
+    vertical-align: top;
+  }
+  
+  .food-display-value {
+    width: 65%;
+    padding: 15px 20px;
+    color: #333;
+  }
+  
+  .food-display-notes-row .food-display-value {
+    white-space: pre-line;
+    line-height: 1.5;
+  }
+  
+  .food-display-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  .food-display-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    margin: 0 8px;
+    text-decoration: none; /* Removes the underline */
+  }
+  
+  .food-display-update-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+  }
+  
+  .food-display-update-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .food-display-delete-btn {
+    background-color: #ea4335;
+    color: white;
+  }
+  
+  .food-display-delete-btn:hover {
+    background-color: #d33426;
+  }
+  
+  /* Mobile responsiveness */
+  @media screen and (max-width: 600px) {
+    .food-display-table,
+    .food-display-table tbody,
+    .food-display-table tr,
+    .food-display-table td {
+      display: block;
+      width: 100%;
+    }
+    
+    .food-display-label {
+      padding: 10px 15px 5px;
+      border-bottom: none;
+    }
+    
+    .food-display-value {
+      padding: 5px 15px 10px;
+    }
+  
+    .food-display-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .food-display-button {
+      width: 100%;
+      max-width: 250px;
+    }
+  }

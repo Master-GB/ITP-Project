@@ -30,7 +30,7 @@ const addRequests = async (req, res,next) => {
     let requests;
 
     try{
-        requests = new FoodRequest({organizationName,location,contactNumber,foodType,quantity,additionalNotes});
+        requests = new FoodRequest({organizationName,location,contactNumber,foodType,quantity,additionalNotes,status:"pending" });
         await requests.save();
     }catch (err) {
         console.log(err);
@@ -85,7 +85,7 @@ const updateRequest = async (req, res, next) => {
 };
 
 //Delete user
-const deleteUser = async (req, res, next) => {
+const deleteRequest = async (req, res, next) => {
     const requestId = req.params.requestId;
 
     let request;
@@ -106,4 +106,4 @@ exports.getAllRequests = getAllRequests;
 exports.addRequests = addRequests;
 exports.getById = getById;
 exports.updateRequest = updateRequest;
-exports.deleteUser = deleteUser;
+exports.deleteRequest = deleteRequest;
