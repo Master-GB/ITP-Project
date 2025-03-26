@@ -19,11 +19,6 @@ const OperatingManagerSidebar = () => {
     { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/partnerManagement' },
     { name: 'Volunteer', icon: <VolunteerActivismIcon />, path: '/volunteersManagement' }, 
     { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' },
-    { name: 'Dashboard', icon: <DashboardIcon />, path: '/operating-manager/dashboard' },
-    { name: 'Inventory', icon: <InventoryIcon />, path: '/operating-manager/inventory' },
-    { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },
-    { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/operating-manager/partners' },
-    { name: 'Funds', icon: <AttachMoneyIcon />, path: '/operating-manager/funds' }
   ];
 
   return (
