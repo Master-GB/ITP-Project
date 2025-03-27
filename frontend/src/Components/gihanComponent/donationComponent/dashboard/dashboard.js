@@ -45,35 +45,53 @@ const AdvancedDonorDashboard = () => {
   const sampleMapData = [
     {
       _id: "1",
-      foodItem: "Rice",
+      foodItem: "Frid Rice",
       quantity: 10,
       quantityUnit: "kg",
-      donationDate: "2023-10-01",
-      address: "Colombo, Sri Lanka", // Address for Colombo
+      donationDate: "2025-03-25",
+      address: "Colombo, Sri Lanka", 
     },
     {
       _id: "2",
       foodItem: "Bread",
       quantity: 50,
       quantityUnit: "unit",
-      donationDate: "2023-10-02",
-      address: "Kandy, Sri Lanka", // Address for Kandy
+      donationDate: "2023-03-02",
+      address: "Kandy, Sri Lanka", 
     },
     {
       _id: "3",
-      foodItem: "Vegetables",
-      quantity: 20,
+      foodItem: "Koththu",
+      quantity: 3,
       quantityUnit: "kg",
-      donationDate: "2023-10-03",
-      address: "Galle, Sri Lanka", // Address for Galle
+      donationDate: "2025-03-03",
+      address: "Galle, Sri Lanka", 
     },
     {
       _id: "4",
-      foodItem: "Fruits",
-      quantity: 30,
+      foodItem: "Watalappan",
+      quantity: 5,
+      quantityUnit: "unit",
+      donationDate: "2025-03-04",
+      address: "Jaffna, Sri Lanka", 
+    },
+
+    {
+      _id: "5",
+      foodItem: "Chicken",
+      quantity: 5,
       quantityUnit: "kg",
-      donationDate: "2023-10-04",
-      address: "Jaffna, Sri Lanka", // Address for Jaffna
+      donationDate: "2025-03-04",
+      address: "No. 89, Temple Road, Anuradhapura, Sri Lanka", 
+    },
+
+    {
+      _id: "6",
+      foodItem: "Dhal Curry",
+      quantity: 5,
+      quantityUnit: "kg",
+      donationDate: "2025-03-29",
+      address: "No. 10, Post Office Road, Badulla, Sri Lanka", 
     },
   ];
 
