@@ -11,6 +11,6 @@ router.get("/:id", TaskController.getById);
 router.put("/:id", TaskController.updateTask);
 router.delete("/:id", TaskController.deleteTask);
 router.get("/volunteer/:volunteerName", TaskController.getTasksByVolunteerName);
-router.patch('/tasks/:taskId', TaskController.updateTaskStatus);
+router.get("/tasks/volunteer/:volunteerName", TaskController.getTasksByVolunteerName);
 //export
 module.exports = router;

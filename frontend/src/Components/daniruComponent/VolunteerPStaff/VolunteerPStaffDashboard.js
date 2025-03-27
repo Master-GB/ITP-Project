@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./VolunteerDStaffDashboard.css";
-import VolunteerNav from "./VolunteerNav";
+import "./VolunteerPStaffDashboard.css";
+import VolunteerPNav from "./VolunteerPNav";
 import VolunteerTaskDisplay from "./VolunteerTaskDisplay";
 
 const Dashboard = () => {
@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <div className="volunteer-delivery-staff-dashboard">
-      <VolunteerNav />
+      <VolunteerPNav />
       {/* Main Content */}
       <div className="container volunteer-delivery-staff-dashboard">
         <h2 className="dashboard-title volunteer-delivery-staff-dashboard">

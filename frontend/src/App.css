@@ -68,3 +68,6 @@ footer {
 .sign-out:focus {
   outline: none;
 }
+
+@import "leaflet/dist/leaflet.css";
+

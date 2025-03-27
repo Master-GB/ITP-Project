@@ -63,10 +63,30 @@ function Volunteers() {
           </div>
         </section>
 
+        {/* Summary Stats */}
+        <section className="volunteer-summary-stats">
+          <div className="volunteer-summary-card">
+            <h3>Total Applications</h3>
+            <p>{volunteers.length}</p>
+          </div>
+          <div className="volunteer-summary-card">
+            <h3>Approved</h3>
+            <p>{volunteers.filter(v => v.status === "Accepted").length}</p>
+          </div>
+          <div className="volunteer-summary-card">
+            <h3>Rejected</h3>
+            <p>{volunteers.filter(v => v.status === "Rejected").length}</p>
+          </div>
+          <div className="volunteer-summary-card">
+            <h3>Pending Review</h3>
+            <p>{volunteers.filter(v => v.status === "Pending").length}</p>
+          </div>
+        </section>
+
         {/* 🔍 Search and Filters */}
         <section className="volunteer-search-filters">
-          <div className="search-box">
-            <FaSearch className="search-icon" />
+          <div className="volunteers-search-box">
+            <FaSearch className="volunteers-search-icon" />
             <input
               type="text"
               placeholder="Search by name..."
@@ -109,26 +129,6 @@ function Volunteers() {
               )}
             </tbody>
           </table>
-        </section>
-
-        {/* Summary Stats */}
-        <section className="volunteer-summary-stats">
-          <div className="volunteer-summary-card">
-            <h3>Total Applications</h3>
-            <p>{volunteers.length}</p>
-          </div>
-          <div className="volunteer-summary-card">
-            <h3>Approved</h3>
-            <p>{volunteers.filter(v => v.status === "Accepted").length}</p>
-          </div>
-          <div className="volunteer-summary-card">
-            <h3>Rejected</h3>
-            <p>{volunteers.filter(v => v.status === "Rejected").length}</p>
-          </div>
-          <div className="volunteer-summary-card">
-            <h3>Pending Review</h3>
-            <p>{volunteers.filter(v => v.status === "Pending").length}</p>
-          </div>
         </section>
       </div>
     </div>
