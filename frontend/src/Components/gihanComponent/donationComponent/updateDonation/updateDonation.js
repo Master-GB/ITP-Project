@@ -176,7 +176,7 @@ export default function UpdateDonation() {
       });
   
       alert("Donation Updated Successfully");
-      navigate("/dashboard"); 
+      navigate("/myDonate"); 
     } catch (error) {
       alert("Error: " + error.message);
     }

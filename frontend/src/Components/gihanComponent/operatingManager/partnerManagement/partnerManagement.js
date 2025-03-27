@@ -179,7 +179,6 @@ const PartnerCollaborationPage = () => {
         </div>
       )}
 
-      {/* Contact Modal */}
       {selectedRequest && (
         <div className="modal-overlay">
           <div className="contact-modal">
