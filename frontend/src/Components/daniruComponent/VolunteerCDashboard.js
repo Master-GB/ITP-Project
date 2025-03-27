@@ -4,6 +4,18 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DashboardViewTask from "./DashboardViewTask";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+
+// Default marker icon fix for Leaflet with Webpack
+import "leaflet/dist/leaflet.css";
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+
+const defaultIcon = L.icon({
+  iconUrl: markerIconPng,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
 
 const URL = "http://localhost:8090/tasks";
 
@@ -69,6 +81,9 @@ function Home() {
     });
   }, []);
 
+  // Dummy location data (you can dynamically update this)
+  const defaultPosition = [7.8731, 80.7718]; // Sri Lanka center
+
   return (
     <div className="volunteercdashboard-volunteer-hub">
       <Nav />
@@ -123,7 +138,7 @@ function Home() {
         </section>
 
         {/* Recent Updates Section */}
-        <section className="volunteercdashboard-recent-updates">
+        {/*<section className="volunteercdashboard-recent-updates">
           <h3 className="volunteercdashboard-section-title">Recent Updates</h3>
           <ul>
             <li className="volunteercdashboard-update-card">
@@ -139,12 +154,26 @@ function Home() {
               <span>1 hour ago</span>
             </li>
           </ul>
-        </section>
+        </section>*/}
 
         {/* Footer */}
         <footer className="volunteercdashboard-footer">
-          <p>Activa Deliveries</p>
-          <p>Performance</p>
+          {/* Map Section */}
+          <section className="volunteercdashboard-map-section">
+            <h3 className="volunteercdashboard-section-title">
+              Task Locations
+            </h3>
+            <MapContainer
+              center={defaultPosition}
+              zoom={7}
+              style={{ height: "400px", width: "100%", borderRadius: "10px" }}
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              <Marker position={defaultPosition} icon={defaultIcon}>
+                <Popup>Ongoing Task Location</Popup>
+              </Marker>
+            </MapContainer>
+          </section>
         </footer>
       </div>
     </div>

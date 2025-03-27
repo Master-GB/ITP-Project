@@ -132,18 +132,64 @@ const getTasksByVolunteerName = async (req, res, next) => {
   const { volunteerName } = req.params;
 
   try {
+    if (!volunteerName) {
+      return res.status(400).json({ message: "Volunteer name is required" });
+    }
+
+    // Ensure Mongoose doesn't treat volunteerName as ObjectId
     const tasks = await Task.find({
-      assignedVolunteer: { $regex: new RegExp(`^${volunteerName}$`, "i") }, // Case-insensitive search
+      assignedVolunteer: { $regex: `^${volunteerName}$`, $options: "i" }, // Case-insensitive search
     });
 
-    if (!tasks.length) {
-      return res.status(404).json({ message: "No tasks found for this volunteer" });
+    if (tasks.length === 0) {
+      return res.status(404).json({ message: `No tasks found for volunteer: ${volunteerName}` });
     }
 
     return res.status(200).json({ tasks });
-  } catch (err) {
-    console.error("Error fetching tasks:", err);
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
     return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const getTasksByVolunteersName = async (req, res) => {
+  const { volunteerName } = req.params;
+
+  try {
+    if (!volunteerName) {
+      return res.status(400).json({ message: "Volunteer name is required" });
+    }
+
+    // Check if volunteer exists
+    const volunteer = await Volunteer.findOne({ volunteerName: { $regex: `^${volunteerName}$`, $options: "i" } });
+
+    if (!volunteer) {
+      return res.status(404).json({ message: `Volunteer not found: ${volunteerName}` });
+    }
+
+    // Fetch tasks assigned to this volunteer
+    const tasks = await Task.find({ assignedVolunteer: volunteer._id });
+
+    if (tasks.length === 0) {
+      return res.status(404).json({ message: `No tasks found for ${volunteerName}` });
+    }
+
+    return res.status(200).json({ tasks });
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const getTasksByVolunteer = async (req, res) => {
+  const { volunteerName } = req.params;
+
+  try {
+    const tasks = await Task.find({ volunteerName });
+
+    res.json({ volunteerName, tasks: tasks || [] }); // Ensure tasks is always an array
+  } catch (error) {
+    res.status(500).json({ message: "Server error", tasks: [] });
   }
 };
 
@@ -182,4 +228,4 @@ exports.getById = getById;
 exports.updateTask = updateTask;
 exports.deleteTask = deleteTask;
 exports.getTasksByVolunteerName = getTasksByVolunteerName;
-exports.updateTaskStatus = updateTaskStatus;
+exports.getTasksByVolunteersName = getTasksByVolunteersName;

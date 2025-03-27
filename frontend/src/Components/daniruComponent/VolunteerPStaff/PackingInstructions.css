@@ -1,0 +1,60 @@
+/* Global container for the packing instructions page */
+.packinginstructions-container {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  
+  /* Header styling for the Packing Instructions title */
+  .packinginstructions-header {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Section styling for each step of the instructions */
+  .packinginstructions-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+  }
+  
+  /* Sub-header styling for each step (Step 1, Step 2, etc.) */
+  .packinginstructions-subheader {
+    color: #2980b9;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Paragraph styling for instructions text */
+  .packinginstructions-paragraph {
+    color: #34495e;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  /* Optional responsive styles */
+  @media (max-width: 768px) {
+    .packinginstructions-container {
+      padding: 15px;
+    }
+  
+    .packinginstructions-header {
+      font-size: 1.8rem;
+    }
+  
+    .packinginstructions-subheader {
+      font-size: 1.3rem;
+    }
+  
+    .packinginstructions-paragraph {
+      font-size: 0.9rem;
+    }
+  }
+  
