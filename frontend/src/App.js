@@ -29,6 +29,7 @@ import VolunteerDStaffDashboard from "./Components/daniruComponent/VolunteerDSta
 import VolunteerApplication from "./Components/daniruComponent/VolunteerApplication/VolunteerApplication";
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPStaff/VolunteerPStaffDashboard";
+import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
 
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
 import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
@@ -139,8 +140,8 @@ const VolunteerPackingStaffLayout = () => (
           path="/volunteerpstaffdashboard"
           element={<VolunteerPStaffDashboard />}
         />
-        <Route path="/volunteertask" element={<VolunteerTask />} />
-        <Route path="/volunteer/:volunteerName" element={<VolunteerTask />} />
+        <Route path="/volunteertask" element={<VolunteerPTask />} />
+        <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
         <Route
           path="/volunteerapplication"
           element={<VolunteerApplication />}
