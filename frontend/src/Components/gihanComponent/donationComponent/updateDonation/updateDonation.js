@@ -44,7 +44,7 @@ export default function UpdateDonation() {
     const fetchDonation = async () => {
       try {
         const response = await axios.get(`http://localhost:8090/donations/getID/${id}`);
-        const donation = response.data.donation; // Access the 'donation' key inside response
+        const donation = response.data.donation; 
         
         console.log("Fetched Data from API:", donation);
   
@@ -54,7 +54,7 @@ export default function UpdateDonation() {
         }
   
         setInputs((prevInputs) => ({
-          ...prevInputs, // Ensure previous state is not overridden
+          ...prevInputs, 
           foodCategory: donation.foodCategory ?? prevInputs.foodCategory,
           foodItem: donation.foodItem ?? prevInputs.foodItem,
           storageCondition: donation.storageCondition ?? prevInputs.storageCondition,
@@ -143,13 +143,11 @@ export default function UpdateDonation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Validate the form
     if (!validateForm()) {
       console.log("Validation failed. Form not submitted.");
       return;
     }
   
-    // Create a FormData object
     const formData = new FormData();
     formData.append("foodCategory", inputs.foodCategory);
     formData.append("foodItem", inputs.foodItem);
@@ -161,19 +159,16 @@ export default function UpdateDonation() {
     formData.append("collectionAddress", inputs.collectionAddress);
     formData.append("notes", inputs.notes);
   
-    // Append the image file if it exists
     if (inputs.imageOfFoods && typeof inputs.imageOfFoods !== "string") {
       formData.append("imageOfFoods", inputs.imageOfFoods);
     }
     
   
-    // Log the formData for debugging
     for (let [key, value] of formData.entries()) {
       console.log(key, value);
     }
   
     try {
-      // Send a PUT request to update the donation
       await axios.put(`http://localhost:8090/donations/update/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -181,7 +176,7 @@ export default function UpdateDonation() {
       });
   
       alert("Donation Updated Successfully");
-      navigate("/dashboard"); // Redirect to the dashboard or another route
+      navigate("/myDonate"); 
     } catch (error) {
       alert("Error: " + error.message);
     }
@@ -206,8 +201,6 @@ export default function UpdateDonation() {
         <h1>Update Donation</h1>
         <p>Update the details below to modify your food donation</p>
         <form onSubmit={handleSubmit}>
-          {/* Reuse the same form structure as in Donate.js */}
-          {/* Food Category and Item Section */}
           <div className="food-details-group">
             <div className="food-category-group">
               <label htmlFor="foodCategory">Food Category:</label>
@@ -254,7 +247,6 @@ export default function UpdateDonation() {
               )}
           </div>
 
-          {/* Storage & Date Section */}
           <div className="storage-date-section">
             <div className="storage-condition-group">
               <label htmlFor="storageCondition" className="storage-date-label">
@@ -318,7 +310,6 @@ export default function UpdateDonation() {
             </div>
           </div>
 
-          {/* Quantity and Collection Address Section */}
           <div className="quantity-address-section">
             <div className="quantity-section">
               <label htmlFor="quantity">Quantity:</label>
@@ -381,7 +372,6 @@ export default function UpdateDonation() {
             </div>
           </div>
 
-          {/* Food Images Section */}
           <div className="food-images-section">
             <label>Food Images:</label>
             <div
@@ -456,7 +446,6 @@ export default function UpdateDonation() {
             )}
           </div>
 
-          {/* Additional Notes Section */}
           <div className="additional-notes-section">
             <label htmlFor="notes">Additional Notes:</label>
             <textarea
@@ -468,19 +457,17 @@ export default function UpdateDonation() {
             />
           </div>
 
-          {/* Checkbox for Agreement */}
           <div className="checkbox-section">
             <label htmlFor="agreement">
               <input
                 type="checkbox"
                 id="agreement"
-                required // Make the checkbox mandatory
+                required 
               />
               I agree to the donation guidelines and conditions.
             </label>
           </div>
 
-          {/* Submit Button */}
           <button type="submit" className="submit-b">
             Update Donation
           </button>

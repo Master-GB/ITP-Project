@@ -7,7 +7,6 @@ import L from "leaflet";
 import "./dashboard.css";
 import axios from "axios";
 
-// Fix for default marker icons in React-Leaflet
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
@@ -31,7 +30,7 @@ const AdvancedDonorDashboard = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
-  // Fetch donations from the backend
+  
   const fetchDonation = async () => {
     return await axios.get("http://localhost:8090/donations/display")
     .then((res) => res.data)
@@ -42,45 +41,63 @@ const AdvancedDonorDashboard = () => {
     fetchDonation().then((data) => setDonations(data.donations));
   }, []);
 
-  // Sample data with addresses for testing the map
+ 
   const sampleMapData = [
     {
       _id: "1",
-      foodItem: "Rice",
+      foodItem: "Frid Rice",
       quantity: 10,
       quantityUnit: "kg",
-      donationDate: "2023-10-01",
-      address: "Colombo, Sri Lanka", // Address for Colombo
+      donationDate: "2025-03-25",
+      address: "Colombo, Sri Lanka", 
     },
     {
       _id: "2",
       foodItem: "Bread",
       quantity: 50,
       quantityUnit: "unit",
-      donationDate: "2023-10-02",
-      address: "Kandy, Sri Lanka", // Address for Kandy
+      donationDate: "2023-03-02",
+      address: "Kandy, Sri Lanka", 
     },
     {
       _id: "3",
-      foodItem: "Vegetables",
-      quantity: 20,
+      foodItem: "Koththu",
+      quantity: 3,
       quantityUnit: "kg",
-      donationDate: "2023-10-03",
-      address: "Galle, Sri Lanka", // Address for Galle
+      donationDate: "2025-03-03",
+      address: "Galle, Sri Lanka", 
     },
     {
       _id: "4",
-      foodItem: "Fruits",
-      quantity: 30,
+      foodItem: "Watalappan",
+      quantity: 5,
+      quantityUnit: "unit",
+      donationDate: "2025-03-04",
+      address: "Jaffna, Sri Lanka", 
+    },
+
+    {
+      _id: "5",
+      foodItem: "Chicken",
+      quantity: 5,
       quantityUnit: "kg",
-      donationDate: "2023-10-04",
-      address: "Jaffna, Sri Lanka", // Address for Jaffna
+      donationDate: "2025-03-04",
+      address: "No. 89, Temple Road, Anuradhapura, Sri Lanka", 
+    },
+
+    {
+      _id: "6",
+      foodItem: "Dhal Curry",
+      quantity: 5,
+      quantityUnit: "kg",
+      donationDate: "2025-03-29",
+      address: "No. 10, Post Office Road, Badulla, Sri Lanka", 
     },
   ];
 
-  // Function to geocode addresses using OpenCage API
+  
   const geocodeAddress = async (address) => {
-    const apiKey = "da9f3136e71846d289f8da0f3e88c3f9"; // Replace with your OpenCage API key
+    const apiKey = "da9f3136e71846d289f8da0f3e88c3f9"; 
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
       address
     )}&key=${apiKey}`;
@@ -100,7 +117,7 @@ const AdvancedDonorDashboard = () => {
     }
   };
 
-  // Geocode sample data on component mount
+
   useEffect(() => {
     const geocodeSampleData = async () => {
       const geocodedData = await Promise.all(
@@ -119,7 +136,7 @@ const AdvancedDonorDashboard = () => {
     geocodeSampleData();
   }, []);
 
-  // Calculate donation statistics
+  
   const totalDonations = donations.length;
   const totalCompleted = donations.filter((d) => d.status === "Completed").length;
   const totalPending = donations.filter((d) => d.status === "Pending").length;
@@ -135,63 +152,57 @@ const AdvancedDonorDashboard = () => {
   }
   const completionRate = ((totalCompleted / totalDonations) * 100).toFixed(2);
 
-  // Function to generate x-axis labels based on the filter
+  
   const generateXAxisLabels = (filter) => {
     const labels = [];
     if (filter === "year") {
-      // Labels for months (January to December)
       for (let i = 0; i < 12; i++) {
-        const date = new Date(2023, i, 1); // Use any year (e.g., 2023)
+        const date = new Date(2023, i, 1); 
         labels.push(date.toLocaleString("default", { month: "short" }));
       }
     } else if (filter === "month") {
-      // Labels for days (1 to 31)
       for (let i = 1; i <= 31; i++) {
         labels.push(i.toString());
       }
     } else if (filter === "week") {
-      // Labels for days of the week (Monday to Sunday)
       const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
       labels.push(...days);
     }
     return labels;
   };
 
-  // Function to filter donations based on the selected time period
+  
   const filterDonationsByTimePeriod = (donations, period) => {
-    const now = new Date(); // Current date
+    const now = new Date(); 
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth();
-    const currentWeekStart = new Date(now); // Start of the current week (Monday)
-    currentWeekStart.setDate(now.getDate() - now.getDay() + (now.getDay() === 0 ? -6 : 1)); // Adjust for Monday as the start of the week
+    const currentWeekStart = new Date(now); 
+    currentWeekStart.setDate(now.getDate() - now.getDay() + (now.getDay() === 0 ? -6 : 1)); 
 
     return donations.filter((donation) => {
       const donationDate = new Date(donation.donationDate);
 
       if (period === "year") {
-        // Filter donations for the current year
         return donationDate.getFullYear() === currentYear;
       } else if (period === "month") {
-        // Filter donations for the current month
         return (
           donationDate.getFullYear() === currentYear &&
           donationDate.getMonth() === currentMonth
         );
       } else if (period === "week") {
-        // Filter donations for the current week
         const weekEnd = new Date(currentWeekStart);
-        weekEnd.setDate(currentWeekStart.getDate() + 6); // End of the current week (Sunday)
+        weekEnd.setDate(currentWeekStart.getDate() + 6); 
         return donationDate >= currentWeekStart && donationDate <= weekEnd;
       }
-      return true; // No filter applied
+      return true; 
     });
   };
 
-  // Function to group donations by time period (year, month, week)
+  
   const groupDonationsByTimePeriod = (donations, period) => {
     const grouped = { kg: {}, unit: {} };
 
-    // Initialize grouped data with zeros for all labels
+  
     const labels = generateXAxisLabels(period);
     labels.forEach((label) => {
       grouped.kg[label] = 0;
@@ -203,14 +214,14 @@ const AdvancedDonorDashboard = () => {
       let key;
 
       if (period === "year") {
-        key = date.toLocaleString("default", { month: "short" }); // Group by month
+        key = date.toLocaleString("default", { month: "short" });
       } else if (period === "month") {
-        key = date.getDate().toString(); // Group by day of the month
+        key = date.getDate().toString(); 
       } else if (period === "week") {
-        const day = date.getDay(); // Get day of the week (0 = Sunday, 6 = Saturday)
-        // Adjust to make Monday the first day (0 = Monday, 6 = Sunday)
-        const adjustedDay = day === 0 ? 6 : day - 1; // Map Sunday (0) to 6, Monday (1) to 0, etc.
-        key = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][adjustedDay]; // Map to day name
+        const day = date.getDay(); 
+      
+        const adjustedDay = day === 0 ? 6 : day - 1; 
+        key = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][adjustedDay]; 
       }
 
       if (donation.quantityUnit === "kg") {
@@ -223,24 +234,20 @@ const AdvancedDonorDashboard = () => {
     return grouped;
   };
 
-  // Update chart when donations or filter changes
+
   useEffect(() => {
     if (donations.length > 0 && chartRef.current) {
-      // Destroy the previous chart instance if it exists
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
 
-      // Filter donations based on the selected time period
       const filteredDonations = filterDonationsByTimePeriod(donations, filter);
 
-      // Group filtered donations by time period
       const groupedData = groupDonationsByTimePeriod(filteredDonations, filter);
       const labels = generateXAxisLabels(filter);
 
       const ctx = chartRef.current.getContext("2d");
 
-      // Create a new chart instance
       chartInstance.current = new Chart(ctx, {
         type: "line",
         data: {
@@ -276,15 +283,12 @@ const AdvancedDonorDashboard = () => {
   return (
     <div className="dashboard-background">
     <div className="advanced-donor-dashboard">
-      {/* Header */}
       <div className="header">
         <h1>Welcome, {user.name}!</h1>
         <p>Here's your donation activity overview</p>
       </div>
 
-      {/* Donation Statistics */}
       <div className="statistics">
-        {/* First Section: Top Row */}
         <div className="statistics-row">
           <div className="stat-card total-donations">
             <i className="fas fa-donate stat-icon"></i>
@@ -308,7 +312,6 @@ const AdvancedDonorDashboard = () => {
           </div>
         </div>
 
-        {/* Second Section: Bottom Row */}
         <div className="statistics-row">
           <div className="stat-card total-food">
             <i className="fas fa-utensils stat-icon"></i>
@@ -362,8 +365,6 @@ const AdvancedDonorDashboard = () => {
           <button className="create-new-button">Create New Donation</button>
         </Link>
       </div>
-
-      {/* Recent Donations */}
       <div className="recent-donations">
         <h2>Recent Donations</h2>
         <table>
@@ -377,7 +378,7 @@ const AdvancedDonorDashboard = () => {
           </thead>
           <tbody>
             {donations
-              .slice(-5) // Show only the last 5 donations
+              .slice(-5) 
               .map((donation, index) => (
                 <tr key={index}>
                   <td>{new Date(donation.donationDate).toLocaleDateString()}</td>
@@ -394,10 +395,8 @@ const AdvancedDonorDashboard = () => {
         </table>
       </div>
 
-      {/* Donation Trends Chart */}
       <div className="chart-section">
         <h2>Donation Trends</h2>
-        {/* Filter Options */}
         <div className="filter-section">
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="year">Year</option>
@@ -407,13 +406,11 @@ const AdvancedDonorDashboard = () => {
         </div>
         <canvas ref={chartRef}></canvas>
       </div>
-
-      {/* Donation Map */}
       <div className="map-section">
         <h2>Donation Locations</h2>
         <MapContainer
-          center={[6.9271, 79.8612]} // Center of Sri Lanka
-          zoom={7} // Zoom level to show the entire country
+          center={[6.9271, 79.8612]} 
+          zoom={7} 
           style={{ height: "500px", width: "100%" }}
         >
           <TileLayer

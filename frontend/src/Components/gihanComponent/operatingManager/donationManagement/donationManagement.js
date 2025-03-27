@@ -35,7 +35,7 @@ const FoodDonationPage = () => {
     fetchDonations();
   }, [fetchDonations]);
 
-  // Apply filters and search
+
   useEffect(() => {
     let result = donations.filter(
       (d) => d.status !== "Completed" && d.status !== "Cancel"
@@ -51,7 +51,7 @@ const FoodDonationPage = () => {
       result = result.filter((d) => d.status === statusFilter);
     }
 
-    // Sort by expiry date
+  
     result.sort((a, b) => {
       const dateA = a.expiryDate ? new Date(a.expiryDate) : new Date(0);
       const dateB = b.expiryDate ? new Date(b.expiryDate) : new Date(0);
@@ -61,7 +61,7 @@ const FoodDonationPage = () => {
     setFilteredDonations(result);
   }, [donations, searchTerm, statusFilter, sortOrder]);
 
-  // Generate PDF for a specific status
+  
   const generateStatusPDF = (status) => {
     let donationsToExport = [];
 
@@ -91,11 +91,9 @@ const FoodDonationPage = () => {
 
     const doc = new jsPDF();
 
-    // Title
     doc.setFontSize(18);
     doc.text(`Food Donations - ${status}`, 14, 20);
 
-    // Table
     doc.autoTable({
       startY: 30,
       head: [
@@ -136,7 +134,6 @@ const FoodDonationPage = () => {
     const originalStatus = donations.find((d) => d._id === id)?.status;
 
     try {
-      // Optimistic update
       const updatedDonations = donations.map((d) =>
         d._id === id ? { ...d, status: newStatus } : d
       );
@@ -161,7 +158,6 @@ const FoodDonationPage = () => {
       }
     } catch (error) {
       console.error("Update error:", error);
-      // Revert on error
       setDonations(
         donations.map((d) =>
           d._id === id ? { ...d, status: originalStatus } : d
@@ -207,7 +203,6 @@ const FoodDonationPage = () => {
     }
   };
 
-  // Counts for cards
   const totalPending = donations.filter((d) => d.status === "Pending").length;
   const totalCollected = donations.filter(
     (d) => d.status === "Collected"
@@ -239,7 +234,6 @@ const FoodDonationPage = () => {
 
   return (
     <div className="page-container">
-      {/* Section 1: Status Overview Cards */}
       <div className="card-container">
         <div
           id="pendingStatus"
@@ -318,7 +312,6 @@ const FoodDonationPage = () => {
 
       <hr className="section-divider" />
 
-      {/* Search, Filter, and Sort Controls */}
       <div className="table-controls-container">
         <div className="sort-control">
           <select
@@ -357,8 +350,6 @@ const FoodDonationPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Section 2: Donations Table */}
       <div className="table-responsive-container">
         <table className="donation-table">
           <thead>
@@ -417,7 +408,6 @@ const FoodDonationPage = () => {
         </table>
       </div>
 
-      {/* Section 3: Workflow Visualization */}
       {selectedDonation &&
         selectedDonation.status !== "Completed" &&
         selectedDonation.status !== "Cancel" && (
@@ -440,7 +430,6 @@ const FoodDonationPage = () => {
               </div>
             </div>
 
-            {/* Section 4: Communication Panel */}
             <div className="communication-panel">
               <h4>Donor Communication</h4>
               <textarea
