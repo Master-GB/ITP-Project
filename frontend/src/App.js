@@ -154,12 +154,24 @@ const VolunteerPackingStaffLayout = () => (
 
 function App() {
   return (
+<<<<<<< Updated upstream
       <Routes>
         <Route path="/ji/*" element={<RequestsLayout/>}/>
         <Route path="/h/*" element={<DonorLayout />} /> 
         <Route path="/ngjtrngjrn/*" element={<VolunteerCoordinatorLayout/>}/>
         <Route path="/njnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
         <Route path="/*" element={<VolunteerPackingStaffLayout/>}/>
+=======
+
+  <Routes>
+        <Route path="/lkmnk/*" element={<RequestsLayout/>}/>
+        <Route path="/jkj/*" element={<OperatingManagerLayout />} />
+        <Route path="/jh/*" element={<DonorLayout />} /> 
+       
+        <Route path="/fijrigjerig/*" element={<VolunteerCoordinatorLayout/>}/>
+        <Route path="/*" element={<VolunteerDeliveryStaffLayout/>}/>
+
+>>>>>>> Stashed changes
 
       </Routes>
   );
