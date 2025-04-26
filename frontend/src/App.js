@@ -156,11 +156,14 @@ const VolunteerPackingStaffLayout = () => (
 function App() {
   return (
       <Routes>
-        <Route path="/jl/*" element={<RequestsLayout/>}/>
-        <Route path="/" element={<OperatingManagerLayout />} />
-        <Route path="/*" element={<DonorLayout />} /> 
-        <Route path="/ijjj/*" element={<VolunteerCoordinatorLayout/>}/>
-        <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
+
+        <Route path="/h/*" element={<VolunteerCoordinatorLayout/>}/>  
+        <Route path = "/hj/*" element ={<VolunteerPackingStaffLayout/>}/>
+        <Route path="/gh/*" element={<RequestsLayout/>}/>
+        <Route path="/*" element={<OperatingManagerLayout />} />
+        <Route path="/j/*" element={<DonorLayout />} /> 
+        <Route path="/gy/*" element={<VolunteerDeliveryStaffLayout/>}/>
+        
 
       </Routes>
   );
