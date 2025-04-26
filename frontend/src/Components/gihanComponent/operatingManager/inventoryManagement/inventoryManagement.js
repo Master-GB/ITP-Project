@@ -230,7 +230,6 @@ const InventoryManagement = () => {
     setFilteredDonations(result);
   }, [donations, searchTerm, sortConfig]);
 
-  // Bar Chart Data - Stock by Category
   const getCategoryStockData = () => {
     const categoryData = {};
     
@@ -251,7 +250,6 @@ const InventoryManagement = () => {
     };
   };
 
-  // Pie Chart Data - Top 5 Items by Quantity
   const getTopItemsData = () => {
     const itemsWithQuantity = donations.map(donation => ({
       name: donation.name,
@@ -273,7 +271,7 @@ const InventoryManagement = () => {
     };
   };
 
-  // Initialize/Update Pie Chart
+ 
   useEffect(() => {
     if (donations.length > 0 && pieChartRef.current) {
       if (pieChartInstance) pieChartInstance.destroy();
@@ -299,7 +297,7 @@ const InventoryManagement = () => {
     };
   }, [donations]);
 
-  // Initialize/Update Bar Chart
+ 
   useEffect(() => {
     if (donations.length > 0 && barChartRef.current) {
       if (barChartInstance) barChartInstance.destroy();

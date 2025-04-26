@@ -149,7 +149,6 @@ const DonorAnalyticsDashboard = () => {
     };
   };
 
-  // Pie Chart Effect (only depends on donations)
   useEffect(() => {
     if (donations.length > 0 && pieChartRef.current) {
       if (pieChartInstance) pieChartInstance.destroy();
@@ -175,7 +174,6 @@ const DonorAnalyticsDashboard = () => {
     };
   }, [donations]);
 
-  // Bar Chart Effect (depends on donations and filter)
   useEffect(() => {
     if (donations.length > 0 && barChartRef.current) {
       if (barChartInstance) barChartInstance.destroy();

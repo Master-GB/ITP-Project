@@ -6,15 +6,27 @@ const dotenv = require("dotenv");
 require("dotenv").config();
 const app = express();
 const router=require("./routes/imalshaRoute/FeedbackRoute");
-const userRouter = require('./routes/imalshaRoute/userRoute');
 
+
+const userRouter = require('./routes/imalshaRoute/UserRoute');
 const donorRoute = require("./routes/gihanRoute/donorRoute")
 const operatingManagerRoute = require("./routes/gihanRoute/operatingMangerRoute")
 
 const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
-const User = require('./models/imalshaModel/UserModel') 
+
+
+const taskRoute = require("./routes/daniruRoute/TaskRoutes");
+const volunteerRoute = require("./routes/daniruRoute/VolunteerRoutes");
+
 
 const PORT = process.env.PORT || 8090;
+
+app.use(cors({
+    origin: 'http://localhost:3000', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], 
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true 
+  }));
 
 app.use(express.json());
 app.use(cors());
@@ -24,11 +36,11 @@ app.use(express.json());
 app.use("/Requests",RequestRoute);
 app.use("/feedbacks",router);
 
-
 app.use(bodyParser.json());
 app.use("/donations",donorRoute);
 app.use("/inventory",operatingManagerRoute);
-
+app.use("/tasks",taskRoute);
+app.use("/volunteers",volunteerRoute);
 
 const URL = process.env.MONGODB_URL;
 

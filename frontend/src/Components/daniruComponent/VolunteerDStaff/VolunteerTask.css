@@ -1,0 +1,139 @@
+/* General Styles */
+.volunteer-task-dashboard {
+  font-family: 'Poppins', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  color: #2c3e50;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styles */
+h1.volunteer-task-h1, h2.volunteer-task-h2, h3.volunteer-task-h3 {
+  font-weight: 700;
+  text-align: center;
+  color: #2c3e50;
+}
+
+h2.volunteer-task-h2 {
+  font-size: 2rem;
+  margin: 25px 0 15px;
+  position: relative;
+}
+
+h2.volunteer-task-h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #3498db;
+  display: block;
+  margin: 8px auto;
+  border-radius: 2px;
+}
+
+/* Performance Section */
+.volunteer-task-performance-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.volunteer-task-performance-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+.volunteer-task-performance-card {
+  flex: 1;
+  background: linear-gradient(135deg, #3498db, #6dd5fa);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.volunteer-task-performance-card:hover {
+  transform: scale(1.05);
+}
+
+.volunteer-task-percentage {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Search Section */
+.volunteer-task-search-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.volunteer-task-search-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.volunteer-task-search-bar input, .volunteer-task-search-bar select {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.volunteer-task-search-bar input:focus, .volunteer-task-search-bar select:focus {
+  border-color: #3498db;
+  box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Feedback Section */
+.volunteer-task-feedback-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.volunteer-task-feedback-card {
+  background: #f7f9fc;
+  border-left: 5px solid #3498db;
+  padding: 20px;
+  font-style: italic;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+}
+
+.volunteer-task-stars {
+  font-size: 1.5rem;
+  color: #f1c40f;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .volunteer-task-performance-cards, .volunteer-task-search-bar {
+      flex-direction: column;
+  }
+  
+  .volunteer-task-performance-card {
+      padding: 15px;
+  }
+  
+  .volunteer-task-search-bar input, .volunteer-task-search-bar select {
+      width: 100%;
+  }
+}

@@ -16,14 +16,13 @@ export default function Donate() {
     quantity: "",
     quantityUnit: "",
     collectionAddress: "",
-    imageOfFoods: null, // Store the image file
+    imageOfFoods: null, 
     notes: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-    // Clear errors when the user starts typing
     setErrors({ ...errors, [name]: "" });
   };
 
@@ -39,16 +38,14 @@ export default function Donate() {
     Curry: ["Dhal Curry","Soya Curry","Manioc Curry","Bonchi Curry","Polos Curry","Kiri Kos Curry","Batu Moju ","Ala Curry","Kola Mallum","Kaju Curry","Kehel Muwa Curry","Mushroom Curry"],
   };
 
-  // Frontend validation function
+ 
   const validateForm = () => {
     const newErrors = {};
 
-    // Validate food category
     if (!inputs.foodCategory) {
       newErrors.foodCategory = "Food category is required";
     }
 
-    // Validate food item (if category has items)
     if (
       foodCategoryMap[inputs.foodCategory] &&
       foodCategoryMap[inputs.foodCategory].length > 0 &&
@@ -57,59 +54,52 @@ export default function Donate() {
       newErrors.foodItem = "Food item is required";
     }
 
-    // Validate storage condition
     if (!inputs.storageCondition) {
       newErrors.storageCondition = "Storage condition is required";
     }
 
-    // Validate donation date
     if (!inputs.donationDate) {
       newErrors.donationDate = "Donation date is required";
     }else if(new Date().setHours(0, 0, 0, 0) > new Date(inputs.donationDate).setHours(0, 0, 0, 0)){
         newErrors.donationDate = "Donation date must be after the current date.";
     }
 
-    // Validate expiry date
     if (!inputs.expiryDate) {
       newErrors.expiryDate = "Expiry date is required";
     } else if (new Date(inputs.expiryDate) <= new Date(inputs.donationDate)) {
       newErrors.expiryDate = "Expiry date must be after the donation date";
     }
 
-    // Validate quantity
     if (!inputs.quantity) {
       newErrors.quantity = "Quantity is required";
     } else if (isNaN(inputs.quantity)) {
       newErrors.quantity = "Quantity must be a number";
     }
 
-    // Validate quantity unit
     if (!inputs.quantityUnit) {
       newErrors.quantityUnit = "Quantity unit is required";
     }
 
-    // Validate collection address
     if (!inputs.collectionAddress) {
       newErrors.collectionAddress = "Collection address is required";
     }
-    console.log("Validation Errors:", newErrors); // Log the errors
+    console.log("Validation Errors:", newErrors); 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return Object.keys(newErrors).length === 0; 
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate the form
     if (!validateForm()) {
-      console.log("Validation failed. Form not submitted."); // Log validation failure
-      return; // Stop if validation fails
+      console.log("Validation failed. Form not submitted."); 
+      return; 
     }
 
-    // Create a FormData object
+  
     const formData = new FormData();
 
-    // Append all form fields to the FormData object
+  
     formData.append("foodCategory", inputs.foodCategory);
     formData.append("foodItem", inputs.foodItem);
     formData.append("storageCondition", inputs.storageCondition);
@@ -120,30 +110,30 @@ export default function Donate() {
     formData.append("collectionAddress", inputs.collectionAddress);
     formData.append("notes", inputs.notes);
 
-    // Append the image file if it exists
+  
     if (inputs.imageOfFoods) {
       formData.append("imageOfFoods", inputs.imageOfFoods);
     }
 
     try {
-      // Send the FormData object to the backend
+      
       await axios.post("http://localhost:8090/donations/add", formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Set the content type for file upload
+          "Content-Type": "multipart/form-data", 
         },
       });
 
       alert("Donation Added Successfully");
-      navigate("/dashboard"); // Redirect to the home page or another route
+      navigate("/dashboard"); 
     } catch (error) {
       alert("Error: " + error.message);
     }
   };
 
   const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files || e.dataTransfer.files); // Handle both browse and drag-and-drop
+    const files = Array.from(e.target.files || e.dataTransfer.files); 
 
-    // Validate file types (only images allowed)
+    
     const validFiles = files.filter((file) => file.type.startsWith("image/"));
 
     if (validFiles.length === 0) {
@@ -151,18 +141,26 @@ export default function Donate() {
       return;
     }
 
-    // Replace the existing image with the new one
+
     setInputs({ ...inputs, imageOfFoods: validFiles[0] });
-    setErrors({ ...errors, imageOfFoods: "" }); // Clear image error
+    setErrors({ ...errors, imageOfFoods: "" }); 
   };
 
   return (
-      <main className="main-content" id="back">
+      <main className="main-content" id="back" style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('/Resources/gihanRes/donationRes/donatebg2.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh", 
+        width: "100%"
+      }}
+
+        >
         <div className="donate-container">
           <h1>Donate Food</h1>
           <p>Fill in the details below to make your food donation</p>
           <form onSubmit={handleSubmit}>
-            {/* Food Category and Item Section */}
             <div className="food-details-group">
               <div className="food-category-group">
                 <label htmlFor="foodCategory">Food Category:</label>
@@ -209,7 +207,6 @@ export default function Donate() {
                 )}
             </div>
 
-            {/* Storage & Date Section */}
             <div className="storage-date-section">
               <div className="storage-condition-group">
                 <label htmlFor="storageCondition" className="storage-date-label">
@@ -273,9 +270,7 @@ export default function Donate() {
               </div>
             </div>
 
-            {/* Quantity and Collection Address Section */}
             <div className="quantity-address-section">
-              {/* Quantity Section */}
               <div className="quantity-section">
                 <label htmlFor="quantity">Quantity:</label>
                 <div className="quantity-input-group">
@@ -320,7 +315,6 @@ export default function Donate() {
                 )}
               </div>
 
-              {/* Collection Address Section */}
               <div className="collection-address-section">
                 <label htmlFor="collectionAddress">Collection Address:</label>
                 <input
@@ -338,7 +332,6 @@ export default function Donate() {
               </div>
             </div>
 
-            {/* Food Images Section */}
             <div className="food-images-section">
               <label>Food Images:</label>
               <div
@@ -409,7 +402,6 @@ export default function Donate() {
               )}
             </div>
 
-            {/* Additional Notes Section */}
             <div className="additional-notes-section">
               <label htmlFor="notes">Additional Notes:</label>
               <textarea
@@ -421,19 +413,17 @@ export default function Donate() {
               />
             </div>
 
-            {/* Checkbox for Agreement */}
             <div className="checkbox-section">
               <label htmlFor="agreement">
                 <input
                   type="checkbox"
                   id="agreement"
-                  required // Make the checkbox mandatory
+                  required 
                 />
                 I agree to the donation guidelines and conditions.
               </label>
             </div>
 
-            {/* Submit Button */}
             <button type="submit" className="submit-b">
               Submit Donation
             </button>

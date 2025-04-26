@@ -30,7 +30,7 @@ const addRequests = async (req, res,next) => {
     let requests;
 
     try{
-        requests = new FoodRequest({organizationName,location,contactNumber,foodType,quantity,additionalNotes});
+        requests = new FoodRequest({organizationName,location,contactNumber,foodType,quantity,additionalNotes,status:"pending" });
         await requests.save();
     }catch (err) {
         console.log(err);
@@ -61,31 +61,60 @@ const getById = async (req, res, next) => {
     return res.status(200).json({ requests });
 }
 
-//update request details
 const updateRequest = async (req, res, next) => {
     const requestId = req.params.requestId;
+    
+    if (Object.keys(req.body).length === 1 && req.body.status) {
+        try {
+            const updatedRequest = await FoodRequest.findByIdAndUpdate(
+                requestId,
+                { status: req.body.status },
+                { new: true }
+            );
+            
+            if (!updatedRequest) {
+                return res.status(404).json({ message: "Request not found" });
+            }
+            
+            return res.status(200).json({ 
+                message: "Status updated successfully",
+                request: updatedRequest 
+            });
+        } catch (err) {
+            console.error("Status update error:", err);
+            return res.status(500).json({ message: "Internal server error" });
+        }
+    }
+    
     const { organizationName, location, contactNumber, foodType, quantity, additionalNotes } = req.body;
     
-    let requests;
-
     try {
-        requests = await FoodRequest.findByIdAndUpdate(requestId, 
-            { organizationName: organizationName, location: location, foodType: foodType, quantity: quantity, additionalNotes: additionalNotes});
-            requests = await requests.save();
-
+        const updatedRequest = await FoodRequest.findByIdAndUpdate(
+            requestId,
+            { 
+                organizationName, 
+                location, 
+                contactNumber,
+                foodType, 
+                quantity, 
+                additionalNotes
+            },
+            { new: true }
+        );
+            
+        if (!updatedRequest) {
+            return res.status(404).json({ message: "Unable to update request details" });
+        }
+        
+        return res.status(200).json({ request: updatedRequest });
     } catch (err) {
-        console.log(err);
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
     }
-
-    if (!requests) {
-        return res.status(404).json({ message: "Unable to Update user details" });
-    }
-    
-    return res.status(200).json({ requests });
 };
 
 //Delete user
-const deleteUser = async (req, res, next) => {
+const deleteRequest = async (req, res, next) => {
     const requestId = req.params.requestId;
 
     let request;
@@ -106,4 +135,4 @@ exports.getAllRequests = getAllRequests;
 exports.addRequests = addRequests;
 exports.getById = getById;
 exports.updateRequest = updateRequest;
-exports.deleteUser = deleteUser;
+exports.deleteRequest = deleteRequest;

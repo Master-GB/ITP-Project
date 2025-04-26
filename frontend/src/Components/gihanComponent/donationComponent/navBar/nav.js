@@ -15,7 +15,6 @@ const Nav = () => {
       {isSideNavOpen && <div className="overlay" onClick={toggleSideNav}></div>}
 
       <nav className="navbar">
-        {/* Side Navigation (Hamburger Menu) */}
         <div className="side-nav">
           <button className="hamburger-menu" onClick={toggleSideNav}>
             ☰
@@ -69,7 +68,6 @@ const Nav = () => {
           )}
         </div>
 
-        {/* Logo Section */}
         <div className="logo-container">
           <Link to="/" className="logo-container">
             <img
@@ -86,7 +84,6 @@ const Nav = () => {
           </Link>
         </div>
 
-        {/* Main Navigation Links */}
         <div className="nav-links">
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/donate">Donate Now</Link>
@@ -110,7 +107,6 @@ const Nav = () => {
 </div>
 
           
-        {/* AI Chatbot */}
         <div className="ai-chatbot">
           <button className="chatbot-icon">
             <img
@@ -120,7 +116,6 @@ const Nav = () => {
           </button>
         </div>
 
-        {/* Communicate with Recipients */}
         <div className="communicate">
           <button className="messages-icon">
             <img
@@ -129,8 +124,7 @@ const Nav = () => {
             />
           </button>
         </div>
-
-        {/* Notifications */}
+        
         <div className="notifications">
           <button className="notification-icon">
             <img

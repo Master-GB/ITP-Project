@@ -24,7 +24,7 @@ const OperatingManagerSidebar = () => {
   return (
     <div className="operating-manager-sidebar">
       <div className="sidebar-header">
-        <img src="/logo.png" alt="Organization Logo" className="sidebar-logo" />
+        <img src="/Resources/gihanRes/donationRes/mainlogo.png" alt="Organization Logo" className="sidebar-logo" />
         <h2 className="organization-name">FoodShare Network</h2>
       </div>
       
