@@ -139,22 +139,7 @@ const deleteUser = async (req, res, next) => {
     });
 };
 
-//get dashboard statistic
-const getDashboardStats = async (req, res) => {
-    try {
-        const userCount = await User.countDocuments();
-        const feedbackCount = await Feedback.countDocuments();
-        res.status(200).json({
-            totalUsers: userCount,
-            totalFeedbacks: feedbackCount
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'Error fetching dashboard statistics',
-            error: error.message
-        });
-    }
-};
+
 
 
 exports.getAllUsers = getAllUsers;
@@ -162,4 +147,3 @@ exports.createUser = createUser;
 exports.getUserById = getUserById;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
-exports.getDashboardStats = getDashboardStats;
