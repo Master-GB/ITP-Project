@@ -1,0 +1,54 @@
+.feedbacks-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.feedback-title-main {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feedback-card {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feedback-card:hover {
+    transform: scale(1.02);
+}
+
+.feedback-content {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Star rating system */
+.feedback-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    color: #f5c518; /* Star color (golden) */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .feedback-card {
+        width: 90%;
+    }
+}

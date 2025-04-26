@@ -3,6 +3,39 @@ import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
+
+
+import Userdetails from "./Components/imalshaComponent/UserDetails/Users";
+import NavigationBar from './Components/imalshaComponent/unavbar/Navigationbar';
+import AddUser from './Components/imalshaComponent/AddUser/AddUser';
+import UpdateUser from './Components/imalshaComponent/UpdateUser/UpdateUser';
+import Login from './Components/imalshaComponent/login/Login';
+import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks'
+import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackForm';
+import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
+import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
+
+
+
+const UserLayout=()=>(
+  <div className='app-container' >
+    <div className='app-content'>
+    <Routes> 
+    <Route path="/" element={<NavigationBar />} />
+        <Route path="/userdetails" element={<Userdetails/>} />
+        <Route path="/adduser" element={<AddUser/>} />
+        <Route path="/userdetails/:id" element={<UpdateUser/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path='/feedback'element={<FeedbackDetails/>}/>   
+        <Route path='/feedbackForm'element={<FeedbackForm/>}/>
+        <Route path='/feedback/:id'element={<FeedbackDetails/>}/>
+        <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
+        <Route path="/dashbord" element={<DashboardI/>}/>
+ 
+</Routes>
+     </div>
+
+
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
 import MyDonation from "./Components/gihanComponent/donationComponent/myDonation/myDonation";
@@ -69,8 +102,10 @@ const OperatingManagerLayout = () => (
          <Route path ="/partnerManagement" element={<PartnerCollaboration/>}/>
       </Routes>
     </div>
-  </div>
-);
+)
+
+
+
 
 
 const RequestsLayout = () => (
@@ -163,7 +198,9 @@ function App() {
         <Route path="/*" element={<OperatingManagerLayout />} />
         <Route path="/j/*" element={<DonorLayout />} /> 
         <Route path="/gy/*" element={<VolunteerDeliveryStaffLayout/>}/>
-        
+        <Route path="/*" element={<UserLayout/>}/>
+  
+
 
       </Routes>
   );
