@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./nav.css";
+import SignOutDialog from "../signOut/signOut"; // Import the dialog component
+
 
 const Nav = () => {
+
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  const [showSignOutDialog, setShowSignOutDialog] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSideNav = () => {
     setIsSideNavOpen(!isSideNavOpen);
@@ -61,7 +66,9 @@ const Nav = () => {
                   <Link to="/support">Support</Link>
                 </li>
                 <li className="sign-out">
-                  <Link to="/sign-out">Sign Out</Link>
+                  <button className="sign-out-btn" onClick={() => setShowSignOutDialog(true)}>
+                    Sign Out
+                  </button>
                 </li>
               </ul>
             </div>
@@ -134,6 +141,16 @@ const Nav = () => {
           </button>
         </div>
       </nav>
+      {/* Sign Out Dialog Modal */}
+      <SignOutDialog
+        open={showSignOutDialog}
+        onConfirm={() => {
+          setShowSignOutDialog(false);
+          // TODO: Perform sign out logic here (e.g., clear auth tokens)
+          navigate("/login"); // Redirect to login page after sign out
+        }}
+        onCancel={() => setShowSignOutDialog(false)}
+      />
     </div>
   );
 };
