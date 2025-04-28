@@ -1,24 +1,18 @@
 const Task = require("../../models/daniruModel/TaskModel");
 
-//data display
-const getAllTasks = async (req, res, next) => {
-  let tasks;
-  // Get all users
+// Get all tasks
+const getAllTasks = async (req, res) => {
   try {
-    tasks = await Task.find();
+    const tasks = await Task.find();
+    if (!tasks) return res.status(404).json({ message: "Task not found" });
+    return res.status(200).json({ tasks });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: "Server error" });
   }
-  // not found
-  if (!tasks) {
-    return res.status(404).json({ message: "Task not found" });
-  }
-  // Display all tasks
-  return res.status(200).json({ tasks });
 };
 
-// data insert
-const addTasks = async (req, res, next) => {
+// Add a new task
+const addTasks = async (req, res) => {
   const {
     taskName,
     taskDescription,
@@ -30,10 +24,8 @@ const addTasks = async (req, res, next) => {
     status,
   } = req.body;
 
-  let tasks;
-
   try {
-    tasks = new Task({
+    const task = new Task({
       taskName,
       taskDescription,
       location,
@@ -41,191 +33,92 @@ const addTasks = async (req, res, next) => {
       endDateTime,
       priority,
       assignedVolunteer,
-      status: status || "Pending", 
+      status: status || "Pending",
     });
-    await tasks.save();
+    await task.save();
+    return res.status(200).json({ task });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: "Unable to add task" });
   }
-  // not insert tasks
-  if (!tasks) {
-    return res.status(404).json({ message: "unable to add tasks" });
-  }
-  return res.status(200).json({ tasks });
 };
 
-//Get by Id
-const getById = async (req, res, next) => {
-  const id = req.params.id;
-
-  let task;
-
+// Get task by ID
+const getById = async (req, res) => {
   try {
-    task = await Task.findById(id);
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).json({ message: "Task Not Found" });
+    return res.status(200).json({ task });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: "Server error" });
   }
-  // not available tasks
-  if (!task) {
-    return res.status(404).json({ message: "Task Not Found" });
-  }
-  return res.status(200).json({ task });
 };
 
-//Update Task Details
-const updateTask = async (req, res, next) => {
-  const id = req.params.id;
-  const {
-    taskName,
-    taskDescription,
-    location,
-    startDateTime,
-    endDateTime,
-    priority,
-    assignedVolunteer,
-    status,
-  } = req.body;
-
-  let task;
-
+// Update task
+const updateTask = async (req, res) => {
   try {
-    task = await Task.findById(id);
-    if (task) {
-      task.taskName = taskName;
-      task.taskDescription = taskDescription;
-      task.location = location;
-      task.startDateTime = startDateTime;
-      task.endDateTime = endDateTime;
-      task.priority = priority;
-      task.assignedVolunteer = assignedVolunteer;
-      task.status = status;
-      await task.save();
-    }
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).json({ message: "Unable to Update Task Details" });
+
+    Object.assign(task, req.body);
+    await task.save();
+    return res.status(200).json({ task });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
-  if (!task) {
-    return res.status(404).json({ message: "Unable to Update Task Details" });
-  }
-  return res.status(200).json({ task });
 };
 
-//Delete Task Details
-const deleteTask = async (req, res, next) => {
-  const id = req.params.id;
-
-  let task;
-
+// Delete task
+const deleteTask = async (req, res) => {
   try {
-    task = await Task.findByIdAndDelete(id);
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) return res.status(404).json({ message: "Unable to Delete Task Details" });
+    return res.status(200).json({ task });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: "Server error" });
   }
-  if (!task) {
-    return res.status(404).json({ message: "Unable to Delete Task Details" });
-  }
-  return res.status(200).json({ task });
 };
 
-const getTasksByVolunteerName = async (req, res, next) => {
+// Get tasks by volunteer name (case-insensitive)
+const getTasksByVolunteerName = async (req, res) => {
   const { volunteerName } = req.params;
-
   try {
-    if (!volunteerName) {
-      return res.status(400).json({ message: "Volunteer name is required" });
-    }
-
-    // Ensure Mongoose doesn't treat volunteerName as ObjectId
     const tasks = await Task.find({
-      assignedVolunteer: { $regex: `^${volunteerName}$`, $options: "i" }, // Case-insensitive search
+      assignedVolunteer: { $regex: new RegExp(`^${volunteerName}$`, 'i') }
     });
-
-    if (tasks.length === 0) {
-      return res.status(404).json({ message: `No tasks found for volunteer: ${volunteerName}` });
-    }
-
     return res.status(200).json({ tasks });
-  } catch (error) {
-    console.error("Error fetching tasks:", error);
-    return res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-const getTasksByVolunteersName = async (req, res) => {
-  const { volunteerName } = req.params;
-
-  try {
-    if (!volunteerName) {
-      return res.status(400).json({ message: "Volunteer name is required" });
-    }
-
-    // Check if volunteer exists
-    const volunteer = await Volunteer.findOne({ volunteerName: { $regex: `^${volunteerName}$`, $options: "i" } });
-
-    if (!volunteer) {
-      return res.status(404).json({ message: `Volunteer not found: ${volunteerName}` });
-    }
-
-    // Fetch tasks assigned to this volunteer
-    const tasks = await Task.find({ assignedVolunteer: volunteer._id });
-
-    if (tasks.length === 0) {
-      return res.status(404).json({ message: `No tasks found for ${volunteerName}` });
-    }
-
-    return res.status(200).json({ tasks });
-  } catch (error) {
-    console.error("Error fetching tasks:", error);
-    return res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-const getTasksByVolunteer = async (req, res) => {
-  const { volunteerName } = req.params;
-
-  try {
-    const tasks = await Task.find({ volunteerName });
-
-    res.json({ volunteerName, tasks: tasks || [] }); // Ensure tasks is always an array
-  } catch (error) {
-    res.status(500).json({ message: "Server error", tasks: [] });
-  }
-};
-
-// Controller function to update task status to "ongoing"
-const updateTaskStatus = async (req, res) => {
-  const { taskId } = req.params;
-  const { status } = req.body; // Assuming status is sent in the request body
-  
-  if (status !== 'ongoing') {
-    return res.status(400).json({ message: 'Invalid status update' });
-  }
-
-  try {
-    // Find task by ID and update status to "ongoing"
-    const task = await Task.findByIdAndUpdate(
-      taskId,
-      { status: 'ongoing' }, // Set status to "ongoing"
-      { new: true } // Return updated document
-    );
-
-    if (!task) {
-      return res.status(404).json({ message: 'Task not found' });
-    }
-
-    // Respond with the updated task
-    res.json(task);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error updating task status' });
+    return res.status(500).json({ error: "Server error" });
   }
 };
 
-exports.getAllTasks = getAllTasks;
-exports.addTasks = addTasks;
-exports.getById = getById;
-exports.updateTask = updateTask;
-exports.deleteTask = deleteTask;
-exports.getTasksByVolunteerName = getTasksByVolunteerName;
-exports.getTasksByVolunteersName = getTasksByVolunteersName;
+// PATCH: Update only the status of a task
+const updateTaskStatus = async (req, res) => {
+  const id = req.params.id;
+  const { status } = req.body;
+
+  try {
+    const task = await Task.findById(id);
+    if (!task) return res.status(404).json({ message: "Task not found" });
+
+    if (!["Ongoing", "Completed", "Pending", "Rejected"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status value" });
+    }
+
+    task.status = status;
+    await task.save();
+
+    return res.status(200).json({ task });
+  } catch (err) {
+    return res.status(500).json({ message: "Failed to update task status" });
+  }
+};
+
+module.exports = {
+  getAllTasks,
+  addTasks,
+  getById,
+  updateTask,
+  deleteTask,
+  getTasksByVolunteerName,
+  updateTaskStatus,
+};

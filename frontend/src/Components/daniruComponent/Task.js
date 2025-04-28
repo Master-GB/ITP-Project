@@ -20,27 +20,61 @@ const fetchHandler = async () => {
 };
 
 function Task() {
-  const [tasks, setTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [noResults, setNoResults] = useState(false);
+  const [sortBy, setSortBy] = useState("none"); // none, priority, status
+  const [sortOrder, setSortOrder] = useState("asc"); // asc, desc
 
   useEffect(() => {
     fetchHandler().then((data) => {
-      setTasks(data.tasks || []);
+      setAllTasks(data.tasks || []);
+      setFilteredTasks(data.tasks || []);
     });
-  }, [])
+  }, []);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [noResults, setNoResults] = useState(false);
+  // Auto-search effect
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredTasks(allTasks);
+      setNoResults(false);
+      return;
+    }
 
-  const handleSearch = () => {
-    fetchHandler().then((data) => {
-      const filteredTask = data.tasks.filter((viewtasks) => 
-        Object.values(viewtasks).some((field)=>
-          field.toString().toLowerCase().includes(searchQuery.toLowerCase())
-        ))
-        setTasks(filteredTask);
-        setNoResults(filteredTask.length === 0);
+    const filtered = allTasks.filter((task) => 
+      Object.values(task).some((field) =>
+        field && field.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+    
+    setFilteredTasks(filtered);
+    setNoResults(filtered.length === 0);
+  }, [searchQuery, allTasks]);
+
+  const handleSort = (sortType) => {
+    setSortBy(sortType);
+    const sortedTasks = [...filteredTasks].sort((a, b) => {
+      if (sortType === "priority") {
+        const priorityOrder = { High: 3, Medium: 2, Low: 1 };
+        const aValue = priorityOrder[a.priority || "Low"];
+        const bValue = priorityOrder[b.priority || "Low"];
+        return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+      } else if (sortType === "status") {
+        const statusOrder = { Completed: 4, Ongoing: 3, Pending: 2, Rejected: 1 };
+        const aValue = statusOrder[a.status || "Pending"];
+        const bValue = statusOrder[b.status || "Pending"];
+        return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+      }
+      return 0;
     });
-  }
+    setFilteredTasks(sortedTasks);
+  };
+
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    handleSort(sortBy);
+  };
 
   return (
     <div className="task-app-container">
@@ -50,30 +84,56 @@ function Task() {
           <h1>Task Management</h1>
           <h2>Manage & track volunteer tasks</h2>
           <Link to={"/createtask"}>
-          <Button className="create-task-button">+ Create New Task</Button>
+            <Button className="create-task-button">+ Create New Task</Button>
           </Link>
         </header>
-        <div className="task-search-container">
-          <FiSearch className="task-search-icon" />
-          <input onChange={(e)=> setSearchQuery(e.target.value)} name="search" type="text" placeholder="Search tasks..." className="task-search-input" />
 
-          <button onClick={handleSearch} className="task-search-button">Search</button>
+        <div className="task-controls">
+          <div className="task-search-container">
+            <FiSearch className="task-search-icon" />
+            <input 
+              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchQuery}
+              name="search" 
+              type="text" 
+              placeholder="Search tasks..." 
+              className="task-search-input" 
+            />
+          </div>
 
+          <div className="task-sort-container">
+            <select 
+              value={sortBy} 
+              onChange={(e) => handleSort(e.target.value)}
+              className="task-sort-select"
+            >
+              <option value="none">Sort by...</option>
+              <option value="priority">Priority</option>
+              <option value="status">Status</option>
+            </select>
+            {sortBy !== "none" && (
+              <button 
+                onClick={toggleSortOrder} 
+                className="task-sort-order-button"
+              >
+                {sortOrder === "asc" ? "↑ Ascending" : "↓ Descending"}
+              </button>
+            )}
+          </div>
         </div>
 
         {noResults ? (
-
-          <div>
+          <div className="no-results">
             <p>No Tasks Found</p>
           </div>
-        ):(
-        <div className="task-grid">
-          {tasks.length > 0 ? (
-            tasks.map((task, i) => <ViewTasks key={i} viewtasks={task} />)
-          ) : (
-            <p className="no-tasks">No tasks available</p>
-          )}
-        </div>
+        ) : (
+          <div className="task-grid">
+            {filteredTasks.length > 0 ? (
+              filteredTasks.map((task, i) => <ViewTasks key={i} viewtasks={task} />)
+            ) : (
+              <p className="no-tasks">No tasks available</p>
+            )}
+          </div>
         )}
       </div>
     </div>

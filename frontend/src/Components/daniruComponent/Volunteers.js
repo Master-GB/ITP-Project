@@ -19,28 +19,85 @@ const fetchHandler = async () => {
 
 function Volunteers() {
   const [volunteers, setVolunteers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // 🔍 State for search input
-  const [sortOption, setSortOption] = useState("Date"); // Sorting state
-  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("Date");
+  const [roleFilter, setRoleFilter] = useState("All"); // Add role filter
+  const [stats, setStats] = useState({
+    total: 0,
+    approved: 0,
+    rejected: 0,
+    pending: 0
+  });
+
+  // Function to update stats
+  const updateStats = (volunteersList) => {
+    const pendingVolunteers = volunteersList.filter(v => v.status === "Pending");
+    const newStats = {
+      total: volunteersList.length,
+      approved: volunteersList.filter(v => v.status === "Accepted").length,
+      rejected: volunteersList.filter(v => v.status === "Rejected").length,
+      pending: pendingVolunteers.length
+    };
+    setStats(newStats);
+    setVolunteers(pendingVolunteers);
+  };
+
   useEffect(() => {
     fetchHandler().then((data) => {
-      setVolunteers(data.volunteers || []);
+      const volunteersList = data.volunteers || [];
+      updateStats(volunteersList);
     });
   }, []);
 
-  // 🔍 Filter volunteers based on search term
-  const filteredVolunteers = volunteers.filter((volunteer) =>
-    volunteer.volunteerName?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Handle volunteer approval
+  const handleApprove = async (volunteer) => {
+    try {
+      const response = await axios.put(`${URL}/${volunteer._id}`, {
+        ...volunteer,
+        status: "Accepted"
+      });
+      
+      if (response.status === 200) {
+        const updatedVolunteers = await fetchHandler();
+        updateStats(updatedVolunteers.volunteers);
+      }
+    } catch (error) {
+      console.error("Error approving volunteer:", error);
+      alert("Failed to approve volunteer. Please try again.");
+    }
+  };
 
-  // 🧭 Sort volunteers based on selected option (Date or Role)
+  // Handle volunteer rejection
+  const handleReject = async (volunteer) => {
+    try {
+      const response = await axios.put(`${URL}/${volunteer._id}`, {
+        ...volunteer,
+        status: "Rejected"
+      });
+
+      if (response.status === 200) {
+        const updatedVolunteers = await fetchHandler();
+        updateStats(updatedVolunteers.volunteers);
+      }
+    } catch (error) {
+      console.error("Error rejecting volunteer:", error);
+      alert("Failed to reject volunteer. Please try again.");
+    }
+  };
+
+  // Filter volunteers based on search term and role
+  const filteredVolunteers = volunteers.filter((volunteer) => {
+    const nameMatch = volunteer.volunteerName?.toLowerCase().includes(searchTerm.toLowerCase());
+    const roleMatch = roleFilter === "All" || volunteer.role === roleFilter;
+    return nameMatch && roleMatch;
+  });
+
+  // Sort volunteers
   const sortedVolunteers = filteredVolunteers.sort((a, b) => {
     if (sortOption === "Date") {
-      // Sort by Date
-      return new Date(b.dateApplied) - new Date(a.dateApplied); // assuming dateApplied exists
+      return new Date(b.dateApplied) - new Date(a.dateApplied);
     } else if (sortOption === "Role") {
-      // Sort by Role
-      return a.role.localeCompare(b.role); // assuming role exists
+      return a.role.localeCompare(b.role);
     }
     return 0;
   });
@@ -48,42 +105,39 @@ function Volunteers() {
   return (
     <div className="volunteer-volunteer-hub-recruitment">
       <Nav />
-
-      {/* Main Content */}
       <div className="volunteer-main-content">
         <header className="volunteer-header">
           <h1>Volunteer Recruitment & Approval</h1>
         </header>
 
-        {/* Recruitment Stats */}
+        {/* Stats sections remain the same */}
         <section className="volunteer-recruitment-stats">
           <div className="volunteer-stats-card">
-            <h3>Total Applications: {volunteers.length}</h3>
-            <p>Pending Review: {volunteers.filter(v => v.status === "Pending").length}</p>
+            <h3>Total Applications: {stats.total}</h3>
+            <p>Pending Review: {stats.pending}</p>
           </div>
         </section>
 
-        {/* Summary Stats */}
         <section className="volunteer-summary-stats">
           <div className="volunteer-summary-card">
             <h3>Total Applications</h3>
-            <p>{volunteers.length}</p>
+            <p>{stats.total}</p>
           </div>
           <div className="volunteer-summary-card">
             <h3>Approved</h3>
-            <p>{volunteers.filter(v => v.status === "Accepted").length}</p>
+            <p>{stats.approved}</p>
           </div>
           <div className="volunteer-summary-card">
             <h3>Rejected</h3>
-            <p>{volunteers.filter(v => v.status === "Rejected").length}</p>
+            <p>{stats.rejected}</p>
           </div>
           <div className="volunteer-summary-card">
             <h3>Pending Review</h3>
-            <p>{volunteers.filter(v => v.status === "Pending").length}</p>
+            <p>{stats.pending}</p>
           </div>
         </section>
 
-        {/* 🔍 Search and Filters */}
+        {/* Search and Filters */}
         <section className="volunteer-search-filters">
           <div className="volunteers-search-box">
             <FaSearch className="volunteers-search-icon" />
@@ -103,9 +157,18 @@ function Volunteers() {
             <option value="Date">Sort by Date</option>
             <option value="Role">Sort by Role</option>
           </select>
+          <select
+            className="volunteer-filter-select"
+            onChange={(e) => setRoleFilter(e.target.value)}
+            value={roleFilter}
+          >
+            <option value="All">All Roles</option>
+            <option value="Volunteer Delivery Staff">Delivery Staff</option>
+            <option value="Volunteer Packing Staff">Packing Staff</option>
+          </select>
         </section>
 
-        {/* 📜 Applicants Table */}
+        {/* Applicants Table */}
         <section className="volunteer-applicants-table">
           <table>
             <thead>
@@ -120,11 +183,16 @@ function Volunteers() {
             <tbody>
               {sortedVolunteers.length > 0 ? (
                 sortedVolunteers.map((volunteer) => (
-                  <Volunteer key={volunteer._id} volunteer={volunteer} />
+                  <Volunteer 
+                    key={volunteer._id} 
+                    volunteer={volunteer}
+                    onApprove={handleApprove}
+                    onReject={handleReject}
+                  />
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="no-volunteers">No volunteers found</td>
+                  <td colSpan="5" className="no-volunteers">No pending volunteers found</td>
                 </tr>
               )}
             </tbody>
