@@ -82,7 +82,7 @@
     color: white;
 }
 
-.status-badge.in-progress {
+.status-badge.ongoing {
     background-color: #3498db;
     color: white;
 }
@@ -125,3 +125,8 @@
         grid-template-columns: 1fr;
     }
 }
+
+.status-badge.rejected {
+    background-color: #e74c3c;
+    color: #fff;
+  }

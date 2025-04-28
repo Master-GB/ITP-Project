@@ -178,3 +178,55 @@
 .task-download-report-button:hover {
   background-color: #16a085;
 }
+
+/* Sort Container */
+.task-sort-container {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 0 20px;
+  justify-content: center;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 2px solid #1abc9c;
+  border-radius: 8px;
+  background-color: white;
+  color: #1abc9c;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-button:hover {
+  background-color: #1abc9c;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.sort-button.active {
+  background-color: #1abc9c;
+  color: white;
+}
+
+.sort-button svg {
+  font-size: 16px;
+}
+
+/* Responsive Design for Sort Buttons */
+@media (max-width: 768px) {
+  .task-sort-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 10px;
+  }
+
+  .sort-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

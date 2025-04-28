@@ -117,7 +117,7 @@ const VolunteerDeliveryStaffLayout = () => (
       <Routes>
         <Route path="/" element={<VolunteerDStaffDashboard />} />
         <Route
-          path="/volunteerdstaffdashboard"
+          path="/volunteerdstaffdashboard/:volunteerName"
           element={<VolunteerDStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerTask />} />
@@ -137,7 +137,7 @@ const VolunteerPackingStaffLayout = () => (
       <Routes>
         <Route path="/" element={<VolunteerPStaffDashboard />} />
         <Route
-          path="/volunteerpstaffdashboard"
+          path="/volunteerpstaffdashboard/:volunteerName"
           element={<VolunteerPStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerPTask />} />
@@ -157,11 +157,11 @@ function App() {
   return (
       <Routes>
         <Route path="/jl/*" element={<RequestsLayout/>}/>
-        <Route path="/" element={<OperatingManagerLayout />} />
-        <Route path="/*" element={<DonorLayout />} /> 
-        <Route path="/ijjj/*" element={<VolunteerCoordinatorLayout/>}/>
-        <Route path="/knnjn/*" element={<VolunteerDeliveryStaffLayout/>}/>
-
+        <Route path="/*" element={<OperatingManagerLayout />} />
+        <Route path="/jnjnjn/*" element={<DonorLayout />} /> 
+        <Route path="/hth/*" element={<VolunteerCoordinatorLayout/>}/>
+        <Route path="/brbr/*" element={<VolunteerDeliveryStaffLayout/>}/>
+        <Route path="/fr/*" element={<VolunteerPackingStaffLayout/>}/>
       </Routes>
   );
 }

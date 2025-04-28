@@ -1,111 +1,188 @@
 const Volunteer = require("../../models/daniruModel/VolunteerModel");
 
-//data display
+// Get all volunteers
 const getAllVolunteers = async (req, res, next) => {
   let volunteers;
-  // Get all volunteers
   try {
     volunteers = await Volunteer.find();
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
-  // not found
   if (!volunteers) {
-    return res.status(404).json({ message: "Volunteer not found" });
+    return res.status(404).json({ message: "No volunteers found" });
   }
-  // Display all volunteers
   return res.status(200).json({ volunteers });
 };
 
-// data insert
+// Check email availability
+const checkEmailAvailability = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const existingVolunteer = await Volunteer.findOne({ 
+      email: email.toLowerCase() 
+    });
+    
+    if (existingVolunteer) {
+      return res.status(200).json({ 
+        exists: true,
+        message: "This email is already registered as a volunteer"
+      });
+    }
+    
+    return res.status(200).json({ 
+      exists: false,
+      message: "Email is available"
+    });
+  } catch (error) {
+    console.error("Error checking email availability:", error);
+    res.status(500).json({ 
+      message: "Error checking email availability",
+      error: error.message 
+    });
+  }
+};
+
+// Check phone availability
+const checkPhoneAvailability = async (req, res) => {
+  try {
+    const phone = req.params.phone;
+    const existingVolunteer = await Volunteer.findOne({ 
+      contactNumber: phone 
+    });
+    
+    if (existingVolunteer) {
+      return res.status(200).json({ 
+        exists: true,
+        message: "This phone number is already registered as a volunteer"
+      });
+    }
+    
+    return res.status(200).json({ 
+      exists: false,
+      message: "Phone number is available"
+    });
+  } catch (error) {
+    console.error("Error checking phone availability:", error);
+    res.status(500).json({ 
+      message: "Error checking phone availability",
+      error: error.message 
+    });
+  }
+};
+
+// Add new volunteer
 const addVolunteers = async (req, res, next) => {
   const { volunteerName, contactNumber, email, role, status } = req.body;
 
-  let volunteers;
-
   try {
-    volunteers = new Volunteer({
+    // Check for existing email
+    const existingEmail = await Volunteer.findOne({ 
+      email: email.toLowerCase() 
+    });
+    
+    if (existingEmail) {
+      return res.status(409).json({ 
+        message: "This email is already registered as a volunteer",
+        type: "email"
+      });
+    }
+
+    // Check for existing phone
+    const existingPhone = await Volunteer.findOne({ 
+      contactNumber: contactNumber 
+    });
+    
+    if (existingPhone) {
+      return res.status(409).json({ 
+        message: "This phone number is already registered as a volunteer",
+        type: "phone"
+      });
+    }
+
+    // If no duplicates, create new volunteer
+    const volunteers = new Volunteer({
       volunteerName,
       contactNumber,
-      email,
+      email: email.toLowerCase(),
       role,
       status: status || "Pending",
+      dateApplied: new Date()
     });
+
     await volunteers.save();
+    return res.status(200).json({ volunteers });
+
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ 
+      message: "Unable to add volunteer",
+      error: err.message 
+    });
   }
-  // not insert volunteers
-  if (!volunteers) {
-    return res.status(404).json({ message: "unable to add volunteers" });
-  }
-  return res.status(200).json({ volunteers });
 };
 
-//Get by Id
-const getById = async (req, res, next) => {
-  const id = req.params.id;
-
-  let volunteer;
-
-  try {
-    volunteer = await Volunteer.findById(id);
-  } catch (err) {
-    console.log(err);
-  }
-  // not available volunteers
-  if (!volunteer) {
-    return res.status(404).json({ message: "Volunteer Not Found" });
-  }
-  return res.status(200).json({ volunteer });
-};
-
-//Update Volunteer Details
+// Update volunteer
 const updateVolunteer = async (req, res, next) => {
   const id = req.params.id;
   const { volunteerName, contactNumber, email, role, status } = req.body;
 
-  let volunteer;
-
   try {
-    volunteer = await Volunteer.findById(id);
-    if (volunteer) {
-        volunteer.volunteerName = volunteerName;
-        volunteer.contactNumber = contactNumber;
-        volunteer.email = email;
-        volunteer.role = role;
-        volunteer.status = status;
-      await volunteer.save();
+    const volunteer = await Volunteer.findById(id);
+    if (!volunteer) {
+      return res.status(404).json({ message: "Volunteer not found" });
     }
+
+    volunteer.volunteerName = volunteerName || volunteer.volunteerName;
+    volunteer.contactNumber = contactNumber || volunteer.contactNumber;
+    volunteer.email = email ? email.toLowerCase() : volunteer.email;
+    volunteer.role = role || volunteer.role;
+    volunteer.status = status || volunteer.status;
+
+    await volunteer.save();
+    return res.status(200).json({ volunteer });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Error updating volunteer" });
   }
-  if (!volunteer) {
-    return res.status(404).json({ message: "Unable to Update Volunteer Details" });
-  }
-  return res.status(200).json({ volunteer });
 };
 
-//Delete Volunteer Details
+// Delete volunteer
 const deleteVolunteer = async (req, res, next) => {
   const id = req.params.id;
-
-  let volunteer;
-
   try {
-    volunteer = await Volunteer.findByIdAndDelete(id);
+    const volunteer = await Volunteer.findByIdAndRemove(id);
+    if (!volunteer) {
+      return res.status(404).json({ message: "Volunteer not found" });
+    }
+    return res.status(200).json({ message: "Volunteer deleted successfully" });
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ message: "Error deleting volunteer" });
   }
-  if (!volunteer) {
-    return res.status(404).json({ message: "Unable to Delete Volunteer Details" });
-  }
-  return res.status(200).json({ volunteer });
 };
 
-exports.getAllVolunteers = getAllVolunteers;
-exports.addVolunteers = addVolunteers;
-exports.getById = getById;
-exports.updateVolunteer = updateVolunteer;
-exports.deleteVolunteer = deleteVolunteer;
+// Get volunteer by ID
+const getVolunteerById = async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const volunteer = await Volunteer.findById(id);
+    if (!volunteer) {
+      return res.status(404).json({ message: "Volunteer not found" });
+    }
+    return res.status(200).json({ volunteer });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Error finding volunteer" });
+  }
+};
+
+module.exports = {
+  getAllVolunteers,
+  addVolunteers,
+  updateVolunteer,
+  deleteVolunteer,
+  getVolunteerById,
+  checkEmailAvailability,
+  checkPhoneAvailability
+};
