@@ -12,7 +12,7 @@ export default function UpdateDonation() {
     foodCategory: "",
     foodItem: "",
     storageCondition: "",
-    donationDate: "",
+
     expiryDate: "",
     quantity: "",
     quantityUnit: "",
@@ -58,7 +58,7 @@ export default function UpdateDonation() {
           foodCategory: donation.foodCategory ?? prevInputs.foodCategory,
           foodItem: donation.foodItem ?? prevInputs.foodItem,
           storageCondition: donation.storageCondition ?? prevInputs.storageCondition,
-          donationDate: donation.donationDate ? donation.donationDate.split("T")[0] : prevInputs.donationDate,
+
           expiryDate: donation.expiryDate ? donation.expiryDate.split("T")[0] : prevInputs.expiryDate,
           quantity: donation.quantity ?? prevInputs.quantity,
           quantityUnit: donation.quantityUnit ?? prevInputs.quantityUnit,
@@ -107,26 +107,32 @@ export default function UpdateDonation() {
       newErrors.storageCondition = "Storage condition is required";
     }
 
-    if (!inputs.donationDate) {
-      newErrors.donationDate = "Donation date is required";
-    } else if (
-      new Date().setHours(0, 0, 0, 0) >
-      new Date(inputs.donationDate).setHours(0, 0, 0, 0)
-    ) {
-      newErrors.donationDate = "Donation date must be after the current date.";
-    }
 
     if (!inputs.expiryDate) {
       newErrors.expiryDate = "Expiry date is required";
-    } else if (new Date(inputs.expiryDate) <= new Date(inputs.donationDate)) {
-      newErrors.expiryDate = "Expiry date must be after the donation date";
+    } else if (new Date(inputs.expiryDate) <=new Date()) {
+      newErrors.expiryDate = "Expiry date must be after the current date";
+    }
+
+    const selectedDate = new Date(inputs.expiryDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const maxAllowedDate = new Date(today);
+    maxAllowedDate.setDate(today.getDate() + 3);
+    if (selectedDate > maxAllowedDate) {
+      newErrors.expiryDate = "Expiry date must be within the next 3 days";
     }
 
     if (!inputs.quantity) {
       newErrors.quantity = "Quantity is required";
     } else if (isNaN(inputs.quantity)) {
       newErrors.quantity = "Quantity must be a number";
+    }else if (!/^[0-9]$/.test(inputs.quantity)) {
+      newErrors.quantity = "Please enter a  kg or unit between (0-9)";
     }
+
+
+    
 
     if (!inputs.quantityUnit) {
       newErrors.quantityUnit = "Quantity unit is required";
@@ -152,7 +158,7 @@ export default function UpdateDonation() {
     formData.append("foodCategory", inputs.foodCategory);
     formData.append("foodItem", inputs.foodItem);
     formData.append("storageCondition", inputs.storageCondition);
-    formData.append("donationDate", inputs.donationDate);
+  
     formData.append("expiryDate", inputs.expiryDate);
     formData.append("quantity", inputs.quantity);
     formData.append("quantityUnit", inputs.quantityUnit);
@@ -278,22 +284,8 @@ export default function UpdateDonation() {
                 <span className="error">{errors.storageCondition}</span>
               )}
             </div>
-            <div className="date-fields">
-              <div className="donation-date-group">
-                <label htmlFor="donationDate">Donation Date:</label>
-                <input
-                  type="date"
-                  name="donationDate"
-                  id="donationDate"
-                  value={inputs.donationDate}
-                  onChange={handleChange}
-                  required
-                />
-                {errors.donationDate && (
-                  <span className="error">{errors.donationDate}</span>
-                )}
-              </div>
-              <div className="expiration-date-group">
+            <div className="date-fields" style={{ display: 'flex', gap: '16px' }}>
+              <div className="expiration-date-group" style={{ flex: 1 }}>
                 <label htmlFor="expiryDate">Expiration Date:</label>
                 <input
                   type="date"
@@ -305,6 +297,21 @@ export default function UpdateDonation() {
                 />
                 {errors.expiryDate && (
                   <span className="error">{errors.expiryDate}</span>
+                )}
+              </div>
+              <div className="collection-address-section" style={{ flex: 1 }}>
+                <label htmlFor="collectionAddress">Collection Address:</label>
+                <input
+                  type="text"
+                  name="collectionAddress"
+                  id="collectionAddress"
+                  value={inputs.collectionAddress}
+                  onChange={handleChange}
+                  placeholder="Enter collection address"
+                  required
+                />
+                {errors.collectionAddress && (
+                  <span className="error">{errors.collectionAddress}</span>
                 )}
               </div>
             </div>
