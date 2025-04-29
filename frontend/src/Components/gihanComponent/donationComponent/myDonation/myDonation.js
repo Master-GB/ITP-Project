@@ -106,7 +106,7 @@ export default function MyDonation() {
       <div className="my-donation-container">
         <div className="filter-search-container">
           <div className="filter-container">
-            <label htmlFor="status-filter">Filter by Status:</label>
+            <label htmlFor="status-filter" class ="fLabel">Filter by Status:</label>
             <select
               id="status-filter"
               value={statusFilter}
@@ -179,7 +179,9 @@ export default function MyDonation() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleDelete(donation._id);
+                        if (window.confirm('Are you sure you want to delete this donation?')) {
+                          handleDelete(donation._id);
+                        }
                       }}
                       className="delete-button"
                     >

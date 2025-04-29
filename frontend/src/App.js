@@ -29,6 +29,7 @@ import OperatingManagerSidebar from "./Components/gihanComponent/operatingManage
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
 import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
+import OpDashboard from './Components/gihanComponent/operatingManager/opDashboard/opDashboard';
 
 // Daniru's components
 import CreateTask from "./Components/daniruComponent/CreateTask";
@@ -101,6 +102,8 @@ const OperatingManagerLayout = () => (
     <OperatingManagerSidebar />
     <div className="operating-manager-content">
       <Routes>
+        <Route path="/" element={<OpDashboard/>} />
+        <Route path="/dashboard" element={<OpDashboard/>} />
         <Route path="/foodManagement" element={<FoodDonationPage />} />
         <Route path="/inventoryManagement" element={<InventoryManagement />} />
         <Route path="/partnerManagement" element={<PartnerCollaboration />} />
@@ -188,8 +191,8 @@ function App() {
   return (
     <Routes>
       <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/*" element={<DonorLayout />} />
-      <Route path="/ji/*" element={<OperatingManagerLayout />} />
+      <Route path="/i/*" element={<DonorLayout />} />
+      <Route path="/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/volunteer-coordinator/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />

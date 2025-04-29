@@ -35,6 +35,24 @@ const FoodDonationPage = () => {
     fetchDonations();
   }, [fetchDonations]);
 
+  useEffect(() => {
+    fetchDonations();
+  }, [fetchDonations]);
+
+  // Calculate Expiring Soon Donations (next 24h, not expired, not Completed/Cancel)
+  const getExpiringSoonDonationsCount = () => {
+    const now = new Date();
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    return donations.filter(d => {
+      if (!d.expiryDate) return false;
+      const expiryDate = new Date(d.expiryDate);
+      return (
+        expiryDate > now && expiryDate <= next24h &&
+        d.status !== "Completed" &&
+        d.status !== "Cancel"
+      );
+    }).length;
+  };
 
   useEffect(() => {
     let result = donations.filter(
@@ -51,7 +69,6 @@ const FoodDonationPage = () => {
       result = result.filter((d) => d.status === statusFilter);
     }
 
-  
     result.sort((a, b) => {
       const dateA = a.expiryDate ? new Date(a.expiryDate) : new Date(0);
       const dateB = b.expiryDate ? new Date(b.expiryDate) : new Date(0);
@@ -61,7 +78,6 @@ const FoodDonationPage = () => {
     setFilteredDonations(result);
   }, [donations, searchTerm, statusFilter, sortOrder]);
 
-  
   const generateStatusPDF = (status) => {
     let donationsToExport = [];
 
@@ -73,7 +89,8 @@ const FoodDonationPage = () => {
         return (
           d.status !== "Completed" &&
           d.status !== "Cancel" &&
-          expiryDate < oneDaysFromNow
+          expiryDate > new Date() &&
+          expiryDate <= oneDaysFromNow
         );
       });
     } else if (status === "New") {
@@ -211,16 +228,7 @@ const FoodDonationPage = () => {
     (d) => d.status === "Packaging"
   ).length;
   const totalDelivery = donations.filter((d) => d.status === "Delivery").length;
-  const expiringSoonCount = donations.filter((d) => {
-    if (!d.expiryDate) return false;
-    const expiryDate = new Date(d.expiryDate);
-    const oneDaysFromNow = new Date(Date.now() + 24 * 60 * 60 * 1000);
-    return (
-      d.status !== "Completed" &&
-      d.status !== "Cancel" &&
-      expiryDate < oneDaysFromNow
-    );
-  }).length;
+  const expiringSoonCount = getExpiringSoonDonationsCount();
   const newDonationsCount = donations.filter((d) => {
     if (!d.donationDate) return false;
     const donationDate = new Date(d.donationDate);
