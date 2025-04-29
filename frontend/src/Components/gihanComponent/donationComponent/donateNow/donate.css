@@ -228,6 +228,10 @@ label {
     gap: 5px;
 }
 
+#unit-qua{
+    margin-left: 3px;
+}
+
 .collection-address-section input {
     width: 100%;
     padding: 8px;
