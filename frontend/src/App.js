@@ -58,6 +58,23 @@ import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 
+//Sashini's components
+import Map from './Components/sashiniComponent/Map';
+
+const MapLayout = () => (
+  <div className="Map-container">
+    <div className="Map-content">
+      <Routes>
+        {/* modification */}
+        <Route path="/" element={<Map />} />
+        <Route path="/map" element = {<Map/>}/>
+        <Route path="*" element={<h1>Page Not Found</h1>} />
+      </Routes>
+    </div>
+  </div>
+);
+
+
 const UserLayout = () => (
   <div className='app-container'>
     <div className='app-content'>
@@ -190,13 +207,16 @@ const VolunteerPackingStaffLayout = () => (
 function App() {
   return (
     <Routes>
+
       <Route path="/hh/*" element={<UserLayout />} />
       <Route path="/i/*" element={<DonorLayout />} />
-      <Route path="/*" element={<OperatingManagerLayout />} />
+      <Route path="/h/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/volunteer-coordinator/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/*" element={<MapLayout/>} />
+
     </Routes>
   );
 }
