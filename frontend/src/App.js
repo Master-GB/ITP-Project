@@ -24,12 +24,14 @@ import MonitorPage from "./Components/gihanComponent/donationComponent/monitor/m
 import AboutUs from './Components/gihanComponent/donationComponent/aboutUs/aboutUs';
 import Guidance from './Components/gihanComponent/donationComponent/guidance/guidance';
 import Support from './Components/gihanComponent/donationComponent/support/support';
+import Chat from './Components/gihanComponent/donationComponent/chat/chat';
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
 import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
 import OpDashboard from './Components/gihanComponent/operatingManager/opDashboard/opDashboard';
+import ChatOP from './Components/gihanComponent/operatingManager/chatOP/chatOP';
 
 // Daniru's components
 import CreateTask from "./Components/daniruComponent/CreateTask";
@@ -108,6 +110,7 @@ const DonorLayout = () => (
         <Route path = "/about-us" element ={<AboutUs/>}/>
         <Route path = "/guidance" element ={<Guidance/>}/>
         <Route path = "/support" element ={<Support/>}/>
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
     <Footer />
@@ -124,6 +127,8 @@ const OperatingManagerLayout = () => (
         <Route path="/foodManagement" element={<FoodDonationPage />} />
         <Route path="/inventoryManagement" element={<InventoryManagement />} />
         <Route path="/partnerManagement" element={<PartnerCollaboration />} />
+        <Route path="/chatOP" element={<ChatOP />} />
+
       </Routes>
     </div>
   </div>
@@ -209,8 +214,8 @@ function App() {
     <Routes>
 
       <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/i/*" element={<DonorLayout />} />
-      <Route path="/h/*" element={<OperatingManagerLayout />} />
+      <Route path="/*" element={<DonorLayout />} />
+      <Route path="/j/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/volunteer-coordinator/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
