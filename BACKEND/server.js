@@ -18,7 +18,7 @@ const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
 const taskRoute = require("./routes/daniruRoute/TaskRoutes");
 const volunteerRoute = require("./routes/daniruRoute/VolunteerRoutes");
 
-const needyLocationsRouter = require('./routes/sashiniRoute/needyLocations');
+const needyLocationsRouter = require('./routes/sashiniRoute/needyLocation');
 
 
 

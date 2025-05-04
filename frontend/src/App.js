@@ -215,7 +215,7 @@ function App() {
 
       <Route path="/hh/*" element={<UserLayout />} />
       <Route path="/*" element={<DonorLayout />} />
-      <Route path="/j/*" element={<OperatingManagerLayout />} />
+      <Route path="/k/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/volunteer-coordinator/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />

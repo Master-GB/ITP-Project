@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./myDonation.css";
+import "./myDonation.toast.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function MyDonation() {
+  const [deleteModal, setDeleteModal] = useState({ open: false, donationId: null });
   const fetchDonation = async () => {
     return await axios
       .get("http://localhost:8090/donations/display")
@@ -62,19 +64,19 @@ export default function MyDonation() {
     }
   };
 
-  const handleDelete = async (id) => {
-    console.log(`Delete donation with ID: ${id}`);
-    try {
-      await axios.delete(`http://localhost:8090/donations/delete/${id}`);
-      setDonations((prevDonations) =>
-        prevDonations.filter((donation) => donation._id !== id)
-      );
-      alert("Donation Deleted Successfully");
-    } catch (error) {
-      console.error("Error deleting Donation:", error);
-      alert("Failed to delete sDonation");
-    }
-  };
+  const [showSuccess, setShowSuccess] = useState(false);
+
+const handleDelete = async (id) => {
+  try {
+    await axios.delete(`http://localhost:8090/donations/delete/${id}`);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 2500);
+    // No alert, UI is already updated optimistically
+  } catch (error) {
+    console.error("Error deleting Donation:", error);
+    // Optionally show error UI here
+  }
+};
 
   const handleRowClick = (donation) => {
     if (donation.status !== "Cancel") {
@@ -102,7 +104,39 @@ export default function MyDonation() {
   };
 
   return (
-    <div className="myBack">
+    <>
+      {showSuccess && (
+        <div className="success-toast">Donation deleted successfully!</div>
+      )}
+      <div className="myBack">
+      {/* Delete Confirmation Modal */}
+      {deleteModal.open && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h2 className="modal-title">Confirm Deletion</h2>
+      <p className="modal-message">Are you sure you want to delete this donation? This action cannot be undone.</p>
+      <div className="modal-actions">
+        <button
+          className="cancel-button"
+          onClick={() => setDeleteModal({ open: false, donationId: null })}
+        >
+          Cancel
+        </button>
+        <button
+          className="delete-button"
+          onClick={() => {
+            // Optimistically update UI
+            setDonations((prevDonations) => prevDonations.filter((donation) => donation._id !== deleteModal.donationId));
+            setDeleteModal({ open: false, donationId: null });
+            handleDelete(deleteModal.donationId);
+          }}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+)}
       <div className="my-donation-container">
         <div className="filter-search-container">
           <div className="filter-container">
@@ -177,16 +211,14 @@ export default function MyDonation() {
                       </Link>
                     )}
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (window.confirm('Are you sure you want to delete this donation?')) {
-                          handleDelete(donation._id);
-                        }
-                      }}
-                      className="delete-button"
-                    >
-                      Delete
-                    </button>
+  onClick={(e) => {
+    e.stopPropagation();
+    setDeleteModal({ open: true, donationId: donation._id });
+  }}
+  className="delete-button"
+>
+  Delete
+</button>
                   </td>
                 </tr>
               ))
@@ -226,5 +258,6 @@ export default function MyDonation() {
 )}
       </div>
     </div>
+    </>
   );
 }

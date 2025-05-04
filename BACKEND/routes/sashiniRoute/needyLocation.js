@@ -3,7 +3,7 @@ const router = express.Router();
 const { 
   getAllNeedyLocations, 
   seedData 
-} = require('../../controllers/sashiniController/needyLocationsController');
+} = require('../../controllers/sashiniController/neeyLocationsContraller');
 
 // GET all needy locations
 router.get('/', getAllNeedyLocations);

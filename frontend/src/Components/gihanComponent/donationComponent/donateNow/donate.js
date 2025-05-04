@@ -91,7 +91,7 @@ export default function Donate() {
     }
 
     if (!inputs.quantityUnit) {
-      newErrors.quantityUnit = "Quantity unit is required";
+      newErrors.quantityUnit = "Quantity unit/Kg is required";
     }
 
     if (!inputs.collectionAddress) {

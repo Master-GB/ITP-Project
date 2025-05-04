@@ -95,7 +95,7 @@ const Footer = () => {
 
         {/* Legal and Compliance */}
         <div className="legal-compliance">
-          <p className="copyright">© 2023 Platform Name. All rights reserved.</p>
+          <p className="copyright">© 2025 Surplus Food Donation and Redistribution Platform. All rights reserved.</p>
           <div className="legal-links">
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/terms-of-service">Terms of Service</a>
