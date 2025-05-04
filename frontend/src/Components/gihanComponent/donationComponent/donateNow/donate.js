@@ -18,12 +18,22 @@ export default function Donate() {
     imageOfFoods: null, 
     notes: "",
   });
+  const [quantityMsg, setQuantityMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "quantity") {
+      if (value.length > 1) {
+        setQuantityMsg("Only one digit is allowed for quantity (0-9)");
+        return;
+      } else {
+        setQuantityMsg("");
+      }
+    }
     setInputs({ ...inputs, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
+
 
   const navigate = useNavigate();
 
@@ -286,8 +296,12 @@ export default function Donate() {
                     name="quantity"
                     value={inputs.quantity}
                     onChange={handleChange}
+                    maxLength={1}
                     required
                   />
+                  {quantityMsg && (
+                    <span className="error">{quantityMsg}</span>
+                  )}
                   <div className="quantity-radio-group">
                     <label className="quan-lable">
                       <input

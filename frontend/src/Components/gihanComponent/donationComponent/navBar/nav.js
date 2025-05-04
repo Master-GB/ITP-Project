@@ -124,7 +124,7 @@ const Nav = () => {
         </div>
 
         <div className="communicate">
-          <button className="messages-icon">
+          <button className="messages-icon" onClick={() => navigate('/chat')}>
             <img
               src="/Resources/gihanRes/donationRes/message.png"
               alt="Messages"
