@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import './Dashboard.css';
+import './AdminDashboard.css';
 import UserChart from '../UserChart';
 import FeedbackChart from '../FeedbackChart';
 import NavigationBar from '../anavbar/aNavigationBar';
