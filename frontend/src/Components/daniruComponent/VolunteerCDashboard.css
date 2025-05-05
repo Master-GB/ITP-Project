@@ -172,3 +172,94 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Route Calculation Form */
+.route-calculation-form {
+  margin-top: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.route-calculation-form h4 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.route-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.route-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.route-input:focus {
+  outline: none;
+  border-color: #1abc9c;
+  box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+}
+
+.route-button {
+  background: linear-gradient(90deg, #1abc9c, #16a085);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  min-width: 150px;
+}
+
+.route-button:hover {
+  background: linear-gradient(90deg, #16a085, #1abc9c);
+}
+
+.route-error {
+  color: #e74c3c;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.route-distance {
+  color: #2ecc71;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Map Section Enhancements */
+.volunteercdashboard-map-section {
+  margin-top: 30px;
+}
+
+.volunteercdashboard-map-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .route-inputs {
+    flex-direction: column;
+  }
+  
+  .route-input {
+    width: 100%;
+  }
+  
+  .route-button {
+    width: 100%;
+  }
+}

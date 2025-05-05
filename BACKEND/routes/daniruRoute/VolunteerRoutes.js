@@ -1,14 +1,26 @@
 const express = require("express");
 const router = express.Router();
-//Insert Model
-const Volunteer = require("../../models/daniruModel/VolunteerModel");
-//Insert Volunteer Controller
-const VolunteerController = require("../../controllers/daniruController/VolunteerController");
+const volunteerController = require("../../controllers/daniruController/VolunteerController");
 
-router.get("/", VolunteerController.getAllVolunteers);
-router.post("/", VolunteerController.addVolunteers);
-router.get("/:id", VolunteerController.getById);
-router.put("/:id", VolunteerController.updateVolunteer);
-router.delete("/:id", VolunteerController.deleteVolunteer);
-//export
+// Get all volunteers
+router.get("/", volunteerController.getAllVolunteers);
+
+// Check email availability
+router.get("/check-email/:email", volunteerController.checkEmailAvailability);
+
+// Check phone availability
+router.get("/check-phone/:phone", volunteerController.checkPhoneAvailability);
+
+// Add new volunteer
+router.post("/", volunteerController.addVolunteers);
+
+// Update volunteer
+router.put("/:id", volunteerController.updateVolunteer);
+
+// Delete volunteer
+router.delete("/:id", volunteerController.deleteVolunteer);
+
+// Get volunteer by ID
+router.get("/:id", volunteerController.getVolunteerById);
+
 module.exports = router;

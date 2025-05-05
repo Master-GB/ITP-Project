@@ -366,7 +366,7 @@ const AdvancedDonorDashboard = () => {
         </Link>
       </div>
       <div className="recent-donations">
-        <h2>Recent Donations</h2>
+        <h2 >Recent Donations</h2>
         <table>
           <thead>
             <tr>

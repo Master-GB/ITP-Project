@@ -6,6 +6,43 @@ import 'jspdf-autotable';
 import './inventoryManagement.css';
 
 const InventoryManagement = () => {
+  // Export PDF modal state and filter values
+  const [showExportDialog, setShowExportDialog] = useState(false);
+  const [exportCategory, setExportCategory] = useState("");
+  // Quantity filter: 'all' or 'gt1'
+  const [exportQuantityFilter, setExportQuantityFilter] = useState('all');
+  const [exportDateFrom, setExportDateFrom] = useState("");
+  const [exportDateTo, setExportDateTo] = useState("");
+
+  // Handler for filtered PDF download
+  const resetExportFilters = () => {
+    setExportCategory("");
+    setExportQuantityFilter("all");
+    setExportDateFrom("");
+    setExportDateTo("");
+  };
+
+  const handleDownloadPDF = () => {
+    let filtered = donations;
+    if (exportCategory) filtered = filtered.filter(d => d.category === exportCategory);
+
+    if (exportDateFrom)
+      filtered = filtered.filter(d => new Date(d.donationDate) >= new Date(exportDateFrom));
+    if (exportDateTo)
+      filtered = filtered.filter(d => new Date(d.donationDate) <= new Date(exportDateTo));
+    // Apply quantity filter
+    if (exportQuantityFilter === 'gt1') {
+      filtered = filtered.filter(d => {
+        const q = (Number(d.quantityKg) || 0) + (Number(d.quantityUnit) || 0);
+        return q > 1;
+      });
+    }
+    generatePDFReport(filtered);
+    setShowExportDialog(false);
+    resetExportFilters();
+  };
+
+
   const [donations, setDonations] = useState([]);
   const [allDonations, setAllDonations] = useState([]);
   const [filteredDonations, setFilteredDonations] = useState([]);
@@ -122,13 +159,15 @@ const InventoryManagement = () => {
     let totalCancelunit = 0;
     let totalCompletedkg = 0;
     let totalCompletedunit = 0;
-    let totalExpiredkg = 0;
-    let totalExpiredunit = 0;
+    let totalExpiringSoonKg = 0;
+    let totalExpiringSoonUnit = 0;
+    let totalExpiredKg = 0;
+    let totalExpiredUnit = 0;
     let totalStockkg = 0;
     let totalStockunit = 0;
 
     const now = new Date();
-    const twelveHoursLater = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 
     for (let i = 0; i < allDonations.length; i++) {
       const donation = allDonations[i];
@@ -175,13 +214,22 @@ const InventoryManagement = () => {
         }
       }
 
-      if (donation.expiryDate) {
+      // Expiry calculations for inventory
+      if (donation.expiryDate && (donation.status === "Collected" || donation.status === "Packaging")) {
         const expiryDate = new Date(donation.expiryDate);
-        if (expiryDate < twelveHoursLater && (donation.status === "Collected" || donation.status === "Packaging")) {
+        if (expiryDate > now && expiryDate <= next24h) {
+          // Expiring within next 24h
           if (unit === "kg") {
-            totalExpiredkg += quantity;
+            totalExpiringSoonKg += quantity;
           } else if (unit === "unit") {
-            totalExpiredunit += quantity;
+            totalExpiringSoonUnit += quantity;
+          }
+        } else if (expiryDate < now) {
+          // Already expired
+          if (unit === "kg") {
+            totalExpiredKg += quantity;
+          } else if (unit === "unit") {
+            totalExpiredUnit += quantity;
           }
         }
       }
@@ -192,8 +240,8 @@ const InventoryManagement = () => {
       recentlyAdded: { kg: totalRecentlykg, units: totalRecentlyunit },
       pendingStock: { kg: totalPendingkg, units: totalPendingunit },
       completedStock: { kg: totalCompletedkg, units: totalCompletedunit },
-      expiringSoon: { kg: totalExpiredkg, units: totalExpiredunit },
-      expiredStock: { kg: totalCancelykg, units: totalCancelunit }
+      expiringSoon: { kg: totalExpiringSoonKg, units: totalExpiringSoonUnit },
+      expiredStock: { kg: totalExpiredKg, units: totalExpiredUnit }
     };
   };
 
@@ -341,14 +389,23 @@ const InventoryManagement = () => {
     setSortConfig({ key, direction });
   };
 
-  const generatePDFReport = () => {
+  const generatePDFReport = (data) => {
     const doc = new jsPDF();
-    doc.text('Inventory Report', 14, 20);
-    
+    const title = 'Inventory Report';
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    // Center the title
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const textWidth = doc.getTextWidth(title);
+    const x = (pageWidth - textWidth) / 2;
+    doc.text(title, x, 20);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+
     doc.autoTable({
       startY: 30,
       head: [['Category', 'Food Item', 'Quantity', 'Location']],
-      body: filteredDonations.map(donation => [
+      body: (data || []).map(donation => [
         donation.category,
         donation.name,
         `${donation.quantityKg > 0 ? donation.quantityKg + ' kg' : ''}${donation.quantityKg > 0 && donation.quantityUnit > 0 ? ' + ' : ''}${donation.quantityUnit > 0 ? donation.quantityUnit + ' units' : ''}`,
@@ -457,9 +514,68 @@ const InventoryManagement = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <button onClick={generatePDFReport} className="export-btn">
-          Export PDF
+        <button onClick={() => setShowExportDialog(true)} className="export-btn">
+          Export Inventory
         </button>
+
+        {/* Export PDF Modal Dialog */}
+        {showExportDialog && (
+          <div className="modal-overlay">
+            <div className="modal-dialog">
+              <h2>Export Inventory Report</h2>
+              <div className="modal-filters">
+                <label>
+                  Category:
+                  <select value={exportCategory} onChange={e => setExportCategory(e.target.value)}>
+                    <option value="">All</option>
+                    {Object.keys(foodCategories).map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Quantity:
+                  <div style={{ display: 'flex', gap: '16px', marginTop: '6px' }}>
+                    <label style={{ fontWeight: 400 }}>
+                      <input
+                        type="radio"
+                        name="exportQuantityFilter"
+                        value="all"
+                        checked={exportQuantityFilter === 'all'}
+                        onChange={() => setExportQuantityFilter('all')}
+                      />
+                      All
+                    </label>
+                    <label style={{ fontWeight: 400 }}>
+                      <input
+                        type="radio"
+                        name="exportQuantityFilter"
+                        value="gt1"
+                        checked={exportQuantityFilter === 'gt1'}
+                        onChange={() => setExportQuantityFilter('gt1')}
+                      />
+                      Quantity &gt; 1
+                    </label>
+                  </div>
+                </label>
+                <div className="modal-date-row">
+                  <label>
+                    Date From:
+                    <input type="date" value={exportDateFrom} onChange={e => setExportDateFrom(e.target.value)} />
+                  </label>
+                  <label>
+                    Date To:
+                    <input type="date" value={exportDateTo} onChange={e => setExportDateTo(e.target.value)} />
+                  </label>
+                </div>
+              </div>
+              <div className="modal-actions">
+                <button onClick={handleDownloadPDF} className="export-btn">Download PDF</button>
+                <button onClick={() => { setShowExportDialog(false); resetExportFilters(); }} className="cancel-btn">Cancel</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="inventory-table-container">

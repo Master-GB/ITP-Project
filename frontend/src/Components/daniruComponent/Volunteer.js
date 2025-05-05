@@ -1,25 +1,22 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 
-function Volunteer({ volunteer, onApprove }) {
-  const navigate = useNavigate(); // ✅ Hook must be at the top
+function Volunteer({ volunteer, onApprove, onReject }) {
+  if (!volunteer) return null;
 
-  if (!volunteer) return null; // Prevents rendering if volunteer data is missing
-
-  const { _id, volunteerName, contactNumber, email, role, status = "Pending" } = volunteer;
+  const { volunteerName, contactNumber, email, role, status = "Pending" } = volunteer;
   const statusClass = status.toLowerCase();
 
-  // Delete Handler with Error Handling
-  const deleteHandler = async () => {
+  // Handle approve click
+  const handleApprove = async () => {
+    if (window.confirm("Are you sure you want to approve this volunteer?")) {
+      onApprove(volunteer);
+    }
+  };
+
+  // Handle reject click
+  const handleReject = async () => {
     if (window.confirm("Are you sure you want to reject this volunteer?")) {
-      try {
-        await axios.delete(`http://localhost:8090/volunteers/${_id}`);
-        navigate(0); // ✅ Refresh the page
-      } catch (error) {
-        console.error("Error deleting volunteer:", error);
-        alert("Failed to reject volunteer. Please try again.");
-      }
+      onReject(volunteer);
     }
   };
 
@@ -36,15 +33,17 @@ function Volunteer({ volunteer, onApprove }) {
       <td>
         <button
           className="volunteer-action-button volunteer-approve"
-          onClick={() => onApprove(volunteer)}
+          onClick={handleApprove}
           title="Approve Volunteer"
+          disabled={status !== "Pending"}
         >
           ✅ Approve
         </button>
         <button
           className="volunteer-action-button volunteer-reject"
-          onClick={deleteHandler}
+          onClick={handleReject}
           title="Reject Volunteer"
+          disabled={status !== "Pending"}
         >
           ❌ Reject
         </button>

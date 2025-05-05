@@ -26,21 +26,25 @@ const volunteerSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      lowercase: true, // Ensures uniqueness in a case-insensitive way
+      lowercase: true,
       match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address."],
     },
     role: {
       type: String,
       enum: VOLUNTEER_ROLES,
       required: true,
-      trim: true, // Ensures no extra spaces
+      trim: true,
     },
     status: {
       type: String,
       enum: VOLUNTEER_STATUS,
       default: "Pending",
     },
-  },
+    dateApplied: {
+      type: Date,
+      default: Date.now
+    }
+  }
 );
 
 module.exports = mongoose.model("VolunteerModel", volunteerSchema);

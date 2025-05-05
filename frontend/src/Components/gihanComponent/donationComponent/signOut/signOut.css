@@ -1,0 +1,88 @@
+.signout-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.38);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: signout-fade-in 0.2s;
+}
+
+@keyframes signout-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.signout-dialog {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 36px rgba(44, 62, 80, 0.16);
+  padding: 32px 30px 22px 30px;
+  min-width: 320px;
+  max-width: 95vw;
+  animation: signout-pop-in 0.18s cubic-bezier(0.5, 1.5, 0.7, 1.1);
+}
+
+@keyframes signout-pop-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.signout-dialog-header h2 {
+  margin: 0 0 12px 0;
+  color: #1a237e;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.signout-dialog-body {
+  text-align: center;
+  font-size: 1.08rem;
+  color: #37474f;
+  margin-bottom: 24px;
+}
+
+.signout-dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.signout-btn {
+  min-width: 80px;
+  padding: 9px 0;
+  border-radius: 7px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.signout-ok {
+  background: #1976d2;
+  color: #fff;
+}
+.signout-ok:hover {
+  background: #1259a7;
+}
+
+.signout-cancel {
+  background: #ececec;
+  color: #37474f;
+}
+.signout-cancel:hover {
+  background: #d1d5db;
+  color: #1a237e;
+}
+
+@media (max-width: 500px) {
+  .signout-dialog {
+    padding: 18px 6px 12px 6px;
+    min-width: unset;
+  }
+  .signout-dialog-actions {
+    gap: 10px;
+  }
+}
