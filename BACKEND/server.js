@@ -18,9 +18,18 @@ const RequestRoute = require("./routes/malshiRoute/FoodRequestRoute");
 const taskRoute = require("./routes/daniruRoute/TaskRoutes");
 const volunteerRoute = require("./routes/daniruRoute/VolunteerRoutes");
 
+const needyLocationsRouter = require('./routes/sashiniRoute/needyLocation');
+
+
+
 
 const PORT = process.env.PORT || 8090;
 
+app.use('/api/needy-locations', needyLocationsRouter);
+app.get('/', (req, res) => {
+    res.send('Food Delivery API Running');
+  });
+  
 app.use(cors({
     origin: 'http://localhost:3000', 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], 

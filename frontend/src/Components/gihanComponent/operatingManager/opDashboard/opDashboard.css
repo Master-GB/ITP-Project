@@ -1,0 +1,258 @@
+/* Operating Manager Dashboard Styles */
+.welcome-message-op {
+  background: linear-gradient(90deg, #e3ffe5 0%, #f7faff 100%);
+  color: #1b5e20;
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 18px 10px 18px 10px;
+  margin-bottom: 28px;
+  margin-top: -25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+  letter-spacing: 0.01em;
+}
+
+.op-dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 28px;
+  color: #2c3e50;
+}
+
+.dashboard-summary {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.summary-card {
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  padding: 22px 38px;
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  text-align: center;
+  border: 1px solid #e1e5ea;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.22s cubic-bezier(.4,2,.6,1), transform 0.18s cubic-bezier(.4,2,.6,1), background 0.22s;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-summary {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .summary-card {
+    margin-bottom: 16px;
+  }
+}
+
+.summary-card:hover {
+  box-shadow: 0 6px 18px rgba(44,62,80,0.13);
+  transform: translateY(-5px) scale(1.03);
+  background: #f0f7fa;
+}
+.summary-icon {
+  font-size: 2.2rem;
+  margin-bottom: 7px;
+  display: block;
+}
+.accent-total {
+  border-top: 5px solid #3498db;
+}
+.accent-pending {
+  border-top: 5px solid #f39c12;
+}
+.accent-volunteers {
+  border-top: 5px solid #8e44ad;
+}
+.accent-completed {
+  border-top: 5px solid #27ae60;
+}
+.summary-value {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #222;
+  margin-top: 2px;
+}
+.summary-label {
+  margin-bottom: 2px;
+}
+.summary-label {
+  color: #888;
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+}
+.summary-value {
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.dashboard-charts {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.dashboard-charts-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  padding: 18px 24px 12px 24px;
+  min-width: 320px;
+  flex: 1 1 320px;
+}
+
+.large-chart {
+  width: 100%;
+  max-width: 950px;
+  min-width: 400px;
+  padding: 30px 40px 24px 40px;
+}
+
+.centered-pie-canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  overflow: visible;
+  padding: 0;
+}
+
+.centered-pie-canvas canvas {
+  display: block;
+  margin: 0 auto;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+/* Center and enlarge the Status Breakdown chart */
+.status-breakdown-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 500px;
+  min-width: 400px;
+  min-height: 430px;
+  padding: 36px 48px 32px 48px;
+}
+
+.chart-card h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 1.5rem;
+}
+
+.dashboard-activity {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  padding: 20px 18px 32px 18px;
+  margin-top: 18px;
+}
+.dashboard-activity h2  {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.map-section h2 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+}
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.activity-table th, .activity-table td {
+  border: 1px solid #e1e5ea;
+  padding: 8px 10px;
+  text-align: left;
+}
+.activity-table th {
+  background: #f6f8fa;
+  color: #444;
+  font-weight: bold;
+}
+.activity-table tr:nth-child(even) {
+  background: #f9fbfd;
+}
+table .status-badge {
+  display: inline-block;
+  padding: 3px 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000000;
+}
+.status-approved {
+  background: rgba(39, 174, 96, 0.35);
+}
+table .status-collected {
+  background: rgba(243, 156, 18, 0.35);
+  padding: 3px 17px;
+}
+.status-packaging {
+  background: rgba(41, 128, 185, 0.35);
+}
+table .status-delivery {
+  background: rgba(142, 68, 173, 0.35);
+  color: #000000;
+  padding: 3px 22px;
+}
+.status-completed {
+  background: rgba(22, 160, 133, 0.35);
+  color: #000000;
+}
+table .status-cancel {
+  background: rgba(231, 76, 60, 0.35);
+  color: #000000;
+  padding: 3px 25px;
+}
+table .status-pending {
+  background: rgba(241, 196, 15, 0.35);
+  color: #000000;
+  padding: 3px 22px;
+}
+
+
+@media (max-width: 900px) {
+  .dashboard-summary, .dashboard-charts {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .chart-card {
+    min-width: 0;
+  }
+}

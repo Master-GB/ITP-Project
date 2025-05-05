@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../donateNow/donate.css"; 
+import "../myDonation/myDonation.toast.css"; // Import toast CSS
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateDonation() {
+  const [showSuccess, setShowSuccess] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   const [isDragOver, setIsDragOver] = useState(false);
@@ -135,7 +137,7 @@ export default function UpdateDonation() {
     
 
     if (!inputs.quantityUnit) {
-      newErrors.quantityUnit = "Quantity unit is required";
+      newErrors.quantityUnit = "Quantity unit/Kg is required";
     }
 
     if (!inputs.collectionAddress) {
@@ -181,8 +183,11 @@ export default function UpdateDonation() {
         },
       });
   
-      alert("Donation Updated Successfully");
-      navigate("/myDonate"); 
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate("/myDonate");
+      }, 2500);
     } catch (error) {
       alert("Error: " + error.message);
     }
@@ -202,32 +207,43 @@ export default function UpdateDonation() {
   };
 
   return (
-    <main className="main-content" id="update-back">
-      <div className="donate-container">
-        <h1>Update Donation</h1>
-        <p>Update the details below to modify your food donation</p>
-        <form onSubmit={handleSubmit}>
-          <div className="food-details-group">
-            <div className="food-category-group">
-              <label htmlFor="foodCategory">Food Category:</label>
-              <select
-                name="foodCategory"
-                id="foodCategory"
-                value={inputs.foodCategory}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Category</option>
-                {Object.keys(foodCategoryMap).map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-              {errors.foodCategory && (
-                <span className="error">{errors.foodCategory}</span>
-              )}
-            </div>
+    <>
+      {showSuccess && (
+        <div className="success-toast">Donation updated successfully!</div>
+      )}
+      <main className="main-content" id="update-back" style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('/Resources/gihanRes/donationRes/donatebg2.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh", 
+        width: "100%"
+      }}>
+        <div className="donate-container">
+          <h1>Update Donation</h1>
+          <p>Update the details below to modify your food donation</p>
+          <form onSubmit={handleSubmit}>
+            <div className="food-details-group">
+              <div className="food-category-group">
+                <label htmlFor="foodCategory">Food Category:</label>
+                <select
+                  name="foodCategory"
+                  id="foodCategory"
+                  value={inputs.foodCategory}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Category</option>
+                  {Object.keys(foodCategoryMap).map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+                {errors.foodCategory && (
+                  <span className="error">{errors.foodCategory}</span>
+                )}
+              </div>
             {foodCategoryMap[inputs.foodCategory] &&
               foodCategoryMap[inputs.foodCategory].length > 0 && (
                 <div className="food-item-group">
@@ -481,5 +497,6 @@ export default function UpdateDonation() {
         </form>
       </div>
     </main>
+    </>
   );
 }

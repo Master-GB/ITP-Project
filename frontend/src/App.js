@@ -14,6 +14,7 @@ import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackFor
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
 
+
 // Gihan's components
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
@@ -25,11 +26,14 @@ import MonitorPage from "./Components/gihanComponent/donationComponent/monitor/m
 import AboutUs from './Components/gihanComponent/donationComponent/aboutUs/aboutUs';
 import Guidance from './Components/gihanComponent/donationComponent/guidance/guidance';
 import Support from './Components/gihanComponent/donationComponent/support/support';
+import Chat from './Components/gihanComponent/donationComponent/chat/chat';
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
 import InventoryManagement from "./Components/gihanComponent/operatingManager/inventoryManagement/inventoryManagement";
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
+import OpDashboard from './Components/gihanComponent/operatingManager/opDashboard/opDashboard';
+import ChatOP from './Components/gihanComponent/operatingManager/chatOP/chatOP';
 
 // Daniru's components
 import CreateTask from "./Components/daniruComponent/CreateTask";
@@ -60,11 +64,18 @@ import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 
+//Sashini's components
+import Map from './Components/sashiniComponent/Map';
+
+
+       
+
 const UserLayout = () => (
   <div className='app-container'>
     <div className='app-content'>
       <NavigationBar />
       <Routes>
+         <Route path="/" element={<NavigationBar />} />
         <Route path="/userdetails" element={<Userdetails />} />
         <Route path="/adduser" element={<AddUser />} />
         <Route path="/userdetails/:id" element={<UpdateUser />} />
@@ -78,6 +89,21 @@ const UserLayout = () => (
     </div>
   </div>
 );
+
+const MapLayout = () => (
+  <div className="Map-container">
+    <div className="Map-content">
+      <Routes>
+        {/* modification */}
+        <Route path="/" element={<Map />} />
+        <Route path="/map" element = {<Map/>}/>
+        <Route path="*" element={<h1>Page Not Found</h1>} />
+
+      </Routes>
+    </div>
+  </div>
+);
+
 
 const DonorLayout = () => (
   <div className="page-container">
@@ -93,6 +119,7 @@ const DonorLayout = () => (
         <Route path = "/about-us" element ={<AboutUs/>}/>
         <Route path = "/guidance" element ={<Guidance/>}/>
         <Route path = "/support" element ={<Support/>}/>
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
     <Footer />
@@ -104,9 +131,12 @@ const OperatingManagerLayout = () => (
     <OperatingManagerSidebar />
     <div className="operating-manager-content">
       <Routes>
+        <Route path="/" element={<OpDashboard/>} />
+        <Route path="/dashboard" element={<OpDashboard/>} />
         <Route path="/foodManagement" element={<FoodDonationPage />} />
         <Route path="/inventoryManagement" element={<InventoryManagement />} />
         <Route path="/partnerManagement" element={<PartnerCollaboration />} />
+        <Route path="/chatOP" element={<ChatOP />} />
       </Routes>
     </div>
   </div>
@@ -149,18 +179,6 @@ const VolunteerCoordinatorLayout = () => (
         />
       </Routes>
     </React.Fragment>
-=======
-    <Routes>
-      <Route path="/" element={<VolunteerCDashboard />} />
-      <Route path="/dashboard" element={<VolunteerCDashboard />} />
-      <Route path="/volunteers" element={<Volunteers />} />
-      <Route path="/createtask" element={<CreateTask />} />
-      <Route path="/volunteercdashboard" element={<VolunteerCDashboard />} />
-      <Route path="/viewtasks" element={<Task />} />
-      <Route path="/task/:id" element={<UpdateTask />} />
-      <Route path="/tracking" element={<Tracking />} />
-      <Route path="/reports" element={<Reports />} />
-    </Routes>
   </div>
 );
 
@@ -175,6 +193,7 @@ const VolunteerDeliveryStaffLayout = () => (
         />
         <Route path="/volunteertask" element={<VolunteerTask />} />
         <Route path="/route" element={<Route />} />
+        <Route path="/volunteerapplication" element={<VolunteerApplication />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -205,6 +224,9 @@ const HomeLayout = () => (
           path="/volunteerapplication"
           element={<VolunteerApplication />}
         />
+        <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
+        <Route path="/volunteerapplication" element={<VolunteerApplication />} />
+        <Route path="/packinginstructions" element={<PackingInstructions />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -214,12 +236,13 @@ function App() {
   return (
     <Routes>
       <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/jnj/*" element={<DonorLayout />} />
-      <Route path="/ji/*" element={<OperatingManagerLayout />} />
+      <Route path="/*" element={<DonorLayout />} />
+      <Route path="/k/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/*" element={<MapLayout/>} />
     </Routes>
   );
 }
