@@ -1,6 +1,5 @@
 const Feedback=require('../../models/imalshaModel/FeedbackModel');
 
-
 //display all feedbacks
 const getAllFeedbacks = async (req, res,next) => {
     let feedbacks;
@@ -130,11 +129,9 @@ const deleteFeedback = async (req, res,next) => {
     });
 }
 
-
-
-
 exports.getAllFeedbacks = getAllFeedbacks;
 exports.createFeedback = createFeedback;
 exports.getFeedbackById = getFeedbackById;
 exports.updateFeedback = updateFeedback;
+
 exports.deleteFeedback = deleteFeedback; 

@@ -1,0 +1,129 @@
+
+
+.guidance-background {
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff);
+  min-height: 100vh;
+  padding: 30px 0;
+}
+
+.guidance-container {
+  max-width: 1100px;
+  margin: 70px auto 30px auto;
+  padding: 36px 22px 32px 22px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.09);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.guidance-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.guidance-header h1 {
+  font-size: 2.2rem;
+  color: #1976d2;
+  margin-bottom: 14px;
+}
+
+.guidance-intro {
+  font-size: 1.15rem;
+  color: #37474f;
+  margin-bottom: 0;
+}
+
+.guidance-steps {
+  margin-bottom: 32px;
+}
+
+.guidance-steps h2 {
+  color: #1a237e;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.guidance-steps ol {
+  padding-left: 24px;
+  color: #37474f;
+  font-size: 1.08rem;
+}
+
+.guidance-steps li {
+  margin-bottom: 10px;
+}
+
+.guidance-best-practices {
+  margin-bottom: 32px;
+}
+
+.guidance-best-practices h2 {
+  color: #1a237e;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.guidance-best-practices ul {
+  padding-left: 22px;
+  color: #37474f;
+  font-size: 1.08rem;
+}
+
+.guidance-best-practices li {
+  margin-bottom: 8px;
+}
+
+.guidance-faq {
+  margin-bottom: 10px;
+}
+
+.guidance-faq h2 {
+  color: #1a237e;
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+}
+
+.guidance-faq-list {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.guidance-faq-item {
+  background: #f5f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+  padding: 18px 16px;
+  min-width: 240px;
+  flex: 1 1 280px;
+  margin-bottom: 18px;
+}
+
+.guidance-faq-item strong {
+  color: #1976d2;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.07rem;
+}
+
+.guidance-faq-item p {
+  color: #37474f;
+  font-size: 1.01rem;
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .guidance-container {
+    padding: 18px 6px 18px 6px;
+  }
+  .guidance-faq-list {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .guidance-faq-item {
+    min-width: unset;
+    flex: 1 1 100%;
+  }
+}
