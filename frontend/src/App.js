@@ -13,6 +13,7 @@ import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackFor
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
 
+
 // Gihan's components
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
@@ -63,25 +64,15 @@ import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/Pa
 //Sashini's components
 import Map from './Components/sashiniComponent/Map';
 
-const MapLayout = () => (
-  <div className="Map-container">
-    <div className="Map-content">
-      <Routes>
-        {/* modification */}
-        <Route path="/" element={<Map />} />
-        <Route path="/map" element = {<Map/>}/>
-        <Route path="*" element={<h1>Page Not Found</h1>} />
-      </Routes>
-    </div>
-  </div>
-);
 
+       
 
 const UserLayout = () => (
   <div className='app-container'>
     <div className='app-content'>
       <NavigationBar />
       <Routes>
+         <Route path="/" element={<NavigationBar />} />
         <Route path="/userdetails" element={<Userdetails />} />
         <Route path="/adduser" element={<AddUser />} />
         <Route path="/userdetails/:id" element={<UpdateUser />} />
@@ -95,6 +86,21 @@ const UserLayout = () => (
     </div>
   </div>
 );
+
+const MapLayout = () => (
+  <div className="Map-container">
+    <div className="Map-content">
+      <Routes>
+        {/* modification */}
+        <Route path="/" element={<Map />} />
+        <Route path="/map" element = {<Map/>}/>
+        <Route path="*" element={<h1>Page Not Found</h1>} />
+
+      </Routes>
+    </div>
+  </div>
+);
+
 
 const DonorLayout = () => (
   <div className="page-container">
@@ -128,7 +134,6 @@ const OperatingManagerLayout = () => (
         <Route path="/inventoryManagement" element={<InventoryManagement />} />
         <Route path="/partnerManagement" element={<PartnerCollaboration />} />
         <Route path="/chatOP" element={<ChatOP />} />
-
       </Routes>
     </div>
   </div>
@@ -178,10 +183,7 @@ const VolunteerDeliveryStaffLayout = () => (
         />
         <Route path="/volunteertask" element={<VolunteerTask />} />
         <Route path="/volunteer/:volunteerName" element={<VolunteerTask />} />
-        <Route
-          path="/volunteerapplication"
-          element={<VolunteerApplication />}
-        />
+        <Route path="/volunteerapplication" element={<VolunteerApplication />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -198,12 +200,8 @@ const VolunteerPackingStaffLayout = () => (
         />
         <Route path="/volunteertask" element={<VolunteerPTask />} />
         <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
-        <Route
-          path="/volunteerapplication"
-          element={<VolunteerApplication />}
-        />
-                <Route path="/packinginstructions" element={<PackingInstructions />} />
-
+        <Route path="/volunteerapplication" element={<VolunteerApplication />} />
+        <Route path="/packinginstructions" element={<PackingInstructions />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -212,7 +210,6 @@ const VolunteerPackingStaffLayout = () => (
 function App() {
   return (
     <Routes>
-
       <Route path="/hh/*" element={<UserLayout />} />
       <Route path="/*" element={<DonorLayout />} />
       <Route path="/k/*" element={<OperatingManagerLayout />} />
@@ -221,7 +218,6 @@ function App() {
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/*" element={<MapLayout/>} />
-
     </Routes>
   );
 }
