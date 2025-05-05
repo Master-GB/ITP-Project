@@ -418,6 +418,10 @@ const InventoryManagement = () => {
   };
 
   return (
+    <div>
+          <h1>Inventory Management</h1>
+          <p className="subtitle">Manage food Inventory</p>
+    
     <div className="inventory-container">
       <div className="dashboard-cards">
         <div className="card total-stock">
@@ -651,6 +655,7 @@ const InventoryManagement = () => {
           </div>
         </section>
       </div>
+    </div>
     </div>
   );
 };

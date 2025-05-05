@@ -280,6 +280,10 @@ const FoodDonationPage = () => {
   const totalCancel = donations.filter((d) => d.status === "Cancel").length;
 
   return (
+    <div>
+          <h1>Food Donation Management</h1>
+          <p className="subtitle">Manage food donation requests from Donor</p>
+        
     <div className="page-container">
       <div className="card-container">
         <div
@@ -527,6 +531,7 @@ const FoodDonationPage = () => {
 
           </>
         )}
+    </div>
     </div>
   );
 };

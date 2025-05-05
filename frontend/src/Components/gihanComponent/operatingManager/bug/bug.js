@@ -1,7 +1,0 @@
-
-const Bug = () =>{
-
-}
-
-
-return Bug;
