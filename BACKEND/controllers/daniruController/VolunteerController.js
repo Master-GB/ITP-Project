@@ -1,4 +1,6 @@
+require('dotenv').config();
 const Volunteer = require("../../models/daniruModel/VolunteerModel");
+const nodemailer = require('nodemailer');
 
 // Get all volunteers
 const getAllVolunteers = async (req, res, next) => {
@@ -133,6 +135,8 @@ const updateVolunteer = async (req, res, next) => {
       return res.status(404).json({ message: "Volunteer not found" });
     }
 
+    const previousStatus = volunteer.status;
+
     volunteer.volunteerName = volunteerName || volunteer.volunteerName;
     volunteer.contactNumber = contactNumber || volunteer.contactNumber;
     volunteer.email = email ? email.toLowerCase() : volunteer.email;
@@ -140,6 +144,45 @@ const updateVolunteer = async (req, res, next) => {
     volunteer.status = status || volunteer.status;
 
     await volunteer.save();
+
+    // Send email if status changed to Accepted or Rejected
+    if ((status === "Accepted" && previousStatus !== "Accepted") ||
+        (status === "Rejected" && previousStatus !== "Rejected")) {
+
+      let subject, text;
+
+      if (status === "Accepted") {
+        subject = 'Volunteer Application Approved';
+        text = `Dear ${volunteer.volunteerName},\n\nYour application has been approved by the Volunteer Coordinator!\nNow, you can register to the platform as a volunteer.\n\nThank you for joining us.\n\nBest regards,\nHodaHitha.lk Team`;
+      } else if (status === "Rejected") {
+        subject = 'Volunteer Application Rejected';
+        text = `Dear ${volunteer.volunteerName},\n\nWe regret to inform you that your application has been rejected by the Volunteer Coordinator.\n\nThank you for your interest in joining us.\n\nBest regards,\nHodaHitha.lk Team`;
+      }
+
+      let mailOptions = {
+        from: `"HodaHitha.lk" <${process.env.EMAIL_USER}>`,
+        to: volunteer.email,
+        subject: subject,
+        text: text
+      };
+
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+
     return res.status(200).json({ volunteer });
   } catch (err) {
     console.log(err);

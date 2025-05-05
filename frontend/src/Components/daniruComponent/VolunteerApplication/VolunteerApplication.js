@@ -164,7 +164,7 @@ function VolunteerForm() {
         setEmailValid(false);
         setContactValid(false);
         // Redirect after 2 seconds
-        setTimeout(() => history("/volunteers"), 2000);
+        setTimeout(() => history("/volunteerapplication"), 2000);
       }
     } catch (err) {
       if (err.response) {
@@ -189,90 +189,92 @@ function VolunteerForm() {
   };
 
   return (
-    <div className="volunteer-application-form-container">
-      <h2 className="volunteer-application-name">Volunteer Application</h2>
+    <div className="volunteer-bg">
+      <div className="volunteer-application-form-container">
+        <h2 className="volunteer-application-name">Volunteer Application</h2>
 
-      {errors.general && <div className="error-message">{errors.general}</div>}
-      {success && <div className="success-message">{success}</div>}
+        {errors.general && <div className="error-message">{errors.general}</div>}
+        {success && <div className="success-message">{success}</div>}
 
-      <form onSubmit={handleSubmit} className="volunteer-application-form">
-        <div className="volunteer-application-form-group">
-          <label htmlFor="volunteerName">Full Name:</label>
-          <input
-            type="text"
-            id="volunteerName"
-            name="volunteerName"
-            value={inputs.volunteerName}
-            onChange={handleChange}
-            required
-            className={inputs.volunteerName.trim() ? 'valid-input' : ''}
-          />
-        </div>
-
-        <div className="volunteer-application-form-group contact-group">
-          <label htmlFor="contactNumber">Contact Number:</label>
-          <div className="contact-input-wrapper">
+        <form onSubmit={handleSubmit} className="volunteer-application-form">
+          <div className="volunteer-application-form-group">
+            <label htmlFor="volunteerName">Full Name:</label>
             <input
-              type="tel"
-              id="contactNumber"
-              name="contactNumber"
-              value={inputs.contactNumber}
+              type="text"
+              id="volunteerName"
+              name="volunteerName"
+              value={inputs.volunteerName}
               onChange={handleChange}
-              onBlur={handleBlur}
-              maxLength={10}
-              placeholder="10 digits required"
               required
-              className={errors.phone ? 'phone-error' : contactValid ? 'valid-input' : ''}
+              className={inputs.volunteerName.trim() ? 'valid-input' : ''}
             />
-            {errors.phone && (
-              <span className="contact-error-hint">{errors.phone}</span>
-            )}
           </div>
-        </div>
 
-        <div className="volunteer-application-form-group">
-          <label htmlFor="email">Email Address:</label>
-          <div className="email-input-wrapper">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={inputs.email}
+          <div className="volunteer-application-form-group contact-group">
+            <label htmlFor="contactNumber">Contact Number:</label>
+            <div className="contact-input-wrapper">
+              <input
+                type="tel"
+                id="contactNumber"
+                name="contactNumber"
+                value={inputs.contactNumber}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                maxLength={10}
+                placeholder="10 digits required"
+                required
+                className={errors.phone ? 'phone-error' : contactValid ? 'valid-input' : ''}
+              />
+              {errors.phone && (
+                <span className="contact-error-hint">{errors.phone}</span>
+              )}
+            </div>
+          </div>
+
+          <div className="volunteer-application-form-group">
+            <label htmlFor="email">Email Address:</label>
+            <div className="email-input-wrapper">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={inputs.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+                className={errors.email ? 'email-error' : emailValid ? 'valid-input' : ''}
+              />
+              {errors.email && (
+                <span className="email-error-hint">{errors.email}</span>
+              )}
+            </div>
+          </div>
+
+          <div className="volunteer-application-form-group">
+            <label htmlFor="role">Role:</label>
+            <select
+              id="role"
+              name="role"
+              value={inputs.role}
               onChange={handleChange}
-              onBlur={handleBlur}
               required
-              className={errors.email ? 'email-error' : emailValid ? 'valid-input' : ''}
-            />
-            {errors.email && (
-              <span className="email-error-hint">{errors.email}</span>
-            )}
+              className={inputs.role ? 'valid-input' : ''}
+            >
+              <option value="">Select a role</option>
+              <option value="Volunteer Delivery Staff">Volunteer Delivery Staff</option>
+              <option value="Volunteer Packing Staff">Volunteer Packing Staff</option>
+            </select>
           </div>
-        </div>
 
-        <div className="volunteer-application-form-group">
-          <label htmlFor="role">Role:</label>
-          <select
-            id="role"
-            name="role"
-            value={inputs.role}
-            onChange={handleChange}
-            required
-            className={inputs.role ? 'valid-input' : ''}
+          <button 
+            type="submit" 
+            className="volunteer-application-submit-button"
+            disabled={!formValid}
           >
-            <option value="">Select a role</option>
-            <option value="Volunteer Delivery Staff">Volunteer Delivery Staff</option>
-            <option value="Volunteer Packing Staff">Volunteer Packing Staff</option>
-          </select>
-        </div>
-
-        <button 
-          type="submit" 
-          className="volunteer-application-submit-button"
-          disabled={!formValid}
-        >
-          Submit
-        </button>
-      </form>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

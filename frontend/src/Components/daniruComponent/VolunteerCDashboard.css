@@ -1,77 +1,159 @@
 /* General Styles */
 .volunteercdashboard-volunteer-hub {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   display: flex;
   min-height: 100vh;
-  background-color: #f4f7f6;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 /* Main Content */
 .volunteercdashboard-main-content {
   flex: 1;
   padding: 30px;
-  background-color: #f4f7f6;
-  margin-left: 260px; /* Adding left margin to avoid overlap with the fixed sidebar */
+  background: transparent;
+  margin-left: 260px;
 }
 
+/* Header Modernization */
 .volunteercdashboard-header h1 {
-  font-size: 28px;
-  color: #333;
+  font-size: 2.2rem;
+  color: #2c3e50;
   margin-bottom: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 .volunteercdashboard-welcome-message {
-  color: #666;
-  font-size: 16px;
+  color: #3498db;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-/* Stats Section */
+/* Stats Section Modern */
 .volunteercdashboard-stats {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  gap: 20px;
+  gap: 24px;
 }
 
 .volunteercdashboard-stat-card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: rgba(255,255,255,0.85);
+  padding: 32px 20px 24px 20px;
+  border-radius: 18px;
   text-align: center;
   flex: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
 }
-
 .volunteercdashboard-stat-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(44, 62, 80, 0.15);
 }
-
 .volunteercdashboard-stat-card h3 {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  color: #1abc9c;
+  margin-bottom: 8px;
+  font-weight: 800;
 }
-
 .volunteercdashboard-stat-card p {
-  color: #666;
+  color: #34495e;
   margin: 5px 0;
+  font-size: 1.08rem;
 }
-
 .volunteercdashboard-stat-label {
   font-weight: bold;
-  color: #1abc9c;
+  color: #3498db;
+  font-size: 1.08rem;
+}
+
+/* Section Titles Modern */
+.volunteercdashboard-section-title {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 700;
+  position: relative;
+  text-align: center;
+}
+.volunteercdashboard-section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #1abc9c;
+  border-radius: 2px;
+  margin: 10px auto 0 auto;
+}
+
+/* Task Grid Modern */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Modern Create Task Button */
+.volunteercdashboard-create-task-button, .route-button {
+  background: linear-gradient(90deg, #1abc9c, #16a085);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px #1abc9c22;
+  transition: background 0.2s, transform 0.2s;
+}
+.volunteercdashboard-create-task-button:hover, .route-button:hover {
+  background: linear-gradient(90deg, #16a085, #1abc9c);
+  transform: scale(1.05);
+}
+
+/* Glassmorphism for Map and Route Section */
+.volunteercdashboard-map-section, .route-calculation-form {
+  background: rgba(255,255,255,0.7);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  margin-top: 24px;
+}
+
+/* Subtle Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+.volunteercdashboard-stat-card {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 900px) {
+  .volunteercdashboard-main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+  .volunteercdashboard-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .task-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /* Active Tasks Section */
 .volunteercdashboard-active-tasks {
   margin-top: 30px;
-}
-
-.volunteercdashboard-section-title {
-  font-size: 22px;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .volunteercdashboard-task-card {
@@ -102,21 +184,6 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
-}
-
-.volunteercdashboard-create-task-button {
-  background: linear-gradient(90deg, #1abc9c, #16a085);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
-}
-
-.volunteercdashboard-create-task-button:hover {
-  background: linear-gradient(90deg, #16a085, #1abc9c);
 }
 
 .volunteercdashboard-task-status {
@@ -210,22 +277,6 @@
   box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
 }
 
-.route-button {
-  background: linear-gradient(90deg, #1abc9c, #16a085);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s ease;
-  min-width: 150px;
-}
-
-.route-button:hover {
-  background: linear-gradient(90deg, #16a085, #1abc9c);
-}
-
 .route-error {
   color: #e74c3c;
   margin: 10px 0;
@@ -262,4 +313,25 @@
   .route-button {
     width: 100%;
   }
+}
+
+.stat-icon {
+  font-size: 2.2rem;
+  color: #1abc9c;
+  margin-bottom: 10px;
+  opacity: 0.85;
+  display: block;
+}
+
+.volunteercdashboard-header img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #1abc9c33;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+
+.volunteercdashboard-header {
+  margin-bottom: 24px;
 }

@@ -1,19 +1,22 @@
-/* Task Card Styling */
+/* Modern Glassmorphism Task Card */
 .task-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease-in-out;
+    background: rgba(255,255,255,0.85);
+    padding: 28px 22px 22px 22px;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+    transition: all 0.3s cubic-bezier(.4,2,.3,1);
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    margin-bottom: 24px;
 }
 
 .task-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(44, 62, 80, 0.15);
 }
 
 /* Task Header */
@@ -35,28 +38,33 @@
 
 /* Task Name */
 .task-name {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: 800;
     color: #2c3e50;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Task Description */
 .task-description {
-    font-size: 16px;
+    font-size: 1.08rem;
     color: #7f8c8d;
     line-height: 1.5;
 }
 
 /* Assigned Volunteer */
 .assigned-volunteer {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 600;
     color: #1abc9c;
-    padding: 8px;
-    background-color: rgba(26, 188, 156, 0.15);
-    border-radius: 6px;
-    display: inline-block;
+    padding: 8px 0 8px 0;
+    background: rgba(26, 188, 156, 0.10);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 /* Task Details */
@@ -64,124 +72,126 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: 1rem;
     color: #2c3e50;
     padding-top: 8px;
     border-top: 1px solid #ecf0f1;
 }
 
 .task-details svg {
-    font-size: 18px;
+    font-size: 1.1rem;
     color: #1abc9c;
 }
 
 /* Task Status */
-.task-status {
-    font-size: 12px; /* Reduced font size */
-    font-weight: bold;
-    padding: 3px 10px; /* Reduced padding */
-    border-radius: 15px; /* Adjusted border radius */
-    display: inline-block;
+.task-status, .task-priority {
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
     margin-bottom: 10px;
+    box-shadow: 0 2px 8px #1abc9c11;
+    letter-spacing: 0.5px;
 }
 
 .task-status.ongoing {
-    background-color: #f39c12;
+    background: linear-gradient(90deg, #f39c12, #f7b731);
     color: white;
 }
 
 .task-status.completed {
-    background-color: #2ecc71;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
     color: white;
 }
 
 .task-status.pending {
-    background-color: #e74c3c;
+    background: linear-gradient(90deg, #e74c3c, #f76b8a);
     color: white;
 }
 
 .task-status.rejected {
-    background-color: #8e44ad;
+    background: linear-gradient(90deg, #8e44ad, #9b59b6);
     color: white;
 }
 
 /* Task Priority */
-.task-priority {
-    font-size: 12px; /* Reduced font size */
-    font-weight: bold;
-    padding: 3px 10px; /* Reduced padding */
-    border-radius: 15px; /* Adjusted border radius */
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
 .task-priority.low {
-    background-color: #f39c12;
+    background: linear-gradient(90deg, #f7b731, #f39c12);
     color: white;
 }
 
 .task-priority.medium {
-    background-color: #2ecc71;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
     color: white;
 }
 
 .task-priority.high {
-    background-color: #e74c3c;
+    background: linear-gradient(90deg, #e74c3c, #f76b8a);
     color: white;
 }
 
 /* Button Container */
 .task-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 18px;
 }
 
 /* Buttons Styling */
 .update-btn, .delete-btn {
-    padding: 10px 20px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: bold;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px #1abc9c22;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .update-btn {
-    background-color: #3498db;
+    background: linear-gradient(90deg, #3498db, #5dade2);
     color: white;
 }
 
 .update-btn:hover {
-    background-color: #2980b9;
+    background: linear-gradient(90deg, #5dade2, #3498db);
+    transform: scale(1.05);
 }
 
 .delete-btn {
-    background-color: #e74c3c;
+    background: linear-gradient(90deg, #e74c3c, #f76b8a);
     color: white;
 }
 
 .delete-btn:hover {
-    background-color: #c0392b;
+    background: linear-gradient(90deg, #f76b8a, #e74c3c);
+    transform: scale(1.05);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .task-card {
         padding: 15px;
+        border-radius: 14px;
     }
 
     .task-name {
-        font-size: 18px;
+        font-size: 1.05rem;
     }
 
     .task-description {
-        font-size: 14px;
+        font-size: 0.98rem;
     }
 
     .task-details {
-        font-size: 12px;
+        font-size: 0.95rem;
     }
 
     .task-buttons {
@@ -191,5 +201,45 @@
 
     .update-btn, .delete-btn {
         width: 100%;
+        justify-content: center;
     }
 }
+
+.task-card.fade-in {
+  animation: fadeInCard 0.7s cubic-bezier(.4,2,.3,1);
+}
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.task-card.overdue {
+  border: 2px solid #e74c3c;
+  transition: border 0.3s;
+}
+
+.overdue-badge {
+  background: linear-gradient(90deg, #e74c3c, #f76b8a);
+  color: #fff;
+  border-radius: 16px;
+  padding: 4px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px #e74c3c22;
+  letter-spacing: 0.5px;
+  gap: 4px;
+}
+
+.task-name .fa-copy {
+  color: #bbb;
+  transition: color 0.2s;
+}
+.task-name .fa-copy:hover {
+  color: #1abc9c;
+}
+
+/* Optional: when copied, color green (requires .copied class on icon) */
+/* .task-name .fa-copy.copied { color: #2ecc71; } */

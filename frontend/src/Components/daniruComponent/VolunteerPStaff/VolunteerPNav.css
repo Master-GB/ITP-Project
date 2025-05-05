@@ -102,3 +102,359 @@ volunteer-nav-body {
     margin-top: 10px;
   }
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #000;
+  color: white;
+  position: fixed;  
+  top: 0;         
+  left: 0;
+  width: 100%;     
+  min-width: 900px;
+  z-index: 1000;   
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 900;
+}
+
+.side-nav {
+  position: relative;
+}
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.side-nav-content {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 250px;
+    height: 100vh;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 0px 20px 0px 0px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .profile-photo-cover {
+    margin-top: 40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; 
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); 
+  }
+
+.hamburger-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .hamburger-menu:hover {
+    transform: scale(1.2);
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .side-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .side-nav-links li {
+    padding: 10px 20px;
+    transition: background 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+  
+  .side-nav-links li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .profile-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  
+  .profile-info {
+    text-align: center;
+    margin-top: 0; 
+    padding: 0; 
+  }
+  
+  
+  .donor-name {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    margin: 0; 
+    padding: 2px; 
+    line-height: 1;
+  }
+  
+  .donor-email {
+    font-size: 12px;
+    color: #aaa;
+    margin: 0; 
+    padding: 2px; 
+    line-height: 1;
+  }
+  
+  .separator {
+    width: 90%;
+    height: 3px;
+    background-color: #555;
+    margin: 15px 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+
+  .side-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .side-nav-links li {
+    padding: 10px 20px;
+  }
+  
+  .side-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    transition: color 0.3s ease-in-out;
+  }
+
+
+  .side-nav-links a:hover {
+    color: #2aaaef; 
+  }
+  
+  .side-nav-links .sign-out a:hover {
+    color: red; 
+  }
+
+
+
+
+.logo a {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 16px;
+  min-width: 500px;
+  max-width: 900px;
+}
+
+.logo-img {
+  width: 52px;
+  height: auto;
+  display: block;
+}
+
+.logo-text {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.top-text{
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(246, 246, 246);
+  text-decoration: none;
+  padding-left:0px;
+}
+
+.bottom-text{
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  padding-left:60px;
+  text-decoration: none;
+}
+
+
+.lk-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 20px; 
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+
+.nav-links a:hover {
+  color: #595d60;
+}
+
+.chatbot-icon img,
+.messages-icon img,
+.notification-icon img,
+.close-icon img,
+.search-icon img {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.chatbot-icon img:hover,
+.messages-icon img:hover,
+.notification-icon img:hover,
+.nav-search-icon:hover {
+  transform: scale(1.2); 
+  filter: invert(0.7); 
+}
+
+
+.close-icon img:hover {
+  transform: rotate(90deg); 
+}
+
+.nav-search-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  width: 230px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.nav-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: 14px;
+  background: transparent;
+}
+
+.nav-search-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-search-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+
+.ai-chatbot, .communicate, .notifications {
+  margin-left: 20px;
+}
+
+
+.chatbot-icon, .messages-icon, .notification-icon, .close-icon,.search-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .messages-icon img,
+  .notification-icon img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    filter: invert(1); 
+    margin-right: 50px;
+  }
+
+  
+
+  .chatbot-icon img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    filter: invert(1); 
+    margin-left: 50px;
+  }
+
+  .close-icon img{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  

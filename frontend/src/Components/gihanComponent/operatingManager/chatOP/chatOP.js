@@ -62,6 +62,10 @@ const ChatOP = () => {
   };
 
   return (
+    <div>
+          <h1>Messaging App</h1>
+          <p className="subtitle">Send Message To the Donor</p>
+        
     <div className="chat-container chatop-container">
       <div className="chat-header">Operating Manager Chat</div>
       <div className="chat-messages">
@@ -117,6 +121,7 @@ const ChatOP = () => {
           🗑️
         </button>
       </div>
+    </div>
     </div>
   );
 };

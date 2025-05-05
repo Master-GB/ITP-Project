@@ -71,7 +71,7 @@ const OperatingManagerSidebar = () => {
         open={showSignOut}
         onConfirm={() => {
           setShowSignOut(false);
-          navigate('/login');
+          navigate('/Home');
         }}
         onCancel={() => setShowSignOut(false)}
       />

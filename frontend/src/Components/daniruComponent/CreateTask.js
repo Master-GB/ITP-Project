@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateTask.css";
 import Nav from "./Nav";
+import { FaPlusCircle, FaCheck } from "react-icons/fa";
 
 function CreateTask() {
   const history = useNavigate();
@@ -158,7 +159,7 @@ function CreateTask() {
     <div className="create-task-container">
       <Nav />
       <section className="create-task-form-container">
-        <h2 className="create-task-heading">Create a New Task</h2>
+        <h2 className="create-task-heading"><FaPlusCircle style={{color:'#1abc9c', marginRight:'10px', verticalAlign:'middle'}}/>Create a New Task</h2>
         <form onSubmit={handleSubmit} className="create-task-form">
           <label className="create-task-label">Task Name:</label>
           <input
@@ -251,7 +252,7 @@ function CreateTask() {
           </select>
 
           <button type="submit" className="create-task-button">
-            Create Task
+            <FaCheck style={{marginRight:'8px', verticalAlign:'middle'}}/>Create Task
           </button>
         </form>
       </section>

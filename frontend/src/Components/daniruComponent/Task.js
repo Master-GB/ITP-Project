@@ -6,6 +6,7 @@ import StandardNav from "./Nav"; // Import the updated Nav component
 import { FiSearch } from "react-icons/fi";
 import "./Task.css";
 import { Link } from 'react-router-dom';
+import { FaTasks, FaPlusCircle, FaSortAmountUp, FaSortAmountDown, FaInbox } from "react-icons/fa";
 
 const URL = "http://localhost:8090/tasks";
 
@@ -77,14 +78,14 @@ function Task() {
   };
 
   return (
-    <div className="task-app-container">
+    <div className="app-root report-bg-gradient">
       <StandardNav />
       <div className="task-container">
         <header className="task-header">
-          <h1>Task Management</h1>
+          <h1 className="task-heading-modern"><FaTasks style={{color:'#1abc9c', marginRight:10, verticalAlign:'middle'}}/>Task Management</h1>
           <h2>Manage & track volunteer tasks</h2>
           <Link to={"/createtask"}>
-            <Button className="create-task-button">+ Create New Task</Button>
+            <Button className="create-task-button"><FaPlusCircle style={{marginRight:8, verticalAlign:'middle'}}/>Create New Task</Button>
           </Link>
         </header>
 
@@ -115,8 +116,9 @@ function Task() {
               <button 
                 onClick={toggleSortOrder} 
                 className="task-sort-order-button"
+                title={sortOrder === "asc" ? "Ascending" : "Descending"}
               >
-                {sortOrder === "asc" ? "↑ Ascending" : "↓ Descending"}
+                {sortOrder === "asc" ? <FaSortAmountUp /> : <FaSortAmountDown />} {sortOrder === "asc" ? "Ascending" : "Descending"}
               </button>
             )}
           </div>
@@ -124,6 +126,7 @@ function Task() {
 
         {noResults ? (
           <div className="no-results">
+            <FaInbox style={{fontSize:'2.2rem', color:'#bbb', marginBottom:8}}/>
             <p>No Tasks Found</p>
           </div>
         ) : (
@@ -131,7 +134,7 @@ function Task() {
             {filteredTasks.length > 0 ? (
               filteredTasks.map((task, i) => <ViewTasks key={i} viewtasks={task} />)
             ) : (
-              <p className="no-tasks">No tasks available</p>
+              <p className="no-tasks"><FaInbox style={{fontSize:'1.5rem', color:'#bbb', marginRight:8}}/>No tasks available</p>
             )}
           </div>
         )}
