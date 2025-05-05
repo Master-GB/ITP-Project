@@ -1,0 +1,231 @@
+body {
+    background: #f4f7fb;
+}
+
+.dashboard-container {
+    margin-left: 250px;
+    /* Adjust this value if your sidebar width changes */
+    padding: 40px 32px 32px 32px;
+    min-height: 100vh;
+    background: #f4f7fb;
+    max-width: 1200px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.dashboard-title {
+    color: #1976D2;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 1100px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 700px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-container {
+        margin-left: 0;
+        padding: 16px 4px;
+    }
+}
+
+.stat-card {
+    padding: 32px 24px 24px 24px;
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 4px 24px rgba(25,118,210,0.10);
+    transition: transform 0.18s, box-shadow 0.18s;
+    min-width: 220px;
+}
+.stat-card:hover {
+    transform: translateY(-4px) scale(1.025);
+    box-shadow: 0 8px 32px rgba(25,118,210,0.16);
+}
+
+.stat-card:nth-child(1) {
+    background: linear-gradient(135deg, #ff8a9e, #ff6384);
+}
+.stat-card:nth-child(2) {
+    background: linear-gradient(135deg, #56ccf2, #3498db);
+}
+.stat-card:nth-child(3) {
+    background: linear-gradient(135deg, #2ecc71, #1abc9c);
+}
+
+.stat-card h3 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.stat-change {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+@media (max-width: 900px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-section {
+    background: #fff;
+    padding: 32px 24px 24px 24px;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(25,118,210,0.10);
+    margin-bottom: 0;
+}
+
+.chart-section h3 {
+    color: #1976D2;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.traffic-sources-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+}
+
+.donut-chart {
+    position: relative;
+    width: 180px;
+    height: 180px;
+}
+
+.donut-chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+}
+
+.source-details {
+    margin-top: 24px;
+}
+
+.source-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.source-name {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.source-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.source-percentage {
+    font-size: 14px;
+    color: #666;
+}
+
+.error-message {
+    background-color: #ffeaea;
+    color: #d32f2f;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(211,47,47,0.08);
+}

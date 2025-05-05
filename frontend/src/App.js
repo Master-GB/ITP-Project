@@ -2,16 +2,17 @@ import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-// Imalsha's components
 import Userdetails from "./Components/imalshaComponent/UserDetails/Users";
 import NavigationBar from './Components/imalshaComponent/unavbar/Navigationbar';
 import AddUser from './Components/imalshaComponent/AddUser/AddUser';
 import UpdateUser from './Components/imalshaComponent/UpdateUser/UpdateUser';
 import Login from './Components/imalshaComponent/login/Login';
-import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackForm';
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
+import AdminDashboard from './Components/imalshaComponent/AdminDashboard/AdminDashboard';
+import Chatbot from './Components/imalshaComponent/Chatbot/Chatbot';
+import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks'
 
 
 // Gihan's components
@@ -70,22 +71,34 @@ import Map from './Components/sashiniComponent/Map';
 const UserLayout = () => (
   <div className='app-container'>
     <div className='app-content'>
-      <NavigationBar />
       <Routes>
-         <Route path="/" element={<NavigationBar />} />
-        <Route path="/userdetails" element={<Userdetails />} />
+        <Route path="/" element={<NavigationBar />} />
         <Route path="/adduser" element={<AddUser />} />
-        <Route path="/userdetails/:id" element={<UpdateUser />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/feedback' element={<FeedbackDetails />} />
         <Route path='/feedbackForm' element={<FeedbackForm />} />
-        <Route path='/feedback/:id' element={<FeedbackDetails />} />
-        <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
-        <Route path="/dashbord" element={<DashboardI />} />
+        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </div>
   </div>
 );
+
+const AdminLayout = () => (
+  <div className='admin-container'>
+    <div className='admin-content'>
+      <Routes>
+        <Route path="*" element={<AdminDashboard/>} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/userdetails" element={<Userdetails />} />
+        <Route path='/feedback' element={<FeedbackDetails />} />
+        <Route path='/feedback' element={<FeedbackDetails />} />
+        <Route path="/userdetails/:id" element={<UpdateUser />} />
+        <Route path='/feedback/:id' element={<FeedbackDetails />} />
+        <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
+      </Routes>
+    </div>
+  </div>
+);
+
 
 const MapLayout = () => (
   <div className="Map-container">
@@ -210,14 +223,16 @@ const VolunteerPackingStaffLayout = () => (
 function App() {
   return (
     <Routes>
-      <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/*" element={<DonorLayout />} />
+      
+      <Route path="/hjj/*" element={<DonorLayout />} />
       <Route path="/k/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/volunteer-coordinator/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
-      <Route path="/*" element={<MapLayout/>} />
+      <Route path="/kkk/*" element={<MapLayout/>} />
+      <Route path="/*" element={<UserLayout />} />
+      <Route path="/*kk/" element={<AdminLayout />} />
     </Routes>
   );
 }
