@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Volunteers.css";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUsers, FaCheckCircle, FaTimesCircle, FaHourglassHalf } from "react-icons/fa";
 import axios from "axios";
 import Volunteer from "./Volunteer";
 import Nav from "./Nav";
@@ -120,18 +120,22 @@ function Volunteers() {
 
         <section className="volunteer-summary-stats">
           <div className="volunteer-summary-card">
+            <FaUsers className="volunteer-summary-icon" />
             <h3>Total Applications</h3>
             <p>{stats.total}</p>
           </div>
           <div className="volunteer-summary-card">
+            <FaCheckCircle className="volunteer-summary-icon" />
             <h3>Approved</h3>
             <p>{stats.approved}</p>
           </div>
           <div className="volunteer-summary-card">
+            <FaTimesCircle className="volunteer-summary-icon" />
             <h3>Rejected</h3>
             <p>{stats.rejected}</p>
           </div>
           <div className="volunteer-summary-card">
+            <FaHourglassHalf className="volunteer-summary-icon" />
             <h3>Pending Review</h3>
             <p>{stats.pending}</p>
           </div>

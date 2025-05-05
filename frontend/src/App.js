@@ -1,5 +1,4 @@
-
-import './App.css';
+import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -30,17 +29,16 @@ import VolunteerApplication from "./Components/daniruComponent/VolunteerApplicat
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPStaff/VolunteerPStaffDashboard";
 import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
+import Home from "./Components/daniruComponent/Home/Home";
 
-import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
-import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
-import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
-import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
-import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
+import NavBarP from "./Components/malshiComponent/NavBarP/NavBarP";
+import FoodRequests from "./Components/malshiComponent/FoodRequests/FoodRequests";
+import AddRequests from "./Components/malshiComponent/AddRequests/AddRequests";
+import ProfileP from "./Components/malshiComponent/ProfileP/ProfileP";
+import UpdateRequests from "./Components/malshiComponent/UpdateRequests/UpdateRequests";
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
-import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
-
-
+import PackingInstructions from "./Components/daniruComponent/VolunteerPStaff/PackingInstructions";
 
 const DonorLayout = () => (
   <div className="page-container">
@@ -64,34 +62,32 @@ const OperatingManagerLayout = () => (
     <OperatingManagerSidebar />
     <div className="operating-manager-content">
       <Routes>
-         <Route path="/foodManagement" element = {<FoodDonationPage/>}/>
-         <Route path ="/inventoryManagement" element={<InventoryManagement/>}/>
-         <Route path ="/partnerManagement" element={<PartnerCollaboration/>}/>
+        <Route path="/foodManagement" element={<FoodDonationPage />} />
+        <Route path="/inventoryManagement" element={<InventoryManagement />} />
+        <Route path="/partnerManagement" element={<PartnerCollaboration />} />
       </Routes>
     </div>
   </div>
 );
 
-
 const RequestsLayout = () => (
   <div className="App">
-  <NavBarP/>
-  <div className="main-content">
-  <React.Fragment>
-      <Routes>
-        <Route path="/" element={<ProfileP />} />
-        <Route path="/add-requests" element={<AddRequests />} />
-        <Route path="/display-requests" element={<FoodRequests />} />
-        <Route path="/profile" element={<ProfileP />} />
-        <Route path="/funds" element={<PaymentForm />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/display-requests/:id" element={<UpdateRequests />} />
-      </Routes>
-    </React.Fragment>
+    <NavBarP />
+    <div className="main-content">
+      <React.Fragment>
+        <Routes>
+          <Route path="/" element={<ProfileP />} />
+          <Route path="/add-requests" element={<AddRequests />} />
+          <Route path="/display-requests" element={<FoodRequests />} />
+          <Route path="/profile" element={<ProfileP />} />
+          <Route path="/funds" element={<PaymentForm />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/display-requests/:id" element={<UpdateRequests />} />
+        </Routes>
+      </React.Fragment>
+    </div>
   </div>
-</div>
 );
-
 
 const VolunteerCoordinatorLayout = () => (
   <div className="volunteer-coordinator-container">
@@ -106,6 +102,11 @@ const VolunteerCoordinatorLayout = () => (
         <Route path="/task/:id" element={<UpdateTask />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/reports" element={<Reports />} />
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/volunteerapplication"
+          element={<VolunteerApplication />}
+        />
       </Routes>
     </React.Fragment>
   </div>
@@ -117,15 +118,11 @@ const VolunteerDeliveryStaffLayout = () => (
       <Routes>
         <Route path="/" element={<VolunteerDStaffDashboard />} />
         <Route
-          path="/volunteerdstaffdashboard/:volunteerName"
+          path="/volunteerdstaffdashboard"
           element={<VolunteerDStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerTask />} />
-        <Route path="/volunteer/:volunteerName" element={<VolunteerTask />} />
-        <Route
-          path="/volunteerapplication"
-          element={<VolunteerApplication />}
-        />
+        <Route path="/route" element={<Route />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -137,17 +134,25 @@ const VolunteerPackingStaffLayout = () => (
       <Routes>
         <Route path="/" element={<VolunteerPStaffDashboard />} />
         <Route
-          path="/volunteerpstaffdashboard/:volunteerName"
+          path="/volunteerpstaffdashboard"
           element={<VolunteerPStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerPTask />} />
-        <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
+        <Route path="/packinginstructions" element={<PackingInstructions />} />
+      </Routes>
+    </React.Fragment>
+  </div>
+);
+
+const HomeLayout = () => (
+  <div className="home-container">
+    <React.Fragment>
+      <Routes>
+        <Route path="/home" element={<Home />} />
         <Route
           path="/volunteerapplication"
           element={<VolunteerApplication />}
         />
-                <Route path="/packinginstructions" element={<PackingInstructions />} />
-
       </Routes>
     </React.Fragment>
   </div>
@@ -155,14 +160,15 @@ const VolunteerPackingStaffLayout = () => (
 
 function App() {
   return (
-      <Routes>
-        <Route path="/jl/*" element={<RequestsLayout/>}/>
-        <Route path="/*" element={<OperatingManagerLayout />} />
-        <Route path="/jnjnjn/*" element={<DonorLayout />} /> 
-        <Route path="/hth/*" element={<VolunteerCoordinatorLayout/>}/>
-        <Route path="/brbr/*" element={<VolunteerDeliveryStaffLayout/>}/>
-        <Route path="/fr/*" element={<VolunteerPackingStaffLayout/>}/>
-      </Routes>
+    <Routes>
+      <Route path="/jl/*" element={<RequestsLayout />} />
+      <Route path="/hr/*" element={<OperatingManagerLayout />} />
+      <Route path="/hhbhb/*" element={<DonorLayout />} />
+      <Route path="/tgt/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/yhu6/*" element={<VolunteerDeliveryStaffLayout />} />
+      <Route path="/gt4g/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/*" element={<HomeLayout />} />
+    </Routes>
   );
 }
 

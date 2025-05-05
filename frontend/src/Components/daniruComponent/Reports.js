@@ -16,6 +16,7 @@ import {
   Legend,
 } from "chart.js";
 import "./Report.css";
+import { FaChartBar, FaDownload, FaSlidersH, FaFilter, FaChartPie, FaChartBar as FaBar, FaChartLine } from "react-icons/fa";
 
 ChartJS.register(
   CategoryScale,
@@ -443,50 +444,40 @@ function Report() {
   };
 
   return (
-    <div className="app-container">
-      <StandardNav />
-      <div className="task-container" ref={ComponentsRef}>
-        <h2>Task Report</h2>
-
-        {/* View Mode Toggle */}
-        <div className="view-mode-toggle">
-          <button 
-            className={`toggle-btn ${viewMode === 'all' ? 'active' : ''}`}
-            onClick={() => setViewMode('all')}
-          >
-            View All
-          </button>
-          <button 
-            className={`toggle-btn ${viewMode === 'status' ? 'active' : ''}`}
-            onClick={() => setViewMode('status')}
-          >
-            View by Status
-          </button>
-          <button 
-            className={`toggle-btn ${viewMode === 'priority' ? 'active' : ''}`}
-            onClick={() => setViewMode('priority')}
-          >
-            View by Priority
+    <div className="app-root report-bg-gradient">
+      <StandardNav className="sidebar" />
+      <div className="app-container">
+        <div className="task-container report-glass">
+          <h2 className="report-heading-modern"><FaChartBar style={{color:'#1abc9c', marginRight:10, verticalAlign:'middle'}}/>Task Reports</h2>
+          <div className="view-mode-toggle">
+            <button className={`toggle-btn${viewMode === 'all' ? ' active' : ''}`} onClick={() => setViewMode('all')}><FaSlidersH style={{marginRight:6}}/>All</button>
+            <button className={`toggle-btn${viewMode === 'status' ? ' active' : ''}`} onClick={() => setViewMode('status')}><FaBar style={{marginRight:6}}/>Status</button>
+            <button className={`toggle-btn${viewMode === 'priority' ? ' active' : ''}`} onClick={() => setViewMode('priority')}><FaChartPie style={{marginRight:6}}/>Priority</button>
+          </div>
+          <div className="filter-section">
+            <h3><FaFilter style={{marginRight:6}}/>Filter Tasks</h3>
+            <div className="filter-buttons">
+              {/* ...existing filter buttons... */}
+            </div>
+          </div>
+          <div className="charts-section">
+            <div className="chart-container">
+              <h3><FaBar style={{marginRight:6}}/>Bar Chart</h3>
+              <Bar data={getBarData()} />
+            </div>
+            <div className="chart-container">
+              <h3><FaChartPie style={{marginRight:6}}/>Pie Chart</h3>
+              <Pie data={getPieData()} />
+            </div>
+            <div className="chart-container">
+              <h3><FaChartLine style={{marginRight:6}}/>Line Chart</h3>
+              <Line data={getLineData()} />
+            </div>
+          </div>
+          <button className="download-btn report-download-btn" onClick={handleDownload}>
+            <FaDownload style={{marginRight:8, verticalAlign:'middle'}}/>Download PDF
           </button>
         </div>
-
-        {/* Charts Section */}
-        <div className="charts-section">
-          <div className="chart-container">
-            <h3>Bar Graph: {viewMode === 'all' ? 'Task Status and Priority' : (viewMode === 'status' ? 'Task Status' : 'Task Priority')} Distribution</h3>
-            <Bar data={getBarData()} />
-          </div>
-          <div className="chart-container">
-            <h3>Pie Chart: {viewMode === 'all' ? 'Combined Task' : (viewMode === 'status' ? 'Task Status' : 'Task Priority')} Distribution</h3>
-            <Pie data={getPieData()} />
-          </div>
-          <div className="chart-container">
-            <h3>Line Graph: {viewMode === 'all' ? 'Status and Priority' : (viewMode === 'status' ? 'Task Status' : 'Task Priority')} Distribution Trend</h3>
-            <Line data={getLineData()} />
-          </div>
-        </div>
-
-        <button className="download-btn" onClick={handleDownload}>Download Report</button>
       </div>
     </div>
   );
