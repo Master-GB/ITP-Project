@@ -1,3 +1,4 @@
+
 import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -50,6 +51,8 @@ import VolunteerApplication from "./Components/daniruComponent/VolunteerApplicat
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPStaff/VolunteerPStaffDashboard";
 import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
+import Home from "./Components/daniruComponent/Home/Home";
+
 
 // Malshi's components
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
@@ -143,7 +146,7 @@ const RequestsLayout = () => (
   <div className="App">
     <NavBarP />
     <div className="main-content">
-      <Routes>
+        <Routes>
         <Route path="/" element={<ProfileP />} />
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
@@ -158,17 +161,24 @@ const RequestsLayout = () => (
 
 const VolunteerCoordinatorLayout = () => (
   <div className="volunteer-coordinator-container">
-    <Routes>
-      <Route path="/" element={<VolunteerCDashboard />} />
-      <Route path="/dashboard" element={<VolunteerCDashboard />} />
-      <Route path="/volunteers" element={<Volunteers />} />
-      <Route path="/createtask" element={<CreateTask />} />
-      <Route path="/volunteercdashboard" element={<VolunteerCDashboard />} />
-      <Route path="/viewtasks" element={<Task />} />
-      <Route path="/task/:id" element={<UpdateTask />} />
-      <Route path="/tracking" element={<Tracking />} />
-      <Route path="/reports" element={<Reports />} />
-    </Routes>
+    <React.Fragment>
+      <Routes>
+        <Route path="/" element={<VolunteerCDashboard />} />
+        <Route path="/dashboard" element={<VolunteerCDashboard />} />
+        <Route path="/volunteers" element={<Volunteers />} />
+        <Route path="/createtask" element={<CreateTask />} />
+        <Route path="/volunteercdashboard" element={<VolunteerCDashboard />} />
+        <Route path="/viewtasks" element={<Task />} />
+        <Route path="/task/:id" element={<UpdateTask />} />
+        <Route path="/tracking" element={<Tracking />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/volunteerapplication"
+          element={<VolunteerApplication />}
+        />
+      </Routes>
+    </React.Fragment>
   </div>
 );
 
@@ -178,11 +188,11 @@ const VolunteerDeliveryStaffLayout = () => (
       <Routes>
         <Route path="/" element={<VolunteerDStaffDashboard />} />
         <Route
-          path="/volunteerdstaffdashboard/:volunteerName"
+          path="/volunteerdstaffdashboard"
           element={<VolunteerDStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerTask />} />
-        <Route path="/volunteer/:volunteerName" element={<VolunteerTask />} />
+        <Route path="/route" element={<Route />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
       </Routes>
     </React.Fragment>
@@ -195,10 +205,25 @@ const VolunteerPackingStaffLayout = () => (
       <Routes>
         <Route path="/" element={<VolunteerPStaffDashboard />} />
         <Route
-          path="/volunteerpstaffdashboard/:volunteerName"
+          path="/volunteerpstaffdashboard"
           element={<VolunteerPStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerPTask />} />
+        <Route path="/packinginstructions" element={<PackingInstructions />} />
+      </Routes>
+    </React.Fragment>
+  </div>
+);
+
+const HomeLayout = () => (
+  <div className="home-container">
+    <React.Fragment>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/volunteerapplication"
+          element={<VolunteerApplication />}
+        />
         <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/packinginstructions" element={<PackingInstructions />} />
@@ -214,7 +239,7 @@ function App() {
       <Route path="/*" element={<DonorLayout />} />
       <Route path="/k/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
-      <Route path="/volunteer-coordinator/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/*" element={<MapLayout/>} />

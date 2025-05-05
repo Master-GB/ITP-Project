@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "./VolunteerPStaffDashboard.css";
 import VolunteerPNav from "./VolunteerPNav";
 import VolunteerTasks from "./VolunteerTasks";
+import VolunteerFooter from "../Home/HomeFooter";
+import { FaTasks, FaCheckCircle, FaListOl, FaStar, FaClipboardList, FaUserCircle, FaQuoteLeft } from "react-icons/fa";
 
 const VolunteerDStaffDashboard = () => {
   const { volunteerName } = useParams();
@@ -15,10 +17,7 @@ const VolunteerDStaffDashboard = () => {
       try {
         setLoading(true);
         setError(null);
-        const decodedVolunteerName = decodeURIComponent(volunteerName);
-        const response = await fetch(
-          `http://localhost:8090/tasks/volunteer/${decodedVolunteerName}`
-        );
+        const response = await fetch("http://localhost:8090/tasks");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -32,18 +31,22 @@ const VolunteerDStaffDashboard = () => {
       }
     };
 
-    if (volunteerName) {
-      fetchTasks();
-    }
-  }, [volunteerName]);
+    fetchTasks();
+  }, []);
 
-  // Calculate statistics
+  // Only consider tasks that are not rejected
+  const nonRejectedTasks = tasks.filter(
+    (task) => task.status && task.status.toLowerCase() !== "rejected"
+  );
+
   const activeStatuses = ["pending", "ongoing"];
-  const todayTasks = tasks.filter(
+  const todayTasks = nonRejectedTasks.filter(
     (task) => activeStatuses.includes(task.status.toLowerCase())
   ).length;
-  const completedTasks = tasks.filter((task) => task.status.toLowerCase() === "completed").length;
-  const totalTasks = tasks.length;
+  const completedTasks = nonRejectedTasks.filter(
+    (task) => task.status.toLowerCase() === "completed"
+  ).length;
+  const totalTasks = nonRejectedTasks.length;
   const completionRate =
     totalTasks > 0 ? ((completedTasks / totalTasks) * 100).toFixed(1) : 0;
 
@@ -60,53 +63,56 @@ const VolunteerDStaffDashboard = () => {
   }
 
   return (
-    <div className="volunteer-delivery-staff-dashboard">
+    <>
       <VolunteerPNav />
-      {/* Main Content */}
-      <div className="container volunteer-delivery-staff-dashboard">
-        <h2 className="dashboard-title volunteer-delivery-staff-dashboard">
-          👋 Welcome back, {volunteerName}!
+      <div className="dashboard-main-content fade-in-dashboard">
+        <div className="dashboard-fullwidth volunteer-delivery-staff-dashboard">
+          {/* Modern Greeting Section */}
+          <h2 className="dashboard-title">
+            <span role="img" aria-label="wave">👋</span> Welcome back !
         </h2>
-
+        
         {/* Stats Section */}
-        <div className="stats volunteer-delivery-staff-dashboard">
-          <div className="card volunteer-delivery-staff-dashboard">
-            <p>Tasks</p>
-            <h3>{todayTasks}</h3>
-            <span className="green volunteer-delivery-staff-dashboard">
-              Active tasks
-            </span>
+          <div className="stats">
+            <div className="card" title="Active tasks assigned to you">
+              <FaTasks className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#1abc9c', marginBottom:8}}/>
+              <p>Tasks</p>
+              <h3>{todayTasks}</h3>
+              <span className="green">Active tasks</span>
           </div>
-          <div className="card volunteer-delivery-staff-dashboard">
+            <div className="card" title="Number of tasks you have completed">
+              <FaCheckCircle className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#2ecc71', marginBottom:8}}/>
             <p>Completed</p>
-            <h3>{completedTasks}</h3>
-            <span className="green volunteer-delivery-staff-dashboard">
-              {completionRate}% complete
-            </span>
+              <h3>{completedTasks}</h3>
+              <span className="green">{completionRate}% complete</span>
           </div>
-          <div className="card volunteer-delivery-staff-dashboard">
-            <p>Total Tasks</p>
-            <h3>{totalTasks}</h3>
-            <span className="green volunteer-delivery-staff-dashboard">
-              All time
-            </span>
+            <div className="card" title="Total number of tasks assigned to you">
+              <FaListOl className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#3498db', marginBottom:8}}/>
+              <p>Total Tasks</p>
+              <h3>{totalTasks}</h3>
+              <span className="green">All time</span>
           </div>
-          <div className="card volunteer-delivery-staff-dashboard">
+            <div className="card" title="Your performance rating based on completion rate">
+              <FaStar className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#f39c12', marginBottom:8}}/>
             <p>Performance Rating</p>
-            <h3>{performanceRating.toFixed(1)}</h3>
-            <span className="green volunteer-delivery-staff-dashboard">
-              Based on completion rate
-            </span>
+              <h3>{performanceRating.toFixed(1)}</h3>
+              <span className="green">Based on completion rate</span>
+            </div>
           </div>
-        </div>
+
+          {/* Divider */}
+          <div className="dashboard-divider"></div>
 
         {/* Current Tasks */}
-        <h3 className="section-title volunteer-delivery-staff-dashboard">
-          📋 Current Tasks
-        </h3>
-        <VolunteerTasks/>
+          <h3 className="section-title">
+            <FaClipboardList style={{color:'#1abc9c', marginRight:10, verticalAlign:'middle'}}/>
+            Current Tasks
+          </h3>
+          <VolunteerTasks/>
+        </div>
+        <VolunteerFooter/>
       </div>
-    </div>
+    </>
   );
 };
 

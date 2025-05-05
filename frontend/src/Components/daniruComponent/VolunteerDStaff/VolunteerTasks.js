@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./VolunteerTaskDisplay.css";
+import VolunteerNav from "./VolunteerNav";
 
 function VolunteerTaskDisplay() {
-  const { volunteerName } = useParams();
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,17 +19,16 @@ function VolunteerTaskDisplay() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`http://localhost:8090/tasks/volunteer/${decodeURIComponent(volunteerName)}`);
-        const data = await response.json();
-        setTasks(data.tasks || []);
+        const response = await axios.get("http://localhost:8090/tasks");
+        setTasks(response.data.tasks || []);
       } catch (err) {
         setError("Failed to load tasks. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
-    if (volunteerName) fetchTasks();
-  }, [volunteerName]);
+    fetchTasks();
+  }, []);
 
   // Calculate statistics
   const totalTasks = tasks.length;
@@ -113,56 +111,56 @@ function VolunteerTaskDisplay() {
   });
 
   return (
+    <>
     <div className="volunteer-tasks-container">
-
       {successMessage && (
         <p className="success-message">✅ {successMessage}</p>
       )}
       {loading && <p className="loading">⏳ Loading tasks...</p>}
       {error && <p className="error-message">❌ {error}</p>}
-
       {!loading && !error && filteredTasks.length > 0 ? (
-        <div className="current-tasks-card">
-          <table className="task-list-table" style={{ width: '100%' }}>
-            <thead>
-              <tr>
-                <th>📝 Task Name</th>
-                <th>🗒️ Description</th>
-                <th>📍 Location</th>
-                <th>🕒 Start</th>
-                <th>⏳ End</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTasks.map((task) => (
-                <tr key={task._id}>
-                  <td>{task.taskName}</td>
-                  <td>{task.taskDescription}</td>
-                  <td>{task.location}</td>
-                  <td>{new Date(task.startDateTime).toLocaleString()}</td>
-                  <td>{new Date(task.endDateTime).toLocaleString()}</td>
-                  <td>
-                    <span
-                      className={`status-badge ${task.status.toLowerCase()}`}
-                      title={task.status === "Rejected" ? "This task was rejected" : ""}
-                    >
-                      {task.status === "Completed" && "✅ "}
-                      {task.status === "Ongoing" && "🚚 "}
-                      {task.status === "Rejected" && "❌ "}
-                      {task.status === "Pending" && "⏳ "}
-                      {task.status}
-                    </span>
-                  </td>
+          <div className="current-tasks-card">
+            <table className="task-list-table" style={{ width: '100%' }}>
+              <thead>
+                <tr>
+                  <th>📝 Task Name</th>
+                  <th>🗒️ Description</th>
+                  <th>📍 Location</th>
+                  <th>🕒 Start</th>
+                  <th>⏳ End</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+          {filteredTasks.map((task) => (
+                  <tr key={task._id}>
+                    <td>{task.taskName}</td>
+                    <td>{task.taskDescription}</td>
+                    <td>{task.location}</td>
+                    <td>{new Date(task.startDateTime).toLocaleString()}</td>
+                    <td>{new Date(task.endDateTime).toLocaleString()}</td>
+                    <td>
+                      <span
+                        className={`status-badge ${task.status.toLowerCase()}`}
+                        title={task.status === "Rejected" ? "This task was rejected" : ""}
+                      >
+                        {task.status === "Completed" && "✅ "}
+                        {task.status === "Ongoing" && "🚚 "}
+                        {task.status === "Rejected" && "❌ "}
+                        {task.status === "Pending" && "⏳ "}
+                  {task.status}
+                </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
         </div>
       ) : (
         !loading && <p className="no-tasks">🚫 No tasks match your search/filter.</p>
       )}
     </div>
+    </>
   );
 }
 

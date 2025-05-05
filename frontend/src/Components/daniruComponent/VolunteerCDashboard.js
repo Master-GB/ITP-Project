@@ -9,6 +9,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { useGeolocated } from "react-geolocated";
+import { FaTasks, FaUserClock, FaCheckCircle, FaUserCheck } from "react-icons/fa";
 
 // Custom icons
 const defaultIcon = L.icon({
@@ -247,31 +248,40 @@ function Home() {
   };
 
   return (
+    <div>
     <div className="volunteercdashboard-volunteer-hub">
       <Nav />
       {/* Main Content */}
       <div className="volunteercdashboard-main-content">
         <header className="volunteercdashboard-header">
-          <h1>Dashboard Overview</h1>
-          <p className="volunteercdashboard-welcome-message">Welcome back!</p>
+          <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', justifyContent: 'center'}}>
+            <div>
+              <h1 style={{margin: 0}}>Dashboard Overview</h1>
+              <p className="volunteercdashboard-welcome-message">Welcome back, Volunteer Coordinator!</p>
+            </div>
+          </div>
         </header>
 
         {/* Stats Section */}
         <section className="volunteercdashboard-stats">
           <div className="volunteercdashboard-stat-card">
+            <FaUserCheck className="stat-icon" />
             <h3>{ongoingTasks}</h3>
             <p className="volunteercdashboard-stat-label">Active Volunteers</p>
           </div>
           <div className="volunteercdashboard-stat-card">
+            <FaUserClock className="stat-icon" />
             <h3>{pendingApplications}</h3>
             <p>Pending Applications</p>
             <p className="volunteercdashboard-stat-label">Needs review</p>
           </div>
           <div className="volunteercdashboard-stat-card">
+            <FaTasks className="stat-icon" />
             <h3>{ongoingTasks}</h3>
             <p>Ongoing Tasks</p>
           </div>
           <div className="volunteercdashboard-stat-card">
+            <FaCheckCircle className="stat-icon" />
             <h3>{completedTasks}</h3>
             <p>Completed Tasks</p>
           </div>
@@ -424,6 +434,7 @@ function Home() {
           </section>
         </footer>
       </div>
+    </div>
     </div>
   );
 }

@@ -1,139 +1,209 @@
-/* General Styles */
-.volunteer-task-dashboard {
-  font-family: 'Poppins', sans-serif;
+/* ===== BASE RESET & STRUCTURE ===== */
+.volunteer-task-app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== NAVBAR STYLING ===== */
+.volunteer-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+.volunteer-task-main-content {
+  width: 100%;
+  margin-top: 60px;
+  padding: 0;
+  flex: 1;
+}
+
+/* ===== CONTENT CONTAINER ===== */
+.volunteer-task-content-container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0;
+}
+
+/* ===== GLASS PANEL STYLING ===== */
+.volunteer-task-glass-bg {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
   padding: 30px;
-  color: #2c3e50;
-  background: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* Title Styles */
-h1.volunteer-task-h1, h2.volunteer-task-h2, h3.volunteer-task-h3 {
-  font-weight: 700;
+/* ===== GREETING SECTION ===== */
+.volunteer-task-greeting-row {
+  display: flex;
+  justify-content: center;
   text-align: center;
+  padding: 10px 0 0;
+}
+
+.volunteer-task-title {
+  font-size: 2.2rem;
+  font-weight: 700;
   color: #2c3e50;
+  margin: 0 0 5px;
+  line-height: 1.2;
 }
 
-h2.volunteer-task-h2 {
-  font-size: 2rem;
-  margin: 25px 0 15px;
-  position: relative;
+.blue-text {
+  color: #3498db;
 }
 
-h2.volunteer-task-h2::after {
-  content: "";
-  width: 60px;
-  height: 4px;
-  background: #3498db;
-  display: block;
-  margin: 8px auto;
-  border-radius: 2px;
+/* ===== TASK DISPLAY SECTION ===== */
+.volunteer-task-display-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Performance Section */
+/* ===== DIVIDER ===== */
+.volunteer-task-divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(52,152,219,0) 0%, 
+    rgba(52,152,219,0.3) 50%, 
+    rgba(52,152,219,0) 100%);
+  margin: 30px 0;
+  border: none;
+}
+
+/* ===== PERFORMANCE SECTION ===== */
 .volunteer-task-performance-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+  margin: 30px 0 0;
+}
+
+.volunteer-task-section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .volunteer-task-performance-cards {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
-  text-align: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .volunteer-task-performance-card {
   flex: 1;
+  min-width: 250px;
+  max-width: 350px;
   background: linear-gradient(135deg, #3498db, #6dd5fa);
   color: white;
-  padding: 20px;
+  padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out;
-}
-
-.volunteer-task-performance-card:hover {
-  transform: scale(1.05);
-}
-
-.volunteer-task-percentage {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-/* Search Section */
-.volunteer-task-search-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.volunteer-task-search-bar {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.volunteer-task-search-bar input, .volunteer-task-search-bar select {
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease-in-out;
-}
-
-.volunteer-task-search-bar input:focus, .volunteer-task-search-bar select:focus {
-  border-color: #3498db;
-  box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
-}
-
-/* Feedback Section */
-.volunteer-task-feedback-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.volunteer-task-feedback-card {
-  background: #f7f9fc;
-  border-left: 5px solid #3498db;
-  padding: 20px;
-  font-style: italic;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-}
-
-.volunteer-task-stars {
-  font-size: 1.5rem;
-  color: #f1c40f;
-  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
 
-/* Responsive Design */
+.volunteer-task-performance-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.volunteer-task-percentage {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 15px;
+  display: block;
+}
+
+/* ===== ICONS ===== */
+.icon-blue {
+  color: #3498db;
+  font-size: 1.5rem;
+}
+
+.icon-green {
+  color: #2ecc71;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.icon-orange {
+  color: #f39c12;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 992px) {
+  .volunteer-task-glass-bg {
+    padding: 25px;
+  }
+}
+
 @media (max-width: 768px) {
-  .volunteer-task-performance-cards, .volunteer-task-search-bar {
-      flex-direction: column;
+  .volunteer-nav {
+    height: 55px;
+  }
+  
+  .volunteer-task-main-content {
+    margin-top: 55px;
+  }
+  
+  .volunteer-task-title {
+    font-size: 1.8rem;
+  }
+  
+  .volunteer-task-section-title {
+    font-size: 1.5rem;
   }
   
   .volunteer-task-performance-card {
-      padding: 15px;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .volunteer-nav {
+    height: 50px;
   }
   
-  .volunteer-task-search-bar input, .volunteer-task-search-bar select {
-      width: 100%;
+  .volunteer-task-main-content {
+    margin-top: 50px;
+  }
+  
+  .volunteer-task-glass-bg {
+    padding: 20px 15px;
+    border-radius: 0;
+    margin: 0;
+  }
+  
+  .volunteer-task-title {
+    font-size: 1.6rem;
+  }
+  
+  .volunteer-task-performance-cards {
+    gap: 15px;
   }
 }

@@ -21,6 +21,7 @@
     "bootstrap": "^5.3.5",
     "chart.js": "^4.4.9",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.9.4",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.28",
     "leaflet": "^1.9.4",
