@@ -147,7 +147,7 @@ const Nav = () => {
         onConfirm={() => {
           setShowSignOutDialog(false);
           // TODO: Perform sign out logic here (e.g., clear auth tokens)
-          navigate("/login"); // Redirect to login page after sign out
+          navigate("/Home"); // Redirect to login page after sign out
         }}
         onCancel={() => setShowSignOutDialog(false)}
       />

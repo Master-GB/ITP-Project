@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    margin-top: 25px;
     gap: 15px;
   }
   
@@ -134,8 +135,8 @@
   }
   
   .section-divider {
-    border: 0;
-    height: 1px;
+    border: 0 !important;
+    height: 1px !important;
     background-color: #ddd;
     margin: 20px 0;
   }
@@ -151,23 +152,23 @@
   }
   
   .sort-control, .filter-control, .search-control {
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-    padding: 2px;
-    border-radius: 4px;
-    border: 1px solid #2ecc71;
-    background-color: white;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+    padding: 2px !important;
+    border-radius: 4px !important;
+    border: 1px solid #2ecc71 !important;
+    background-color: white !important;
   }
   
   .sort-control select, .filter-control select {
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-    padding: 4px 12px;
-    border-radius: 4px;
-    border: none;
-    background-color: transparent;
-    font-size: 14px;
-    width: 100%;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+    padding: 4px 12px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    background-color: transparent !important;
+    font-size: 14px !important;
+    width: 100% !important;
   }
   
   .search-control {
@@ -358,7 +359,7 @@
     .sort-control, .filter-control, .search-control {
       width: 100%;
     }
-    
+
     .search-control {
       margin-left: 0;
     }

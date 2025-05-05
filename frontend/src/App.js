@@ -52,7 +52,7 @@ import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/Voluntee
 import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPStaff/VolunteerPStaffDashboard";
 import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
 import Home from "./Components/daniruComponent/Home/Home";
-
+import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 
 // Malshi's components
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
@@ -62,7 +62,7 @@ import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
 import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
-import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
+
 
 //Sashini's components
 import Map from './Components/sashiniComponent/Map';
@@ -219,11 +219,9 @@ const HomeLayout = () => (
   <div className="home-container">
     <React.Fragment>
       <Routes>
+      <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route
-          path="/volunteerapplication"
-          element={<VolunteerApplication />}
-        />
+        <Route path="/volunteerapplication" element={<VolunteerApplication />}/>
         <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/packinginstructions" element={<PackingInstructions />} />
@@ -237,12 +235,13 @@ function App() {
     <Routes>
       <Route path="/hh/*" element={<UserLayout />} />
       <Route path="/*" element={<DonorLayout />} />
-      <Route path="/k/*" element={<OperatingManagerLayout />} />
+      <Route path="/j/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
-      <Route path="/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/l/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
-      <Route path="/*" element={<MapLayout/>} />
+      <Route path="/k/*" element={<MapLayout/>} />
+      <Route path="/home/*" element={<HomeLayout/>} />
     </Routes>
   );
 }
