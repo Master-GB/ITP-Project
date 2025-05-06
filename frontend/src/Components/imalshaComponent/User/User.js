@@ -71,7 +71,7 @@ function User(props) {
             <p className="user-info"><FaKey className="user-info-icon" /> <strong>Password:</strong> {password}</p>
 
             <div className="user-actions">
-                <Link to={`/userdetails/${_id}`} className="update-link">Update</Link>
+                <Link to={`/al/userdetails/${_id}`} className="update-link">Update</Link>
                 <button onClick={deleteHandler} className="delete-button">Delete</button>
             </div>
         </div>

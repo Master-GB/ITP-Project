@@ -358,10 +358,10 @@ const AdvancedDonorDashboard = () => {
       </div>
 
       <div className="button-section">
-        <Link to="/myDonate">
+        <Link to="/dl/myDonate">
           <button className="view-all-button">View All Donations</button>
         </Link>
-        <Link to="/donate">
+        <Link to="/dl/donate">
           <button className="create-new-button">Create New Donation</button>
         </Link>
       </div>

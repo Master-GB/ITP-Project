@@ -31,22 +31,22 @@ const Login = () => {
             // Redirect based on role
             switch (user.role) {
                 case 'Donor':
-                    navigate("/hjj/dashboard");
+                    navigate("/dl/dashboard");
                     break;
                 case 'Volunteer Coordinator':
-                    navigate('/volunteer-coordinator/dashboard');
+                    navigate('/vcl/dashboard');
                     break;
                 case 'Volunteer Packing Staff':
-                    navigate('/volunteer-packing/volunteerpstaffdashboard');
+                    navigate('/vpsl/volunteerpstaffdashboard');
                     break;
                 case 'Volunteer Delivery Staff':
-                    navigate('/volunteer-delivery/volunteerdstaffdashboard');
+                    navigate('/vdsl/volunteerdstaffdashboard');
                     break;
                 case 'Admin':
-                    navigate('/*kk/admindashboard');
+                    navigate('/al/admindashboard');
                     break;
                 case 'Operating Manager':
-                    navigate('/thyty/foodManagement');
+                    navigate('/opl/foodManagement');
                     break;
                 default:
                     navigate('/dashboard');

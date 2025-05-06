@@ -13,19 +13,19 @@ function Navigationbar() {
       <nav className="sidebar-nav">
         <ul className="sidebar-menu">
           <li className="sidebar-item">
-            <Link to="/admindashboard" className="sidebar-link">
+            <Link to="/al/admindashboard" className="sidebar-link">
               <FaTachometerAlt className="sidebar-icon" />
               <span className="sidebar-text">Dashboard</span>
             </Link>
           </li>
           <li className="sidebar-item">
-            <Link to="/userdetails" className="sidebar-link">
+            <Link to="/al/userdetails" className="sidebar-link">
               <FaUsers className="sidebar-icon" />
               <span className="sidebar-text">User Details</span>
             </Link>
           </li>
           <li className="sidebar-item">
-            <Link to="/feedback" className="sidebar-link">
+            <Link to="/al/feedback" className="sidebar-link">
               <FaComments className="sidebar-icon" />
               <span className="sidebar-text">Feedbacks</span>
             </Link>
@@ -37,7 +37,7 @@ function Navigationbar() {
           <FaUserCircle size={48} />
         </div>
         <div className="profile-info">
-          <span className="profile-name">Admin User</span>
+          <span className="profile-name">Imalsha Anupama</span>
           <span className="profile-role-green">Admin</span>
         </div>
         <button className="signout-btn">
