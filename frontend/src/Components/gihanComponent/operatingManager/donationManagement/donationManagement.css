@@ -163,7 +163,7 @@
   .sort-control select, .filter-control select {
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
-    padding: 4px 12px !important;
+    padding: 4px 30px 4px 4px !important;
     border-radius: 4px !important;
     border: none !important;
     background-color: transparent !important;
