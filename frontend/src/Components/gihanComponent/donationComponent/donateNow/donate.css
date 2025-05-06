@@ -1,4 +1,6 @@
-body .myBack {
+/* donate.css - with donor-donate prefix */
+
+body .donor-donate-myBack {
     background: linear-gradient(135deg, #b4d2e8, #e6f7ff); 
     min-height: 60vh; 
     padding: 20px ;
@@ -6,11 +8,13 @@ body .myBack {
     margin: 0 ; 
   }
 
-  #update-back{
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff); 
+  label::after{
+        content: none !important;
   }
 
-
+  #donor-donate-update-back{
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff); 
+  }
 
 html, body, #root {
     height: 100%;
@@ -19,9 +23,7 @@ html, body, #root {
     font-family: 'Arial', sans-serif;
 }
 
-
-
-.navbar {
+.donor-donate-navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -36,14 +38,14 @@ html, body, #root {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.main-content {
+.donor-donate-main-content {
     flex: 1;
     padding-top: 100px; 
     padding-bottom: 60px;
     z-index: 10;
 }
 
-.donate-container {
+.donor-donate-donate-container {
     opacity: 0.8;
     width: 50%; 
     margin: 0 auto;
@@ -55,20 +57,20 @@ html, body, #root {
     background-color: #ffffff; 
 }
 
-.donate-container h1 {
+.donor-donate-donate-container h1 {
     font-size: 2rem;
     color: #000000;
     margin-bottom: 20px !important;
-    text-align: center !important; /* Center the main title */
+    text-align: center !important;
 }
 
-.donate-container p {
+.donor-donate-donate-container p {
     font-size: 1rem;
     color: #666;
     margin-bottom: 20px;
 }
 
-.storage-lable, .quan-lable {
+.donor-donate-storage-lable, .donor-donate-quan-lable {
     font-size: 16px;
     color: #121212;
     font-weight: lighter;
@@ -76,24 +78,23 @@ html, body, #root {
     display: block ;
 }
 
-.storage-lable{
+.donor-donate-storage-lable{
     padding-top: 5px;
 }
 
-label  {
+.donor-donate-label  {
     font-size: 19px;
     color: #1a1919;
     font-weight: bold;
     margin-bottom: 8px;
     display: block;
-    
 }
 
-label::after {
+.donor-donate-label::after {
     content: none !important;
-  }
+}
 
-.food-details-group {
+.donor-donate-food-details-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -101,21 +102,20 @@ label::after {
     position: relative;
 }
 
-.food-category-group, .food-item-group {
+.donor-donate-food-category-group, .donor-donate-food-item-group {
     width: 48%; 
     margin-bottom: 0px;
 }
 
-.food-category-group{
-    
+.donor-donate-food-category-group{
     margin-right:20px ;
 }
 
-.food-item-group{
+.donor-donate-food-item-group{
     margin-right: 1px;
 }
 
-.food-category-group select, .food-item-group select {
+.donor-donate-food-category-group select, .donor-donate-food-item-group select {
     width: 100%;
     padding: 10px;
     margin-bottom: 0px;
@@ -126,55 +126,53 @@ label::after {
     transition: border-color 0.3s ease;
 }
 
-.food-category-group select:hover, .food-item-group select:hover {
+.donor-donate-food-category-group select:hover, .donor-donate-food-item-group select:hover {
     border-color: #108dc7;
 }
 
-
-.storage-date-section {
+.donor-donate-storage-date-section {
     margin-bottom: 20px;
     padding-top: 10px;
 }
 
-.storage-condition-group {
+.donor-donate-storage-condition-group {
     margin-bottom: 16px;
 }
 
-.storage-condition-options {
+.donor-donate-storage-condition-options {
     display: flex;
     gap: 15px;
     margin-bottom: 16px;
 }
 
-.storage-condition-options label {
+.donor-donate-storage-condition-options label {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-
-.date-fields {
+.donor-donate-date-fields {
     display: flex;
     justify-content: space-between;
     gap: 48px; 
 }
 
-.donation-date-group, .expiration-date-group {
+.donor-donate-donation-date-group, .donor-donate-expiration-date-group {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding-top: 10px;
 }
 
-.donation-date-group{
+.donor-donate-donation-date-group{
     margin-right: 10px;
 }
 
-.expiration-date-group{
+.donor-donate-expiration-date-group{
     margin-right: 20px;
 }
 
-.donation-date-group input, .expiration-date-group input {
+.donor-donate-donation-date-group input, .donor-donate-expiration-date-group input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -184,29 +182,29 @@ label::after {
     transition: border-color 0.3s ease;
 }
 
-.donation-date-group input:hover, .expiration-date-group input:hover {
+.donor-donate-donation-date-group input:hover, .donor-donate-expiration-date-group input:hover {
     border-color: #108dc7;
 }
 
-.quantity-section {
+.donor-donate-quantity-section {
     padding-top: 10px;
     width: 59%; 
     margin-bottom: 20px; 
 }
 
-.collection-address-section {
+.donor-donate-collection-address-section {
     padding-top: 10px;
     width: 45.3%; 
     margin-bottom: 20px; 
 }
 
-.quantity-input-group {
+.donor-donate-quantity-input-group {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.quantity-input {
+.donor-donate-quantity-input {
     flex: 1;
     padding: 8px;
     border: 1px solid #ccc;
@@ -216,26 +214,26 @@ label::after {
     transition: border-color 0.3s ease;
 }
 
-.quantity-input:hover {
+.donor-donate-quantity-input:hover {
     border-color: #108dc7;
 }
 
-.quantity-radio-group {
+.donor-donate-quantity-radio-group {
     display: flex;
     gap: 0px;
 }
 
-.quantity-radio-group label {
+.donor-donate-quantity-radio-group label {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-#unit-qua{
+#donor-donate-unit-qua{
     margin-left: 3px;
 }
 
-.collection-address-section input {
+.donor-donate-collection-address-section input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -245,16 +243,16 @@ label::after {
     transition: border-color 0.3s ease;
 }
 
-.collection-address-section input:hover {
+.donor-donate-collection-address-section input:hover {
     border-color: #108dc7;
 }
 
-.food-images-section {
+.donor-donate-food-images-section {
     margin-bottom: 20px;
     padding-top: 10px;
 }
 
-.file-input-container {
+.donor-donate-file-input-container {
     position: relative;
     height: 150px; 
     border: 2px dashed #ccc;
@@ -270,39 +268,39 @@ label::after {
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.file-input-container:hover {
+.donor-donate-file-input-container:hover {
     border-color: #108dc7;
     background-color: #f0f8ff;
 }
 
-.upload-icon svg {
+.donor-donate-upload-icon svg {
     width: 40px;
     height: 40px;
     color: #108dc7;
 }
 
-.drag-drop-text {
+.donor-donate-drag-drop-text {
     font-size: 14px;
     color: #888;
     margin-bottom: 5px;
 }
 
-.browse-files-text {
+.donor-donate-browse-files-text {
     font-size: 16px;
     color: #108dc7;
     font-weight: bold;
     cursor: pointer;
 }
 
-.browse-files-text label {
+.donor-donate-browse-files-text label {
     cursor: pointer;
 }
 
-#file-upload {
+#donor-donate-file-upload {
     display: none; 
 }
 
-.uploaded-image-preview {
+.donor-donate-uploaded-image-preview {
     width: 100%;
     height: 100%;
     display: flex;
@@ -310,49 +308,47 @@ label::after {
     justify-content: center;
 }
 
-.uploaded-image-preview img {
+.donor-donate-uploaded-image-preview img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 8px;
     object-fit: cover; 
 }
 
-.file-input-container.drag-over {
+.donor-donate-file-input-container.drag-over {
     border-color: #108dc7;
     background-color: #f0f8ff;
 }
 
-
-.additional-notes-section {
+.donor-donate-additional-notes-section {
     margin-top: 20px; 
     text-align: left; 
     padding-top: 10px;
 }
 
-.additional-notes-section textarea {
+.donor-donate-additional-notes-section textarea {
     width: 98%; 
     height: 100px; 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
     resize: vertical; 
-    font-family: inherit; /* Inherit font from parent */
+    font-family: inherit;
     font-size: 1rem;
     background-color: #f9f9f9;
     transition: border-color 0.3s ease;
 }
 
-.additional-notes-section textarea:hover {
+.donor-donate-additional-notes-section textarea:hover {
     border-color: #108dc7;
 }
 
-/* Checkbox Section */
-.checkbox-section {
+.donor-donate-checkbox-section {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.checkbox-section label {
+.donor-donate-checkbox-section label {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -361,13 +357,12 @@ label::after {
     font-weight: bold;
 }
 
-.checkbox-section input[type="checkbox"] {
+.donor-donate-checkbox-section input[type="checkbox"] {
     width: 16px;
     height: 16px;
     cursor: pointer;
 }
 
-/* Submit Button */
 button[type="submit"] {
     background-color: #28a745;
     color: white;
@@ -381,7 +376,7 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-.submit-b {
+.donor-donate-submit-b {
     margin-left: 215px;
 }
 
@@ -389,8 +384,7 @@ button[type="submit"]:hover {
     background-color: #218838;
 }
 
-/* Footer */
-.footer {
+.donor-donate-footer {
     background-color: #2c3e50;
     color: #ffffff;
     padding: 0px;
@@ -403,20 +397,16 @@ button[type="submit"]:hover {
     margin-top: auto;
 }
 
-
-/* Add a smooth transition to all elements */
 * {
     transition: all 0.3s ease;
 }
 
-/* Style for focused input fields */
 input:focus, select:focus, textarea:focus {
     border-color: #108dc7;
     box-shadow: 0 0 5px rgba(16, 141, 199, 0.5);
     outline: none;
 }
 
-/* Style for disabled buttons */
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
@@ -426,13 +416,11 @@ button:disabled:hover {
     background-color: #ccc;
 }
 
-/* Add a hover effect for radio buttons and checkboxes */
 input[type="radio"]:hover, input[type="checkbox"]:hover {
     cursor: pointer;
     opacity: 0.8;
 }
 
-/* Add a custom scrollbar for textarea */
 textarea {
     scrollbar-width: thin;
     scrollbar-color: #108dc7 #f9f9f9;
@@ -453,166 +441,92 @@ textarea::-webkit-scrollbar-thumb {
     border: 2px solid #f9f9f9;
 }
 
-/* Add a hover effect for the submit button */
 button[type="submit"]:hover {
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    transform: scale(1.05);
 }
 
-/* Add a hover effect for the file upload container */
-.file-input-container:hover {
-    transform: scale(1.02); /* Slightly enlarge the container on hover */
+.donor-donate-file-input-container:hover {
+    transform: scale(1.02);
 }
 
-/* Add a hover effect for the add category button */
-.add-category-button:hover {
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+.donor-donate-browse-files-text:hover {
+    text-decoration: underline;
 }
 
-/* Add a hover effect for the browse files text */
-.browse-files-text:hover {
-    text-decoration: underline; /* Underline the text on hover */
+.donor-donate-quantity-radio-group label:hover {
+    color: #108dc7;
 }
 
-/* Add a hover effect for the quantity radio buttons */
-.quantity-radio-group label:hover {
-    color: #108dc7; /* Change text color on hover */
+.donor-donate-storage-condition-options label:hover {
+    color: #108dc7;
 }
 
-/* Add a hover effect for the storage condition radio buttons */
-.storage-condition-options label:hover {
-    color: #108dc7; /* Change text color on hover */
+.donor-donate-checkbox-section label:hover {
+    color: #108dc7;
 }
 
-/* Add a hover effect for the checkbox label */
-.checkbox-section label:hover {
-    color: #108dc7; /* Change text color on hover */
+.donor-donate-food-category-group select:hover, .donor-donate-food-item-group select:hover {
+    background-color: #e6f7ff;
 }
 
-/* Add a hover effect for the food category and item dropdowns */
-.food-category-group select:hover, .food-item-group select:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
+.donor-donate-donation-date-group input:hover, .donor-donate-expiration-date-group input:hover {
+    background-color: #e6f7ff;
 }
 
-/* Add a hover effect for the date inputs */
-.donation-date-group input:hover, .expiration-date-group input:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
+.donor-donate-quantity-input:hover {
+    background-color: #e6f7ff;
 }
 
-/* Add a hover effect for the quantity input */
-.quantity-input:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
+.donor-donate-collection-address-section input:hover {
+    background-color: #e6f7ff;
 }
 
-/* Add a hover effect for the collection address input */
-.collection-address-section input:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
+.donor-donate-additional-notes-section textarea:hover {
+    background-color: #e6f7ff;
 }
 
-/* Add a hover effect for the additional notes textarea */
-.additional-notes-section textarea:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
+.donor-donate-checkbox-section input[type="checkbox"]:hover {
+    opacity: 0.8;
 }
 
-/* Add a hover effect for the checkbox */
-.checkbox-section input[type="checkbox"]:hover {
-    opacity: 0.8; /* Slightly reduce opacity on hover */
-}
-
-/* Add a hover effect for the submit button */
 button[type="submit"]:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    background-color: #218838;
+    transform: scale(1.05);
 }
 
-/* Add a hover effect for the file upload container */
-.file-input-container:hover {
-    border-color: #108dc7; /* Change border color on hover */
-    background-color: #f0f8ff; /* Light blue background on hover */
+.donor-donate-file-input-container:hover {
+    border-color: #108dc7;
+    background-color: #f0f8ff;
 }
 
-/* Add a hover effect for the drag and drop text */
-.drag-drop-text:hover {
-    color: #108dc7; /* Change text color on hover */
+.donor-donate-drag-drop-text:hover {
+    color: #108dc7;
 }
 
-/* Add a hover effect for the upload icon */
-.upload-icon svg:hover {
-    color: #0e76a8; /* Darker blue on hover */
+.donor-donate-upload-icon svg:hover {
+    color: #0e76a8;
 }
 
-/* Add a hover effect for the browse files text */
-.browse-files-text:hover {
-    color: #0e76a8; /* Darker blue on hover */
+.donor-donate-browse-files-text:hover {
+    color: #0e76a8;
 }
 
-/* Add a hover effect for the uploaded image preview */
-.uploaded-image-preview img:hover {
-    opacity: 0.8; /* Slightly reduce opacity on hover */
+.donor-donate-uploaded-image-preview img:hover {
+    opacity: 0.8;
 }
 
-/* Add a hover effect for the add category button */
-.add-category-button:hover {
-    background-color: #0e76a8; /* Darker blue on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
-}
-
-/* Add a hover effect for the quantity radio buttons */
-.quantity-radio-group label:hover {
-    color: #108dc7; /* Change text color on hover */
-}
-
-/* Add a hover effect for the storage condition radio buttons */
-.storage-condition-options label:hover {
-    color: #108dc7; /* Change text color on hover */
-}
-
-/* Add a hover effect for the checkbox label */
-.checkbox-section label:hover {
-    color: #108dc7; /* Change text color on hover */
-}
-
-/* Add a hover effect for the food category and item dropdowns */
-.food-category-group select:hover, .food-item-group select:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
-}
-
-/* Add a hover effect for the date inputs */
-.donation-date-group input:hover, .expiration-date-group input:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
-}
-
-/* Add a hover effect for the quantity input */
-.quantity-input:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
-}
-
-/* Add a hover effect for the collection address input */
-.collection-address-section input:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
-}
-
-/* Add a hover effect for the additional notes textarea */
-.additional-notes-section textarea:hover {
-    background-color: #e6f7ff; /* Light blue background on hover */
-}
-
-/* Add a hover effect for the checkbox */
-.checkbox-section input[type="checkbox"]:hover {
-    opacity: 0.8; /* Slightly reduce opacity on hover */
-}
-
-.error {
+.donor-donate-error {
     color: red;
     font-size: 14px  !important;
-    margin-top: -12px !important;
+    margin-top: 4px !important;
     display: block !important;
-  }
+}
 
-  .donate-container h1,
-.donate-container p,
-.donate-container label,
-.donate-container .drag-drop-text,
-.donate-container .browse-files-text {
+.donor-donate-donate-container h1,
+.donor-donate-donate-container p,
+.donor-donate-donate-container label,
+.donor-donate-donate-container .donor-donate-drag-drop-text,
+.donor-donate-donate-container .donor-donate-browse-files-text {
     opacity: 1 !important;
-    color: #333 !important; /* Force dark color */
+    color: #333 !important;
 }

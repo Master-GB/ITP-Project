@@ -1,7 +1,5 @@
-body {
-  background-color: #e2e7e5; /* Replace with any color */
-  margin: 0; /* Removes default margin */
-  height: 100vh; /* Ensures it fills the full viewport height */
+.donation-request-background {
+  background-color: #dce9e4;
 }
 
 .donation-request-container {

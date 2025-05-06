@@ -1,4 +1,8 @@
 /* DashboardP.css */
+.req-dash-content-wrap{
+ background-color: #e0e8e5;
+}
+
 .page-container {
     display: flex;
     flex-direction: column;

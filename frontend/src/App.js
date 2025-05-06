@@ -26,6 +26,7 @@ import AboutUs from './Components/gihanComponent/donationComponent/aboutUs/about
 import Guidance from './Components/gihanComponent/donationComponent/guidance/guidance';
 import Support from './Components/gihanComponent/donationComponent/support/support';
 import Chat from './Components/gihanComponent/donationComponent/chat/chat';
+import ChatBotAI from './Components/gihanComponent/donationComponent/chatBotAI/chatBotAI';
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
@@ -56,6 +57,7 @@ import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
 import AboutUsHome from "./Components/daniruComponent/Home/AboutUs/AboutUs";
 import ContactUs from "./Components/daniruComponent/Home/ContactUs/ContactUs";
 import VerificationCode from "./Components/daniruComponent/VerificationCode/VerificationCode";
+
 
 // Malshi's components
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
@@ -144,6 +146,7 @@ const DonorLayout = () => (
         <Route path = "/guidance" element ={<Guidance/>}/>
         <Route path = "/support" element ={<Support/>}/>
         <Route path="/chat" element={<Chat />} />
+        <Route path="/chatbot" element={<ChatBotAI />} />
       </Routes>
     </div>
     <Footer />
@@ -174,7 +177,7 @@ const RequestsLayout = () => (
     <NavBarP/>
     <div className="main-content">
       <Routes>
-        <Route path="/" element={<ProfileP />} />
+        {/* <Route path="/" element={<ProfileP />} /> */}
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
         <Route path="/profile" element={<ProfileP />} />
@@ -267,8 +270,8 @@ function App() {
       <Route path="/ul/*" element={<UserLayout />} />
       <Route path="/dl/*" element={<DonorLayout />} />
       <Route path="/opl/*" element={<OperatingManagerLayout />} />
-      <Route path="/rl/*" element={<RequestsLayout />} />
-      <Route path="/vcl/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/h/*" element={<RequestsLayout />} />
+      <Route path="/de2/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/vpsl/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />

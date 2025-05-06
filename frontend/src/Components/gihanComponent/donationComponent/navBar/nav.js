@@ -12,44 +12,44 @@ const Nav = () => {
 
   const toggleSideNav = () => {
     setIsSideNavOpen(!isSideNavOpen);
-    document.body.classList.toggle("show-overlay", !isSideNavOpen);
+    document.body.classList.toggle("donor-nav-show-overlay", !isSideNavOpen);
   };
 
   return (
     <div>
-      {isSideNavOpen && <div className="overlay" onClick={toggleSideNav}></div>}
+      {isSideNavOpen && <div className="donor-nav-overlay" onClick={toggleSideNav}></div>}
 
-      <nav className="navbar">
-        <div className="side-nav">
-          <button className="hamburger-menu" onClick={toggleSideNav}>
+      <nav className="donor-nav-navbar">
+        <div className="donor-nav-side-nav">
+          <button className="donor-nav-hamburger-menu" onClick={toggleSideNav}>
             ☰
           </button>
           {isSideNavOpen && (
-            <div className="side-nav-content">
-              <button className="close-icon" onClick={toggleSideNav}>
+            <div className="donor-nav-side-nav-content">
+              <button className="donor-nav-close-icon" onClick={toggleSideNav}>
                 <img
                   src="/Resources/gihanRes/donationRes/cancel.png"
                   alt="Close"
                 />
               </button>
 
-              <div className="profile-container">
-                <div className="profile-photo-cover">
+              <div className="donor-nav-profile-container">
+                <div className="donor-nav-profile-photo-cover">
                   <img
                     src="/Resources/gihanRes/donationRes/dp.png"
                     alt="Profile"
-                    className="profile-photo"
+                    className="donor-nav-profile-photo"
                   />
                 </div>
-                <div className="profile-info">
-                  <p className="donor-name">Gihan</p>
-                  <p className="donor-email">gihan@example.com</p>
+                <div className="donor-nav-profile-info">
+                  <p className="donor-nav-donor-name">Gihan</p>
+                  <p className="donor-nav-donor-email">gihan@example.com</p>
                 </div>
               </div>
 
-              <div className="separator"></div>
+              <div className="donor-nav-separator"></div>
 
-              <ul className="side-nav-links">
+              <ul className="donor-nav-side-nav-links">
                 <li>
                   <Link to ="/dl/dashboard">Dashboard</Link>
                 </li>
@@ -65,8 +65,8 @@ const Nav = () => {
                 <li>
                   <Link to="/dl/support">Support</Link>
                 </li>
-                <li className="sign-out">
-                  <button className="sign-out-btn" onClick={() => setShowSignOutDialog(true)}>
+                <li className="donor-nav-sign-out">
+                  <button className="donor-nav-sign-out-btn" onClick={() => setShowSignOutDialog(true)}>
                     Sign Out
                   </button>
                 </li>
@@ -75,47 +75,46 @@ const Nav = () => {
           )}
         </div>
 
-        <div className="logo-container">
-          <Link to="/" className="logo-container">
+        <div className="donor-nav-logo-container">
+          <Link to="/dl/dashboard" className="donor-nav-logo-container">
             <img
               src="/Resources/gihanRes/donationRes/mainlogo.png"
               alt="Logo"
-              className="logo-img"
+              className="donor-nav-logo-img"
             />
-            <div className="logo-text">
-              <span className="top-text">හොද</span>
-              <span className="bottom-text">
-                හිත<span className="lk-text">.lk</span>
+            <div className="donor-nav-logo-text">
+              <span className="donor-nav-top-text">හොද</span>
+              <span className="donor-nav-bottom-text">
+                හිත<span className="donor-nav-lk-text">.lk</span>
               </span>
             </div>
           </Link>
         </div>
 
-        <div className="nav-links">
+        <div className="donor-nav-nav-links">
           <Link to="/dl/dashboard">Dashboard</Link>
           <Link to="/dl/donate">Donate Now</Link>
           <Link to="/dl/myDonate">My Donation</Link>
           <Link to="/dl/monitor">Analytics</Link>
         </div>
 
-        <div className="nav-search-container">
-  <input 
-    type="text" 
-    placeholder="Search" 
-    className="nav-search-input"
-  />
-  <button className="nav-search-button">
-    <img
-      src="/Resources/gihanRes/donationRes/search.png"
-      alt="Search"
-      className="nav-search-icon"
-    />
-  </button>
-</div>
+        <div className="donor-nav-nav-search-container">
+          <input 
+            type="text" 
+            placeholder="Search" 
+            className="donor-nav-nav-search-input"
+          />
+          <button className="donor-nav-nav-search-button">
+            <img
+              src="/Resources/gihanRes/donationRes/search.png"
+              alt="Search"
+              className="donor-nav-nav-search-icon"
+            />
+          </button>
+        </div>
 
-          
-        <div className="ai-chatbot">
-          <button className="chatbot-icon">
+        <div className="donor-nav-ai-chatbot">
+          <button className="donor-nav-chatbot-icon" onClick={() => navigate('/dll/chatbot')}>
             <img
               src="/Resources/gihanRes/donationRes/AIBot.png"
               alt="Chatbot"
@@ -123,8 +122,8 @@ const Nav = () => {
           </button>
         </div>
 
-        <div className="communicate">
-          <button className="messages-icon" onClick={() => navigate('/dl/chat')}>
+        <div className="donor-nav-communicate">
+          <button className="donor-nav-messages-icon" onClick={() => navigate('/dl/chat')}>
             <img
               src="/Resources/gihanRes/donationRes/message.png"
               alt="Messages"
@@ -132,8 +131,8 @@ const Nav = () => {
           </button>
         </div>
         
-        <div className="notifications">
-          <button className="notification-icon">
+        <div className="donor-nav-notifications">
+          <button className="donor-nav-notification-icon">
             <img
               src="/Resources/gihanRes/donationRes/notification.png"
               alt="Notifications"

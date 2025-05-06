@@ -10,6 +10,18 @@ import {
   FaPlus 
 } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function Dashboard() {
   const [approvedRequests, setApprovedRequests] = useState(0);
@@ -18,6 +30,7 @@ function Dashboard() {
   const [allRequests, setAllRequests] = useState(0);
   const [recentRequests, setRecentRequests] = useState([]);
   const [currentDate, setCurrentDate] = useState("");
+  const [quantityByDay, setQuantityByDay] = useState({ labels: [], data: [] });
 
   useEffect(() => {
     // Set current date
@@ -35,9 +48,9 @@ function Dashboard() {
         const requests = response.data.requests;
 
         // Calculate statistics
-        const approvedCount = requests.filter((req) => req.status === "approved").length;
+        const approvedCount = requests.filter((req) => req.status === "approved" || req.status === "completed").length;
         const pendingCount = requests.filter((req) => req.status === "pending").length;
-        const rejectedCount = requests.filter((req) => req.status === "rejected").length;
+        const rejectedCount = requests.filter((req) => req.status === "rejected" || req.status === "cancelled").length;
 
         setApprovedRequests(approvedCount);
         setPendingRequests(pendingCount);
@@ -51,7 +64,7 @@ function Dashboard() {
           .map(request => ({
             id: request._id,
             requestCode: request.requestCode || 'N/A',
-            status: request.status.charAt(0).toUpperCase() + request.status.slice(1),
+            status: (request.status === 'completed' ? 'Approved' : request.status.charAt(0).toUpperCase() + request.status.slice(1)),
             foodType: request.foodType || 'N/A',
             createdAt: new Date(request.createdAt).toLocaleDateString('en-US', {
               year: 'numeric',
@@ -63,6 +76,23 @@ function Dashboard() {
           }));
 
         setRecentRequests(recent);
+
+        // Calculate quantity by day for the graph
+        const dayMap = {};
+        requests.forEach(req => {
+          const day = new Date(req.createdAt).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+          if (!dayMap[day]) dayMap[day] = 0;
+          dayMap[day] += Number(req.quantity) || 0;
+        });
+        const sortedDays = Object.keys(dayMap).sort((a, b) => new Date(a) - new Date(b));
+        setQuantityByDay({
+          labels: sortedDays,
+          data: sortedDays.map(day => dayMap[day])
+        });
       } catch (error) {
         console.error("Error fetching requests:", error);
       }
@@ -72,7 +102,14 @@ function Dashboard() {
   }, []);
 
   return (
+    <div className="p-dashboard-page">
       <div className="req-dash-content-wrap">
+        <br/>
+        <br/> 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <div className="dashboard-container">
           <div className="dashboard-header">
             <h1 className="req-dash-h1">Welcome to Your Partnership Dashboard!</h1>
@@ -118,7 +155,6 @@ function Dashboard() {
                 </Link>
               </div>
             </div>
-            
             <div className="requests-table-container">
               <table className="requests-table">
                 <thead>
@@ -144,12 +180,41 @@ function Dashboard() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+          {/* Quantity by Day Bar Chart */}
+          <div className="quantity-bar-chart-section" style={{ maxWidth: '500px', margin: '0 auto' }}>
+            <h2>Requests Quantity by Day</h2>
+            <Bar
+              data={{
+                labels: quantityByDay.labels,
+                datasets: [
+                  {
+                    label: 'Total Quantity',
+                    data: quantityByDay.data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                  }
+                ]
+              }}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: { display: false },
+                  title: { display: false }
+                },
+                scales: {
+                  x: { title: { display: true, text: 'Date' } },
+                  y: { title: { display: true, text: 'Quantity' }, beginAtZero: true }
+                }
+              }}
+              height={180}
+            />
           </div>
         </div>
+        <br/>
+        <br/>
       </div>
-      <br/>
-      <br/>
-      <FooterP />
+      <FooterP/>
     </div>
   );
 }

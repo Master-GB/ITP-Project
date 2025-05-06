@@ -1,6 +1,10 @@
 
+body .monitor-background{
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff);
+}
+
 .donor-analytics-dashboard {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,7 +12,7 @@
   
   
   .milestones-section {
-    padding-top: 50px;
+    padding-top: 80px;
     margin-bottom: 3rem;
   }
   

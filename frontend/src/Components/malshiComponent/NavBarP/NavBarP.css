@@ -1,4 +1,4 @@
-.navbar {
+.req-nav-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,197 +12,14 @@
   z-index: 1000;   
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 1400;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-
-.overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.side-nav {
-  position: relative;
-  z-index: 1500;
-}
-
-.hamburger-menu {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.side-nav-content {
-  position: fixed;
-  top: 0;
-  left: -250px; /* Start off-screen */
-  width: 250px;
-  height: 100vh;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 0px 20px 0px 0px;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-  z-index: 1500;
-  transition: left 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Add this new class for when the side nav is open */
-.side-nav-content.open {
-  left: 0;
-}
-
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.profile-photo-cover {
-  margin-top: 40px;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white; 
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); 
-}
-
-.hamburger-menu {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.hamburger-menu:hover {
-  transform: scale(1.2);
-}
-
-.close-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.side-nav-links {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-}
-
-.side-nav-links li {
-  padding: 10px 20px;
-  transition: background 0.3s ease-in-out;
-  border-radius: 5px;
-}
-
-.side-nav-links li:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.profile-photo {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-}
-
-.profile-info {
-  text-align: center;
-  margin-top: 0; 
-  padding: 0; 
-}
-
-.request-name {
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-  margin: 0; 
-  padding: 2px; 
-  line-height: 1;
-}
-
-.request-email {
-  font-size: 12px;
-  color: #aaa;
-  margin: 0; 
-  padding: 2px; 
-  line-height: 1;
-}
-
-.separator {
-  width: 90%;
-  height: 3px;
-  background-color: #555;
-  margin: 15px 0;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.side-nav-links {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-}
-
-.side-nav-links li {
-  padding: 10px 20px;
-}
-
-.side-nav-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  display: block;
-  transition: color 0.3s ease-in-out;
-}
-
-.side-nav-links a:hover {
-  color: #2aaaef; 
-}
-
-.side-nav-links .sign-out a:hover {
-  color: red; 
-}
-
-.logo a {
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.logo-container {
+.req-nav-logo-container {
   display: flex;
   align-items: center;
   text-decoration: none;
   gap: 1px; 
 }
 
-.logo-text {
+.req-nav-logo-text {
   padding-left:0px;
   display: flex;
   text-decoration: none;
@@ -211,7 +28,7 @@
   margin-left: -25px; 
 }
 
-.top-text{
+.req-nav-top-text{
   font-size: 35px;
   font-weight: bold;
   color: rgb(246, 246, 246);
@@ -219,7 +36,7 @@
   padding-left:0px;
 }
 
-.bottom-text{
+.req-nav-bottom-text{
   font-size: 35px;
   font-weight: bold;
   color: rgb(255, 255, 255);
@@ -227,25 +44,25 @@
   text-decoration: none;
 }
 
-.lk-text {
+.req-nav-lk-text {
   font-size: 24px;
   font-weight: bold;
   color: rgb(255, 255, 255);
 }
 
-.logo-img {
+.req-nav-logo-img {
   width: 80px; 
   height: auto;
 }
 
-.nav-links {
+.req-nav-nav-links {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
 }
 
-.nav-links a {
+.req-nav-nav-links a {
   color: white;
   text-decoration: none;
   margin: 0 15px;
@@ -254,31 +71,11 @@
   transition: color 0.3s ease-in-out;
 }
 
-.nav-links a:hover {
+.req-nav-nav-links a:hover {
   color: #595d60;
 }
 
-.chatbot-icon img,
-.messages-icon img,
-.notification-icon img,
-.close-icon img,
-.search-icon img {
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
-
-.chatbot-icon img:hover,
-.messages-icon img:hover,
-.notification-icon img:hover,
-.nav-search-icon:hover {
-  transform: scale(1.2); 
-  filter: invert(0.7); 
-}
-
-.close-icon img:hover {
-  transform: rotate(90deg); 
-}
-
-.nav-search-container {
+.req-nav-nav-search-container {
   display: flex;
   align-items: center;
   background: white;
@@ -289,7 +86,7 @@
   margin-right: 20px;
 }
 
-.nav-search-input {
+.req-nav-nav-search-input {
   flex: 1;
   border: none;
   outline: none;
@@ -298,7 +95,7 @@
   background: transparent;
 }
 
-.nav-search-button {
+.req-nav-nav-search-button {
   background: none;
   border: none;
   padding: 0;
@@ -308,47 +105,64 @@
   justify-content: center;
 }
 
-.nav-search-icon {
+.req-nav-nav-search-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
 
-.ai-chatbot, .communicate, .notifications {
+.req-nav-feedback {
   margin-left: 20px;
 }
 
-.chatbot-icon, .messages-icon, .notification-icon, .close-icon,.search-icon {
+.req-nav-feedback-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.req-nav-notifications {
+  margin-left: 20px;
+}
+
+.req-nav-notification-icon {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
 }
 
-.messages-icon img,
-.notification-icon img{
+.req-nav-notification-icon img {
   width: 30px;
   height: 30px;
   cursor: pointer;
   filter: invert(1); 
-  margin-right: 50px;
 }
 
-.chatbot-icon img{
-  width: 50px;
-  height: 50px;
+.req-nav-signout {
+  margin-left: 100px;
+}
+
+.req-nav-signout-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  filter: invert(1); 
-  margin-left: 50px;
+  transition: background 0.2s;
+  margin-right: 20px;
 }
 
-.close-icon img{
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+.req-nav-signout-btn:hover {
+  background: #c0392b;
 }
 
-/* Ensure content doesn't get hidden behind the fixed navbar */
 body {
   padding-top: 80px;
 }

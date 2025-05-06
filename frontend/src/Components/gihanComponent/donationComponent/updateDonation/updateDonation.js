@@ -14,7 +14,6 @@ export default function UpdateDonation() {
     foodCategory: "",
     foodItem: "",
     storageCondition: "",
-
     expiryDate: "",
     quantity: "",
     quantityUnit: "",
@@ -60,7 +59,6 @@ export default function UpdateDonation() {
           foodCategory: donation.foodCategory ?? prevInputs.foodCategory,
           foodItem: donation.foodItem ?? prevInputs.foodItem,
           storageCondition: donation.storageCondition ?? prevInputs.storageCondition,
-
           expiryDate: donation.expiryDate ? donation.expiryDate.split("T")[0] : prevInputs.expiryDate,
           quantity: donation.quantity ?? prevInputs.quantity,
           quantityUnit: donation.quantityUnit ?? prevInputs.quantityUnit,
@@ -109,7 +107,6 @@ export default function UpdateDonation() {
       newErrors.storageCondition = "Storage condition is required";
     }
 
-
     if (!inputs.expiryDate) {
       newErrors.expiryDate = "Expiry date is required";
     } else if (new Date(inputs.expiryDate) <=new Date()) {
@@ -133,9 +130,6 @@ export default function UpdateDonation() {
       newErrors.quantity = "Please enter a  kg or unit between (0-9)";
     }
 
-
-    
-
     if (!inputs.quantityUnit) {
       newErrors.quantityUnit = "Quantity unit/Kg is required";
     }
@@ -145,7 +139,7 @@ export default function UpdateDonation() {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
@@ -160,7 +154,6 @@ export default function UpdateDonation() {
     formData.append("foodCategory", inputs.foodCategory);
     formData.append("foodItem", inputs.foodItem);
     formData.append("storageCondition", inputs.storageCondition);
-  
     formData.append("expiryDate", inputs.expiryDate);
     formData.append("quantity", inputs.quantity);
     formData.append("quantityUnit", inputs.quantityUnit);
@@ -171,11 +164,6 @@ export default function UpdateDonation() {
       formData.append("imageOfFoods", inputs.imageOfFoods);
     }
     
-  
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-  
     try {
       await axios.put(`http://localhost:8090/donations/update/${id}`, formData, {
         headers: {
@@ -186,7 +174,7 @@ export default function UpdateDonation() {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        navigate("/myDonate");
+        navigate("/dl/myDonate");
       }, 2500);
     } catch (error) {
       alert("Error: " + error.message);
@@ -211,7 +199,7 @@ export default function UpdateDonation() {
       {showSuccess && (
         <div className="success-toast">Donation updated successfully!</div>
       )}
-      <main className="main-content" id="update-back" style={{ 
+      <main className="donor-donate-main-content" id="donor-donate-update-back" style={{ 
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('/Resources/gihanRes/donationRes/donatebg2.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -219,12 +207,12 @@ export default function UpdateDonation() {
         minHeight: "100vh", 
         width: "100%"
       }}>
-        <div className="donate-container">
+        <div className="donor-donate-donate-container">
           <h1>Update Donation</h1>
           <p>Update the details below to modify your food donation</p>
           <form onSubmit={handleSubmit}>
-            <div className="food-details-group">
-              <div className="food-category-group">
+            <div className="donor-donate-food-details-group">
+              <div className="donor-donate-food-category-group">
                 <label htmlFor="foodCategory">Food Category:</label>
                 <select
                   name="foodCategory"
@@ -241,12 +229,12 @@ export default function UpdateDonation() {
                   ))}
                 </select>
                 {errors.foodCategory && (
-                  <span className="error">{errors.foodCategory}</span>
+                  <span className="donor-donate-error">{errors.foodCategory}</span>
                 )}
               </div>
             {foodCategoryMap[inputs.foodCategory] &&
               foodCategoryMap[inputs.foodCategory].length > 0 && (
-                <div className="food-item-group">
+                <div className="donor-donate-food-item-group">
                   <label htmlFor="foodItem">Food Item:</label>
                   <select
                     name="foodItem"
@@ -263,19 +251,19 @@ export default function UpdateDonation() {
                     ))}
                   </select>
                   {errors.foodItem && (
-                    <span className="error">{errors.foodItem}</span>
+                    <span className="donor-donate-error">{errors.foodItem}</span>
                   )}
                 </div>
               )}
           </div>
 
-          <div className="storage-date-section">
-            <div className="storage-condition-group">
-              <label htmlFor="storageCondition" className="storage-date-label">
+          <div className="donor-donate-storage-date-section">
+            <div className="donor-donate-storage-condition-group">
+              <label htmlFor="storageCondition" className="donor-donate-storage-date-label">
                 Storage Condition:
               </label>
-              <div className="storage-condition-options">
-                <label className="storage-lable">
+              <div className="donor-donate-storage-condition-options">
+                <label className="donor-donate-storage-lable">
                   <input
                     type="radio"
                     name="storageCondition"
@@ -285,7 +273,7 @@ export default function UpdateDonation() {
                   />{" "}
                   Refrigerated
                 </label>
-                <label className="storage-lable">
+                <label className="donor-donate-storage-lable">
                   <input
                     type="radio"
                     name="storageCondition"
@@ -297,11 +285,11 @@ export default function UpdateDonation() {
                 </label>
               </div>
               {errors.storageCondition && (
-                <span className="error">{errors.storageCondition}</span>
+                <span className="donor-donate-error">{errors.storageCondition}</span>
               )}
             </div>
-            <div className="date-fields" style={{ display: 'flex', gap: '16px' }}>
-              <div className="expiration-date-group" style={{ flex: 1 }}>
+            <div className="donor-donate-date-fields" style={{ display: 'flex', gap: '16px' }}>
+              <div className="donor-donate-expiration-date-group" style={{ flex: 1 }}>
                 <label htmlFor="expiryDate">Expiration Date:</label>
                 <input
                   type="date"
@@ -312,10 +300,10 @@ export default function UpdateDonation() {
                   required
                 />
                 {errors.expiryDate && (
-                  <span className="error">{errors.expiryDate}</span>
+                  <span className="donor-donate-error">{errors.expiryDate}</span>
                 )}
               </div>
-              <div className="collection-address-section" style={{ flex: 1 }}>
+              <div className="donor-donate-collection-address-section" style={{ flex: 1 }}>
                 <label htmlFor="collectionAddress">Collection Address:</label>
                 <input
                   type="text"
@@ -327,28 +315,28 @@ export default function UpdateDonation() {
                   required
                 />
                 {errors.collectionAddress && (
-                  <span className="error">{errors.collectionAddress}</span>
+                  <span className="donor-donate-error">{errors.collectionAddress}</span>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="quantity-address-section">
-            <div className="quantity-section">
+          <div className="donor-donate-quantity-address-section">
+            <div className="donor-donate-quantity-section">
               <label htmlFor="quantity">Quantity:</label>
-              <div className="quantity-input-group">
+              <div className="donor-donate-quantity-input-group">
                 <input
                   type="text"
                   placeholder="Enter quantity"
-                  className="quantity-input"
+                  className="donor-donate-quantity-input"
                   id="quantity"
                   name="quantity"
                   value={inputs.quantity}
                   onChange={handleChange}
                   required
                 />
-                <div className="quantity-radio-group">
-                  <label className="quan-lable">
+                <div className="donor-donate-quantity-radio-group">
+                  <label className="donor-donate-quan-lable">
                     <input
                       type="radio"
                       name="quantityUnit"
@@ -358,7 +346,7 @@ export default function UpdateDonation() {
                     />{" "}
                     kg
                   </label>
-                  <label className="quan-lable">
+                  <label className="donor-donate-quan-lable">
                     <input
                       type="radio"
                       name="quantityUnit"
@@ -371,14 +359,14 @@ export default function UpdateDonation() {
                 </div>
               </div>
               {errors.quantity && (
-                <span className="error">{errors.quantity}</span>
+                <span className="donor-donate-error">{errors.quantity}</span>
               )}
               {errors.quantityUnit && (
-                <span className="error">{errors.quantityUnit}</span>
+                <span className="donor-donate-error">{errors.quantityUnit}</span>
               )}
             </div>
 
-            <div className="collection-address-section">
+            <div className="donor-donate-collection-address-section">
               <label htmlFor="collectionAddress">Collection Address:</label>
               <input
                 type="text"
@@ -390,16 +378,16 @@ export default function UpdateDonation() {
                 required
               />
               {errors.collectionAddress && (
-                <span className="error">{errors.collectionAddress}</span>
+                <span className="donor-donate-error">{errors.collectionAddress}</span>
               )}
             </div>
           </div>
 
-          <div className="food-images-section">
+          <div className="donor-donate-food-images-section">
             <label>Food Images:</label>
             <div
-              className={`file-input-container ${
-                isDragOver ? "drag-over" : ""
+              className={`donor-donate-file-input-container ${
+                isDragOver ? "donor-donate-drag-over" : ""
               }`}
               onDragOver={(e) => {
                 e.preventDefault();
@@ -421,7 +409,7 @@ export default function UpdateDonation() {
               }}
             >
               {inputs.imageOfFoods ? (
-                <div className="uploaded-image-preview">
+                <div className="donor-donate-uploaded-image-preview">
                   <img
                     src={
                       typeof inputs.imageOfFoods === "string"
@@ -433,7 +421,7 @@ export default function UpdateDonation() {
                 </div>
               ) : (
                 <>
-                  <div className="upload-icon">
+                  <div className="donor-donate-upload-icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -448,16 +436,16 @@ export default function UpdateDonation() {
                       <line x1="12" y1="3" x2="12" y2="15" />
                     </svg>
                   </div>
-                  <div className="drag-drop-text">
+                  <div className="donor-donate-drag-drop-text">
                     Drag and Drop an image here or
                   </div>
-                  <div className="browse-files-text">
-                    <label htmlFor="file-upload">Browse image</label>
+                  <div className="donor-donate-browse-files-text">
+                    <label htmlFor="donor-donate-file-upload">Browse image</label>
                   </div>
                 </>
               )}
               <input
-                id="file-upload"
+                id="donor-donate-file-upload"
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
@@ -465,11 +453,11 @@ export default function UpdateDonation() {
               />
             </div>
             {errors.imageOfFoods && (
-              <span className="error">{errors.imageOfFoods}</span>
+              <span className="donor-donate-error">{errors.imageOfFoods}</span>
             )}
           </div>
 
-          <div className="additional-notes-section">
+          <div className="donor-donate-additional-notes-section">
             <label htmlFor="notes">Additional Notes:</label>
             <textarea
               name="notes"
@@ -480,7 +468,7 @@ export default function UpdateDonation() {
             />
           </div>
 
-          <div className="checkbox-section">
+          <div className="donor-donate-checkbox-section">
             <label htmlFor="agreement">
               <input
                 type="checkbox"
@@ -491,7 +479,7 @@ export default function UpdateDonation() {
             </label>
           </div>
 
-          <button type="submit" className="submit-b">
+          <button type="submit" className="donor-donate-submit-b">
             Update Donation
           </button>
         </form>
