@@ -12,8 +12,7 @@ import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackFor
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
 import AdminDashboard from './Components/imalshaComponent/AdminDashboard/AdminDashboard';
-import Chatbot from './Components/imalshaComponent/Chatbot/Chatbot';
-import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks'
+import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 
 
 // Gihan's components
@@ -106,6 +105,7 @@ const AdminLayout = () => (
         <Route path="/userdetails/:id" element={<UpdateUser />} />
         <Route path='/feedback/:id' element={<FeedbackDetails />} />
         <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
+        
       </Routes>
     </div>
   </div>
@@ -254,6 +254,8 @@ const HomeLayout = () => (
         <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/packinginstructions" element={<PackingInstructions />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/adduser" element={<AddUser />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -262,16 +264,16 @@ const HomeLayout = () => (
 function App() {
   return (
     <Routes>
-      <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/*" element={<DonorLayout />} />
-      <Route path="/j/*" element={<OperatingManagerLayout />} />
-      <Route path="/requests/*" element={<RequestsLayout />} />
-      <Route path="/l/*" element={<VolunteerCoordinatorLayout />} />
-      <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
-      <Route path="/volunteer-packing/*" element={<VolunteerPackingStaffLayout />} />
-      <Route path="/*kk/" element={<AdminLayout />} />
-      <Route path="/k/*" element={<MapLayout/>} />
-      <Route path="/home/*" element={<HomeLayout/>} />
+      <Route path="/ul/*" element={<UserLayout />} />
+      <Route path="/dl/*" element={<DonorLayout />} />
+      <Route path="/opl/*" element={<OperatingManagerLayout />} />
+      <Route path="/rl/*" element={<RequestsLayout />} />
+      <Route path="/vcl/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
+      <Route path="/vpsl/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/al/*" element={<AdminLayout />} />
+      <Route path="/jj*/" element={<MapLayout/>} />
+      <Route path="/*" element={<HomeLayout/>} />
     </Routes>
   );
 }

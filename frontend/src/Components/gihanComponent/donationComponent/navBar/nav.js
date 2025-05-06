@@ -51,19 +51,19 @@ const Nav = () => {
 
               <ul className="side-nav-links">
                 <li>
-                  <Link to ="/dashboard">Dashboard</Link>
+                  <Link to ="/dl/dashboard">Dashboard</Link>
                 </li>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/dl/profile">Profile</Link>
                 </li>
                 <li>
-                  <Link to="/about-us">About Us</Link>
+                  <Link to="/dl/about-us">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/guidance">guidelines</Link>
+                  <Link to="/dl/guidance">guidelines</Link>
                 </li>
                 <li>
-                  <Link to="/support">Support</Link>
+                  <Link to="/dl/support">Support</Link>
                 </li>
                 <li className="sign-out">
                   <button className="sign-out-btn" onClick={() => setShowSignOutDialog(true)}>
@@ -92,10 +92,10 @@ const Nav = () => {
         </div>
 
         <div className="nav-links">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/donate">Donate Now</Link>
-          <Link to="/myDonate">My Donation</Link>
-          <Link to="/monitor">Analytics</Link>
+          <Link to="/dl/dashboard">Dashboard</Link>
+          <Link to="/dl/donate">Donate Now</Link>
+          <Link to="/dl/myDonate">My Donation</Link>
+          <Link to="/dl/monitor">Analytics</Link>
         </div>
 
         <div className="nav-search-container">
@@ -124,7 +124,7 @@ const Nav = () => {
         </div>
 
         <div className="communicate">
-          <button className="messages-icon" onClick={() => navigate('/chat')}>
+          <button className="messages-icon" onClick={() => navigate('/dl/chat')}>
             <img
               src="/Resources/gihanRes/donationRes/message.png"
               alt="Messages"

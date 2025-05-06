@@ -27,11 +27,11 @@ function StandardNav() {
       </div>
       <div className="task-nav-menu-scroll">
         <div className="task-nav-menu">
-          <Link to="/dashboard" className="task-nav-item">
+          <Link to="/vcl/dashboard" className="task-nav-item">
             <FaHome className="task-nav-icon" />
             <span>Dashboard</span>
           </Link>
-          <Link to="/volunteers" className="task-nav-item">
+          <Link to="/vcl/volunteers" className="task-nav-item">
             <FaUsers className="task-nav-icon" />
             <span>Volunteers</span>
           </Link>
@@ -43,22 +43,22 @@ function StandardNav() {
             </div>
             {isTaskOpen && (
               <div className="task-dropdown-menu">
-                <Link to="/createtask" className="task-dropdown-item">
+                <Link to="/vcl/createtask" className="task-dropdown-item">
                   <FaPlus className="task-nav-icon" />
                   <span>Create Task</span>
                 </Link>
-                <Link to="/viewtasks" className="task-dropdown-item">
+                <Link to="/vcl/viewtasks" className="task-dropdown-item">
                   <FaList className="task-nav-icon" />
                   <span>View Tasks</span>
                 </Link>
               </div>
             )}
           </div>
-          <Link to="/tracking" className="task-nav-item">
+          <Link to="/vcl/tracking" className="task-nav-item">
             <FaMapMarkedAlt className="task-nav-icon" />
             <span>Tracking</span>
           </Link>
-          <Link to="/reports" className="task-nav-item">
+          <Link to="/vcl/reports" className="task-nav-item">
             <FaChartLine className="task-nav-icon" />
             <span>Reports</span>
           </Link>

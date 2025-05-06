@@ -70,9 +70,9 @@ const Nav = () => {
         </div>
 
         <div className="nav-links">
-          <Link to="/volunteerdstaffdashboard">Dashboard</Link>
-          <Link to="/volunteerTask">My Tasks</Link>
-          <Link to="/route">Route</Link>
+          <Link to="/vdsl/volunteerdstaffdashboard">Dashboard</Link>
+          <Link to="/vdsl/volunteerTask">My Tasks</Link>
+          <Link to="/vdsl/route">Route</Link>
         </div>
 
         <div className="nav-search-container">
