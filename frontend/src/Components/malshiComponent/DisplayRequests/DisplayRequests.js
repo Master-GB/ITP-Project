@@ -20,6 +20,7 @@ function DisplayRequests(props) {
       case 'pending':
         return 'status-pending';
       case 'approved':
+      case 'completed':
         return 'status-approved';
       case 'rejected':
         return 'status-rejected';
@@ -73,7 +74,7 @@ function DisplayRequests(props) {
               <td className="food-display-label">Status:</td>
               <td className="food-display-value">
                 <span className={`status-badge ${getStatusClass(status)}`}>
-                  {status || 'Pending'}
+                  {status?.toLowerCase() === 'completed' ? 'Approved' : (status || 'Pending')}
                 </span>
               </td>
             </tr>

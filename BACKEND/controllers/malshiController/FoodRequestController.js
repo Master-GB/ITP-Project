@@ -27,10 +27,11 @@ const addRequests = async (req, res, next) => {
     const {location, contactNumber, foodType, quantity, additionalNotes} = req.body;
 
     // Generate request code
-    const currentYear = new Date().getFullYear();
-    const timestamp = Date.now().toString().slice(-4);
-    const randomNum = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-    const requestCode = `REQ-${currentYear}-${randomNum}`;
+    const now = new Date();
+    const year = now.getFullYear().toString().slice(-2); // last 2 digits
+    const monthLetter = now.toLocaleString('default', { month: 'long' })[0].toUpperCase();
+    const uniqueNum = Math.floor(Math.random() * 90 + 10); // 2 digit random number
+    const requestCode = `REQ-${year}${monthLetter}-${uniqueNum}`;
 
     let requests;
 

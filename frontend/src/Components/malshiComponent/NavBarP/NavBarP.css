@@ -12,176 +12,6 @@
   z-index: 1000;   
 }
 
-.req-nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 1400;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  pointer-events: none;
-}
-
-.req-nav-overlay.req-nav-show {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.req-nav-side-nav {
-  position: relative;
-  z-index: 1500;
-}
-
-.req-nav-hamburger-menu {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.req-nav-hamburger-menu:hover {
-  transform: scale(1.2);
-}
-
-.req-nav-side-nav-content {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 250px;
-  height: 100vh;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 0px 20px 0px 0px;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-  z-index: 1500;
-  transition: left 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.req-nav-side-nav-content.req-nav-open {
-  left: 0;
-}
-
-.req-nav-profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.req-nav-profile-photo-cover {
-  margin-top: 40px;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white; 
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); 
-}
-
-.req-nav-close-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1600;
-}
-
-.req-nav-close-icon img {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.req-nav-close-icon img:hover {
-  transform: rotate(90deg);
-}
-
-.req-nav-side-nav-links {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-}
-
-.req-nav-side-nav-links li {
-  padding: 10px 20px;
-  transition: background 0.3s ease-in-out;
-  border-radius: 5px;
-}
-
-.req-nav-side-nav-links li:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.req-nav-profile-photo {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-}
-
-.req-nav-profile-info {
-  text-align: center;
-  margin-top: 0; 
-  padding: 0; 
-}
-
-.req-nav-request-name {
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-  margin: 0; 
-  padding: 2px; 
-  line-height: 1;
-}
-
-.req-nav-request-email {
-  font-size: 12px;
-  color: #aaa;
-  margin: 0; 
-  padding: 2px; 
-  line-height: 1;
-}
-
-.req-nav-separator {
-  width: 90%;
-  height: 3px;
-  background-color: #555;
-  margin: 15px 0;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.req-nav-side-nav-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  display: block;
-  transition: color 0.3s ease-in-out;
-}
-
-.req-nav-side-nav-links a:hover {
-  color: #2aaaef; 
-}
-
-.req-nav-side-nav-links .req-nav-sign-out a:hover {
-  color: red; 
-}
-
 .req-nav-logo-container {
   display: flex;
   align-items: center;
@@ -245,26 +75,6 @@
   color: #595d60;
 }
 
-.req-nav-chatbot-icon img,
-.req-nav-messages-icon img,
-.req-nav-notification-icon img,
-.req-nav-close-icon img,
-.req-nav-search-icon img {
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
-
-.req-nav-chatbot-icon img:hover,
-.req-nav-messages-icon img:hover,
-.req-nav-notification-icon img:hover,
-.req-nav-nav-search-icon:hover {
-  transform: scale(1.2); 
-  filter: invert(0.7); 
-}
-
-.req-nav-close-icon img:hover {
-  transform: rotate(90deg); 
-}
-
 .req-nav-nav-search-container {
   display: flex;
   align-items: center;
@@ -301,41 +111,58 @@
   object-fit: contain;
 }
 
-.req-nav-ai-chatbot, .req-nav-communicate, .req-nav-notifications {
+.req-nav-feedback {
   margin-left: 20px;
 }
 
-.req-nav-chatbot-icon, .req-nav-messages-icon, .req-nav-notification-icon, .req-nav-close-icon,.req-nav-search-icon {
+.req-nav-feedback-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.req-nav-notifications {
+  margin-left: 20px;
+}
+
+.req-nav-notification-icon {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
 }
 
-.req-nav-messages-icon img,
-.req-nav-notification-icon img{
+.req-nav-notification-icon img {
   width: 30px;
   height: 30px;
   cursor: pointer;
   filter: invert(1); 
-  margin-right: 50px;
 }
 
-.req-nav-chatbot-icon img{
-  width: 50px;
-  height: 50px;
+.req-nav-signout {
+  margin-left: 100px;
+}
+
+.req-nav-signout-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  filter: invert(1); 
-  margin-left: 50px;
+  transition: background 0.2s;
+  margin-right: 20px;
 }
 
-.req-nav-close-icon img{
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+.req-nav-signout-btn:hover {
+  background: #c0392b;
 }
 
-/* Ensure content doesn't get hidden behind the fixed navbar */
 body {
   padding-top: 80px;
 }
