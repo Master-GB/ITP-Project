@@ -87,3 +87,6 @@ app.post("/login",async(req,res)=>{
     }
 
 });
+
+const taskRoutes = require('./routes/daniruRoute/TaskRoutes');
+app.use('/api/tasks', taskRoutes);

@@ -79,7 +79,6 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
         ? ((onTimeCompleted / completedTasks) * 100).toFixed(1) 
         : "0.0";
 
-      // Only call onStatsCalculated if it exists and the stats have changed
       if (onStatsCalculated) {
         onStatsCalculated({
           completionRate,
@@ -87,7 +86,7 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
         });
       }
     }
-  }, [tasks]); // Remove onStatsCalculated from dependency array
+  }, [tasks]);
 
   const handleStatusChange = async (taskId, newStatus, successMsg) => {
     const confirmMsg =
@@ -153,26 +152,26 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
   });
 
   return (
-    <div className="volunteer-tasks-container fade-in">
-      <section className="search-filter-section">
-        <div className="search-container">
-          <FaSearch className="search-icon" />
+    <div className="volunteertaskdisplay-container volunteertaskdisplay-fade-in">
+      <section className="volunteertaskdisplay-search-filter-section">
+        <div className="volunteertaskdisplay-search-container">
+          <FaSearch className="volunteertaskdisplay-search-icon" />
           <input
             type="text"
             placeholder="Search tasks by name or description..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
+            className="volunteertaskdisplay-search-input"
           />
         </div>
         
-        <div className="filter-container">
-          <div className="filter-group">
-            <FaFilter className="filter-icon" />
+        <div className="volunteertaskdisplay-filter-container">
+          <div className="volunteertaskdisplay-filter-group">
+            <FaFilter className="volunteertaskdisplay-filter-icon" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="filter-select"
+              className="volunteertaskdisplay-filter-select"
             >
               <option value="">All Status</option>
               <option value="Pending">⏳ Pending</option>
@@ -181,12 +180,12 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
               <option value="Rejected">❌ Rejected</option>
             </select>
           </div>
-          <div className="filter-group">
-            <FaInfoCircle className="filter-icon" />
+          <div className="volunteertaskdisplay-filter-group">
+            <FaInfoCircle className="volunteertaskdisplay-filter-icon" />
             <select
               value={priorityFilter}
               onChange={(e) => setPriorityFilter(e.target.value)}
-              className="filter-select"
+              className="volunteertaskdisplay-filter-select"
             >
               <option value="">All Priority</option>
               <option value="High">🔴 High</option>
@@ -198,68 +197,68 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
       </section>
 
       {successMessage && (
-        <div className="success-message">
-          <FaCheckCircle className="success-icon" />
+        <div className="volunteertaskdisplay-success-message">
+          <FaCheckCircle className="volunteertaskdisplay-success-icon" />
           <span>{successMessage}</span>
         </div>
       )}
       
       {loading && (
-        <div className="loading-container">
-          <FaSpinner className="spinner" />
+        <div className="volunteertaskdisplay-loading-container">
+          <FaSpinner className="volunteertaskdisplay-spinner" />
           <p>Loading your tasks...</p>
         </div>
       )}
       
       {error && (
-        <div className="error-message">
-          <FaExclamationTriangle className="error-icon" />
+        <div className="volunteertaskdisplay-error-message">
+          <FaExclamationTriangle className="volunteertaskdisplay-error-icon" />
           <span>{error}</span>
         </div>
       )}
 
       {!loading && !error && filteredTasks.length > 0 ? (
-        <div className="task-cards-container">
+        <div className="volunteertaskdisplay-task-cards-container">
           {filteredTasks.map((task) => (
-            <div key={task._id} className="task-card">
-              <div className="task-header">
-                <div className="task-title-wrapper">
-                  <h3 className="task-name">{task.taskName}</h3>
-                  <span className={`priority-badge ${task.priority?.toLowerCase() || 'low'}`}>
+            <div key={task._id} className="volunteertaskdisplay-task-card">
+              <div className="volunteertaskdisplay-task-header">
+                <div className="volunteertaskdisplay-task-title-wrapper">
+                  <h3 className="volunteertaskdisplay-task-name">{task.taskName}</h3>
+                  <span className={`volunteertaskdisplay-priority-badge ${task.priority?.toLowerCase() || 'low'}`}>
                     {task.priority || 'Low'} Priority
                   </span>
                 </div>
-                <span className={`status-badge ${task.status.toLowerCase()}`}>
+                <span className={`volunteertaskdisplay-status-badge ${task.status.toLowerCase()}`}>
                   {task.status}
                 </span>
               </div>
               
-              <div className="task-content">
-                <p className="task-description">
+              <div className="volunteertaskdisplay-task-content">
+                <p className="volunteertaskdisplay-task-description">
                   {task.taskDescription}
                 </p>
                 
-                <div className="task-details">
-                  <div className="detail-item">
-                    <FaMapMarkerAlt className="detail-icon" />
+                <div className="volunteertaskdisplay-task-details">
+                  <div className="volunteertaskdisplay-detail-item">
+                    <FaMapMarkerAlt className="volunteertaskdisplay-detail-icon" />
                     <span>{task.location}</span>
                   </div>
-                  <div className="detail-item">
-                    <FaCalendarAlt className="detail-icon" />
+                  <div className="volunteertaskdisplay-detail-item">
+                    <FaCalendarAlt className="volunteertaskdisplay-detail-icon" />
                     <span>Start: {new Date(task.startDateTime).toLocaleString()}</span>
                   </div>
-                  <div className="detail-item">
-                    <FaClock className="detail-icon" />
+                  <div className="volunteertaskdisplay-detail-item">
+                    <FaClock className="volunteertaskdisplay-detail-icon" />
                     <span>End: {new Date(task.endDateTime).toLocaleString()}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="task-actions">
+              <div className="volunteertaskdisplay-task-actions">
                 {task.status === "Pending" && (
                   <>
                     <button
-                      className="accept-btn"
+                      className="volunteertaskdisplay-accept-btn"
                       onClick={() =>
                         handleStatusChange(
                           task._id,
@@ -268,21 +267,21 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
                         )
                       }
                     >
-                      <FaThumbsUp className="action-icon" />
+                      <FaThumbsUp className="volunteertaskdisplay-action-icon" />
                       Accept
                     </button>
                     <button
-                      className="reject-btn"
+                      className="volunteertaskdisplay-reject-btn"
                       onClick={() => handleRejectTask(task._id)}
                     >
-                      <FaThumbsDown className="action-icon" />
+                      <FaThumbsDown className="volunteertaskdisplay-action-icon" />
                       Reject
                     </button>
                   </>
                 )}
                 {task.status === "Ongoing" && (
                   <button
-                    className="complete-btn"
+                    className="volunteertaskdisplay-complete-btn"
                     onClick={() =>
                       handleStatusChange(
                         task._id,
@@ -291,19 +290,19 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
                       )
                     }
                   >
-                    <FaCheck className="action-icon" />
+                    <FaCheck className="volunteertaskdisplay-action-icon" />
                     Complete
                   </button>
                 )}
                 {task.status === "Completed" && (
-                  <button className="completed-btn" disabled>
-                    <FaCheck className="action-icon" />
+                  <button className="volunteertaskdisplay-completed-btn" disabled>
+                    <FaCheck className="volunteertaskdisplay-action-icon" />
                     Completed
                   </button>
                 )}
                 {task.status === "Rejected" && (
-                  <button className="rejected-btn" disabled>
-                    <FaTimes className="action-icon" />
+                  <button className="volunteertaskdisplay-rejected-btn" disabled>
+                    <FaTimes className="volunteertaskdisplay-action-icon" />
                     Rejected
                   </button>
                 )}
@@ -313,9 +312,9 @@ function VolunteerTaskDisplay({ onStatsCalculated }) {
         </div>
       ) : (
         !loading && (
-          <div className="no-tasks-container">
-            <FaTasks className="no-tasks-icon" />
-            <p className="no-tasks">No tasks match your search/filter criteria</p>
+          <div className="volunteertaskdisplay-no-tasks-container">
+            <FaTasks className="volunteertaskdisplay-no-tasks-icon" />
+            <p className="volunteertaskdisplay-no-tasks">No tasks match your search/filter criteria</p>
           </div>
         )
       )}

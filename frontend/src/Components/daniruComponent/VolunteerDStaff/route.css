@@ -3,37 +3,31 @@
 
 /* Fix for navbar overlap */
 body {
-  padding-top: 80px; /* Match this with navbar height */
-}
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  height: 80px; /* Match this with body padding-top */
-}
-
-/* Adjust map container spacing */
-.map-container {
-  padding-top: 20px; /* Reduced from original since body has padding */
-  margin-top: 0; /* Remove any existing margin-top */
-}
-
-/* Ensure content starts below navbar */
-.main-content {
-  margin-top: 80px; /* Match navbar height */
-}
-
-/* Keep all your existing CSS below this point */
-.map-container {
-    padding: 20px;
+    padding-top: 80px; /* Match this with navbar height */
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 80px; /* Match this with body padding-top */
+  }
+  
+  /* Ensure content starts below navbar */
+  .map-container {
+    margin-top: 0;
+    padding-top: 20px; /* Space below navbar */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     text-align: center;
     background: #f9f9f9;
     min-height: 100vh;
   }
   
+  /* Keep all your existing CSS below this point */
   .map-title {
     color: #1a73e8;
     margin-bottom: 20px;

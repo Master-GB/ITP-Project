@@ -1,20 +1,19 @@
 /* General styles */
-body.volunteer-delivery-staff-dashboard {
+body.volunteerdstaffdashboard-body {
   font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   margin: 0;
   padding: 0;
 }
 
-/* Container */
-.container.volunteer-delivery-staff-dashboard {
+/* Volunteer Dashboard Specific Styles */
+.volunteerdstaffdashboard-container {
   padding: 32px 24px 24px 24px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Dashboard Title */
-.dashboard-title {
+.volunteerdstaffdashboard-title {
   font-size: 2.3rem;
   color: #2c3e50;
   margin-bottom: 28px;
@@ -24,7 +23,7 @@ body.volunteer-delivery-staff-dashboard {
   position: relative;
 }
 
-.dashboard-title::after {
+.volunteerdstaffdashboard-title::after {
   content: '';
   display: block;
   width: 60px;
@@ -34,16 +33,14 @@ body.volunteer-delivery-staff-dashboard {
   margin: 14px auto 0 auto;
 }
 
-/* Stats Section */
-.stats {
+.volunteerdstaffdashboard-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 28px;
   margin-bottom: 40px;
 }
 
-/* Stat Cards */
-.card {
+.volunteerdstaffdashboard-card {
   background: rgba(255,255,255,0.85);
   padding: 32px 20px 24px 20px;
   border-radius: 22px;
@@ -59,12 +56,12 @@ body.volunteer-delivery-staff-dashboard {
   gap: 8px;
 }
 
-.card:hover {
+.volunteerdstaffdashboard-card:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 16px 40px rgba(44, 62, 80, 0.15);
 }
 
-.card p {
+.volunteerdstaffdashboard-card p {
   color: #7f8c8d;
   margin: 0;
   font-size: 1.05rem;
@@ -72,7 +69,7 @@ body.volunteer-delivery-staff-dashboard {
   letter-spacing: 0.5px;
 }
 
-.card h3 {
+.volunteerdstaffdashboard-card h3 {
   color: #2c3e50;
   font-size: 2.2rem;
   margin: 10px 0 0 0;
@@ -80,15 +77,14 @@ body.volunteer-delivery-staff-dashboard {
   letter-spacing: 1px;
 }
 
-.green {
+.volunteerdstaffdashboard-green {
   color: #1abc9c;
   font-size: 1rem;
   font-weight: 700;
   margin-top: 6px;
 }
 
-/* Task Section */
-.section-title {
+.volunteerdstaffdashboard-section-title {
   font-size: 1.6rem;
   color: #2c3e50;
   margin: 36px 0 20px;
@@ -98,7 +94,7 @@ body.volunteer-delivery-staff-dashboard {
   position: relative;
 }
 
-.section-title::after {
+.volunteerdstaffdashboard-section-title::after {
   content: '';
   display: block;
   width: 48px;
@@ -108,51 +104,70 @@ body.volunteer-delivery-staff-dashboard {
   margin: 12px auto 0 auto;
 }
 
-/* Task Cards */
-.tasks {
-  display: grid;
-  gap: 24px;
+.volunteerdstaffdashboard-main-content {
+  margin-top: 110px;
 }
 
-.task {
-  background: rgba(255,255,255,0.85);
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+.volunteerdstaffdashboard-fade-in {
+  animation: volunteerdstaffdashboard-fadeIn 0.8s cubic-bezier(.4,2,.3,1);
 }
 
-.task-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+@keyframes volunteerdstaffdashboard-fadeIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: none; }
 }
 
-.task-header h4 {
+.volunteerdstaffdashboard-animated-icon {
+  animation: volunteerdstaffdashboard-iconPop 0.7s cubic-bezier(.4,2,.3,1);
+}
+
+@keyframes volunteerdstaffdashboard-iconPop {
+  0% { transform: scale(0.7) rotate(-10deg); opacity: 0; }
+  60% { transform: scale(1.15) rotate(8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.volunteerdstaffdashboard-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #1abc9c22 0%, #ffffff00 100%);
+  border-radius: 2px;
+  margin: 36px 0 18px 0;
+}
+
+.volunteerdstaffdashboard-fullwidth {
+  width: 100vw;
+  max-width: 100vw;
   margin: 0;
-  color: #333;
-  font-size: 1.1rem;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
 }
 
-.task-details {
-  color: #666;
+/* Responsive Design */
+@media (max-width: 900px) {
+  .volunteerdstaffdashboard-main-content {
+    margin-top: 90px;
+    margin-left: 0;
+  }
+  .volunteerdstaffdashboard-container {
+    padding: 12px 2vw 18px 2vw;
+  }
+  .volunteerdstaffdashboard-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .volunteerdstaffdashboard-card {
+    padding: 22px 10px 16px 10px;
+    border-radius: 14px;
+  }
+  .volunteerdstaffdashboard-section-title {
+    font-size: 1.2rem;
+  }
 }
 
-.task-details p {
-  margin: 8px 0;
-}
-
-.task-description {
-  font-style: italic;
-  color: #777;
-}
-
-.task-due-date {
-  color: #ff9800;
-  font-weight: 500;
-}
-
-/* Task Status Badges */
+/* General styles that can be used across the application */
+/* Task Status Badges - General (can be used by other components) */
 .status {
   padding: 6px 18px;
   border-radius: 18px;
@@ -203,33 +218,12 @@ body.volunteer-delivery-staff-dashboard {
   font-size: 1.1rem;
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
-  .dashboard-main-content {
-    margin-top: 90px;
-    margin-left: 0;
-  }
-  .container.volunteer-delivery-staff-dashboard {
-    padding: 12px 2vw 18px 2vw;
-  }
-  .stats {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .card {
-    padding: 22px 10px 16px 10px;
-    border-radius: 14px;
-  }
-  .section-title {
-    font-size: 1.2rem;
-  }
-  }
-
+/* Task List Table - General */
 .task-list-table {
   border-collapse: separate !important;
   border-spacing: 0 18px;
-    width: 100%;
-  }
+  width: 100%;
+}
 
 .task-list-table tbody tr {
   background: #fff;
@@ -238,17 +232,7 @@ body.volunteer-delivery-staff-dashboard {
   overflow: hidden;
 }
 
-.dashboard-main-content {
-  margin-top: 110px;
-}
-
-@media (max-width: 900px) {
-  .dashboard-main-content {
-    margin-top: 90px;
-    margin-left: 0;
-  }
-}
-
+/* Greeting Row - General */
 .dashboard-greeting-row {
   display: flex;
   align-items: center;
@@ -256,6 +240,7 @@ body.volunteer-delivery-staff-dashboard {
   margin-bottom: 18px;
   justify-content: center;
 }
+
 .dashboard-avatar {
   display: flex;
   align-items: center;
@@ -266,12 +251,14 @@ body.volunteer-delivery-staff-dashboard {
   height: 72px;
   box-shadow: 0 2px 12px #1abc9c22;
 }
+
 .dashboard-greeting-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
+
 .dashboard-quote-banner {
   margin-top: 8px;
   background: linear-gradient(90deg, #e0f7fa 0%, #f5f7fa 100%);
@@ -284,28 +271,7 @@ body.volunteer-delivery-staff-dashboard {
   align-items: center;
   box-shadow: 0 2px 8px #1abc9c11;
 }
-.fade-in-dashboard {
-  animation: fadeInDashboard 0.8s cubic-bezier(.4,2,.3,1);
-}
-@keyframes fadeInDashboard {
-  from { opacity: 0; transform: translateY(24px) scale(0.98); }
-  to { opacity: 1; transform: none; }
-}
-.dashboard-animated-icon {
-  animation: dashboardIconPop 0.7s cubic-bezier(.4,2,.3,1);
-}
-@keyframes dashboardIconPop {
-  0% { transform: scale(0.7) rotate(-10deg); opacity: 0; }
-  60% { transform: scale(1.15) rotate(8deg); opacity: 1; }
-  100% { transform: scale(1) rotate(0deg); }
-}
-.dashboard-divider {
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #1abc9c22 0%, #ffffff00 100%);
-  border-radius: 2px;
-  margin: 36px 0 18px 0;
-}
+
 @media (max-width: 900px) {
   .dashboard-greeting-row {
     flex-direction: column;
@@ -324,14 +290,3 @@ body.volunteer-delivery-staff-dashboard {
     padding: 8px 12px;
   }
 }
-
-.dashboard-fullwidth {
-  width: 100vw;
-  max-width: 100vw;
-  margin: 0;
-  padding-left: 0;
-  padding-right: 0;
-  box-sizing: border-box;
-}
-
-/* Optionally, override padding for inner elements if needed */
