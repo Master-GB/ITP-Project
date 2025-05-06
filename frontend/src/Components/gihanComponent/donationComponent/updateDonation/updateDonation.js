@@ -174,7 +174,7 @@ export default function UpdateDonation() {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        navigate("/dl/myDonate");
+        navigate("/dl/dashboard");
       }, 2500);
     } catch (error) {
       alert("Error: " + error.message);

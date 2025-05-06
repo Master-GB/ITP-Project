@@ -137,7 +137,8 @@ return (
         <div className="donor-donation-filter-search-container">
           <div className="donor-donation-filter-container">
             <label htmlFor="donor-donation-status-filter" class="donor-donation-fLabel">Filter by Status:</label>
-            <select
+            <select 
+              className="donor-dh-filter-right"
               id="donor-donation-status-filter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}

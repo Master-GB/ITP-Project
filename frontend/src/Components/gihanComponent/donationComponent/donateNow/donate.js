@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./donate.css";
+import "../myDonation/myDonation.toast.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Donate() {
   const [isDragOver, setIsDragOver] = useState(false);
   const [errors, setErrors] = useState({});
-
+  const [showSuccess, setShowSuccess] = useState(false);
   const [inputs, setInputs] = useState({
     foodCategory: "",
     foodItem: "",
@@ -130,8 +131,11 @@ export default function Donate() {
         },
       });
 
-      alert("Donation Added Successfully");
-      navigate("/dashboard"); 
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate("/dl/dashboard");
+      }, 2500);
     } catch (error) {
       alert("Error: " + error.message);
     }
@@ -152,6 +156,10 @@ export default function Donate() {
   };
 
   return (
+     <> 
+      {showSuccess && (
+        <div className="success-toast">Donation Added successfully!</div>
+      )}
       <main className="donor-donate-main-content" id="donor-donate-back" style={{ 
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('/Resources/gihanRes/donationRes/donatebg2.jpg')`,
         backgroundSize: "cover",
@@ -422,5 +430,6 @@ export default function Donate() {
           </form>
         </div>
       </main>
+      </>
   );
 }
