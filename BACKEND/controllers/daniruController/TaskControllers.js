@@ -1,4 +1,5 @@
 const Task = require("../../models/daniruModel/TaskModel");
+const Notification = require("../../models/daniruModel/NotificationModel");
 
 // Get all tasks
 const getAllTasks = async (req, res) => {
@@ -36,6 +37,16 @@ const addTasks = async (req, res) => {
       status: status || "Pending",
     });
     await task.save();
+
+    // --- Create a notification for the assigned volunteer ---
+    if (assignedVolunteer) {
+      await Notification.create({
+        user: assignedVolunteer,
+        message: `A new task "${taskName}" has been assigned to you.`,
+        read: false
+      });
+    }
+
     return res.status(200).json({ task });
   } catch (err) {
     return res.status(500).json({ message: "Unable to add task" });
@@ -113,6 +124,26 @@ const updateTaskStatus = async (req, res) => {
   }
 };
 
+// Get all notifications (no user filter)
+const getNotifications = async (req, res) => {
+  try {
+    const notifications = await Notification.find().sort({ createdAt: -1 });
+    return res.status(200).json({ notifications });
+  } catch (err) {
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Mark all notifications as read
+const markNotificationsAsRead = async (req, res) => {
+  try {
+    await Notification.updateMany({ read: false }, { $set: { read: true } });
+    return res.status(200).json({ message: "All notifications marked as read" });
+  } catch (err) {
+    return res.status(500).json({ message: "Failed to mark as read" });
+  }
+};
+
 module.exports = {
   getAllTasks,
   addTasks,
@@ -121,4 +152,6 @@ module.exports = {
   deleteTask,
   getTasksByVolunteerName,
   updateTaskStatus,
+  getNotifications,
+  markNotificationsAsRead,
 };

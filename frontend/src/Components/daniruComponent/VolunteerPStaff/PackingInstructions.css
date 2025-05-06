@@ -1,13 +1,10 @@
-/* Packing Instructions CSS - Fully Updated */
-
-/* Global container for the packing instructions page */
-.packinginstructions-bg {
+.to-packinginstructions-bg {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 80px 20px 40px; /* Added top padding for fixed navbar */
+  padding: 80px 20px 40px;
 }
 
-.packinginstructions-container {
+.to-packinginstructions-container {
   font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   background: rgba(255, 255, 255, 0.95);
   padding: 40px 30px;
@@ -19,7 +16,7 @@
   z-index: 1;
 }
 
-.packinginstructions-header-modern {
+.to-packinginstructions-header-modern {
   text-align: center;
   color: #1abc9c;
   font-size: 2.4rem;
@@ -34,7 +31,7 @@
   padding-bottom: 12px;
 }
 
-.packinginstructions-header-modern::after {
+.to-packinginstructions-header-modern::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -44,14 +41,14 @@
   background: linear-gradient(90deg, transparent, #1abc9c, transparent);
 }
 
-.packinginstructions-steps {
+.to-packinginstructions-steps {
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 100%;
 }
 
-.packinginstructions-card {
+.to-packinginstructions-card {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(44, 62, 80, 0.08);
@@ -64,7 +61,7 @@
   border: 1px solid rgba(52, 152, 219, 0.1);
 }
 
-.packinginstructions-card:hover {
+.to-packinginstructions-card:hover {
   box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
   transform: translateY(-4px);
   border-color: rgba(52, 152, 219, 0.3);
@@ -97,11 +94,11 @@
   transition: transform 0.3s ease;
 }
 
-.packinginstructions-card:hover .step-icon {
+.to-packinginstructions-card:hover .step-icon {
   transform: scale(1.1);
 }
 
-.packinginstructions-subheader-modern {
+.to-packinginstructions-subheader-modern {
   color: #2980b9;
   font-size: 1.4rem;
   margin-bottom: 16px;
@@ -110,7 +107,7 @@
   line-height: 1.3;
 }
 
-.packinginstructions-paragraph-modern {
+.to-packinginstructions-paragraph-modern {
   color: #34495e;
   font-size: 1.1rem;
   line-height: 1.8;
@@ -119,15 +116,14 @@
   max-width: 90%;
 }
 
-/* Search Section Styles */
-.packinginstructions-search {
+.to-packinginstructions-search {
   width: 100%;
   max-width: 500px;
   margin: 0 auto 36px;
   position: relative;
 }
 
-.packinginstructions-search input {
+.to-packinginstructions-search input {
   width: 100%;
   padding: 14px 20px 14px 48px;
   border: 2px solid #ecf0f1;
@@ -138,13 +134,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.packinginstructions-search input:focus {
+.to-packinginstructions-search input:focus {
   border-color: #3498db;
   box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
   outline: none;
 }
 
-.packinginstructions-search::before {
+.to-packinginstructions-search::before {
   content: '🔍';
   position: absolute;
   left: 18px;
@@ -154,26 +150,27 @@
   color: #95a5a6;
 }
 
-/* Responsive Design */
+/* Responsive design below */
+
 @media (max-width: 768px) {
-  .packinginstructions-bg {
+  .to-packinginstructions-bg {
     padding: 80px 15px 30px;
   }
-  
-  .packinginstructions-container {
+
+  .to-packinginstructions-container {
     padding: 30px 20px;
     border-radius: 14px;
   }
-  
-  .packinginstructions-header-modern {
+
+  .to-packinginstructions-header-modern {
     font-size: 2rem;
     margin-bottom: 28px;
   }
-  
-  .packinginstructions-card {
+
+  .to-packinginstructions-card {
     padding: 28px 20px;
   }
-  
+
   .step-badge {
     left: 20px;
     width: 36px;
@@ -183,75 +180,75 @@
 }
 
 @media (max-width: 600px) {
-  .packinginstructions-bg {
+  .to-packinginstructions-bg {
     padding: 80px 12px 25px;
   }
-  
-  .packinginstructions-container {
+
+  .to-packinginstructions-container {
     padding: 25px 16px;
     border-radius: 12px;
   }
-  
-  .packinginstructions-header-modern {
+
+  .to-packinginstructions-header-modern {
     font-size: 1.8rem;
     flex-direction: column;
     gap: 8px;
   }
-  
-  .packinginstructions-steps {
+
+  .to-packinginstructions-steps {
     gap: 28px;
   }
-  
-  .packinginstructions-card {
+
+  .to-packinginstructions-card {
     padding: 24px 16px;
     border-radius: 12px;
   }
-  
+
   .step-badge {
     left: 16px;
     width: 32px;
     height: 32px;
     font-size: 0.9rem;
   }
-  
+
   .step-icon {
     font-size: 1.8rem;
     margin-bottom: 12px;
   }
-  
-  .packinginstructions-subheader-modern {
+
+  .to-packinginstructions-subheader-modern {
     font-size: 1.2rem;
     margin-bottom: 12px;
   }
-  
-  .packinginstructions-paragraph-modern {
+
+  .to-packinginstructions-paragraph-modern {
     font-size: 1rem;
     max-width: 100%;
   }
-  
-  .packinginstructions-search {
+
+  .to-packinginstructions-search {
     margin-bottom: 28px;
   }
-  
-  .packinginstructions-search input {
+
+  .to-packinginstructions-search input {
     padding: 12px 16px 12px 42px;
   }
 }
 
 @media (max-width: 480px) {
-  .packinginstructions-header-modern {
+  .to-packinginstructions-header-modern {
     font-size: 1.6rem;
   }
-  
-  .packinginstructions-subheader-modern {
+
+  .to-packinginstructions-subheader-modern {
     font-size: 1.1rem;
   }
-  
-  .packinginstructions-paragraph-modern {
+
+  .to-packinginstructions-paragraph-modern {
     font-size: 0.95rem;
     line-height: 1.7;
   }
-  
+
   .step-badge {
     width: 28px;
     height: 28px;

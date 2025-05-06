@@ -48,6 +48,34 @@ connection.once("open", () => {
     console.log("Mongo-DB Connection Successful!");
 });
 
+
+//login........
+app.post("/login",async(req,res)=>{
+
+    const {email,password}=req.body;
+
+    try{
+        const user=await User.findOne({email});
+        if(!user){
+            return res.json({err:"user Not Found"})
+
+        }
+        if(user.password === password){
+            return res.json({status:"ok"});
+        }else{
+            return res.json({err:"incorrect Password"});
+        }
+    }catch(err){
+        console.error(err);
+        res.status(500).json({err:"server Err"})
+    }
+
+});
+
+const taskRoutes = require('./routes/daniruRoute/TaskRoutes');
+app.use('/api/tasks', taskRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server is up and running on port no ${PORT}`);
 });
+

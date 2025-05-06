@@ -7,7 +7,9 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import axios from "axios";
-import "./Map.css";
+import "./route.css";
+import VolunteerNav from "./VolunteerNav";
+import HomeFooter from "../Home/HomeFooter";
 
 const containerStyle = {
   width: "100%",
@@ -145,6 +147,8 @@ const Map = () => {
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
+    <div>
+        <VolunteerNav/>
       <div className="map-container">
         <h1 className="map-title">Food Delivery Route Optimizer</h1>
 
@@ -307,7 +311,10 @@ const Map = () => {
           </ul>
         </div>
       </div>
+      <HomeFooter/>
+      </div>
   );
 };
 
 export default Map;
+

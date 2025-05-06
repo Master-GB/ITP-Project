@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBoxOpen, FaListOl, FaCubes, FaTape, FaCheckCircle } from "react-icons/fa";
-import "./PackingInstructions.css";
+import "./PackingInstructions.css"; // updated import
 import VolunteerPNav from "./VolunteerPNav";
 
 const steps = [
@@ -23,20 +23,20 @@ const steps = [
 
 const PackingInstructions = () => {
   return (
-    <div className="packinginstructions-bg">
+    <div className="to-packinginstructions-bg">
       <VolunteerPNav />
-      <div className="packinginstructions-container">
-        <h1 className="packinginstructions-header-modern">
+      <div className="to-packinginstructions-container">
+        <h1 className="to-packinginstructions-header-modern">
           <FaBoxOpen style={{marginRight: 10, color: '#1abc9c'}} />
           Packing Instructions
         </h1>
-        <div className="packinginstructions-steps">
+        <div className="to-packinginstructions-steps">
           {steps.map((step, idx) => (
-            <div className="packinginstructions-card" key={idx}>
+            <div className="to-packinginstructions-card" key={idx}>
               <div className="step-badge">{idx + 1}</div>
               {step.icon}
-              <h2 className="packinginstructions-subheader-modern">{step.title}</h2>
-              <p className="packinginstructions-paragraph-modern">{step.desc}</p>
+              <h2 className="to-packinginstructions-subheader-modern">{step.title}</h2>
+              <p className="to-packinginstructions-paragraph-modern">{step.desc}</p>
             </div>
           ))}
         </div>

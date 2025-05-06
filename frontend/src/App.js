@@ -52,6 +52,9 @@ import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPSta
 import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 import Home from "./Components/daniruComponent/Home/Home";
+import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
+import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
+
 
 
 // Malshi's components
@@ -197,11 +200,7 @@ const VolunteerCoordinatorLayout = () => (
         <Route path="/task/:id" element={<UpdateTask />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/reports" element={<Reports />} />
-        <Route path="/home" element={<Home />} />
-        <Route
-          path="/volunteerapplication"
-          element={<VolunteerApplication />}
-        />
+        <Route path="/map" element = {<Map/>}/>
       </Routes>
     </React.Fragment>
   </div>
@@ -217,8 +216,8 @@ const VolunteerDeliveryStaffLayout = () => (
           element={<VolunteerDStaffDashboard />}
         />
         <Route path="/volunteertask" element={<VolunteerTask />} />
-        <Route path="/route" element={<Route />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
+        <Route path="/route" element = {<VolunteerRoute/>}/>
       </Routes>
     </React.Fragment>
   </div>
@@ -266,11 +265,11 @@ function App() {
       <Route path="/dl/*" element={<DonorLayout />} />
       <Route path="/opl/*" element={<OperatingManagerLayout />} />
       <Route path="/rl/*" element={<RequestsLayout />} />
-      <Route path="/vcl/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/de2/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
-      <Route path="/vpsl/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/fvs/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />
-      <Route path="/jj*/" element={<MapLayout/>} />
+      <Route path="/eet/*" element={<MapLayout/>} />
       <Route path="/*" element={<HomeLayout/>} />
     </Routes>
   );
