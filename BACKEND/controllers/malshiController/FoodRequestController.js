@@ -6,7 +6,7 @@ const getAllRequests = async (req, res, next) => {
 
     // Get all requests
     try {
-        requests = await FoodRequest.find();
+        requests = await FoodRequest.find().sort({ createdAt: -1 }); // Sort by creation date, newest first
     } catch (err) {
         console.log(err);
         return res.status(500).json({ message: "Server error" });
@@ -23,28 +23,42 @@ const getAllRequests = async (req, res, next) => {
 };
 
 //data insert
-const addRequests = async (req, res,next) => {
+const addRequests = async (req, res, next) => {
+    const {location, contactNumber, foodType, quantity, additionalNotes} = req.body;
 
-    const {organizationName,location,contactNumber,foodType,quantity,additionalNotes} = req.body;
+    // Generate request code
+    const currentYear = new Date().getFullYear();
+    const timestamp = Date.now().toString().slice(-4);
+    const randomNum = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    const requestCode = `REQ-${currentYear}-${randomNum}`;
 
     let requests;
 
-    try{
-        requests = new FoodRequest({organizationName,location,contactNumber,foodType,quantity,additionalNotes,status:"pending" });
+    try {
+        requests = new FoodRequest({
+            requestCode,
+            location,
+            contactNumber,
+            foodType,
+            quantity,
+            additionalNotes,
+            status: "pending"
+        });
         await requests.save();
-    }catch (err) {
+    } catch (err) {
         console.log(err);
+        return res.status(500).json({message: "Error creating request"});
     }
+
     //not insert requests
     if (!requests) {
-        return res.status(404).json({message:"Unable to add requests"});
+        return res.status(404).json({message: "Unable to add requests"});
     }
     return res.status(200).json({ requests });
 };
 
 //Get by id
 const getById = async (req, res, next) => {
-
     const requestId = req.params.requestId;
 
     let requests;
@@ -86,13 +100,12 @@ const updateRequest = async (req, res, next) => {
         }
     }
     
-    const { organizationName, location, contactNumber, foodType, quantity, additionalNotes } = req.body;
+    const { location, contactNumber, foodType, quantity, additionalNotes } = req.body;
     
     try {
         const updatedRequest = await FoodRequest.findByIdAndUpdate(
             requestId,
             { 
-                organizationName, 
                 location, 
                 contactNumber,
                 foodType, 

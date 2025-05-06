@@ -6,31 +6,113 @@ import './AddRequests.css';
 function AddRequests() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
-    organizationName: "",
     location: "",
     contactNumber: "",
     foodType: "",
     quantity: "",
     additionalNotes: "",
-    status: "pending"  // Default status
+    status: "pending"
   });
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let formErrors = {};
+
+    // Location validation
+    if (!inputs.location.trim()) {
+      formErrors.location = "Location is required";
+    } else if (inputs.location.length < 2 || inputs.location.length > 200) {
+      formErrors.location = "Location must be between 2 and 200 characters";
+    }
+
+    // Contact Number validation
+    const phoneRegex = /^\d{10}$/; // Ensures exactly 10 digits
+    if (!inputs.contactNumber.trim()) {
+      formErrors.contactNumber = "Contact Number is required";
+    } else if (!phoneRegex.test(inputs.contactNumber)) {
+      formErrors.contactNumber = "Contact Number must be exactly 10 digits";
+    }
+
+    // Food Type validation
+    if (!inputs.foodType) {
+      formErrors.foodType = "Please select a food type";
+    }
+
+    // Quantity validation
+    const quantityRegex = /^[1-9]\d*$/; // Positive integers only
+    if (!inputs.quantity.trim()) {
+      formErrors.quantity = "Quantity is required";
+    } else if (!quantityRegex.test(inputs.quantity)) {
+      formErrors.quantity = "Quantity must be a positive number";
+    } else if (parseInt(inputs.quantity) <= 0) {
+      formErrors.quantity = "Quantity must be greater than zero";
+    }
+
+    // Additional Notes validation
+    if (!inputs.additionalNotes.trim()) {
+      formErrors.additionalNotes = "Additional Notes are required";
+    } else if (inputs.additionalNotes.length > 500) {
+      formErrors.additionalNotes = "Notes cannot exceed 500 characters";
+    }
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
 
   const handleChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+    
+    // Special handling for contact number
+    if (name === 'contactNumber') {
+      // Only allow digits and limit to 10 characters
+      const digitsOnly = value.replace(/\D/g, '').slice(0, 10);
+      setInputs(prevState => ({
+        ...prevState,
+        [name]: digitsOnly
+      }));
+    } 
+    // Special handling for quantity
+    else if (name === 'quantity') {
+      // Remove any non-digit characters except for the first minus sign
+      const cleanValue = value.replace(/[^\d-]/g, '');
+      // If there's a minus sign, show error
+      if (cleanValue.includes('-')) {
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          quantity: "Quantity cannot be negative"
+        }));
+        return;
+      }
+      setInputs(prevState => ({
+        ...prevState,
+        [name]: cleanValue
+      }));
+    }
+    else {
+      setInputs(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
+    
+    // Clear specific error when user starts typing
+    if (errors[name]) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        [name]: undefined
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
-    sendRequest().then(() => navigate('/display-requests'));
+    if (validateForm()) {
+      sendRequest().then(() => navigate('/display-requests'));
+    }
   }
 
   const sendRequest = async () => {
-    await axios.post('http://localhost:8090/requests', {
-      organizationName: String(inputs.organizationName),
+    return await axios.post('http://localhost:8090/requests', {
       location: String(inputs.location),
       contactNumber: String(inputs.contactNumber),
       foodType: String(inputs.foodType),
@@ -41,21 +123,11 @@ function AddRequests() {
 
   return (
     <div className="donation-request-container">
-      <h1 className="donation-request-title">Add Request</h1>
+      <h1 className="donation-request-title">Request for Surplus Food</h1>
+      <p className="donation-request-description">
+      "If your organization needs food support, fill out this form to request surplus food from our redistribution program."
+      </p>
       <form onSubmit={handleSubmit} className="donation-request-form">
-        <div className="donation-request-field-group">
-          <label className="donation-request-label" htmlFor="donation-org-name">Organization Name</label>
-          <input 
-            type="text" 
-            id="donation-org-name"
-            name="organizationName" 
-            onChange={handleChange} 
-            value={inputs.organizationName} 
-            required 
-            className="donation-request-input"
-          />
-        </div>
-        
         <div className="donation-request-field-group">
           <label className="donation-request-label" htmlFor="donation-location">Location</label>
           <input 
@@ -64,9 +136,11 @@ function AddRequests() {
             name="location" 
             onChange={handleChange} 
             value={inputs.location} 
-            required 
-            className="donation-request-input"
+            className={`donation-request-input ${errors.location ? 'error' : ''}`}
           />
+          {errors.location && (
+            <span className="error-message">{errors.location}</span>
+          )}
         </div>
         
         <div className="donation-request-field-group">
@@ -77,9 +151,11 @@ function AddRequests() {
             name="contactNumber" 
             onChange={handleChange} 
             value={inputs.contactNumber} 
-            required 
-            className="donation-request-input"
+            className={`donation-request-input ${errors.contactNumber ? 'error' : ''}`}
           />
+          {errors.contactNumber && (
+            <span className="error-message">{errors.contactNumber}</span>
+          )}
         </div>
         
         <div className="donation-request-field-group donation-request-select-container">
@@ -89,14 +165,19 @@ function AddRequests() {
             name="foodType" 
             onChange={handleChange} 
             value={inputs.foodType} 
-            required
-            className="donation-request-select"
+            className={`donation-request-select ${errors.foodType ? 'error' : ''}`}
           >
             <option value="">-- Select Type --</option>
-            <option value="Type01">Type01</option>
-            <option value="Type02">Type02</option>
-            <option value="Other">Other</option>
+            <option value="Milk Rice">Milk Rice</option>
+            <option value="White Rice">White Rice</option>
+            <option value="Biriyani">Biriyani</option>
+            <option value="Yellow Rice">Yellow Rice</option>
+            <option value="Noodles">Noodles</option>
+            <option value="Koththu">Koththu</option>
           </select>
+          {errors.foodType && (
+            <span className="error-message">{errors.foodType}</span>
+          )}
         </div>
         
         <div className="donation-request-field-group">
@@ -107,9 +188,11 @@ function AddRequests() {
             name="quantity" 
             onChange={handleChange} 
             value={inputs.quantity} 
-            required 
-            className="donation-request-input"
+            className={`donation-request-input ${errors.quantity ? 'error' : ''}`}
           />
+          {errors.quantity && (
+            <span className="error-message">{errors.quantity}</span>
+          )}
         </div>
         
         <div className="donation-request-field-group">
@@ -119,13 +202,20 @@ function AddRequests() {
             name="additionalNotes" 
             onChange={handleChange} 
             value={inputs.additionalNotes} 
-            required
-            className="donation-request-textarea"
+            className={`donation-request-textarea ${errors.additionalNotes ? 'error' : ''}`}
           ></textarea>
+          {errors.additionalNotes && (
+            <span className="error-message">{errors.additionalNotes}</span>
+          )}
         </div>
+        <br />
         
-        <button type="submit" className="donation-request-submit-btn">Submit</button>
-        
+        <button 
+          type="submit" 
+          className="donation-request-submit-btn"
+        >
+          Submit
+        </button>
       </form>
     </div>
   )

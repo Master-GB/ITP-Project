@@ -1,10 +1,4 @@
 /* dashboard.css */
-body .dashboard-background {
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important; /* Force the gradient */
-    min-height: 100vh !important; /* Force full height */
-    padding: 20px !important; /* Force padding */
-    margin: 0 !important; /* Remove default margin */
-  }
 
 .advanced-donor-dashboard {
     padding: 20px;

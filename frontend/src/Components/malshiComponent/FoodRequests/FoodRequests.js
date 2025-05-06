@@ -1,39 +1,172 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DisplayRequests from '../DisplayRequests/DisplayRequests';
 import './FoodRequests.css';
 import { jsPDF } from 'jspdf';
 
 const URL = 'http://localhost:8090/requests';
 
 const fetchHandler = async () => {
-    const res = await axios.get(URL);
-    console.log(res.data);
-    return res.data;
+    try {
+        const res = await axios.get(URL);
+        return res.data;
+    } catch (error) {
+        console.error('Error fetching requests:', error);
+        return { requests: [] };
+    }
 };
 
 function FoodRequests() {
+    const [allRequests, setAllRequests] = useState([]);
     const [foodrequests, setFoodRequests] = useState([]);
     const [search, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [selectedRequest, setSelectedRequest] = useState(null);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [updateForm, setUpdateForm] = useState({
+        location: '',
+        contactNumber: '',
+        foodType: '',
+        quantity: '',
+        additionalNotes: ''
+    });
+
+    const highlightText = (text, searchTerm) => {
+        if (!searchTerm || !text) return text;
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    };
 
     useEffect(() => {
-        fetchHandler().then((data) => {
-            setFoodRequests(data.requests); // Ensure this matches the structure of your fetched data
-            console.log('Food Request State:', data.requests);
-        });
+        const loadRequests = async () => {
+            setIsLoading(true);
+            try {
+                const data = await fetchHandler();
+                if (data && data.requests) {
+                    // Sort requests by creation date, newest first
+                    const sortedRequests = data.requests.sort((a, b) => 
+                        new Date(b.createdAt) - new Date(a.createdAt)
+                    );
+                    setAllRequests(sortedRequests);
+                    setFoodRequests(sortedRequests);
+                    setNoResults(sortedRequests.length === 0);
+                } else {
+                    setAllRequests([]);
+                    setFoodRequests([]);
+                    setNoResults(true);
+                }
+            } catch (err) {
+                setError('Failed to load requests');
+                console.error('Error loading requests:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadRequests();
     }, []);
 
-    const handleSearch = () => {
-        fetchHandler().then((data) => {
-            const filterRequests = data.requests.filter((request) =>
-                Object.values(request).some((field) =>
-                    field.toString().toLowerCase().includes(search.toLowerCase())
+    useEffect(() => {
+        if (search.trim() === "") {
+            setFoodRequests(allRequests);
+            setNoResults(allRequests.length === 0);
+        } else {
+            const searchLower = search.toLowerCase();
+            const filtered = allRequests.filter((request) => {
+                if (!request) return false;
+                return (
+                    (request.requestCode && request.requestCode.toLowerCase().includes(searchLower)) ||
+                    (request.organizationName && request.organizationName.toLowerCase().includes(searchLower))
+                );
+            });
+            setFoodRequests(filtered);
+            setNoResults(filtered.length === 0);
+        }
+    }, [search, allRequests]);
+
+    const handleDeleteClick = (request) => {
+        setSelectedRequest(request);
+        setShowDeleteConfirm(true);
+    };
+
+    const handleCancelDelete = () => {
+        setShowDeleteConfirm(false);
+        setSelectedRequest(null);
+    };
+
+    const deleteHandler = async () => {
+        if (!selectedRequest) return;
+
+        try {
+            await axios.delete(`http://localhost:8090/requests/${selectedRequest._id}`);
+            setFoodRequests(prevRequests => 
+                prevRequests.filter(request => request._id !== selectedRequest._id)
+            );
+            setShowDeleteConfirm(false);
+            setSelectedRequest(null);
+        } catch (error) {
+            console.error('Error deleting request:', error);
+            setError('Failed to delete request');
+        }
+    };
+
+    //update modal
+    const handleUpdateClick = (request) => {
+        setSelectedRequest(request);
+        setUpdateForm({
+            location: request.location || '',
+            contactNumber: request.contactNumber || '',
+            foodType: request.foodType || '',
+            quantity: request.quantity || '',
+            additionalNotes: request.additionalNotes || ''
+        });
+        setShowUpdateModal(true);
+    };
+
+    const handleUpdateCancel = () => {
+        setShowUpdateModal(false);
+        setSelectedRequest(null);
+        setUpdateForm({
+            location: '',
+            contactNumber: '',
+            foodType: '',
+            quantity: '',
+            additionalNotes: ''
+        });
+    };
+
+    const handleUpdateSubmit = async () => {
+        if (!selectedRequest) return;
+
+        try {
+            const response = await axios.put(`http://localhost:8090/requests/${selectedRequest._id}`, updateForm);
+            setFoodRequests(prevRequests =>
+                prevRequests.map(request =>
+                    request._id === selectedRequest._id ? response.data.request : request
                 )
             );
-            setFoodRequests(filterRequests);
-            setNoResults(filterRequests.length === 0); // Update noResults state
-        });
+            setShowUpdateModal(false);
+            setSelectedRequest(null);
+            setUpdateForm({
+                location: '',
+                contactNumber: '',
+                foodType: '',
+                quantity: '',
+                additionalNotes: ''
+            });
+        } catch (error) {
+            console.error('Error updating request:', error);
+            setError('Failed to update request');
+        }
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUpdateForm(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
     const generatePDF = () => {
@@ -43,7 +176,6 @@ function FoodRequests() {
             format: 'a4',
         });
     
-        // Set document properties
         doc.setProperties({
             title: 'Food Requests Report',
             subject: 'Surplus Food Redistribution System',
@@ -51,33 +183,28 @@ function FoodRequests() {
             creator: 'Partnership Management',
         });
     
-        // Title
-        doc.setFontSize(22); // Larger font size
+        doc.setFontSize(22);
         doc.text('Food Requests Report', 15, 15);
     
-        // Table configuration
         const pageWidth = doc.internal.pageSize.getWidth();
         const tableMargin = 15;
-        const lineHeight = 15; // Increased line height
-        const columnWidths = [40, 50, 35, 50, 30, 30, 50]; // Adjusted column widths
+        const lineHeight = 15;
+        const columnWidths = [40, 50, 35, 50, 30, 30, 50];
     
-        // Headers
         const headers = [
-            'Request ID', 
-            'Organization Name', 
+            'Request Code', 
             'Location', 
             'Contact Number', 
             'Food Type', 
             'Quantity', 
+            'Status',
             'Additional Notes'
         ];
     
-        // Create table function
         const createTable = () => {
-            // Header row
-            doc.setFontSize(16); // Larger font for headers
+            doc.setFontSize(16);
             doc.setFont('helvetica', 'bold');
-            doc.setFillColor(220, 230, 255); // Light blue header
+            doc.setFillColor(220, 230, 255);
             doc.rect(tableMargin, 25, pageWidth - (2 * tableMargin), 12, 'F');
             
             doc.setTextColor(0, 0, 0);
@@ -89,27 +216,26 @@ function FoodRequests() {
                 });
             });
     
-            // Data rows
             doc.setFont('helvetica', 'normal');
-            doc.setFontSize(14); // Large font for data
+            doc.setFontSize(14);
             foodrequests.forEach((request, rowIndex) => {
+                if (!request) return;
+
                 const rowData = [
-                    request.requestId || 'N/A',
-                    request.organizationName || 'N/A',
+                    request.requestCode || request.organizationName || 'N/A',
                     request.location || 'N/A',
                     request.contactNumber || 'N/A',
                     request.foodType || 'N/A',
                     request.quantity || 'N/A',
+                    request.status || 'N/A',
                     request.additionalNotes || 'N/A'
                 ];
     
                 const yPos = 40 + lineHeight * rowIndex;
     
-                // Alternate row background
                 doc.setFillColor(240, 240, 240);
                 doc.rect(tableMargin, yPos, pageWidth - (2 * tableMargin), lineHeight, 'F');
     
-                // Draw row data
                 rowData.forEach((cell, colIndex) => {
                     const xPos = tableMargin + columnWidths.slice(0, colIndex).reduce((a, b) => a + b, 0);
                     doc.text(String(cell), xPos, yPos + 8, { 
@@ -118,44 +244,214 @@ function FoodRequests() {
                     });
                 });
     
-                // Cell borders
                 doc.setDrawColor(200, 200, 200);
                 doc.rect(tableMargin, yPos, pageWidth - (2 * tableMargin), lineHeight);
             });
         };
     
-        // Generate table
         createTable();
-    
-        // Save PDF
         doc.save('FoodRequestsReport.pdf');
     };
 
+    // Highlight matching part of request code
+    const highlightMatch = (text, searchTerm) => {
+        if (!searchTerm || !text) return text;
+        const idx = text.toLowerCase().indexOf(searchTerm.toLowerCase());
+        if (idx === -1) return text;
+        return (
+            <>
+                {text.substring(0, idx)}
+                <span style={{ background: '#5dade2', color: 'white', borderRadius: '4px', padding: '0 4px' }}>
+                    {text.substring(idx, idx + searchTerm.length)}
+                </span>
+                {text.substring(idx + searchTerm.length)}
+            </>
+        );
+    };
+
+    // Add a handler for manual search button
+    const handleManualSearch = () => {
+        setSearchQuery(search); // This will trigger the useEffect
+    };
+
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <p>Loading requests...</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="error-container">
+                <p>{error}</p>
+            </div>
+        );
+    }
+
     return (
-        <div>
-            <h1>Food Requests</h1>
-            <input
-                onChange={(e) => setSearchQuery(e.target.value)}
-                type="text"
-                name="search"
-                placeholder="Search requests"
-                className="request-search"
-            />
-            <button onClick={handleSearch} className="food-request-button">Search</button>
-            <button onClick={generatePDF} className="food-request-button">Generate PDF</button>
+        <div className="food-requests-container">
+
+            <div className="top-search-container">
+                <input
+                    type="text"
+                    placeholder="Search by request code"
+                    value={search}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                />
+                <button onClick={handleManualSearch} className="search-button">
+                    Search
+                </button>
+
+                <button onClick={generatePDF} className="generatepdf-fr-button">Generate PDF</button>
+            </div>
 
             {noResults ? (
-                <div>
-                    <p>No Results Found</p>
+                <div className="no-results">
+                    <p>No requests found matching your search.</p>
                 </div>
             ) : (
-                <div>
-                    {foodrequests &&
-                        foodrequests.map((request, i) => (
-                            <div key={i}>
-                                <DisplayRequests request={request} />
+                <div className="requests-grid">
+                    {foodrequests.map((request) => (
+                        request && (
+                            <div key={request._id} className="request-card">
+                                <div className="request-header">
+                                    <h3>{highlightMatch(request.requestCode || request.organizationName || 'N/A', search)}</h3>
+                                    <span className={`status-badge ${request.status || 'pending'}`}>
+                                        {request.status || 'Pending'}
+                                    </span>
+                                </div>
+                                <table className="request-details-table">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Location:</strong></td>
+                                            <td>{request.location}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Contact:</strong></td>
+                                            <td>{request.contactNumber}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Food Type:</strong></td>
+                                            <td>{request.foodType}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Quantity:</strong></td>
+                                            <td>{request.quantity}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Date:</strong></td>
+                                            <td>{new Date(request.createdAt).toLocaleDateString('en-US', {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric',
+                                                hour: '2-digit',
+                                                minute: '2-digit'
+                                            })}</td>
+                                        </tr>
+                                        {request.additionalNotes && (
+                                            <tr>
+                                                <td><strong>Notes:</strong></td>
+                                                <td>{request.additionalNotes}</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                                <div className="request-actions">
+                                    <button onClick={() => handleUpdateClick(request)} className="update-button">
+                                        Update
+                                    </button>
+                                    <button onClick={() => handleDeleteClick(request)} className="delete-button">
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
-                        ))}
+                        )
+                    ))}
+                </div>
+            )}
+
+            {showDeleteConfirm && selectedRequest && (
+                <div className="delete-confirm-overlay">
+                    <div className="delete-confirm-modal">
+                        <h3>Confirm Delete</h3>
+                        <p>Are you sure you want to delete this request?</p>
+                        <p className="delete-confirm-details">
+                            Request Code: {selectedRequest.requestCode || selectedRequest.organizationName || 'N/A'}
+                        </p>
+                        <div className="delete-confirm-actions">
+                            <button onClick={handleCancelDelete} className="delete-confirm-cancel">
+                                Cancel
+                            </button>
+                            <button onClick={deleteHandler} className="delete-confirm-delete">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showUpdateModal && selectedRequest && (
+                <div className="update-modal-overlay">
+                    <div className="update-modal">
+                        <h3>Update Request</h3>
+                        <div className="update-form">
+                            <div className="form-group">
+                                <label>Location:</label>
+                                <input
+                                    type="text"
+                                    name="location"
+                                    value={updateForm.location}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Contact Number:</label>
+                                <input
+                                    type="text"
+                                    name="contactNumber"
+                                    value={updateForm.contactNumber}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Food Type:</label>
+                                <input
+                                    type="text"
+                                    name="foodType"
+                                    value={updateForm.foodType}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Quantity:</label>
+                                <input
+                                    type="text"
+                                    name="quantity"
+                                    value={updateForm.quantity}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Additional Notes:</label>
+                                <textarea
+                                    name="additionalNotes"
+                                    value={updateForm.additionalNotes}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="update-modal-actions">
+                            <button onClick={handleUpdateCancel} className="update-cancel">
+                                Cancel
+                            </button>
+                            <button onClick={handleUpdateSubmit} className="update-submit">
+                                Update
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

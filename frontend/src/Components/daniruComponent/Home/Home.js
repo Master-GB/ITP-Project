@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { motion } from "framer-motion";
 import HomeFooter from "./HomeFooter";
@@ -18,6 +19,7 @@ const blurredShapes = [
 
 const Home = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,10 +46,10 @@ const Home = () => {
           <a href="/volunteerapplication">Be a Volunteer</a>
           <a href="#about">About Us</a>
         </nav>
-        <div className="home-header-auth-btns">
-          <button className="home-header-btn home-sign-in">Sign In</button>
-          <button className="home-header-btn home-register">Register</button>
-          <div className="home-header-profile-icon">
+        <div className="header-auth-btns">
+          <button className="header-btn sign-in" onClick={() => navigate('/login')}>Sign In</button>
+          <button className="header-btn register" onClick={() => navigate('/AddUser')}>Register</button>
+          <div className="header-profile-icon">
             <img src="/resources/danirures/profile.png" alt="Profile" />
           </div>
         </div>

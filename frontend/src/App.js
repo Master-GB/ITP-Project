@@ -2,17 +2,17 @@ import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-// Imalsha's components
+// Imalsha's componenets
 import Userdetails from "./Components/imalshaComponent/UserDetails/Users";
 import NavigationBar from './Components/imalshaComponent/unavbar/Navigationbar';
 import AddUser from './Components/imalshaComponent/AddUser/AddUser';
 import UpdateUser from './Components/imalshaComponent/UpdateUser/UpdateUser';
 import Login from './Components/imalshaComponent/login/Login';
-import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackForm';
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
-
+import AdminDashboard from './Components/imalshaComponent/AdminDashboard/AdminDashboard';
+import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 
 // Gihan's components
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
@@ -50,6 +50,7 @@ import VolunteerApplication from "./Components/daniruComponent/VolunteerApplicat
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPStaff/VolunteerPStaffDashboard";
 import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
+import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 import Home from "./Components/daniruComponent/Home/Home";
 import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
@@ -64,6 +65,9 @@ import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
 import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
+import FooterP from './Components/malshiComponent/FooterP/FooterP';
+import DashboardP from './Components/malshiComponent/DashboardP/DashboardP';
+
 
 //Sashini's components
 import Map from './Components/sashiniComponent/Map';
@@ -74,22 +78,40 @@ import Map from './Components/sashiniComponent/Map';
 const UserLayout = () => (
   <div className='app-container'>
     <div className='app-content'>
-      <NavigationBar />
       <Routes>
-         <Route path="/" element={<NavigationBar />} />
-        <Route path="/userdetails" element={<Userdetails />} />
-        <Route path="/adduser" element={<AddUser />} />
-        <Route path="/userdetails/:id" element={<UpdateUser />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/feedback' element={<FeedbackDetails />} />
-        <Route path='/feedbackForm' element={<FeedbackForm />} />
-        <Route path='/feedback/:id' element={<FeedbackDetails />} />
+        <Route path="/" element={<NavigationBar />} />
+        <Route path="/userdetails" element={<Userdetails/>} />
+        <Route path="/adduser" element={<AddUser/>} />
+        <Route path="/userdetails/:id" element={<UpdateUser/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path='/feedback' element={<FeedbackDetails/>}/>   
+        <Route path='/feedbackForm' element={<FeedbackForm/>}/>
+        <Route path='/feedback/:id' element={<FeedbackDetails/>}/>
         <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
-        <Route path="/dashbord" element={<DashboardI />} />
+        <Route path="/dashbord" element={<DashboardI/>}/>
+        <Route path="/display-requests/:id" element={<UpdateRequests />} />
       </Routes>
     </div>
   </div>
 );
+
+const AdminLayout = () => (
+  <div className='admin-container'>
+    <div className='admin-content'>
+      <Routes>
+        <Route path="*" element={<AdminDashboard/>} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/userdetails" element={<Userdetails />} />
+        <Route path='/feedback' element={<FeedbackDetails />} />
+        <Route path="/userdetails/:id" element={<UpdateUser />} />
+        <Route path='/feedback/:id' element={<FeedbackDetails />} />
+        <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
+        
+      </Routes>
+    </div>
+  </div>
+);
+
 
 const MapLayout = () => (
   <div className="Map-container">
@@ -107,6 +129,7 @@ const MapLayout = () => (
 
 
 const DonorLayout = () => (
+  <div className="backgroundOp">
   <div className="page-container">
     <Nav />
     <div className="page-content">
@@ -125,9 +148,11 @@ const DonorLayout = () => (
     </div>
     <Footer />
   </div>
+  </div>
 );
 
 const OperatingManagerLayout = () => (
+  <div className="backgroundOp">
   <div className="operating-manager-container">
     <OperatingManagerSidebar />
     <div className="operating-manager-content">
@@ -141,13 +166,14 @@ const OperatingManagerLayout = () => (
       </Routes>
     </div>
   </div>
+  </div>
 );
 
 const RequestsLayout = () => (
   <div className="App">
-    <NavBarP />
+    <NavBarP/>
     <div className="main-content">
-        <Routes>
+      <Routes>
         <Route path="/" element={<ProfileP />} />
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
@@ -155,6 +181,7 @@ const RequestsLayout = () => (
         <Route path="/funds" element={<PaymentForm />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/display-requests/:id" element={<UpdateRequests />} />
+        <Route path="/dashboard" element={<DashboardP />} />
       </Routes>
     </div>
   </div>
@@ -200,6 +227,8 @@ const VolunteerPackingStaffLayout = () => (
   <div className="volunteer-delivery-staff-container">
     <React.Fragment>
       <Routes>
+        <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
+      <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/" element={<VolunteerPStaffDashboard />} />
         <Route
           path="/volunteerpstaffdashboard"
@@ -216,11 +245,14 @@ const HomeLayout = () => (
   <div className="home-container">
     <React.Fragment>
       <Routes>
+      <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route
-          path="/volunteerapplication"
-          element={<VolunteerApplication />}
-        />
+        <Route path="/volunteerapplication" element={<VolunteerApplication />}/>
+        <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
+        <Route path="/volunteerapplication" element={<VolunteerApplication />} />
+        <Route path="/packinginstructions" element={<PackingInstructions />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/adduser" element={<AddUser />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -229,17 +261,20 @@ const HomeLayout = () => (
 function App() {
   return (
     <Routes>
-      <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/tg4/*" element={<DonorLayout />} />
-      <Route path="/jnhb/*" element={<OperatingManagerLayout />} />
-      <Route path="/requests/*" element={<RequestsLayout />} />
-      <Route path="de2/*" element={<VolunteerCoordinatorLayout />} />
-      <Route path="/*" element={<VolunteerDeliveryStaffLayout />} />
+      <Route path="/ul/*" element={<UserLayout />} />
+      <Route path="/dl/*" element={<DonorLayout />} />
+      <Route path="/opl/*" element={<OperatingManagerLayout />} />
+      <Route path="/rl/*" element={<RequestsLayout />} />
+      <Route path="/de2/*" element={<VolunteerCoordinatorLayout />} />
+      <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/fvs/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/al/*" element={<AdminLayout />} />
       <Route path="/eet/*" element={<MapLayout/>} />
-      <Route path="/ge3/*" element={<HomeLayout />} />   
+      <Route path="/*" element={<HomeLayout/>} />
     </Routes>
   );
 }
 
+
 export default App;
+

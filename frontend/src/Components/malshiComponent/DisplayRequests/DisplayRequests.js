@@ -1,40 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './DisplayRequests.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 function DisplayRequests(props) {
-  const { request } = props;
+  const { request, searchQuery, highlightText } = props;
   const history = useNavigate();
-  
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
   if (!request) {
     return <div className="food-display-empty">No request data available</div>;
   }
 
-  const { _id, organizationName, location, contactNumber, foodType, quantity, additionalNotes } = request;
-  
+  const { _id, requestCode, location, contactNumber, foodType, quantity, additionalNotes, status } = request;
 
-  const deleteHandler = async() =>{
+  const getStatusClass = (status) => {
+    switch (status?.toLowerCase()) {
+      case 'pending':
+        return 'status-pending';
+      case 'approved':
+        return 'status-approved';
+      case 'rejected':
+        return 'status-rejected';
+      default:
+        return 'status-pending';
+    }
+  };
+
+  const handleDeleteClick = () => {
+    setShowDeleteConfirm(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirm(false);
+  };
+
+  const deleteHandler = async () => {
     await axios.delete(`http://localhost:8090/requests/${_id}`)
-    .then(res => res.data)
+      .then(res => res.data);
     window.location.reload();
     history('/display-requests');
-  }
+  };
 
   return (
     <div className="food-display-container">
-      
+       <br/>
       <div className="food-display-table-wrapper">
         <table className="food-display-table">
           <tbody>
             <tr className="food-display-row">
-              <td className="food-display-label">Request ID:</td>
-              <td className="food-display-value">{_id}</td>
-            </tr>
-            <tr className="food-display-row">
-              <td className="food-display-label">Organization Name:</td>
-              <td className="food-display-value">{organizationName}</td>
+              <td className="food-display-label">Request Code:</td>
+              <td className="food-display-value">{requestCode}</td>
             </tr>
             <tr className="food-display-row">
               <td className="food-display-label">Location:</td>
@@ -52,6 +69,14 @@ function DisplayRequests(props) {
               <td className="food-display-label">Quantity:</td>
               <td className="food-display-value">{quantity}</td>
             </tr>
+            <tr className="food-display-row">
+              <td className="food-display-label">Status:</td>
+              <td className="food-display-value">
+                <span className={`status-badge ${getStatusClass(status)}`}>
+                  {status || 'Pending'}
+                </span>
+              </td>
+            </tr>
             <tr className="food-display-row food-display-notes-row">
               <td className="food-display-label">Additional Notes:</td>
               <td className="food-display-value">{additionalNotes}</td>
@@ -59,12 +84,25 @@ function DisplayRequests(props) {
           </tbody>
         </table>
       </div>
-      
+
       <div className="food-display-actions">
-      <Link to={`/display-requests/${_id}`} className="food-display-button food-display-view-btn">Update</Link>
-        <button onClick={deleteHandler} className="food-display-button food-display-delete-btn">Delete</button>
-        
+        <Link to={`/display-requests/${_id}`} className="food-display-button food-display-view-btn">Update</Link>
+        <button onClick={handleDeleteClick} className="food-display-button food-display-delete-btn">Delete</button>
       </div>
+
+      {showDeleteConfirm && (
+        <div className="delete-confirm-overlay">
+          <div className="delete-confirm-modal">
+            <h3>Confirm Delete</h3>
+            <p>Are you sure you want to delete this request?</p>
+            <p className="delete-confirm-details">Request Code: {requestCode}</p>
+            <div className="delete-confirm-actions">
+              <button onClick={handleCancelDelete} className="delete-confirm-cancel">Cancel</button>
+              <button onClick={deleteHandler} className="delete-confirm-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

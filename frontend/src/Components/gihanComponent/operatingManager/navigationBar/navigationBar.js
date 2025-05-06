@@ -17,11 +17,11 @@ const OperatingManagerSidebar = () => {
   const [showSignOut, setShowSignOut] = useState(false);
   const navigate = useNavigate();
   const navItems = [
-    { name: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
-    { name: 'Inventory', icon: <InventoryIcon />, path: '/inventoryManagement' },
-    { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },
-    { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/partnerManagement' },
-   { name: 'Chat', icon: <ChatBubbleIcon />, path: '/chatOP' }, // Changed to ChatBubbleIcon
+    { name: 'Dashboard', icon: <DashboardIcon />, path: '/opl/dashboard' },
+    { name: 'Inventory', icon: <InventoryIcon />, path: '/opl/inventoryManagement' },
+    { name: 'Food Donation', icon: <RequestIcon />, path: '/opl/foodManagement' },
+    { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/opl/partnerManagement' },
+   { name: 'Chat', icon: <ChatBubbleIcon />, path: '/opl/chatOP' }, // Changed to ChatBubbleIcon
    // { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' }
   ];
 
@@ -52,7 +52,7 @@ const OperatingManagerSidebar = () => {
         <hr className="sidebar-divider" />
         
         {/* Profile Section */}
-        <Link to="/operating-manager/profile" className="profile-section">
+        <Link to="/opl/operating-manager/profile" className="profile-section">
           <div className="profile-avatar">
             <PersonIcon fontSize="medium" />
           </div>
@@ -71,7 +71,7 @@ const OperatingManagerSidebar = () => {
         open={showSignOut}
         onConfirm={() => {
           setShowSignOut(false);
-          navigate('/login');
+          navigate('/Home');
         }}
         onCancel={() => setShowSignOut(false)}
       />

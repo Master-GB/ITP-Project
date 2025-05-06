@@ -1,128 +1,128 @@
 .update-form-container {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 25px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e9ecef;
-  }
-  
-  .update-form-title {
-    text-align: center;
-    color: #495057;
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.update-form-title {
+  text-align: center;
+  color: #495057;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.update-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.update-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make notes field span both columns */
+.update-form-field-full {
+  grid-column: 1 / span 2;
+}
+
+.update-form-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #495057;
+  font-size: 14px;
+}
+
+.update-form-input,
+.update-form-select,
+.update-form-textarea {
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  background-color: #fff;
+}
+
+.update-form-input:focus,
+.update-form-select:focus,
+.update-form-textarea:focus {
+  outline: none;
+  border-color: #6c757d;
+  box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.15);
+}
+
+.update-form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.update-form-select-wrapper {
+  position: relative;
+}
+
+.update-form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+}
+
+.update-form-buttons {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.update-form-button {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.update-form-button:hover {
+  background-color: #5a6268;
+}
+
+.update-form-button-primary {
+  background-color: #318d45;
+}
+
+.update-form-button-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
   .update-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    grid-template-columns: 1fr;
   }
   
-  .update-form-field {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Make notes field span both columns */
   .update-form-field-full {
-    grid-column: 1 / span 2;
-  }
-  
-  .update-form-label {
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: #495057;
-    font-size: 14px;
-  }
-  
-  .update-form-input,
-  .update-form-select,
-  .update-form-textarea {
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: border-color 0.2s ease;
-    background-color: #fff;
-  }
-  
-  .update-form-input:focus,
-  .update-form-select:focus,
-  .update-form-textarea:focus {
-    outline: none;
-    border-color: #6c757d;
-    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.15);
-  }
-  
-  .update-form-textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
-  
-  .update-form-select-wrapper {
-    position: relative;
-  }
-  
-  .update-form-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 14px;
+    grid-column: 1;
   }
   
   .update-form-buttons {
-    grid-column: 1 / span 2;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .update-form-button {
-    padding: 10px 20px;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .update-form-button:hover {
-    background-color: #5a6268;
-  }
-  
-  .update-form-button-primary {
-    background-color: #0d6efd;
-  }
-  
-  .update-form-button-primary:hover {
-    background-color: #0b5ed7;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .update-form {
-      grid-template-columns: 1fr;
+      grid-column: 1 / span 2;
+      display: flex;
+      justify-content: center; /* This centers the buttons horizontally */
+      gap: 30px;
+      margin-top: 10px;
     }
-    
-    .update-form-field-full {
-      grid-column: 1;
-    }
-    
-    .update-form-buttons {
-        grid-column: 1 / span 2;
-        display: flex;
-        justify-content: center; /* This centers the buttons horizontally */
-        gap: 30px;
-        margin-top: 10px;
-      }
-  }
+}

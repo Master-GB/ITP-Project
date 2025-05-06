@@ -37,7 +37,14 @@ footer {
 
 .operating-manager-container {
   display: flex;
-  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  
+  
+}
+
+.backgroundOp{
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .operating-manager-content {

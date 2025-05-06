@@ -1,90 +1,110 @@
-import React,{useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
-
-
-function Login() {
-
-
-    const history = useNavigate();
-    const[user,setUser]=useState({
-        email:'',
-        password:'',
+const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
     });
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleInputChange=(e)=>{
-        const{name,value}=e.target;
-        setUser((prevUser)=>({
-            ...prevUser,
-            [name]:value
-        }));
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
     };
- 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await sendRequest();
-            if (response.status === 200 && response.data.status === "ok") {
-                alert("Login Success");
-                history('/Userdetails');
-            } else {
-                alert("Login Failed");
+            const response = await axios.post('http://localhost:8090/auth/login', formData);
+            const { token, user } = response.data;
+            
+            // Store token and user info in localStorage
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            // Redirect based on role
+            switch (user.role) {
+                case 'Donor':
+                    navigate("/dl/dashboard");
+                    break;
+                case 'Volunteer Coordinator':
+                    navigate('/vcl/dashboard');
+                    break;
+                case 'Volunteer Packing Staff':
+                    navigate('/vpsl/volunteerpstaffdashboard');
+                    break;
+                case 'Volunteer Delivery Staff':
+                    navigate('/vdsl/volunteerdstaffdashboard');
+                    break;
+                case 'Admin':
+                    navigate('/al/admindashboard');
+                    break;
+                case 'Operating Manager':
+                    navigate('/opl/dashboard');
+                    break;
+                default:
+                    navigate('/dashboard');
             }
         } catch (error) {
-            console.error('Error:', error);
-            alert("Login Failed");
+            setError(error.response?.data?.message || 'Login failed');
         }
     };
 
-
-
-    const sendRequest = async () => {
-        return await axios.post('http://localhost:8090/login', {
-            email: user.email,
-            password: user.password,
-        }).then(res => res);
-    };
-
-    
-
-  return (
-    <div className='login-body'>
-        <div className='login-container'>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-               <div className='login-input-field'>
-                <label>Email:</label>
-                <input className='login-input-box'
-                type="email" 
-                name="email" 
-                value={user.email} 
-                onChange={handleInputChange} 
-                placeholder='Enter your email'
-                required />
-
-               </div>
-                <div className='login-input-field'>
-                 <label>Password:</label>
-                 <input className='login-input-box'
-                 type="password" 
-                 name="password" 
-                 value={user.password} 
-                 onChange={handleInputChange} 
-                 placeholder='Enter your password'
-                 required />
-                </div>
-                <button className='login-button' type="submit">Login</button>
-                
-
-                <a href="#" class="forgot-password">Forgot Password?</a>
-
-            </form>
+    return (
+        <div className="imalshacompnant-login-bg">
+            <div className="imalshacompnant-login-box">
+                <h2 className="imalshacompnant-login-title">Login</h2>
+                {error && <div className="imalshacompnant-login-error">{error}</div>}
+                <form onSubmit={handleSubmit}>
+                    <div className="imalshacompnant-login-group">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Username"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="imalshacompnant-login-input"
+                            required
+                        />
+                        <span className="imalshacompnant-login-icon">
+                            <i className="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div className="imalshacompnant-login-group">
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="imalshacompnant-login-input"
+                            required
+                        />
+                        <span className="imalshacompnant-login-icon">
+                            <i className="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <div className="imalshacompnant-login-options">
+                        <label>
+                            <input type="checkbox" className="imalshacompnant-login-checkbox" />
+                            Remember Me
+                        </label>
+                        <a href="/forgot-password" className="imalshacompnant-login-forgot">Forgot Password?</a>
+                    </div>
+                    <button type="submit" className="imalshacompnant-login-btn">Login</button>
+                </form>
+                <p className="imalshacompnant-login-register">
+                    Don't have an account? <a href="/register">Register</a>
+                </p>
+            </div>
         </div>
-  </div>
-  );
-}
+    );
+};
 
 export default Login;
