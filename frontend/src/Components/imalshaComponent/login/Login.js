@@ -46,7 +46,7 @@ const Login = () => {
                     navigate('/al/admindashboard');
                     break;
                 case 'Operating Manager':
-                    navigate('/opl/foodManagement');
+                    navigate('/opl/dashboard');
                     break;
                 default:
                     navigate('/dashboard');
