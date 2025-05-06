@@ -119,6 +119,7 @@ const MapLayout = () => (
 
 
 const DonorLayout = () => (
+  <div className="backgroundOp">
   <div className="page-container">
     <Nav />
     <div className="page-content">
@@ -137,9 +138,11 @@ const DonorLayout = () => (
     </div>
     <Footer />
   </div>
+  </div>
 );
 
 const OperatingManagerLayout = () => (
+  <div className="backgroundOp">
   <div className="operating-manager-container">
     <OperatingManagerSidebar />
     <div className="operating-manager-content">
@@ -152,6 +155,7 @@ const OperatingManagerLayout = () => (
         <Route path="/chatOP" element={<ChatOP />} />
       </Routes>
     </div>
+  </div>
   </div>
 );
 
@@ -247,8 +251,8 @@ function App() {
   return (
     <Routes>
       <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/*" element={<DonorLayout />} />
-      <Route path="/j/*" element={<OperatingManagerLayout />} />
+      <Route path="/k/*" element={<DonorLayout />} />
+      <Route path="/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/l/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />

@@ -299,6 +299,10 @@ export default function OpDashboard() {
   
 
   return (
+    <div>
+          <h1>Operating Manger Dashboard</h1>
+          <p className="subtitle">Here's your  activity overview</p>
+        
     <div className="op-dashboard-container">
       <div className="welcome-message-op">Welcome, Operating Manager! Have a great day managing food donations and making a difference. 🌟</div>
       <div className="dashboard-summary">
@@ -383,7 +387,7 @@ export default function OpDashboard() {
         </div>
       </div>
       {/* Map Section: Donation Locations */}
-      <div className="map-section">
+      <div className="map-section chart-card large-chart">
         <h2>Donation Locations</h2>
         <MapContainer center={[6.9271, 79.8612]} zoom={7} style={{ height: '500px', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -402,6 +406,7 @@ export default function OpDashboard() {
           ))}
         </MapContainer>
       </div>
+    </div>
     </div>
   );
 }
