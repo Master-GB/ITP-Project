@@ -53,7 +53,6 @@ import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/Volunte
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 import Home from "./Components/daniruComponent/Home/Home";
 import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
-import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 
 
 
@@ -264,13 +263,13 @@ function App() {
       <Route path="/ul/*" element={<UserLayout />} />
       <Route path="/dl/*" element={<DonorLayout />} />
       <Route path="/opl/*" element={<OperatingManagerLayout />} />
-      <Route path="/rl/*" element={<RequestsLayout />} />
+      <Route path="/*" element={<RequestsLayout />} />
       <Route path="/de2/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/fvs/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />
       <Route path="/eet/*" element={<MapLayout/>} />
-      <Route path="/*" element={<HomeLayout/>} />
+      <Route path="/aa/*" element={<HomeLayout/>} />
     </Routes>
   );
 }
