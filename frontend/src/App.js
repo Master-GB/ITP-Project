@@ -26,6 +26,7 @@ import AboutUs from './Components/gihanComponent/donationComponent/aboutUs/about
 import Guidance from './Components/gihanComponent/donationComponent/guidance/guidance';
 import Support from './Components/gihanComponent/donationComponent/support/support';
 import Chat from './Components/gihanComponent/donationComponent/chat/chat';
+import ChatBotAI from './Components/gihanComponent/donationComponent/chatBotAI/chatBotAI';
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
 import FoodDonationPage from "./Components/gihanComponent/operatingManager/donationManagement/donationManagement";
@@ -143,6 +144,7 @@ const DonorLayout = () => (
         <Route path = "/guidance" element ={<Guidance/>}/>
         <Route path = "/support" element ={<Support/>}/>
         <Route path="/chat" element={<Chat />} />
+        <Route path="/chatbot" element={<ChatBotAI />} />
       </Routes>
     </div>
     <Footer />
@@ -263,13 +265,13 @@ function App() {
       <Route path="/ul/*" element={<UserLayout />} />
       <Route path="/dl/*" element={<DonorLayout />} />
       <Route path="/opl/*" element={<OperatingManagerLayout />} />
-      <Route path="/*" element={<RequestsLayout />} />
+      <Route path="/h/*" element={<RequestsLayout />} />
       <Route path="/de2/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/fvs/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />
       <Route path="/eet/*" element={<MapLayout/>} />
-      <Route path="/aa/*" element={<HomeLayout/>} />
+      <Route path="/*" element={<HomeLayout/>} />
     </Routes>
   );
 }
