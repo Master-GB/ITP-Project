@@ -1,71 +1,97 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Bar } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-} from 'chart.js';
+import axios from 'axios'; 
 import './ProfileP.css';
 
-// Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const ProfileP = () => {
-    const [summary, setSummary] = useState({
-        totalRequests: 0,
-        latestRequest: null,
-        foodTypeSummary: []
+function ProfileP() {
+    const [profileData, setProfileData] = useState({
+        organizationName: '',
+        location: '',
+        contactNumber: '',
+        email: '',
+        joinedDate: '',
+        status: 'Active'
     });
 
     useEffect(() => {
-        const fetchSummary = async () => {
+        const fetchProfileData = async () => {
             try {
-                const res = await axios.get('http://localhost:8090/requests/summary');
-                setSummary(res.data);
-            } catch (err) {
-                console.error("Error fetching summary data:", err);
+                // Fetch organization details
+                const orgResponse = await axios.get("http://localhost:8090/organization/profile");
+                const orgData = orgResponse.data;
+
+                setProfileData({
+                    organizationName: orgData.organizationName || 'Not Set',
+                    location: orgData.location || 'Not Set',
+                    contactNumber: orgData.contactNumber || 'Not Set',
+                    email: orgData.email || 'Not Set',
+                    joinedDate: orgData.joinedDate || 'Not Set',
+                    status: orgData.status || 'Active'
+                });
+            } catch (error) {
+                console.error("Error fetching profile data:", error);
             }
         };
-        fetchSummary();
+
+        fetchProfileData();
     }, []);
 
-    const chartData = {
-        labels: summary.foodTypeSummary.map(item => item._id),
-        datasets: [
-            {
-                label: 'Number of Requests',
-                data: summary.foodTypeSummary.map(item => item.count),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }
-        ]
-    };
-
     return (
-        <div className="profile-summary">
-            <h1>Profile Summary</h1>
-            <div className="summary-details">
-                <p><strong>Total Requests:</strong> {summary.totalRequests}</p>
-                {summary.latestRequest && (
-                    <>
-                        <p><strong>Latest Request ID:</strong> {summary.latestRequest._id}</p>
-                        <p><strong>Organization Name:</strong> {summary.latestRequest.organizationName}</p>
-                        <p><strong>Food Type:</strong> {summary.latestRequest.foodType}</p>
-                    </>
-                )}
+        <div className="profile-container">
+            <div className="profile-header">
+                <div className="profile-title">
+                    <h1>Partner Information</h1>
+                    <p className="profile-subtitle">Organization Details</p>
+                </div>
+                <div className="profile-status">
+                    <span className={`status-badge ${profileData.status.toLowerCase()}`}>
+                        {profileData.status}
+                    </span>
+                </div>
             </div>
-            <div className="chart-container">
-                <h2>Requests by Food Type</h2>
-                <Bar data={chartData} />
+
+            <div className="profile-content">
+                <div className="profile-section">
+                    <div className="info-grid">
+                        <div className="info-item">
+                            <div className="info-icon">🏢</div>
+                            <div className="info-content">
+                                <label>Organization Name</label>
+                                <p>{profileData.organizationName}</p>
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="info-icon">📍</div>
+                            <div className="info-content">
+                                <label>Location</label>
+                                <p>{profileData.location}</p>
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="info-icon">📞</div>
+                            <div className="info-content">
+                                <label>Contact Number</label>
+                                <p>{profileData.contactNumber}</p>
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="info-icon">✉️</div>
+                            <div className="info-content">
+                                <label>Email</label>
+                                <p>{profileData.email}</p>
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="info-icon">📅</div>
+                            <div className="info-content">
+                                <label>Joined Date</label>
+                                <p>{profileData.joinedDate}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
-};
+}
 
 export default ProfileP;

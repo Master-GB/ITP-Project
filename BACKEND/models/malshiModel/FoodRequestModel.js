@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FoodRequestSchema = new Schema({
-    organizationName: {
+    requestCode: {
         type: String,
         required: true,
+        unique: true
     },
     location: {
         type: String,
@@ -29,8 +30,13 @@ const FoodRequestSchema = new Schema({
         required: false,
     },
     status: {
-         type: String,
-        default: "pending" }
+        type: String,
+        default: "pending"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model("FoodRequest", FoodRequestSchema);

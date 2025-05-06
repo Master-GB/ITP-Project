@@ -1,132 +1,344 @@
 .food-display-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .food-display-header {
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-  }
-  
-  .food-display-empty {
-    text-align: center;
-    padding: 40px;
-    color: #666;
-    font-size: 18px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin: 20px auto;
-    max-width: 600px;
-  }
-  
-  .food-display-table-wrapper {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
-    overflow: hidden;
-  }
-  
-  .food-display-table {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.food-display-header {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.food-display-empty {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 18px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.food-display-table-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.food-display-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.food-display-row {
+  border-bottom: 1px solid #eee;
+}
+
+.food-display-row:last-child {
+  border-bottom: none;
+}
+
+.food-display-label {
+  width: 35%;
+  padding: 15px 20px;
+  font-weight: bold;
+  color: #555;
+  background-color: #f7f7f7;
+  vertical-align: top;
+}
+
+.food-display-value {
+  width: 65%;
+  padding: 15px 20px;
+  color: #333;
+}
+
+.food-display-notes-row .food-display-value {
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.food-display-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+.food-display-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  margin: 0 8px;
+  text-decoration: none; /* Removes the underline */
+}
+
+.food-display-update-btn {
+  background-color: #7d71b1; /* Green */
+  color: white;
+  border: none;
+}
+
+.food-display-update-btn:hover {
+  background-color: #0b323b;
+}
+
+.food-display-delete-btn {
+  background-color: #ea4335;
+  color: white;
+}
+
+.food-display-delete-btn:hover {
+  background-color: #d33426;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .food-display-table,
+  .food-display-table tbody,
+  .food-display-table tr,
+  .food-display-table td {
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .food-display-row {
-    border-bottom: 1px solid #eee;
-  }
-  
-  .food-display-row:last-child {
-    border-bottom: none;
   }
   
   .food-display-label {
-    width: 35%;
-    padding: 15px 20px;
-    font-weight: bold;
-    color: #555;
-    background-color: #f7f7f7;
-    vertical-align: top;
+    padding: 10px 15px 5px;
+    border-bottom: none;
   }
   
   .food-display-value {
-    width: 65%;
-    padding: 15px 20px;
-    color: #333;
+    padding: 5px 15px 10px;
   }
-  
-  .food-display-notes-row .food-display-value {
-    white-space: pre-line;
-    line-height: 1.5;
-  }
-  
+
   .food-display-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 25px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
+  
   .food-display-button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-    display: inline-block;
-    margin: 0 8px;
-    text-decoration: none; /* Removes the underline */
+    width: 100%;
+    max-width: 250px;
   }
-  
-  .food-display-update-btn {
-    background-color: #4CAF50; /* Green */
+}
+
+.food-display-value mark {
+    background-color: #2196F3;
     color: white;
-    border: none;
-  }
-  
-  .food-display-update-btn:hover {
-    background-color: #45a049;
-  }
-  
-  .food-display-delete-btn {
-    background-color: #ea4335;
-    color: white;
-  }
-  
-  .food-display-delete-btn:hover {
-    background-color: #d33426;
-  }
-  
-  /* Mobile responsiveness */
-  @media screen and (max-width: 600px) {
-    .food-display-table,
-    .food-display-table tbody,
-    .food-display-table tr,
-    .food-display-table td {
-      display: block;
-      width: 100%;
-    }
-    
-    .food-display-label {
-      padding: 10px 15px 5px;
-      border-bottom: none;
-    }
-    
-    .food-display-value {
-      padding: 5px 15px 10px;
-    }
-  
-    .food-display-actions {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .food-display-button {
-      width: 100%;
-      max-width: 250px;
-    }
-  }
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.status-approved {
+  background-color: #d4edda;
+  color: #1b6c2e;
+  border: 1px solid #c3e6cb;
+}
+
+.status-rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.delete-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.delete-confirm-modal {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.delete-confirm-modal h3 {
+  color: #333;
+  margin: 0 0 15px 0;
+  font-size: 1.4em;
+}
+
+.delete-confirm-modal p {
+  color: #666;
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+}
+
+.delete-confirm-details {
+  font-weight: 500;
+  color: #333 !important;
+  margin: 15px 0 !important;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.delete-confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.delete-confirm-cancel,
+.delete-confirm-delete {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.delete-confirm-cancel {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.delete-confirm-cancel:hover {
+  background-color: #dee2e6;
+}
+
+.delete-confirm-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-confirm-delete:hover {
+  background-color: #c82333;
+}
+
+.food-display-checkbox {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
+.request-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #2196F3;
+}
+
+.pdf-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.generate-pdf-btn {
+  background-color: #1b4160;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.generate-pdf-btn:hover {
+  background-color: #1976D2;
+}
+
+.generate-pdf-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.generate-pdf-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.display-requests-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  color: #666;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.food-display-view-btn {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+
+.food-display-view-btn:hover {
+  background-color: #1976D2;
+}

@@ -1,13 +1,14 @@
-
 import './App.css';
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
+// Imalsha's componenets
 import Userdetails from "./Components/imalshaComponent/UserDetails/Users";
 import NavigationBar from './Components/imalshaComponent/unavbar/Navigationbar';
 import AddUser from './Components/imalshaComponent/AddUser/AddUser';
 import UpdateUser from './Components/imalshaComponent/UpdateUser/UpdateUser';
 import Login from './Components/imalshaComponent/login/Login';
+import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackForm';
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
@@ -52,8 +53,9 @@ import VolunteerApplication from "./Components/daniruComponent/VolunteerApplicat
 import VolunteerTask from "./Components/daniruComponent/VolunteerDStaff/VolunteerTask";
 import VolunteerPStaffDashboard from "./Components/daniruComponent/VolunteerPStaff/VolunteerPStaffDashboard";
 import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/VolunteerPTask";
-import Home from "./Components/daniruComponent/Home/Home";
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
+import Home from "./Components/daniruComponent/Home/Home";
+
 
 // Malshi's components
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
@@ -63,6 +65,8 @@ import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
 import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
+import FooterP from './Components/malshiComponent/FooterP/FooterP';
+import DashboardP from './Components/malshiComponent/DashboardP/DashboardP';
 
 
 //Sashini's components
@@ -76,9 +80,16 @@ const UserLayout = () => (
     <div className='app-content'>
       <Routes>
         <Route path="/" element={<NavigationBar />} />
-        <Route path="/adduser" element={<AddUser />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/feedbackForm' element={<FeedbackForm />} />
+        <Route path="/userdetails" element={<Userdetails/>} />
+        <Route path="/adduser" element={<AddUser/>} />
+        <Route path="/userdetails/:id" element={<UpdateUser/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path='/feedback' element={<FeedbackDetails/>}/>   
+        <Route path='/feedbackForm' element={<FeedbackForm/>}/>
+        <Route path='/feedback/:id' element={<FeedbackDetails/>}/>
+        <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
+        <Route path="/dashbord" element={<DashboardI/>}/>
+        <Route path="/display-requests/:id" element={<UpdateRequests />} />
         <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </div>
@@ -92,7 +103,6 @@ const AdminLayout = () => (
         <Route path="*" element={<AdminDashboard/>} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/userdetails" element={<Userdetails />} />
-        <Route path='/feedback' element={<FeedbackDetails />} />
         <Route path='/feedback' element={<FeedbackDetails />} />
         <Route path="/userdetails/:id" element={<UpdateUser />} />
         <Route path='/feedback/:id' element={<FeedbackDetails />} />
@@ -161,9 +171,9 @@ const OperatingManagerLayout = () => (
 
 const RequestsLayout = () => (
   <div className="App">
-    <NavBarP />
+    <NavBarP/>
     <div className="main-content">
-        <Routes>
+      <Routes>
         <Route path="/" element={<ProfileP />} />
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
@@ -171,6 +181,7 @@ const RequestsLayout = () => (
         <Route path="/funds" element={<PaymentForm />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/display-requests/:id" element={<UpdateRequests />} />
+        <Route path="/dashboard" element={<DashboardP />} />
       </Routes>
     </div>
   </div>
@@ -220,6 +231,8 @@ const VolunteerPackingStaffLayout = () => (
   <div className="volunteer-delivery-staff-container">
     <React.Fragment>
       <Routes>
+        <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
+      <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/" element={<VolunteerPStaffDashboard />} />
         <Route
           path="/volunteerpstaffdashboard"
@@ -264,4 +277,6 @@ function App() {
   );
 }
 
+
 export default App;
+
