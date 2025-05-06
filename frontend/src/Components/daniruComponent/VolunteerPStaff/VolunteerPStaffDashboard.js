@@ -5,6 +5,7 @@ import VolunteerPNav from "./VolunteerPNav";
 import VolunteerTasks from "./VolunteerTasks";
 import VolunteerFooter from "../Home/HomeFooter";
 import { FaTasks, FaCheckCircle, FaListOl, FaStar, FaClipboardList, FaUserCircle, FaQuoteLeft } from "react-icons/fa";
+import ChatBox from '../../imalshaComponent/Chatbot/Chatbot'; // ✅ Import ChatBox
 
 const VolunteerDStaffDashboard = () => {
   const { volunteerName } = useParams();
@@ -65,6 +66,7 @@ const VolunteerDStaffDashboard = () => {
   return (
     <>
       <VolunteerPNav />
+      <ChatBox /> {/* ✅ Add ChatBox here */}
       <div className="volunteerdstaffdashboard-main-content volunteerdstaffdashboard-fade-in">
         <div className="volunteerdstaffdashboard-fullwidth volunteerdstaffdashboard-container">
           {/* Modern Greeting Section */}

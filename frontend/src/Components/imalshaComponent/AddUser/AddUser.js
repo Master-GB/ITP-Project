@@ -97,7 +97,7 @@ function AddUser() {
             
             try {
                 await sendRequest();
-                setSuccess('Registration successful! Redirecting to login...');
+                setSuccess('Registration successful!');
                 
                 // Clear form
                 setInputs({
@@ -109,10 +109,12 @@ function AddUser() {
                     address: '',
                 });
                 
-                // Redirect after a delay
-                setTimeout(() => {
+                // Navigate based on role
+                if (inputs.role === 'Volunteer Delivery Staff' || inputs.role === 'Volunteer Packing Staff') {
+                    navigate('/verificationcode');
+                } else {
                     navigate('/login');
-                }, 2000);
+                }
                 
             } catch (error) {
                 setErrors({

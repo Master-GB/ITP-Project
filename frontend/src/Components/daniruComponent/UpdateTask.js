@@ -45,9 +45,30 @@ function UpdateTask() {
     console.log(inputs);
     await sendRequest().then(() => {
       alert("Task Updated Successfully!"); // This is the popup message
-      history("/viewtasks");
+      history("/vcl/viewtasks");
     });
   };
+
+  // State to store accepted volunteers
+  const [acceptedVolunteers, setAcceptedVolunteers] = useState([]);
+  
+  // Fetch all volunteers and filter for accepted ones when component mounts
+  useEffect(() => {
+    const fetchVolunteers = async () => {
+      try {
+        const response = await axios.get("http://localhost:8090/volunteers");
+        // Filter for accepted volunteers
+        const accepted = response.data.volunteers.filter(
+          volunteer => volunteer.status === "Accepted"
+        );
+        setAcceptedVolunteers(accepted);
+      } catch (error) {
+        console.error("Error fetching volunteers:", error);
+      }
+    };
+    
+    fetchVolunteers();
+  }, []);
 
   return (
     <div className="create-task-container">
@@ -128,8 +149,15 @@ function UpdateTask() {
             className="create-task-select"
           >
             <option value="">-- Choose --</option>
-            <option>John Doe</option>
-            <option>Jane Smith</option>
+            {acceptedVolunteers.length > 0 ? (
+              acceptedVolunteers.map((volunteer) => (
+                <option key={volunteer._id} value={volunteer.volunteerName}>
+                  {volunteer.volunteerName}
+                </option>
+              ))
+            ) : (
+              <option value="" disabled>No accepted volunteers available</option>
+            )}
           </select>
 
           <button type="submit" className="create-task-button">

@@ -54,7 +54,9 @@ import VolunteerPTask from "./Components/daniruComponent/VolunteerPStaff/Volunte
 import PackingInstructions from './Components/daniruComponent/VolunteerPStaff/PackingInstructions';
 import Home from "./Components/daniruComponent/Home/Home";
 import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
-
+import AboutUsHome from "./Components/daniruComponent/Home/AboutUs/AboutUs";
+import ContactUs from "./Components/daniruComponent/Home/ContactUs/ContactUs";
+import VerificationCode from "./Components/daniruComponent/VerificationCode/VerificationCode";
 
 
 // Malshi's components
@@ -246,7 +248,7 @@ const HomeLayout = () => (
   <div className="home-container">
     <React.Fragment>
       <Routes>
-      <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />}/>
         <Route path="/volunteer/:volunteerName" element={<VolunteerPTask />} />
@@ -254,6 +256,9 @@ const HomeLayout = () => (
         <Route path="/packinginstructions" element={<PackingInstructions />} />
         <Route path="/login" element={<Login />} />
         <Route path="/adduser" element={<AddUser />} />
+        <Route path="/about-us" element={<AboutUsHome />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/verificationcode" element = {<VerificationCode/>}/>
       </Routes>
     </React.Fragment>
   </div>
@@ -268,7 +273,7 @@ function App() {
       <Route path="/h/*" element={<RequestsLayout />} />
       <Route path="/de2/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
-      <Route path="/fvs/*" element={<VolunteerPackingStaffLayout />} />
+      <Route path="/vpsl/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />
       <Route path="/eet/*" element={<MapLayout/>} />
       <Route path="/*" element={<HomeLayout/>} />

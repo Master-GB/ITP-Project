@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaHome,
   FaUsers,
@@ -14,9 +14,17 @@ import "./Nav.css";
 
 function StandardNav() {
   const [isTaskOpen, setIsTaskOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleTaskMenu = () => {
     setIsTaskOpen(!isTaskOpen);
+  };
+
+  const handleSignOut = () => {
+    if (window.confirm("Are you sure you want to sign out?")) {
+      // Add any cleanup logic here (e.g., clearing local storage, session, etc.)
+      navigate('/');
+    }
   };
 
   return (
@@ -70,7 +78,7 @@ function StandardNav() {
           <div className="task-nav-profile-name">Daniru Dodangoda</div>
           <div className="task-nav-profile-role">Volunteer Coordinator</div>
         </div>
-        <button className="task-nav-signout-btn">Sign Out</button>
+        <button className="task-nav-signout-btn" onClick={handleSignOut}>Sign Out</button>
       </div>
     </div>
   );
