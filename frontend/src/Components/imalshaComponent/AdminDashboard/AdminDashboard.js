@@ -5,7 +5,7 @@ import './AdminDashboard.css';
 import UserChart from '../UserChart';
 import FeedbackChart from '../FeedbackChart';
 import NavigationBar from '../anavbar/aNavigationBar';
-import ChatBox from '../chatbot/chatbot'; // ✅ Import ChatBox
+import ChatBox from '../Chatbot/Chatbot'; // ✅ Import ChatBox
 
 function Dashboard() {
   const [userCount, setUserCount] = useState(0);

@@ -14,7 +14,6 @@ import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
 import AdminDashboard from './Components/imalshaComponent/AdminDashboard/AdminDashboard';
 import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 
-
 // Gihan's components
 import Donate from "./Components/gihanComponent/donationComponent/donateNow/donate";
 import Dashboard from "./Components/gihanComponent/donationComponent/dashboard/dashboard";
@@ -88,7 +87,6 @@ const UserLayout = () => (
         <Route path='/updateFeedback/:id' element={<UpdateFeedback />} />
         <Route path="/dashbord" element={<DashboardI/>}/>
         <Route path="/display-requests/:id" element={<UpdateRequests />} />
-        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </div>
   </div>
