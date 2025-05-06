@@ -2,6 +2,11 @@ require('dotenv').config();
 const Volunteer = require("../../models/daniruModel/VolunteerModel");
 const nodemailer = require('nodemailer');
 
+const allowedCodes = [
+  "462722", "568903", "675433", "567483", "754678",
+  "196875", "546786", "089507", "456889", "467865"
+];
+
 // Get all volunteers
 const getAllVolunteers = async (req, res, next) => {
   let volunteers;
@@ -143,21 +148,17 @@ const updateVolunteer = async (req, res, next) => {
     volunteer.role = role || volunteer.role;
     volunteer.status = status || volunteer.status;
 
-    await volunteer.save();
+    // Generate verification code if status is changing to Accepted
+    if (status === "Accepted" && previousStatus !== "Accepted") {
+      // Pick a code from the allowed list
+      const verificationCode = allowedCodes[Math.floor(Math.random() * allowedCodes.length)];
+      volunteer.verificationCode = verificationCode;
+      
+      console.log('Generated verification code:', verificationCode);
+      console.log('For volunteer:', volunteer.email);
 
-    // Send email if status changed to Accepted or Rejected
-    if ((status === "Accepted" && previousStatus !== "Accepted") ||
-        (status === "Rejected" && previousStatus !== "Rejected")) {
-
-      let subject, text;
-
-      if (status === "Accepted") {
-        subject = 'Volunteer Application Approved';
-        text = `Dear ${volunteer.volunteerName},\n\nYour application has been approved by the Volunteer Coordinator!\nNow, you can register to the platform as a volunteer.\n\nThank you for joining us.\n\nBest regards,\nHodaHitha.lk Team`;
-      } else if (status === "Rejected") {
-        subject = 'Volunteer Application Rejected';
-        text = `Dear ${volunteer.volunteerName},\n\nWe regret to inform you that your application has been rejected by the Volunteer Coordinator.\n\nThank you for your interest in joining us.\n\nBest regards,\nHodaHitha.lk Team`;
-      }
+      let subject = 'Volunteer Application Approved';
+      let text = `Dear ${volunteer.volunteerName},\n\nYour application has been approved by the Volunteer Coordinator!\n\nYour verification code is: ${verificationCode}\n\nPlease use this code to complete your registration.\n\nThank you for joining us.\n\nBest regards,\nHodaHitha.lk Team`;
 
       let mailOptions = {
         from: `"HodaHitha.lk" <${process.env.EMAIL_USER}>`,
@@ -174,19 +175,89 @@ const updateVolunteer = async (req, res, next) => {
         }
       });
 
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log('Verification email sent successfully');
+      } catch (emailError) {
+        console.error('Error sending verification email:', emailError);
+        throw emailError;
+      }
+    } else if (status === "Rejected" && previousStatus !== "Rejected") {
+      let subject = 'Volunteer Application Rejected';
+      let text = `Dear ${volunteer.volunteerName},\n\nWe regret to inform you that your application has been rejected by the Volunteer Coordinator.\n\nThank you for your interest in joining us.\n\nBest regards,\nHodaHitha.lk Team`;
+
+      let mailOptions = {
+        from: `"HodaHitha.lk" <${process.env.EMAIL_USER}>`,
+        to: volunteer.email,
+        subject: subject,
+        text: text
+      };
+
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
         }
       });
+
+      await transporter.sendMail(mailOptions);
     }
 
+    await volunteer.save();
     return res.status(200).json({ volunteer });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Error updating volunteer" });
+  }
+};
+
+// Add a new function to verify the code
+const verifyCode = async (req, res) => {
+  const { email, code } = req.body;
+
+  console.log('Verification attempt:', { email, code });
+
+  try {
+    const volunteer = await Volunteer.findOne({ email: email.toLowerCase() });
+    
+    if (!volunteer) {
+      console.log('Volunteer not found:', email);
+      return res.status(404).json({ message: "Volunteer not found" });
+    }
+
+    console.log('Found volunteer:', {
+      email: volunteer.email,
+      storedCode: volunteer.verificationCode,
+      providedCode: code
+    });
+
+    if (!volunteer.verificationCode) {
+      console.log('No verification code found for volunteer');
+      return res.status(400).json({ message: "No verification code found. Please request a new code." });
+    }
+
+    if (volunteer.verificationCode !== code) {
+      console.log('Invalid verification code');
+      return res.status(400).json({ message: "Invalid verification code" });
+    }
+
+    // Clear the verification code after successful verification
+    volunteer.verificationCode = null;
+    await volunteer.save();
+    console.log('Verification successful for:', email);
+
+    return res.status(200).json({ 
+      message: "Verification successful",
+      volunteer: {
+        name: volunteer.volunteerName,
+        email: volunteer.email,
+        role: volunteer.role
+      }
+    });
+  } catch (error) {
+    console.error("Error verifying code:", error);
+    return res.status(500).json({ message: "Error verifying code" });
   }
 };
 
@@ -227,5 +298,6 @@ module.exports = {
   deleteVolunteer,
   getVolunteerById,
   checkEmailAvailability,
-  checkPhoneAvailability
+  checkPhoneAvailability,
+  verifyCode
 };

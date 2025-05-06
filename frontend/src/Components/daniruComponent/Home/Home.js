@@ -44,7 +44,8 @@ const Home = () => {
         <nav className="home-header-nav">
           <a href="#home">Home</a>
           <a href="/volunteerapplication">Be a Volunteer</a>
-          <a href="#about">About Us</a>
+          <a href="/about-us">About Us</a>
+          <a href="/contactus">Contact Us</a>
         </nav>
         <div className="header-auth-btns">
           <button className="header-btn sign-in" onClick={() => navigate('/login')}>Sign In</button>
@@ -95,6 +96,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="home-cta-btn home-donate home-glowing-btn"
+                onClick={() => navigate('/ul/login')}
               >
                 Donate Now
               </motion.button>
@@ -102,6 +104,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="home-cta-btn home-request"
+                onClick={() => navigate('/contactus')}
               >
                 Request Help
               </motion.button>

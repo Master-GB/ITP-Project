@@ -84,7 +84,7 @@ function Task() {
         <header className="task-header">
           <h1 className="task-heading-modern"><FaTasks style={{color:'#1abc9c', marginRight:10, verticalAlign:'middle'}}/>Task Management</h1>
           <h2>Manage & track volunteer tasks</h2>
-          <Link to={"/createtask"}>
+          <Link to={"/vcl/createtask"}>
             <Button className="create-task-button"><FaPlusCircle style={{marginRight:8, verticalAlign:'middle'}}/>Create New Task</Button>
           </Link>
         </header>

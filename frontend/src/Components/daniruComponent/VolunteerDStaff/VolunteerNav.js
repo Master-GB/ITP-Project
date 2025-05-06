@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./VolunteerNav.css";
 
@@ -7,6 +7,7 @@ const Nav = ({ volunteerName }) => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSideNav = () => {
     setIsSideNavOpen(!isSideNavOpen);
@@ -117,7 +118,7 @@ const Nav = ({ volunteerName }) => {
 
           
         <div className="ai-chatbot">
-          <button className="chatbot-icon">
+          <button className="chatbot-icon" onClick={() => navigate('/ul/feedbackForm')}>
             <img
               src="/Resources/gihanRes/donationRes/AIBot.png"
               alt="Chatbot"

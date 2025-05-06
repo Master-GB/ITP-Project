@@ -43,6 +43,10 @@ const volunteerSchema = new Schema(
     dateApplied: {
       type: Date,
       default: Date.now
+    },
+    verificationCode: {
+      type: String,
+      default: null
     }
   }
 );

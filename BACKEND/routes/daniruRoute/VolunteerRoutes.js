@@ -17,6 +17,9 @@ router.post("/", volunteerController.addVolunteers);
 // Update volunteer
 router.put("/:id", volunteerController.updateVolunteer);
 
+// Verify code
+router.post("/verify", volunteerController.verifyCode);
+
 // Delete volunteer
 router.delete("/:id", volunteerController.deleteVolunteer);
 
