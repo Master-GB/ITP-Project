@@ -8,7 +8,6 @@ import NavigationBar from './Components/imalshaComponent/unavbar/Navigationbar';
 import AddUser from './Components/imalshaComponent/AddUser/AddUser';
 import UpdateUser from './Components/imalshaComponent/UpdateUser/UpdateUser';
 import Login from './Components/imalshaComponent/login/Login';
-import FeedbackDetails from './Components/imalshaComponent/FeedbackDetails/Feedbacks';
 import FeedbackForm from './Components/imalshaComponent/feedbackform/FeedbackForm';
 import UpdateFeedback from './Components/imalshaComponent/UpdateFeedback/UpdateFeedback'; 
 import DashboardI from './Components/imalshaComponent/Dashboard/Dashboard';
@@ -264,8 +263,8 @@ function App() {
   return (
     <Routes>
       <Route path="/hh/*" element={<UserLayout />} />
-      <Route path="/k/*" element={<DonorLayout />} />
-      <Route path="/*" element={<OperatingManagerLayout />} />
+      <Route path="/*" element={<DonorLayout />} />
+      <Route path="/j/*" element={<OperatingManagerLayout />} />
       <Route path="/requests/*" element={<RequestsLayout />} />
       <Route path="/l/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/volunteer-delivery/*" element={<VolunteerDeliveryStaffLayout />} />
