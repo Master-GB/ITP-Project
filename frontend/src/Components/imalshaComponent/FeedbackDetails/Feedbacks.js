@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navigationbar from '../unavbar/Navigationbar';
+import Navigationbar from '../anavbar/aNavigationBar';
 import './feedback.css';
 
 const URL = 'http://localhost:8090/feedbacks';
 
 const fetchHandler = async () => {
-    const res = await axios.get(URL);
-    return res.data;
+    try {
+        const res = await axios.get(URL);
+        return res.data;
+    } catch (error) {
+        console.error('Error fetching feedbacks:', error);
+        return { feedbacks: [] };
+    }
 };
 
 // Function to generate star icons based on rating
@@ -25,12 +30,46 @@ const StarRating = ({ rating }) => {
 
 function Feedbacks() {
     const [feedbacks, setFeedbacks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        fetchHandler().then((data) => {
-            setFeedbacks(data.feedbacks);
-        });
+        const loadFeedbacks = async () => {
+            try {
+                const data = await fetchHandler();
+                if (data && data.feedbacks) {
+                    setFeedbacks(data.feedbacks);
+                } else {
+                    setFeedbacks([]);
+                }
+            } catch (err) {
+                setError('Failed to load feedbacks');
+                console.error('Error loading feedbacks:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadFeedbacks();
     }, []);
+
+    if (loading) {
+        return (
+            <div>
+                <Navigationbar />
+                <div className="loading-message">Loading feedbacks...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div>
+                <Navigationbar />
+                <div className="error-message">{error}</div>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -40,12 +79,16 @@ function Feedbacks() {
             <br/>
             <br/>
             <div className="feedbacks-container">
-                {feedbacks && feedbacks.map((feedback, i) => (
-                    <div key={i} className="feedback-card">
-                        <p className="feedback-content">{feedback.message}</p>
-                        <StarRating rating={feedback.rating} />
-                    </div>
-                ))}
+                {feedbacks.length === 0 ? (
+                    <div className="no-feedbacks">No feedbacks available</div>
+                ) : (
+                    feedbacks.map((feedback, i) => (
+                        <div key={feedback._id || i} className="feedback-card">
+                            <p className="feedback-content">{feedback.message}</p>
+                            <StarRating rating={feedback.rating} />
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

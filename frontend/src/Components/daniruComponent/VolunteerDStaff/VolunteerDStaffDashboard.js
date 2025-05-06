@@ -2,71 +2,118 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./VolunteerDStaffDashboard.css";
 import VolunteerNav from "./VolunteerNav";
-import VolunteerTaskDisplay from "./VolunteerTaskDisplay";
+import VolunteerTasks from "./VolunteerTasks";
+import VolunteerFooter from "../Home/HomeFooter";
+import { FaTasks, FaCheckCircle, FaListOl, FaStar, FaClipboardList, FaUserCircle, FaQuoteLeft } from "react-icons/fa";
 
-const Dashboard = () => {
+const VolunteerDStaffDashboard = () => {
   const { volunteerName } = useParams();
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/tasks/${volunteerName}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTasks(data.tasks);
-      })
-      .catch((err) => console.error("Error fetching tasks:", err));
-  }, [volunteerName]);
+    const fetchTasks = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch("http://localhost:8090/tasks");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setTasks(data.tasks || []);
+      } catch (err) {
+        console.error("Error fetching tasks:", err);
+        setError("Failed to load tasks. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
+  // Only consider tasks that are not rejected
+  const nonRejectedTasks = tasks.filter(
+    (task) => task.status && task.status.toLowerCase() !== "rejected"
+  );
+
+  const activeStatuses = ["pending", "ongoing"];
+  const todayTasks = nonRejectedTasks.filter(
+    (task) => activeStatuses.includes(task.status.toLowerCase())
+  ).length;
+  const completedTasks = nonRejectedTasks.filter(
+    (task) => task.status.toLowerCase() === "completed"
+  ).length;
+  const totalTasks = nonRejectedTasks.length;
+  const completionRate =
+    totalTasks > 0 ? ((completedTasks / totalTasks) * 100).toFixed(1) : 0;
+
+  // Improved performance rating logic
+  let performanceRating = 3.0;
+  if (completionRate === "100.0") {
+    performanceRating = 5.0;
+  } else if (completionRate >= 80) {
+    performanceRating = 4.5;
+  } else if (completionRate >= 60) {
+    performanceRating = 4.0;
+  } else if (completionRate >= 40) {
+    performanceRating = 3.5;
+  }
 
   return (
-    <div className="volunteer-delivery-staff-dashboard">
+    <>
       <VolunteerNav />
-      {/* Main Content */}
-      <div className="container volunteer-delivery-staff-dashboard">
-        <h2 className="dashboard-title volunteer-delivery-staff-dashboard">
-          👋 Welcome back {volunteerName}!
+      <div className="dashboard-main-content fade-in-dashboard">
+        <div className="dashboard-fullwidth volunteer-delivery-staff-dashboard">
+          {/* Modern Greeting Section */}
+          <h2 className="dashboard-title">
+            <span role="img" aria-label="wave">👋</span> Welcome back !
         </h2>
         
         {/* Stats Section */}
-        <div className="stats volunteer-delivery-staff-dashboard">
-          <div className="card volunteer-delivery-staff-dashboard">
-            <p>Today's Tasks</p>
-            <h3>8</h3>
-            <span className="green volunteer-delivery-staff-dashboard">+2 from yesterday</span>
+          <div className="stats">
+            <div className="card" title="Active tasks assigned to you">
+              <FaTasks className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#1abc9c', marginBottom:8}}/>
+              <p>Tasks</p>
+              <h3>{todayTasks}</h3>
+              <span className="green">Active tasks</span>
           </div>
-          <div className="card volunteer-delivery-staff-dashboard">
+            <div className="card" title="Number of tasks you have completed">
+              <FaCheckCircle className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#2ecc71', marginBottom:8}}/>
             <p>Completed</p>
-            <h3>5</h3>
-            <span className="green volunteer-delivery-staff-dashboard">62.5% complete</span>
+              <h3>{completedTasks}</h3>
+              <span className="green">{completionRate}% complete</span>
           </div>
-          <div className="card volunteer-delivery-staff-dashboard">
-            <p>Distance Covered</p>
-            <h3>42.5 km</h3>
-            <span className="green volunteer-delivery-staff-dashboard">Today's total</span>
+            <div className="card" title="Total number of tasks assigned to you">
+              <FaListOl className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#3498db', marginBottom:8}}/>
+              <p>Total Tasks</p>
+              <h3>{totalTasks}</h3>
+              <span className="green">All time</span>
           </div>
-          <div className="card volunteer-delivery-staff-dashboard">
+            <div className="card" title="Your performance rating based on completion rate">
+              <FaStar className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#f39c12', marginBottom:8}}/>
             <p>Performance Rating</p>
-            <h3>4.9</h3>
-            <span className="green volunteer-delivery-staff-dashboard">+0.2 this week</span>
+              <h3>{performanceRating.toFixed(1)}</h3>
+              <span className="green">Based on completion rate</span>
+            </div>
           </div>
-        </div>
+
+          {/* Divider */}
+          <div className="dashboard-divider"></div>
 
         {/* Current Tasks */}
-        {/*<h3 className="section-title volunteer-delivery-staff-dashboard">📋 Current Tasks</h3>
-        <div className="tasks volunteer-delivery-staff-dashboard">
-          <div className="task volunteer-delivery-staff-dashboard">
-            <h4>🚚 Food Pickup - Restaurant A</h4>
-            <p>📍 123 Main St, Downtown</p>
-            <span className="status in-progress volunteer-delivery-staff-dashboard">In Progress</span>
-          </div>
-          <div className="task volunteer-delivery-staff-dashboard">
-            <h4>📦 Delivery - Community Center</h4>
-            <p>📍 456 Park Ave, Westside</p>
-            <span className="status pending volunteer-delivery-staff-dashboard">Pending</span>
-          </div>
-        </div>*/}
+          <h3 className="section-title">
+            <FaClipboardList style={{color:'#1abc9c', marginRight:10, verticalAlign:'middle'}}/>
+            Current Tasks
+          </h3>
+          <VolunteerTasks/>
+        </div>
+        <VolunteerFooter/>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Dashboard;
+export default VolunteerDStaffDashboard;

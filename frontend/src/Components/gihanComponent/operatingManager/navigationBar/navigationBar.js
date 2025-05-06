@@ -1,31 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './navigationBar.css';
+import SignOutOP from '../signOutOP/signOutOP';
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import RequestIcon from '@mui/icons-material/RequestQuote';
 import PartnersIcon from '@mui/icons-material/Handshake';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'; // Added Volunteer Icon
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const OperatingManagerSidebar = () => {
+  const [showSignOut, setShowSignOut] = useState(false);
+  const navigate = useNavigate();
   const navItems = [
     { name: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
     { name: 'Inventory', icon: <InventoryIcon />, path: '/inventoryManagement' },
     { name: 'Food Donation', icon: <RequestIcon />, path: '/foodManagement' },
     { name: 'Partner Collaboration', icon: <PartnersIcon />, path: '/partnerManagement' },
-    { name: 'Volunteer', icon: <VolunteerActivismIcon />, path: '/volunteersManagement' }, // New Section Added
-    { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' }
+   { name: 'Chat', icon: <ChatBubbleIcon />, path: '/chatOP' }, // Changed to ChatBubbleIcon
+   // { name: 'Funds', icon: <AttachMoneyIcon />, path: '/fundsManagement' }
   ];
 
   return (
     <div className="operating-manager-sidebar">
       <div className="sidebar-header">
         <img src="/Resources/gihanRes/donationRes/mainlogo.png" alt="Organization Logo" className="sidebar-logo" />
-        <h2 className="organization-name">FoodShare Network</h2>
+        <h2 className="organization-name-op">FoodShare Network</h2>
       </div>
       
       <hr className="sidebar-divider" />
@@ -59,10 +63,18 @@ const OperatingManagerSidebar = () => {
         </Link>
         
         {/* Sign Out */}
-        <Link to="/login" className="sign-out">
-          <LogoutIcon />
-          <span>Sign Out</span>
-        </Link>
+      <div className="sign-out" style={{ cursor: 'pointer' }} onClick={() => setShowSignOut(true)}>
+        <LogoutIcon />
+        <span>Sign Out</span>
+      </div>
+      <SignOutOP
+        open={showSignOut}
+        onConfirm={() => {
+          setShowSignOut(false);
+          navigate('/Home');
+        }}
+        onCancel={() => setShowSignOut(false)}
+      />
       </div>
     </div>
   );

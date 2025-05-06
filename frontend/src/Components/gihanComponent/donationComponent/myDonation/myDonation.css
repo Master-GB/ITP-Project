@@ -82,14 +82,29 @@
 .filter-container {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 2px;
 }
 
-.filter-container label {
+.fLabel {
+  white-space: nowrap;
+}
+
+.fLabel::after {
+  content: none !important;
+}
+
+.filter-container .fLabel {
   margin-right: 10px;
   font-weight: bold;
   font-size: 15px;
   padding-top: 7px;
   color: black;
+}
+
+.fLabel::after {
+  content: none !important;
 }
 
 .filter-container select {

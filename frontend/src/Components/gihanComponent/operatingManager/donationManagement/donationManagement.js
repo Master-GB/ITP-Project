@@ -1,14 +1,27 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "./donationManagement.css";
 
-const FoodDonationPage = () => {
+import io from "socket.io-client";
+
+const SOCKET_SERVER_URL = "http://localhost:5000";
+
+const FoodDonationPage = () => { 
   const [donations, setDonations] = useState([]);
   const [filteredDonations, setFilteredDonations] = useState([]);
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [message, setMessage] = useState("");
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const messageTemplates = [
+    "Thank you for your generous donation! We are processing your food donation now.",
+    "Your donation has been received and is being prepared for delivery.",
+    "We appreciate your support. Your food donation will help many in need.",
+    "Your donation is scheduled for pickup soon. Thank you for contributing!"
+  ];
+  const socketRef = useRef();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [sortOrder, setSortOrder] = useState("asc");
@@ -35,6 +48,32 @@ const FoodDonationPage = () => {
     fetchDonations();
   }, [fetchDonations]);
 
+  useEffect(() => {
+    fetchDonations();
+  }, [fetchDonations]);
+
+  // Ensure socketRef is initialized for real-time communication
+  useEffect(() => {
+    socketRef.current = io(SOCKET_SERVER_URL);
+    return () => {
+      socketRef.current.disconnect();
+    };
+  }, []);
+
+  // Calculate Expiring Soon Donations (next 24h, not expired, not Completed/Cancel)
+  const getExpiringSoonDonationsCount = () => {
+    const now = new Date();
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    return donations.filter(d => {
+      if (!d.expiryDate) return false;
+      const expiryDate = new Date(d.expiryDate);
+      return (
+        expiryDate > now && expiryDate <= next24h &&
+        d.status !== "Completed" &&
+        d.status !== "Cancel"
+      );
+    }).length;
+  };
 
   useEffect(() => {
     let result = donations.filter(
@@ -51,7 +90,6 @@ const FoodDonationPage = () => {
       result = result.filter((d) => d.status === statusFilter);
     }
 
-  
     result.sort((a, b) => {
       const dateA = a.expiryDate ? new Date(a.expiryDate) : new Date(0);
       const dateB = b.expiryDate ? new Date(b.expiryDate) : new Date(0);
@@ -61,7 +99,6 @@ const FoodDonationPage = () => {
     setFilteredDonations(result);
   }, [donations, searchTerm, statusFilter, sortOrder]);
 
-  
   const generateStatusPDF = (status) => {
     let donationsToExport = [];
 
@@ -73,7 +110,8 @@ const FoodDonationPage = () => {
         return (
           d.status !== "Completed" &&
           d.status !== "Cancel" &&
-          expiryDate < oneDaysFromNow
+          expiryDate > new Date() &&
+          expiryDate <= oneDaysFromNow
         );
       });
     } else if (status === "New") {
@@ -197,10 +235,28 @@ const FoodDonationPage = () => {
   };
 
   const handleSendMessage = () => {
-    if (selectedDonation && message) {
-      alert(`Message sent to donor: ${message}`);
-      setMessage("");
+    if (!message.trim()) return;
+    // Use a dedicated userId for operating manager
+    let userId = localStorage.getItem('chatOpUserId');
+    if (!userId) {
+      userId = 'op-' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+      localStorage.setItem('chatOpUserId', userId);
     }
+    let donationDetails = '';
+    if (selectedDonation) {
+      donationDetails = `Donation Details:\n- Food Item: ${selectedDonation.foodItem}\n- Quantity: ${selectedDonation.quantity} ${selectedDonation.quantityUnit}\n- Category: ${selectedDonation.foodCategory}`;
+    }
+    let fullMessage = donationDetails;
+    if (message.trim()) {
+      fullMessage += "\n\n" + message;
+    }
+    const msgObj = { text: fullMessage, userId };
+
+    // Emit to backend (same event as chat.js)
+    socketRef.current.emit("chat message", msgObj);
+    setMessage("");
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 2000);
   };
 
   const totalPending = donations.filter((d) => d.status === "Pending").length;
@@ -211,16 +267,7 @@ const FoodDonationPage = () => {
     (d) => d.status === "Packaging"
   ).length;
   const totalDelivery = donations.filter((d) => d.status === "Delivery").length;
-  const expiringSoonCount = donations.filter((d) => {
-    if (!d.expiryDate) return false;
-    const expiryDate = new Date(d.expiryDate);
-    const oneDaysFromNow = new Date(Date.now() + 24 * 60 * 60 * 1000);
-    return (
-      d.status !== "Completed" &&
-      d.status !== "Cancel" &&
-      expiryDate < oneDaysFromNow
-    );
-  }).length;
+  const expiringSoonCount = getExpiringSoonDonationsCount();
   const newDonationsCount = donations.filter((d) => {
     if (!d.donationDate) return false;
     const donationDate = new Date(d.donationDate);
@@ -233,6 +280,10 @@ const FoodDonationPage = () => {
   const totalCancel = donations.filter((d) => d.status === "Cancel").length;
 
   return (
+    <div>
+          <h1>Food Donation Management</h1>
+          <p className="subtitle">Manage food donation requests from Donor</p>
+        
     <div className="page-container">
       <div className="card-container">
         <div
@@ -430,7 +481,11 @@ const FoodDonationPage = () => {
               </div>
             </div>
 
+            {showSuccess && (
+              <div style={{color: 'green', marginBottom: 10, fontWeight: 'bold'}}>Message sent successfully!</div>
+            )}
             <div className="communication-panel">
+
               <h4>Donor Communication</h4>
               <textarea
                 value={message}
@@ -446,11 +501,37 @@ const FoodDonationPage = () => {
                 >
                   Send Message
                 </button>
-                <button className="template-button">Use Template</button>
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+  <button
+    className="template-button"
+    type="button"
+    onClick={() => setShowTemplates((prev) => !prev)}
+  >
+    Use Template
+  </button>
+  {showTemplates && (
+    <div className="template-dropdown" style={{ position: 'absolute', zIndex: 10, left: 0, bottom: '100%', background: '#fff', border: '1px solid #ccc', borderRadius: 4, minWidth: 240, boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
+      {messageTemplates.map((tpl, idx) => (
+        <div
+          key={idx}
+          style={{ padding: '8px 12px', cursor: 'pointer', borderBottom: idx !== messageTemplates.length - 1 ? '1px solid #eee' : 'none' }}
+          onClick={() => {
+            setMessage(tpl);
+            setShowTemplates(false);
+          }}
+        >
+          {tpl}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
               </div>
             </div>
+
           </>
         )}
+    </div>
     </div>
   );
 };

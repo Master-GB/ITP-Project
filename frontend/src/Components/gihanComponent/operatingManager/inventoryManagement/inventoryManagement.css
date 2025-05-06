@@ -42,7 +42,7 @@
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     border-left: 0px;
 }
@@ -54,7 +54,7 @@
     left: 0;
     right: 0;
     height: 0;
-    transition: height 0.3s ease;
+    transition: height 0.1s ease;
     background-color: inherit;
 }
 
@@ -64,10 +64,10 @@
 
 .card h3 {
     margin: 0 0 10px 0;
-    font-size: 20px;
-    text-align: center;
-    color: #2c3e50;
-    font-weight: 600;
+    font-size: 20px !important;
+    text-align: center !important;
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
 }
 
 .quantity-display {
@@ -120,8 +120,8 @@
 .inventory-controls {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
-    gap: 15px;
+    margin: 60px 10px 0 0 ;
+    gap: 25px;
     width: 100%;
 }
 
@@ -214,7 +214,10 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin: 20px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   
   .chart-container {
@@ -268,4 +271,98 @@
         padding: 10px;
         font-size: 0.9rem;
     }
+}
+
+/* Modal Styles for Export PDF */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(44,62,80,0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-dialog {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.14);
+    padding: 32px 32px 24px 32px;
+    min-width: 340px;
+    max-width: 95vw;
+    position: relative;
+    z-index: 1010;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.modal-dialog h2 {
+    margin-top: 0;
+    font-size: 1.35rem;
+    color: #2c3e50;
+    text-align: center;
+}
+.modal-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin-bottom: 2px;
+}
+
+.modal-date-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
+}
+.modal-date-row label {
+    flex: 1 1 0;
+    min-width: 120px;
+    margin-bottom: 0;
+}
+.modal-filters label {
+    font-size: 1rem;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.modal-filters select,
+.modal-filters input[type="date"] {
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+.modal-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+.export-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.export-btn:hover {
+    background-color: #2980b9;
+}
+.cancel-btn {
+    background: #eee;
+    color: #2c3e50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.cancel-btn:hover {
+    background: #e1e5ea;
 }

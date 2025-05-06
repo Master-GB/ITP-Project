@@ -21,7 +21,7 @@
     margin-bottom: 0px;
   }
   
-  .organization-name {
+  .organization-name-op {
     margin: 0;
     font-size: 1.4rem;
     padding-top: 0px;
@@ -47,7 +47,9 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+  .nav-text{
+     padding-bottom: 5px;
+  }
   .sidebar-nav li:hover {
     background-color: #34495e;
   }
@@ -97,6 +99,7 @@
   }
   
   .sign-out {
+    margin-right: 10px;
     padding: 15px;
     display: flex;
     align-items: center;

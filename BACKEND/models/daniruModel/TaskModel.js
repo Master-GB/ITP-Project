@@ -32,7 +32,7 @@ const taskSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["Ongoing", "Completed","Pending"], // Status values
+    enum: ["Ongoing", "Completed","Pending","Rejected"], // Status values
     default: "Pending",
   },
 });

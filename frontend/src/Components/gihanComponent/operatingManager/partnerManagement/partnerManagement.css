@@ -1,6 +1,8 @@
 /* Main Container */
 .partner-collab-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   max-width: 1200px;
+  height: 900px;
   margin: 0 auto;
   padding: 30px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -329,7 +331,7 @@
 }
 
 .contact-notes {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 12px;
   border-radius: 6px;
   margin-top: 15px;
@@ -359,15 +361,10 @@
 
 .empty-state {
   text-align: center;
-  padding: 60px;
-  color: #7f8c8d;
+  padding: 243px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-.empty-state img {
-  width: 120px;
-  opacity: 0.6;
-  margin-bottom: 15px;
-}
 
 /* Error Alert (unchanged) */
 .error-alert {

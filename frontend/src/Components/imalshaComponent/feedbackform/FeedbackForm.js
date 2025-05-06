@@ -9,6 +9,9 @@ function FeedbackForm() {
         message: '',
         rating: '',
     });
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [hoveredRating, setHoveredRating] = useState(0);
 
     const handleChange = (e) => {
         setInputs((prevState) => ({
@@ -19,25 +22,44 @@ function FeedbackForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs);
-        await sendRequest();
-        navigate('/feedback');
+        setError('');
+        setSuccess('');
+        
+        try {
+            await sendRequest();
+            setSuccess('Feedback submitted successfully!');
+            // Clear form after successful submission
+            setInputs({
+                message: '',
+                rating: '',
+            });
+            // Navigate after a short delay to show success message
+            setTimeout(() => {
+                navigate('/feedback');
+            }, 2000);
+        } catch (error) {
+            setError(error.response?.data?.message || 'Failed to submit feedback. Please try again.');
+        }
     };
 
     const sendRequest = async () => {
         try {
-            await axios.post('http://localhost:8090/feedbacks', {
+            const response = await axios.post('http://localhost:8090/feedbacks', {
                 message: String(inputs.message),
                 rating: Number(inputs.rating),
             });
+            return response.data;
         } catch (error) {
             console.error('Error submitting feedback:', error);
+            throw error;
         }
     };
 
     return (
         <div className="feedback-container">
             <h2>Feedback Form</h2>
+            {error && <div className="error-message">{error}</div>}
+            {success && <div className="success-message">{success}</div>}
             <form onSubmit={handleSubmit} className="feedback-form">
                 <label htmlFor="message">Message:</label>
                 <textarea 
@@ -46,6 +68,7 @@ function FeedbackForm() {
                     value={inputs.message} 
                     onChange={handleChange} 
                     required
+                    placeholder="Please enter your feedback message..."
                 ></textarea>
 
                 <label>Rating:</label>
@@ -61,12 +84,21 @@ function FeedbackForm() {
                                 onChange={handleChange}
                                 required
                             />
-                            <label htmlFor={`star${value}`}></label>
+                            <label 
+                                htmlFor={`star${value}`}
+                                onMouseEnter={() => setHoveredRating(value)}
+                                onMouseLeave={() => setHoveredRating(0)}
+                            >
+                                {value}
+                            </label>
                         </React.Fragment>
                     ))}
                 </div>
+                <div className="rating-text">
+                    {hoveredRating > 0 ? `Rating: ${hoveredRating} stars` : inputs.rating ? `Selected: ${inputs.rating} stars` : 'Select a rating'}
+                </div>
 
-                <button type="submit" className="submit-button">Submit</button>
+                <button type="submit" className="submit-button">Submit Feedback</button>
             </form>
         </div>
     );

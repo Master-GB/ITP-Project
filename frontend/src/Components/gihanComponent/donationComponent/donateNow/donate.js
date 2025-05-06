@@ -11,7 +11,6 @@ export default function Donate() {
     foodCategory: "",
     foodItem: "",
     storageCondition: "",
-    donationDate: "",
     expiryDate: "",
     quantity: "",
     quantityUnit: "",
@@ -19,12 +18,22 @@ export default function Donate() {
     imageOfFoods: null, 
     notes: "",
   });
+  const [quantityMsg, setQuantityMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "quantity") {
+      if (value.length > 1) {
+        setQuantityMsg("Only one digit is allowed for quantity (0-9)");
+        return;
+      } else {
+        setQuantityMsg("");
+      }
+    }
     setInputs({ ...inputs, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
+
 
   const navigate = useNavigate();
 
@@ -58,26 +67,31 @@ export default function Donate() {
       newErrors.storageCondition = "Storage condition is required";
     }
 
-    if (!inputs.donationDate) {
-      newErrors.donationDate = "Donation date is required";
-    }else if(new Date().setHours(0, 0, 0, 0) > new Date(inputs.donationDate).setHours(0, 0, 0, 0)){
-        newErrors.donationDate = "Donation date must be after the current date.";
-    }
-
     if (!inputs.expiryDate) {
       newErrors.expiryDate = "Expiry date is required";
-    } else if (new Date(inputs.expiryDate) <= new Date(inputs.donationDate)) {
-      newErrors.expiryDate = "Expiry date must be after the donation date";
+    } else if (new Date(inputs.expiryDate) <=new Date()) {
+      newErrors.expiryDate = "Expiry date must be after the current date";
+    }
+
+    const selectedDate = new Date(inputs.expiryDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const maxAllowedDate = new Date(today);
+    maxAllowedDate.setDate(today.getDate() + 3);
+    if (selectedDate > maxAllowedDate) {
+      newErrors.expiryDate = "Expiry date must be within the next 3 days";
     }
 
     if (!inputs.quantity) {
       newErrors.quantity = "Quantity is required";
     } else if (isNaN(inputs.quantity)) {
       newErrors.quantity = "Quantity must be a number";
+    }else if (!/^[0-9]$/.test(inputs.quantity)) {
+      newErrors.quantity = "Please enter a  kg or unit between (0-9)";
     }
 
     if (!inputs.quantityUnit) {
-      newErrors.quantityUnit = "Quantity unit is required";
+      newErrors.quantityUnit = "Quantity unit/Kg is required";
     }
 
     if (!inputs.collectionAddress) {
@@ -103,7 +117,6 @@ export default function Donate() {
     formData.append("foodCategory", inputs.foodCategory);
     formData.append("foodItem", inputs.foodItem);
     formData.append("storageCondition", inputs.storageCondition);
-    formData.append("donationDate", inputs.donationDate);
     formData.append("expiryDate", inputs.expiryDate);
     formData.append("quantity", inputs.quantity);
     formData.append("quantityUnit", inputs.quantityUnit);
@@ -239,20 +252,6 @@ export default function Donate() {
                 )}
               </div>
               <div className="date-fields">
-                <div className="donation-date-group">
-                  <label htmlFor="donationDate">Donation Date:</label>
-                  <input
-                    type="date"
-                    name="donationDate"
-                    id="donationDate"
-                    value={inputs.donationDate}
-                    onChange={handleChange}
-                    required
-                  />
-                  {errors.donationDate && (
-                    <span className="error">{errors.donationDate}</span>
-                  )}
-                </div>
                 <div className="expiration-date-group">
                   <label htmlFor="expiryDate">Expiration Date:</label>
                   <input
@@ -265,6 +264,21 @@ export default function Donate() {
                   />
                   {errors.expiryDate && (
                     <span className="error">{errors.expiryDate}</span>
+                  )}
+                </div>
+                <div className="collection-address-section">
+                  <label htmlFor="collectionAddress">Collection Address:</label>
+                  <input
+                    type="text"
+                    name="collectionAddress"
+                    id="collectionAddress"
+                    value={inputs.collectionAddress}
+                    onChange={handleChange}
+                    placeholder="Enter collection address"
+                    required
+                  />
+                  {errors.collectionAddress && (
+                    <span className="error">{errors.collectionAddress}</span>
                   )}
                 </div>
               </div>
@@ -282,8 +296,12 @@ export default function Donate() {
                     name="quantity"
                     value={inputs.quantity}
                     onChange={handleChange}
+                    maxLength={1}
                     required
                   />
+                  {quantityMsg && (
+                    <span className="error">{quantityMsg}</span>
+                  )}
                   <div className="quantity-radio-group">
                     <label className="quan-lable">
                       <input
@@ -295,7 +313,7 @@ export default function Donate() {
                       />{" "}
                       kg
                     </label>
-                    <label className="quan-lable">
+                    <label className="quan-lable" id = "unit-qua">
                       <input
                         type="radio"
                         name="quantityUnit"
@@ -312,22 +330,6 @@ export default function Donate() {
                 )}
                 {errors.quantityUnit && (
                   <span className="error">{errors.quantityUnit}</span>
-                )}
-              </div>
-
-              <div className="collection-address-section">
-                <label htmlFor="collectionAddress">Collection Address:</label>
-                <input
-                  type="text"
-                  name="collectionAddress"
-                  id="collectionAddress"
-                  value={inputs.collectionAddress}
-                  onChange={handleChange}
-                  placeholder="Enter collection address"
-                  required
-                />
-                {errors.collectionAddress && (
-                  <span className="error">{errors.collectionAddress}</span>
                 )}
               </div>
             </div>
