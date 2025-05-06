@@ -122,6 +122,7 @@ function AddRequests() {
   }
 
   return (
+    <div className="donation-request-background">
     <div className="donation-request-container">
       <br/>
       <br/>
@@ -212,7 +213,6 @@ function AddRequests() {
             <span className="error-message">{errors.additionalNotes}</span>
           )}
         </div>
-        <br />
         
         <button 
           type="submit" 
@@ -221,6 +221,7 @@ function AddRequests() {
           Submit
         </button>
       </form>
+    </div>
     </div>
   )
 }

@@ -173,7 +173,7 @@ const RequestsLayout = () => (
     <NavBarP/>
     <div className="main-content">
       <Routes>
-        <Route path="/" element={<ProfileP />} />
+        {/* <Route path="/" element={<ProfileP />} /> */}
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
         <Route path="/profile" element={<ProfileP />} />
