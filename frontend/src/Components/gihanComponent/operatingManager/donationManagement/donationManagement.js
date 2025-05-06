@@ -284,7 +284,7 @@ const FoodDonationPage = () => {
           <h1>Food Donation Management</h1>
           <p className="subtitle">Manage food donation requests from Donor</p>
         
-    <div className="page-container">
+    <div className="page-container-opm">
       <div className="card-container">
         <div
           id="pendingStatus"

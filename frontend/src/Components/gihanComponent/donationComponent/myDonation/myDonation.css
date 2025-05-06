@@ -112,9 +112,10 @@ body .donor-donation-donate{
 
 .donor-donation-filter-container select {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #3385dc;
   border-radius: 4px;
   font-size: 14px;
+  outline: none !important;
 }
 
 .donor-donation-search-container {
@@ -124,17 +125,19 @@ body .donor-donation-donate{
 
 .donor-donation-search-input {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #3385dc !important;
   border-radius: 4px;
   margin-right: 10px;
   width: 200px;
   font-size: 14px;
+  outline: none !important;
 }
+
 
 .donor-donation-search-button {
   padding: 8px 16px;
   background-color: #4CAF50;
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 4px;
   cursor: pointer;

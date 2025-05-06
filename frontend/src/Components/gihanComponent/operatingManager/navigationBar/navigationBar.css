@@ -65,7 +65,7 @@
     flex-direction: column;
   }
   
-  .profile-section-opm {
+  .profile-section-op {
     display: flex !important;
     align-items: center !important;
     padding: 15px !important;
@@ -73,11 +73,11 @@
     transition: background-color 0.3s !important;
   }
   
-  .profile-section-opm:hover {
+  .profile-section-op:hover {
     background-color: #34495e !important;
   }
   
-  .profile-avatar-opm {
+  .profile-avatar-op {
     width: 40px !important;
     height: 40px !important;
     border-radius: 50% !important;
@@ -88,12 +88,12 @@
     background-color: rgba(255, 255, 255, 0.1) !important;
   }
   
-  .profile-info-opm h4 {
+  .profile-info-op h4 {
     margin: 0 !important;
     font-size: 0.9rem !important;
   }
   
-  .profile-info-opm p {
+  .profile-info-op p {
     margin: 0 !important;
     font-size: 0.8rem !important;
     color: #bdc3c7 !important;

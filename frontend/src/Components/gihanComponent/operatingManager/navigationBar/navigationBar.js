@@ -52,11 +52,11 @@ const OperatingManagerSidebar = () => {
         <hr className="sidebar-divider" />
         
         {/* Profile Section */}
-        <Link to="/opl/operating-manager/profile" className="profile-section-opm">
-          <div className="profile-avatar-opm">
+        <Link to="/opl/operating-manager/profile" className="profile-section-op">
+          <div className="profile-avatar-op">
             <PersonIcon fontSize="medium" />
           </div>
-          <div className="profile-info-opm">
+          <div className="profile-info-op">
             <h4>Gihan Bandara</h4>
             <p>Operating Manager</p>
           </div>

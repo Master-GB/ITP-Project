@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./dashboard.css";
+import ChatBox from "../../../imalshaComponent/Chatbot/Chatbot";
 import axios from "axios";
 
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -281,6 +282,8 @@ const AdvancedDonorDashboard = () => {
   }, [donations, filter]);
 
   return (
+    <div>
+    <ChatBox />
     <div className="donor-dh-dashboard-background">
     <div className="donor-dh-advanced-donor-dashboard">
       <div className="donor-dh-header">
@@ -336,7 +339,7 @@ const AdvancedDonorDashboard = () => {
             <p>{Math.floor((kgQuantity + unitQuantity) / 2)}</p>
             <div className="donor-dh-progress-bar">
               <div
-                className="donor-dh-progress green"
+                className="donor-dh-progress g"
                 style={{
                   width: `${(Math.floor((kgQuantity + unitQuantity) / 2) / 500) * 100}%`,
                 }}
@@ -349,7 +352,7 @@ const AdvancedDonorDashboard = () => {
             <p>{completionRate}%</p>
             <div className="donor-dh-progress-bar">
               <div
-                className="donor-dh-progress green"
+                className="donor-dh-progress g"
                 style={{ width: `${completionRate}%` }}
               ></div>
             </div>
@@ -365,7 +368,7 @@ const AdvancedDonorDashboard = () => {
           <button className="donor-dh-create-new-button">Create New Donation</button>
         </Link>
       </div>
-      <div className="donor-dh-recent-donations">
+      <div className="donor-dh-card donor-dh-recent-donations">
         <h2 >Recent Donations</h2>
         <table>
           <thead>
@@ -395,19 +398,24 @@ const AdvancedDonorDashboard = () => {
         </table>
       </div>
 
-      <div className="donor-dh-chart-section">
-        <h2>Donation Trends</h2>
-        <div className="donor-dh-filter-section">
-          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-            <option value="year">Year</option>
-            <option value="month">Month</option>
-            <option value="week">Week</option>
-          </select>
+      <div className="donor-dh-card donor-dh-chart-section">
+      <div className="donor-dh-chart-header">Donation Trends</div>
+        <div className="donor-dh-card-over">  
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: 8 }}>
+            <div className="donor-dh-filter-section donor-dh-filter-right">
+              <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                <option value="year">Year</option>
+                <option value="month">Month</option>
+                <option value="week">Week</option>
+              </select>
+            </div>
+          </div>
+          <canvas ref={chartRef}></canvas>
         </div>
-        <canvas ref={chartRef}></canvas>
       </div>
-      <div className="donor-dh-map-section">
-        <h2>Donation Locations</h2>
+      <div className="donor-dh-card donor-dh-map-section">
+        <h2 className="donor-dh-map-header">Donation Locations</h2>
+        <div className="donor-dh-card-over"> 
         <MapContainer
           center={[6.9271, 79.8612]} 
           zoom={7} 
@@ -434,7 +442,9 @@ const AdvancedDonorDashboard = () => {
             )
           ))}
         </MapContainer>
+        </div>
       </div>
+    </div>
     </div>
     </div>
   );
