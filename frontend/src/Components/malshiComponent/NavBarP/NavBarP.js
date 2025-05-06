@@ -7,105 +7,110 @@ function RequestNavBar() {
 
   const toggleSideNav = () => {
     setIsSideNavOpen(!isSideNavOpen);
-    document.body.classList.toggle("show-overlay", !isSideNavOpen);
+    document.body.classList.toggle("req-nav-show-overlay", !isSideNavOpen);
+  };
+
+  const closeSideNav = () => {
+    setIsSideNavOpen(false);
+    document.body.classList.remove("req-nav-show-overlay");
   };
 
   return (
     <div>
-      <div className={`overlay ${isSideNavOpen ? 'show' : ''}`} onClick={toggleSideNav}></div>
+      <div className={`req-nav-overlay ${isSideNavOpen ? 'req-nav-show' : ''}`} onClick={closeSideNav}></div>
 
-      <nav className="navbar">
-        <div className="side-nav">
-          <button className="hamburger-menu" onClick={toggleSideNav}>
+      <nav className="req-nav-navbar">
+        <div className="req-nav-side-nav">
+          <button className="req-nav-hamburger-menu" onClick={toggleSideNav}>
             ☰
           </button>
-          <div className={`side-nav-content ${isSideNavOpen ? 'open' : ''}`}>
-              <button className="close-icon" onClick={toggleSideNav}>
+          <div className={`req-nav-side-nav-content ${isSideNavOpen ? 'req-nav-open' : ''}`}>
+              <button className="req-nav-close-icon" onClick={closeSideNav}>
                 <img
                   src="/Resources/gihanRes/donationRes/cancel.png"
                   alt="Close"
                 />
               </button>
 
-              <div className="profile-container">
-                <div className="profile-photo-cover">
+              <div className="req-nav-profile-container">
+                <div className="req-nav-profile-photo-cover">
                   <img
                     src="/Resources/gihanRes/requestRes/dp.png"
                     alt="Profile"
-                    className="profile-photo"
+                    className="req-nav-profile-photo"
                   />
                 </div>
-                <div className="profile-info">
-                  <p className="request-name">Malshi</p>
-                  <p className="request-email">malshi@example.com</p>
+                <div className="req-nav-profile-info">
+                  <p className="req-nav-request-name">Malshi</p>
+                  <p className="req-nav-request-email">malshi@example.com</p>
                 </div>
               </div>
 
-              <div className="separator"></div>
+              <div className="req-nav-separator"></div>
 
-              <ul className="side-nav-links">
-                <li>
+              <ul className="req-nav-side-nav-links">
+                <li onClick={closeSideNav}>
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
-                <li>
+                <li onClick={closeSideNav}>
                   <Link to="/profile">Profile</Link>
                 </li>
-                <li>
+                <li onClick={closeSideNav}>
                   <Link to="/about-us">About Us</Link>
                 </li>
-                <li>
+                <li onClick={closeSideNav}>
                   <Link to="/guidance">Guidelines</Link>
                 </li>
-                <li>
+                <li onClick={closeSideNav}>
                   <Link to="/support">Support</Link>
                 </li>
-                <li className="sign-out">
+                <li className="req-nav-sign-out" onClick={closeSideNav}>
                   <Link to="/sign-out">Sign Out</Link>
                 </li>
               </ul>
             </div>
         </div>
         
-        <div className="logo-container">
-          <Link to="/" className="logo-container">
+        <div className="req-nav-logo-container">
+          <Link to="/" className="req-nav-logo-container">
             <img
               src="/Resources/gihanRes/donationRes/mainlogo.png"
               alt="Logo"
-              className="logo-img"
+              className="req-nav-logo-img"
             />
-            <div className="logo-text">
-              <span className="top-text">හොද</span>
-              <span className="bottom-text">
-                හිත<span className="lk-text">.lk</span>
+            <div className="req-nav-logo-text">
+              <span className="req-nav-top-text">හොද</span>
+              <span className="req-nav-bottom-text">
+                හිත<span className="req-nav-lk-text">.lk</span>
               </span>
             </div>
           </Link>
         </div>
 
-        <div className="nav-links">
+        <div className="req-nav-nav-links">
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/add-requests">Add Request</Link>
           <Link to="/display-requests">My Requests</Link>
           <Link to="/funds">Funds</Link>
         </div>
 
-        <div className="nav-search-container">
+        <div className="req-nav-nav-search-container">
           <input 
             type="text" 
             placeholder="Search" 
-            className="nav-search-input"
+            className="req-nav-nav-search-input"
           />
-  <button className="nav-search-button">
+  <button className="req-nav-nav-search-button">
     <img
       src="/Resources/gihanRes/donationRes/search.png"
       alt="Search"
-      className="nav-search-icon"
+      className="req-nav-nav-search-icon"
     />
   </button>
         </div>
           
-        <div className="ai-chatbot">
-          <button className="chatbot-icon">
+        <div className="req-nav-ai-chatbot">
+          <button className="req-nav-chatbot-icon">
             <img
               src="/Resources/gihanRs/donationRes/AIBot.png"
               alt="Feedback"
@@ -113,8 +118,8 @@ function RequestNavBar() {
           </button>
         </div>
 
-        <div className="ai-chatbot">
-          <button className="chatbot-icon">
+        <div className="req-nav-ai-chatbot">
+          <button className="req-nav-chatbot-icon">
             <img
               src="/Resources/gihanRes/donationRes/AIBot.png"
               alt="Chatbot"
@@ -122,8 +127,8 @@ function RequestNavBar() {
           </button>
         </div>
 
-        <div className="communicate">
-          <button className="messages-icon">
+        <div className="req-nav-communicate">
+          <button className="req-nav-messages-icon">
             <img
               src="/Resources/gihanRes/donationRes/message.png"
               alt="Messages"
@@ -131,8 +136,8 @@ function RequestNavBar() {
           </button>
         </div>
         
-        <div className="notifications">
-          <button className="notification-icon">
+        <div className="req-nav-notifications">
+          <button className="req-nav-notification-icon">
             <img
               src="/Resources/gihanRes/donationRes/notification.png"
               alt="Notifications"

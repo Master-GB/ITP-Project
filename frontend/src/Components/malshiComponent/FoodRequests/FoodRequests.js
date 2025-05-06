@@ -292,8 +292,14 @@ function FoodRequests() {
 
     return (
         <div className="food-requests-container">
-
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <div className="top-search-container">
+                
                 <input
                     type="text"
                     placeholder="Search by request code"

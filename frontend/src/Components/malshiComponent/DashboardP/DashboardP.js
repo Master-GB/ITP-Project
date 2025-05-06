@@ -72,7 +72,14 @@ function Dashboard() {
   }, []);
 
   return (
+    <div className="p-dashboard-page">
       <div className="req-dash-content-wrap">
+        <br/>
+        <br/> 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <div className="dashboard-container">
           <div className="dashboard-header">
             <h1 className="req-dash-h1">Welcome to Your Partnership Dashboard!</h1>
@@ -149,7 +156,8 @@ function Dashboard() {
       </div>
       <br/>
       <br/>
-      <FooterP />
+    </div>
+      <FooterP/>
     </div>
   );
 }
