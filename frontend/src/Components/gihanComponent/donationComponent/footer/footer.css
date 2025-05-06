@@ -20,7 +20,7 @@ html, body {
 }
 
 .donor-foot-content-wrap {
-  flex: 1;
+  flex: 1 0 auto;
 }
 
 .donor-foot-footer {
@@ -30,6 +30,7 @@ html, body {
   font-family: Arial, sans-serif;
   width: 100%;
   flex-shrink: 0;
+  margin-top: auto;
 }
 
 .donor-foot-footer-first-section {
