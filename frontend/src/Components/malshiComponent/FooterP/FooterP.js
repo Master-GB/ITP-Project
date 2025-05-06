@@ -1,5 +1,5 @@
 import React from "react";
-import "./footer.css";
+import "./FooterP.css";
 
 const Footer = () => {
   return (
@@ -45,8 +45,10 @@ const Footer = () => {
           <div className="donor-resources">
             <h3>Donor Resources</h3>
             <ul>
-              <li><a href="/donation-guidelines">Donation Guidelines</a></li>
-              <li><a href="/impact-stories">Impact Stories</a></li>
+              <li><a href="/donation-guidelines">Home</a></li>
+              <li><a href="/impact-stories">Be a Volunteer</a></li>
+              <li><a href="/impact-stories">Donate Food</a></li>
+              <li><a href="/impact-stories">FAQ</a></li>
             </ul>
           </div>
 
@@ -95,7 +97,7 @@ const Footer = () => {
 
         {/* Legal and Compliance */}
         <div className="legal-compliance">
-          <p className="copyright">© 2025 Surplus Food Donation and Redistribution Platform. All rights reserved.</p>
+          <p className="copyright">© 2023 Platform Name. All rights reserved.</p>
           <div className="legal-links">
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/terms-of-service">Terms of Service</a>
@@ -106,9 +108,9 @@ const Footer = () => {
         {/* Partner Logos */}
         <div className="partner-logos">
           <div className="logos">
-            <img src="/Resources/gihanRes/donationRes/footerRes/parLogo1.png" alt="Partner 1" />
-            <img src="/Resources/gihanRes/donationRes/footerRes/parLogo2.png" alt="Partner 2" />
-            <img src="/Resources/gihanRes/donationRes/footerRes/parLogo3.png" alt="Partner 3" />
+            <img src="/path/to/partner1.png" alt="Partner 1" />
+            <img src="/path/to/partner2.png" alt="Partner 2" />
+            <img src="/path/to/partner3.png" alt="Partner 3" />
           </div>
         </div>
       </div>

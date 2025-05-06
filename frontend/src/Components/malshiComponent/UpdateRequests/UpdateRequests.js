@@ -100,10 +100,13 @@ function UpdateRequests() {
             required
             className="update-form-select"
           >
-            <option value="">Select Type</option>
-            <option value="Type01">Type01</option>
-            <option value="Type02">Type02</option>
-            <option value="Other">Other</option>
+            <option value="">-- Select Type --</option>
+            <option value="Milk Rice">Milk Rice</option>
+            <option value="White Rice">White Rice</option>
+            <option value="Biriyani">Biriyani</option>
+            <option value="Yellow Rice">Yellow Rice</option>
+            <option value="Noodles">Noodles</option>
+            <option value="Koththu">Koththu</option>
           </select>
         </div>
         

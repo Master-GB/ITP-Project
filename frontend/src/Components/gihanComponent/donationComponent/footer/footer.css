@@ -183,6 +183,7 @@ html, body {
 
 /* Second Section */
 .footer-second-section {
+  margin-bottom: -10px;
   display: flex;
   justify-content: space-between;
   align-items: center; /* Center items vertically */
@@ -267,16 +268,16 @@ html, body {
 
 /* Partner Logos - Individual Sizes */
 .logos img:nth-child(1) {
-  width: 70px; /* Custom size for Partner 1 */
+  width: 20px; /* Custom size for Partner 1 */
   height: auto;
 }
 
 .logos img:nth-child(2) {
-  width: 90px; /* Custom size for Partner 2 */
+  width: 20px; /* Custom size for Partner 2 */
   height: auto;
 }
 
 .logos img:nth-child(3) {
-  width: 80px; /* Custom size for Partner 3 */
+  width: 20px; /* Custom size for Partner 3 */
   height: auto;
 }

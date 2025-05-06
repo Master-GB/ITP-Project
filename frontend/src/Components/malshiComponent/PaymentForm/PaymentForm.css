@@ -11,7 +11,129 @@
     color: #2c3e50;
     margin-bottom: 8px;
   }
+  .payment-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
   
+  .payment-container h2 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+  }
+  
+  .payment-container p {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+  }
+  
+  .payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: #34495e;
+  }
+  
+  .form-group input, 
+  .form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input:focus, 
+  .form-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .half {
+    flex: 1;
+  }
+  
+  .card-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  .card-details h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+  
+  .submit-button {
+    display: block; /* Allows centering */
+    width: 200px; /* Fixed width */
+    margin: 0 auto; /* Centers the button */
+    background-color: #1b429d;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #3643a6;
+  }
+  
+  .submit-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .submit-button {
+        width: 100%; /* Full width on small screens */
+    }
+  }
   .payment-container p {
     color: #7f8c8d;
     margin-bottom: 25px;
