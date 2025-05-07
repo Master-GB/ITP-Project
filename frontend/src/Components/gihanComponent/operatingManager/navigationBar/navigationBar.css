@@ -66,16 +66,27 @@
   }
   
   .profile-section-op {
-    display: flex !important;
-    align-items: center !important;
-    padding: 15px !important;
-    cursor: pointer !important;
-    transition: background-color 0.3s !important;
-  }
-  
-  .profile-section-op:hover {
-    background-color: #34495e !important;
-  }
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 15px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s !important;
+}
+
+.profile-section-op:link,
+.profile-section-op:visited,
+.profile-section-op:active,
+.profile-section-op:focus,
+.profile-section-op:hover {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.profile-section-op:hover {
+  background-color: #34495e !important;
+}
+
   
   .profile-avatar-op {
     width: 40px !important;

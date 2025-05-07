@@ -27,6 +27,7 @@ import Guidance from './Components/gihanComponent/donationComponent/guidance/gui
 import Support from './Components/gihanComponent/donationComponent/support/support';
 import Chat from './Components/gihanComponent/donationComponent/chat/chat';
 import FeedbackF from './Components/gihanComponent/donationComponent/feedbackF/FeedbackForm';
+import DonorProfile from './Components/gihanComponent/donationComponent/donorProfile/donorProfile';
 
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
@@ -35,6 +36,7 @@ import InventoryManagement from "./Components/gihanComponent/operatingManager/in
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
 import OpDashboard from './Components/gihanComponent/operatingManager/opDashboard/opDashboard';
 import ChatOP from './Components/gihanComponent/operatingManager/chatOP/chatOP';
+import OPMProfile from './Components/gihanComponent/operatingManager/OPProfile/OPProfile';
 
 // Daniru's components
 import CreateTask from "./Components/daniruComponent/CreateTask";
@@ -148,6 +150,7 @@ const DonorLayout = () => (
         <Route path = "/support" element ={<Support/>}/>
         <Route path="/chat" element={<Chat />} />
         <Route path='/feedbackForm' element={<FeedbackF/>}/>
+        <Route path='/profile' element={<DonorProfile/>}/>
       </Routes>
     </div>
     <Footer />
@@ -167,6 +170,7 @@ const OperatingManagerLayout = () => (
         <Route path="/inventoryManagement" element={<InventoryManagement />} />
         <Route path="/partnerManagement" element={<PartnerCollaboration />} />
         <Route path="/chatOP" element={<ChatOP />} />
+        <Route path="/profile" element={<OPMProfile />} />
       </Routes>
     </div>
   </div>
@@ -272,13 +276,13 @@ function App() {
       <Route path="/ul/*" element={<UserLayout />} />
       <Route path="/dl/*" element={<DonorLayout />} />
       <Route path="/opl/*" element={<OperatingManagerLayout />} />
-      <Route path="/*" element={<RequestsLayout />} />
+      <Route path="/re/*" element={<RequestsLayout />} />
       <Route path="/vcl/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/vpsl/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />
       <Route path="/eet/*" element={<MapLayout/>} />
-      <Route path="/hh/*" element={<HomeLayout/>} />
+      <Route path="/*" element={<HomeLayout/>} />
     </Routes>
   );
 }
