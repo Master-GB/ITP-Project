@@ -37,25 +37,25 @@ const OPMProfile = () => {
   </div>
   <div className="opm-donation-my-donation-tagline">View and manage your operating manager account details.</div>
 </div>
-    <div className="donor-profile-back">
-      <div className="donor-profile-section">
-        <div className="real-user-profile">
-          <div className="profile-avatar-large">
+    <div className="OPM-profile-donor-profile-back">
+      <div className="OPM-profile-donor-profile-section">
+        <div className="OPM-profile-real-user-profile">
+          <div className="OPM-profile-profile-avatar-large">
             {donor.name?.charAt(0).toUpperCase()}
           </div>
-          <div className="profile-info">
-            <h2 className="profile-name">{donor.name}</h2>
-            <div className="profile-field">
-              <span className="profile-label">Email:</span>
-              <span className="profile-value">{donor.email}</span>
+          <div className="OPM-profile-profile-info">
+            <h2 className="OPM-profile-profile-name">{donor.name}</h2>
+            <div className="OPM-profile-profile-field">
+              <span className="OPM-profile-profile-label">Email:</span>
+              <span className="OPM-profile-profile-value">{donor.email}</span>
             </div>
-            <div className="profile-field">
-              <span className="profile-label">Contact Number:</span>
-              <span className="profile-value">{donor.contactNumber}</span>
+            <div className="OPM-profile-profile-field">
+              <span className="OPM-profile-profile-label">Contact Number:</span>
+              <span className="OPM-profile-profile-value">{donor.contactNumber}</span>
             </div>
-            <div className="profile-field">
-              <span className="profile-label">Address:</span>
-              <span className="profile-value">{donor.address}</span>
+            <div className="OPM-profile-profile-field">
+              <span className="OPM-profile-profile-label">Address:</span>
+              <span className="OPM-profile-profile-value">{donor.address}</span>
             </div>
           </div>
         </div>
