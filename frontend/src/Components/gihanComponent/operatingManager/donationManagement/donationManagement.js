@@ -171,6 +171,20 @@ const FoodDonationPage = () => {
   const handleStatusChange = async (id, newStatus) => {
     const originalStatus = donations.find((d) => d._id === id)?.status;
 
+    // Push notification if the status is changed and the new status is not 'Pending'
+    if (originalStatus && originalStatus !== newStatus && newStatus !== 'Pending') {
+    // Find displayId or fallback to id
+    const donation = donations.find((d) => d._id === id);
+    const displayId = donation?.displayId || id;
+    let msg = `Donation #${displayId} status changed from ${originalStatus} to ${newStatus}`;
+    // Store notification in backend
+    fetch('http://localhost:5000/api/notifications', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
+    });
+  }
+
     try {
       const updatedDonations = donations.map((d) =>
         d._id === id ? { ...d, status: newStatus } : d
