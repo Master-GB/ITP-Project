@@ -7,24 +7,25 @@
 }
 
 .OPM-profile-donor-profile-section {
-  padding: 40px 16px;
+  padding: 0 16px 0 16px;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  margin-top: 0;
 }
 
 .OPM-profile-real-user-profile {
   background: rgba(255,255,255,0.80);
   border-radius: 28px;
   box-shadow: 0 8px 32px rgba(51,133,220,0.17), 0 2px 8px rgba(44,62,80,0.07);
-  padding: 48px 36px 40px 36px;
+  padding: 36px 32px 28px 32px;
   max-width: 710px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
+  margin-top: 5px !important;
   backdrop-filter: blur(14px) saturate(1.25);
   border: 2.5px solid #e3eaf3;
   animation: profileFadeIn 0.9s cubic-bezier(.4,1.4,.4,1) 0s 1;
