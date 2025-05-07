@@ -16,19 +16,19 @@ html, body {
 }
 
 /* Page container to hold content and footer */
-.page-container {
+.daniru-page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the container takes at least the full viewport height */
 }
 
 /* Content wrapper to grow and push the footer down */
-.content-wrap {
+.daniru-content-wrap {
   flex: 1; /* This makes the content take up remaining space */
 }
 
 /* Footer Container */
-.footer {
+.daniru-footer {
   background-color: #2c3e50;
   color: #ffffff;
   padding: 20px;
@@ -38,7 +38,7 @@ html, body {
 }
 
 /* First Section */
-.footer-first-section {
+.daniru-footer-first-section {
   display: flex;
   justify-content: space-between; /* Space out sections */
   align-items: flex-start; /* Align items to the top */
@@ -47,7 +47,7 @@ html, body {
 }
 
 /* Platform Information and Newsletter */
-.platform-and-newsletter {
+.daniru-platform-and-newsletter {
   flex: 1 1 40%; /* Take 40% of the width */
   display: flex;
   flex-direction: column;
@@ -55,41 +55,41 @@ html, body {
 }
 
 /* Platform Information */
-.platform-info {
+.daniru-platform-info {
   text-align: left;
 }
 
-.platform-info .logo-container img {
+.daniru-platform-info .daniru-logo-container img {
   width: 80px;
   height: auto;
 }
 
-.platform-info .tagline {
+.daniru-platform-info .daniru-tagline {
   font-size: 14px;
   margin-top: 5px;
 }
 
 /* Newsletter Section */
-.newsletter-section {
+.daniru-newsletter-section {
   text-align: left;
 }
 
-.newsletter-section h2 {
+.daniru-newsletter-section h2 {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
-.newsletter-section p {
+.daniru-newsletter-section p {
   font-size: 14px;
   margin-bottom: 10px;
 }
 
-.newsletter-form {
+.daniru-newsletter-form {
   display: flex;
   gap: 10px;
 }
 
-.newsletter-form input {
+.daniru-newsletter-form input {
   padding: 8px;
   border: none;
   border-radius: 5px;
@@ -97,7 +97,7 @@ html, body {
   max-width: 250px; /* Set a max width for input */
 }
 
-.newsletter-form button {
+.daniru-newsletter-form button {
   padding: 8px 10px;
   background-color: #e67e22;
   color: #ffffff;
@@ -108,12 +108,12 @@ html, body {
   white-space: nowrap; 
 }
 
-.newsletter-form button:hover {
+.daniru-newsletter-form button:hover {
   background-color: #d35400;
 }
 
 /* Right Sections: About Us, Donor Resources, and Contact Us */
-.right-sections {
+.daniru-right-sections {
   padding-right: 10px;
   flex: 1 1 58%; /* Take 50% of the width */
   display: flex;
@@ -122,30 +122,30 @@ html, body {
 }
 
 /* About Us, Donor Resources, and Contact Us */
-.about-us, .donor-resources, .contact-us {
+.daniru-about-us, .daniru-donor-resources, .daniru-contact-us {
   flex: 1 1 30%; /* Equal width for all sections */
   text-align: left;
 }
 
-.contact-us{
+.daniru-contact-us{
   margin-right: 15px;
 }
 
-.about-us h3, .donor-resources h3, .contact-us h3 {
+.daniru-about-us h3, .daniru-donor-resources h3, .daniru-contact-us h3 {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-.about-us ul, .donor-resources ul, .contact-us ul {
+.daniru-about-us ul, .daniru-donor-resources ul, .daniru-contact-us ul {
   list-style: none;
   padding: 0;
 }
 
-.about-us ul li, .donor-resources ul li {
+.daniru-about-us ul li, .daniru-donor-resources ul li {
   margin-bottom: 8px;
 }
 
-.contact-us ul li {
+.daniru-contact-us ul li {
   display: flex; /* Use flexbox for alignment */
   align-items: center; /* Vertically center align items */
   gap: 9px; /* Add gap between icon and text */
@@ -154,18 +154,18 @@ html, body {
   margin-bottom: 2px;
 }
 
-.about-us ul li a, .donor-resources ul li a {
+.daniru-about-us ul li a, .daniru-donor-resources ul li a {
   color: #888; /* Grey color */
   text-decoration: none;
   font-size: 14px;
 }
 
-.about-us ul li a:hover, .donor-resources ul li a:hover {
+.daniru-about-us ul li a:hover, .daniru-donor-resources ul li a:hover {
   text-decoration: underline;
 }
 
 /* Contact Us Icons */
-.contact-us ul li img {
+.daniru-contact-us ul li img {
   width: 22px; /* Custom size for icons */
   height: 22px;
   padding-top: 2px;
@@ -174,7 +174,7 @@ html, body {
 }
 
 /* Horizontal Separator */
-.horizontal-separator {
+.daniru-horizontal-separator {
   width: 100%;
   height: 1px;
   background-color: #444;
@@ -182,7 +182,7 @@ html, body {
 }
 
 /* Second Section */
-.footer-second-section {
+.daniru-footer-second-section {
   display: flex;
   justify-content: space-between;
   align-items: center; /* Center items vertically */
@@ -191,92 +191,92 @@ html, body {
 }
 
 /* Social Media Links */
-.social-media {
+.daniru-social-media {
   flex: 1 1 30%;
   text-align: left;
 }
 
-.social-icons {
+.daniru-social-icons {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
 /* Social Media Icons - Individual Sizes */
-.social-icons .facebook img {
+.daniru-social-icons .daniru-facebook img {
   width: 34px; /* Custom size for Facebook */
   height: 34px;
   margin-bottom: 2px;
 }
 
-.social-icons .twitter-x img {
+.daniru-social-icons .daniru-twitter-x img {
   width: 51px; /* Custom size for Twitter */
   height: 40px;
   padding-left: 7px;
 }
 
-.social-icons .insta img {
+.daniru-social-icons .daniru-insta img {
   width: 50px; /* Custom size for Instagram */
   height: 55px;
 }
 
-.social-icons .linkedin img {
+.daniru-social-icons .daniru-linkedin img {
   width: 58px; /* Custom size for LinkedIn */
   height: 58px;
 }
 
 /* Legal and Compliance */
-.legal-compliance {
+.daniru-legal-compliance {
   flex: 1 1 40%;
   text-align: center; /* Center text */
 }
 
-.legal-compliance .copyright {
+.daniru-legal-compliance .daniru-copyright {
   font-size: 12px;
   margin-bottom: 5px;
   text-align: center; /* Center copyright text */
 }
 
-.legal-links {
+.daniru-legal-links {
   display: flex;
   justify-content: center; /* Center legal links */
   gap: 10px;
 }
 
-.legal-links a {
+.daniru-legal-links a {
   color: #ffffff;
   text-decoration: none;
   font-size: 12px;
 }
 
-.legal-links a:hover {
+.daniru-legal-links a:hover {
   text-decoration: underline;
 }
 
 /* Partner Logos */
-.partner-logos {
+.daniru-partner-logos {
   flex: 1 1 30%;
   text-align: right; /* Align to the right corner */
 }
 
-.logos {
+.daniru-logos {
   display: flex;
   gap: 10px;
   justify-content: flex-end; /* Align logos to the right */
 }
 
 /* Partner Logos - Individual Sizes */
-.logos img:nth-child(1) {
+.daniru-logos img:nth-child(1) {
   width: 70px; /* Custom size for Partner 1 */
   height: auto;
 }
 
-.logos img:nth-child(2) {
+.daniru-logos img:nth-child(2) {
   width: 90px; /* Custom size for Partner 2 */
   height: auto;
 }
 
-.logos img:nth-child(3) {
+.daniru-logos img:nth-child(3) {
   width: 80px; /* Custom size for Partner 3 */
   height: auto;
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./VolunteerApplication.css";
+import Home from "../VolunteerCDashboard";
+import HomeFooter from "../Home/HomeFooter";
 
 function VolunteerForm() {
   const history = useNavigate();
@@ -188,8 +190,31 @@ function VolunteerForm() {
     }
   };
 
+  const navigate = useNavigate();
+  
   return (
-    <div className="volunteer-bg">
+    <div>
+       {/* Modern Header with Logo and Site Name */}
+       <header className="home-modern-header">
+        <div className="home-header-content">
+          <img src="/resources/danirures/logo.png" alt="HodaHitha.lk Logo" className="home-site-logo" />
+          <span className="home-site-name">HodaHitha.lk</span>
+        </div>
+        <nav className="home-header-nav">
+          <a href="/home">Home</a>
+          <a href="/volunteerapplication">Be a Volunteer</a>
+          <a href="/about-us">About Us</a>
+          <a href="/contactus">Contact Us</a>
+        </nav>
+        <div className="home-header-auth-btns">
+          <button className="home-header-btn sign-in" onClick={() => navigate('/login')}>Sign In</button>
+          <button className="home-header-btn register" onClick={() => navigate('/AddUser')}>Register</button>
+          <div className="home-header-profile-icon">
+            <img src="/resources/danirures/profile.png" alt="Profile" />
+          </div>
+        </div>
+      </header>
+    <div className="volunteer-bg" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/Resources/daniruRes/volunteer-bg.jpg)` }}>
       <div className="volunteer-application-form-container">
         <h2 className="volunteer-application-name">Volunteer Application</h2>
 
@@ -275,6 +300,8 @@ function VolunteerForm() {
           </button>
         </form>
       </div>
+    </div>
+    <HomeFooter/>
     </div>
   );
 }

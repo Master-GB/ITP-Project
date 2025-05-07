@@ -98,7 +98,7 @@ const Nav = ({ volunteerName }) => {
         <div className="nav-links">
           <Link to="/vpsl/volunteerpstaffdashboard">Dashboard</Link>
           <Link to="/vpsl/volunteerTask">My Tasks</Link>
-          <Link to="/vpsl/packingInstructions">Packing Instructions</Link>
+          <Link to="/vpsl/packinginstructions">Packing Instructions</Link>
         </div>
 
         <div className="nav-search-container">
@@ -117,17 +117,9 @@ const Nav = ({ volunteerName }) => {
 </div>
 
           
-        <div className="ai-chatbot">
-          <button className="chatbot-icon" onClick={() => navigate('/ul/feedbackForm')}>
-            <img
-              src="/Resources/gihanRes/donationRes/AIBot.png"
-              alt="Chatbot"
-            />
-          </button>
-        </div>
 
         <div className="communicate">
-          <button className="messages-icon">
+          <button className="messages-icon" onClick={() => navigate('/vpsl/feedbackp')}>
             <img
               src="/Resources/gihanRes/donationRes/message.png"
               alt="Messages"

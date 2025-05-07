@@ -47,10 +47,10 @@ const Home = () => {
           <a href="/about-us">About Us</a>
           <a href="/contactus">Contact Us</a>
         </nav>
-        <div className="header-auth-btns">
-          <button className="header-btn sign-in" onClick={() => navigate('/login')}>Sign In</button>
-          <button className="header-btn register" onClick={() => navigate('/AddUser')}>Register</button>
-          <div className="header-profile-icon">
+        <div className="home-header-auth-btns">
+          <button className="home-header-btn sign-in" onClick={() => navigate('/login')}>Sign In</button>
+          <button className="home-header-btn register" onClick={() => navigate('/AddUser')}>Register</button>
+          <div className="home-header-profile-icon">
             <img src="/resources/danirures/profile.png" alt="Profile" />
           </div>
         </div>
