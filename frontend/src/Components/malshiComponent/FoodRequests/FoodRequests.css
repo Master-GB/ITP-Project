@@ -5,9 +5,11 @@
   margin: 0 auto;
   background-color: #dce9e4;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.Freq-food-requests{
+    background-color: #dce9e4;
+}
 .Freq-top-search-container {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -20,7 +22,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px; /* Space between child elements */
-    background-color: #e6e9e8;
+    background-color: #e7edeb;
 }
 
 .Freq-top-container {
@@ -131,6 +133,8 @@
     border-radius: 14px;
     font-size: 18px;
     width: 400px;
+    border-color: #113c6e;
+    border-width: 1px;
 }
 
 .Freq-requests-grid {

@@ -169,7 +169,7 @@
 }
 
 .add-request-btn {
-    background-color: #2ecc71;
+    background-color: #599193;
     color: white;
     border: none;
 }
@@ -183,50 +183,71 @@
 }
 
 .requests-table-container {
-    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 10px 0 20px 0;
 }
 
 .requests-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.08rem;
+    border-collapse: separate;
+    border-spacing: 0.5rem 1.2rem;
+    background: transparent;
 }
 
 .requests-table th {
-    text-align: left;
-    padding: 12px 15px;
-    color: #666;
-    font-weight: 500;
-    border-bottom: 2px solid #eee;
+    text-align: center;
+    padding: 22px 28px;
+    color: #195a5c;
+    font-weight: 700;
+    border-bottom: 2px solid #e0e8e5;
+    font-size: 1.15rem;
+    background: #f7f9fa;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
 }
 
 .requests-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
+    padding: 18px 28px;
+    border-bottom: 1px solid #e0e8e5;
     color: #444;
+    font-size: 1.08rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(25,90,92,0.04);
 }
 
 .status-badge {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 500;
+    padding: 16px 38px;
+    border-radius: 18px;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    box-shadow: 0 1px 4px rgba(25,90,92,0.08);
 }
 
-.status-approved {
-    background-color: #a8e6cf;
-    color: #1a6b4b;
+.status-approved, .status-completed {
+    background-color: #e3f0ff;
+    color: #1565c0;
 }
 
 .status-pending {
-    background-color: #b3e5fc;
-    color: #0d4b8a;
+    background-color: #fff7d6;
+    color: #b59a00;
 }
 
-.status-rejected {
-    background-color: #ffd3b6;
-    color: #c7522a;
+.status-rejected, .status-cancelled {
+    background-color: #ffeaea;
+    color: #d32f2f;
 }
 
 /* Responsive adjustments */

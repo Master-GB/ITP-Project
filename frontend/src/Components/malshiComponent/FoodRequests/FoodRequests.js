@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './FoodRequests.css';
 import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
+import Chart from 'chart.js/auto';
+import html2canvas from 'html2canvas';
 import FooterP from '../FooterP/FooterP';
 
 const URL = 'http://localhost:8090/requests';
@@ -34,6 +37,9 @@ function FoodRequests() {
         additionalNotes: ''
     });
     const [updateSuccess, setUpdateSuccess] = useState("");
+
+    // Chart ref
+    const chartRef = React.useRef(null);
 
     const highlightText = (text, searchTerm) => {
         if (!searchTerm || !text) return text;
@@ -173,88 +179,129 @@ function FoodRequests() {
         }));
     };
 
-    const generatePDF = () => {
-        const doc = new jsPDF({
-            orientation: 'landscape', 
-            unit: 'mm',
-            format: 'a4',
+    // Helper to get status counts
+    const getStatusCounts = () => {
+        const counts = {};
+        foodrequests.forEach(req => {
+            const status = req.status ? req.status.charAt(0).toUpperCase() + req.status.slice(1).toLowerCase() : 'Unknown';
+            counts[status] = (counts[status] || 0) + 1;
         });
-    
+        return counts;
+    };
+
+    // PDF generation with table and chart
+    const generatePDF = async () => {
+        const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
         doc.setProperties({
             title: 'Food Requests Report',
             subject: 'Surplus Food Redistribution System',
             author: 'HodaHiths',
             creator: 'Partnership Management',
         });
-    
-        doc.setFontSize(22);
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(30);
         doc.text('Food Requests Report', 15, 15);
-    
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const tableMargin = 15;
-        const lineHeight = 15;
-        const columnWidths = [40, 50, 35, 50, 30, 30, 50];
-    
-        const headers = [
-            'Request Code', 
-            'Location', 
-            'Contact Number', 
-            'Food Type', 
-            'Quantity', 
-            'Status',
-            'Additional Notes'
-        ];
-    
-        const createTable = () => {
-            doc.setFontSize(16);
-            doc.setFont('helvetica', 'bold');
-            doc.setFillColor(220, 230, 255);
-            doc.rect(tableMargin, 25, pageWidth - (2 * tableMargin), 12, 'F');
-            
-            doc.setTextColor(0, 0, 0);
-            headers.forEach((header, index) => {
-                const xPos = tableMargin + columnWidths.slice(0, index).reduce((a, b) => a + b, 0);
-                doc.text(header, xPos, 32, { 
-                    maxWidth: columnWidths[index],
-                    align: 'left'
-                });
-            });
-    
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(14);
-            foodrequests.forEach((request, rowIndex) => {
-                if (!request) return;
+        // Underline the topic
+        const textWidth = doc.getTextWidth('Food Requests Report');
+        doc.setLineWidth(1.2);
+        doc.line(15, 18, 15 + textWidth, 18); // Draw a line under the text
 
-                const rowData = [
-                    request.requestCode || request.organizationName || 'N/A',
-                    request.location || 'N/A',
-                    request.contactNumber || 'N/A',
-                    request.foodType || 'N/A',
-                    request.quantity || 'N/A',
-                    request.status || 'N/A',
-                    request.additionalNotes || 'N/A'
-                ];
-    
-                const yPos = 40 + lineHeight * rowIndex;
-    
-                doc.setFillColor(240, 240, 240);
-                doc.rect(tableMargin, yPos, pageWidth - (2 * tableMargin), lineHeight, 'F');
-    
-                rowData.forEach((cell, colIndex) => {
-                    const xPos = tableMargin + columnWidths.slice(0, colIndex).reduce((a, b) => a + b, 0);
-                    doc.text(String(cell), xPos, yPos + 8, { 
-                        maxWidth: columnWidths[colIndex],
-                        align: 'left'
-                    });
-                });
-    
-                doc.setDrawColor(200, 200, 200);
-                doc.rect(tableMargin, yPos, pageWidth - (2 * tableMargin), lineHeight);
-            });
-        };
-    
-        createTable();
-        doc.save('FoodRequestsReport.pdf');
+        // Table data
+        const headers = [['Request Code', 'Location', 'Contact', 'Food Type', 'Quantity', 'Status', 'Date']];
+        const rows = foodrequests.map(req => [
+            req.requestCode || '',
+            req.location || '',
+            req.contactNumber || '',
+            req.foodType || '',
+            req.quantity || '',
+            req.status || '',
+            req.createdAt ? new Date(req.createdAt).toLocaleString() : ''
+        ]);
+
+        doc.autoTable({
+            head: headers,
+            body: rows,
+            startY: 30,
+            styles: { fontSize: 16, font: 'helvetica', fontStyle: 'normal' },
+            headStyles: { fillColor: [25, 90, 200], fontSize: 18, font: 'helvetica', fontStyle: 'bolditalic' },
+            margin: { left: 10, right: 10 },
+            theme: 'grid',
+            tableWidth: 'auto',
+        });
+
+        // Add chart on new page
+        doc.addPage();
+        doc.setFontSize(24);
+        doc.text('Requests by Status', 15, 20);
+
+        // Prepare chart data
+        const statusCounts = getStatusCounts();
+        const chartLabels = Object.keys(statusCounts);
+        const chartData = Object.values(statusCounts).map(v => parseInt(v, 10));
+        const chartColors = [
+            '#195a5c', // dark green
+            '#43a047', // medium green
+            '#a5d6a7', // light green
+            '#388e3c', // deep green
+            '#81c784', // soft green
+            '#2e7d32', // another green
+            '#66bb6a'  // another light green
+        ];
+
+        // Create chart in a hidden canvas and add to DOM
+        const chartCanvas = document.createElement('canvas');
+        chartCanvas.width = 700;
+        chartCanvas.height = 350;
+        chartCanvas.style.display = 'none';
+        document.body.appendChild(chartCanvas);
+
+        const ctx = chartCanvas.getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Requests',
+                    data: chartData,
+                    backgroundColor: chartColors.slice(0, chartLabels.length),
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1, precision: 0, font: { size: 22, weight: 'bold' }, color: '#195a5c' },
+                        title: { display: true, text: 'Count', font: { size: 24, weight: 'bold' }, color: '#195a5c' }
+                    },
+                    x: {
+                        ticks: { font: { size: 22, weight: 'bold' }, color: '#195a5c' },
+                        title: { display: true, text: 'Status', font: { size: 24, weight: 'bold' }, color: '#195a5c' }
+                    }
+                },
+                animation: false
+            }
+        });
+
+        // Wait a short time to ensure the chart is rendered
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // Use toDataURL directly from the canvas
+        const chartImg = chartCanvas.toDataURL('image/png');
+        document.body.removeChild(chartCanvas);
+
+        doc.addImage(chartImg, 'PNG', 25, 35, 250, 110);
+        // Add footer to the last page
+        const pageHeight = doc.internal.pageSize.getHeight();
+        doc.setFontSize(10);
+        doc.setTextColor(150);
+        doc.text('Generated by Food Donation Platform', doc.internal.pageSize.getWidth() / 2, pageHeight - 18, { align: 'center' });
+        doc.setFontSize(9);
+        doc.setTextColor(100);
+        const date = new Date();
+        const dateString = date.toLocaleString();
+        doc.text(`Report generated: ${dateString}`, doc.internal.pageSize.getWidth() / 2, pageHeight - 12, { align: 'center' });
+        doc.save('food-requests-report.pdf');
     };
 
     // Highlight matching part of request code
@@ -313,7 +360,9 @@ function FoodRequests() {
                 />
                 <img src="/Resources/malshiRes/searchM.png" alt="Search" className="Freq-search-icon" />
 
-                <button onClick={generatePDF} className="Freq-generatepdf-fr-button">Generate PDF</button>
+                <button onClick={generatePDF} style={{ margin: '20px 0', background: '#195a5c', color: '#fff', padding: '10px 24px', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '1rem', cursor: 'pointer' }}>
+                    Download PDF
+                </button>
             </div>
 
             {updateSuccess && (
