@@ -81,9 +81,21 @@ export default function UpdateDonation() {
   
 
   console.log(" After featching Data",inputs);
+
+  const [quantityMsg, setQuantityMsg] = useState("");
   
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "quantity") {
+      if (value.length > 1) {
+        setQuantityMsg("Only one digit is allowed for quantity (0-9)");
+        return;
+      } else {
+        setQuantityMsg("");
+      }
+    }
+
     setInputs({ ...inputs, [name]: value });
     setErrors({ ...errors, [name]: "" }); 
   };

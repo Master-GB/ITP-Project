@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./nav.css";
 import SignOutDialog from "../signOut/signOut"; // Import the dialog component
 
@@ -11,6 +12,7 @@ const Nav = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
 
   // Fetch notifications from backend on mount
   useEffect(() => {
@@ -113,6 +115,31 @@ const Nav = () => {
     document.body.classList.toggle("donor-nav-show-overlay", !isSideNavOpen);
   };
 
+  const USER_API_URL = "http://localhost:8090/users";
+
+    const [donors, setDonors] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      axios.get(USER_API_URL)
+        .then(res => {
+          const users = res.data.users || [];
+          const donorUsers = users.filter(user => user.role === "Donor");
+          setDonors(donorUsers);
+          setLoading(false);
+        })
+        .catch(err => {
+          setError("Failed to fetch donor data");
+          setLoading(false);
+        });
+    }, []);
+  
+    if (loading) return <div className="donor-profile-loading">Loading donor profiles...</div>;
+    if (error) return <div className="donor-profile-error">{error}</div>;
+    if (donors.length === 0) return <div className="donor-profile-empty">No donor profiles found.</div>;
+
+    const donor = donors[0];
 
   return (
     <div>
@@ -141,8 +168,8 @@ const Nav = () => {
                   />
                 </div>
                 <div className="donor-nav-profile-info">
-                  <p className="donor-nav-donor-name">Gihan</p>
-                  <p className="donor-nav-donor-email">gihan@example.com</p>
+                  <p className="donor-nav-donor-name">{donor.name}</p>
+                  <p className="donor-nav-donor-email">{donor.email}</p>
                 </div>
               </div>
 
@@ -287,7 +314,7 @@ const Nav = () => {
               </ul>
             )}
             {notifications.length > 0 && (
-              <button onClick={handleClearAll} style={{width:'100%', background:'#e53935', color:'white', border:'none', borderRadius:'0 0 10px 10px', padding:'12px', fontWeight:'bold', fontSize:'15px', cursor:'pointer', transition:'background 0.2s'}}>
+              <button className ="notification-donor-clear" onClick={handleClearAll} style={{width:'100%', background:'#e53935', color:'white', border:'none', borderRadius:'0 0 10px 10px', padding:'12px', fontWeight:'bold', fontSize:'15px', cursor:'pointer'}}>
                 Clear All
               </button>
             )}
