@@ -107,7 +107,7 @@ function AddRequests() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      sendRequest().then(() => navigate('/display-requests'));
+      sendRequest().then(() => navigate('/rl/display-requests'));
     }
   }
 

@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../../imalshaComponent/feedbackform/feedback.css';
 import NavBarP from '../NavBarP/NavBarP';
 import FooterP from '../FooterP/FooterP';
+import Swal from 'sweetalert2';
+
 
 function FeedbackForm() {
     const navigate = useNavigate();
@@ -29,13 +31,24 @@ function FeedbackForm() {
         
         try {
             await sendRequest();
+            Swal.fire({
+                icon: 'success',
+                title: 'Thank You!',
+                html: <div style="font-size:1.1rem;margin-top:10px;">Your message has been received</div>,
+                showConfirmButton: false,
+                timer: 3500,
+                width: 420,
+                padding: '2.5em',
+                background: '#fff',
+                customClass: {
+                  popup: 'swal2-thankyou-modal'
+                }
+            });
             setSuccess('Feedback submitted successfully!');
-            // Clear form after successful submission
             setInputs({
                 message: '',
                 rating: '',
             });
-            // Navigate after a short delay to show success message
             setTimeout(() => {
                 navigate('/feedback');
             }, 2000);
@@ -57,9 +70,14 @@ function FeedbackForm() {
         }
     };
 
+
     return (
         <div className="feedback-page">
             <NavBarP />
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         <div className="feedback-container">
             <h2>Feedback Form</h2>
             {error && <div className="error-message">{error}</div>}

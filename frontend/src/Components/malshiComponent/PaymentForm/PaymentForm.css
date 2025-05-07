@@ -1,235 +1,314 @@
-.payment-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+body {
+  background: #dce9e4 !important;
+}
+
+.DFund-payment-form-container {
+  max-width: 600px;
+  margin: 9rem auto 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.DFund-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.DFund-progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+
+.DFund-progress-step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  color: #666;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.DFund-progress-step.active {
+  background: #195a5c;
+  color: white;
+}
+
+.DFund-step {
+  margin-bottom: 2rem;
+}
+
+.DFund-step h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.DFund-amount-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.DFund-amount-btn {
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.DFund-amount-btn:hover {
+  border-color: #195a5c;
+}
+
+.DFund-amount-btn.selected {
+  border-color: #195a5c;
+  background: #195a5c;
+  color: white;
+}
+
+.DFund-custom-amount {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.DFund-custom-amount input {
+  width: 60%;
+  min-width: 200px;
+  max-width: 300px;
+  border: 2px solid #195a5c;
+  box-sizing: border-box;
+  font-size: 0.92rem;
+}
+
+.DFund-form-group {
+  margin-bottom: 1rem;
+}
+
+.DFund-form-group input,
+.DFund-form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.DFund-form-group input:focus,
+.DFund-form-group textarea:focus {
+  border-color: #195a5c;
+  outline: none;
+}
+
+.DFund-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-size: 1rem;
+}
+
+.DFund-payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.DFund-payment-method {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.DFund-payment-method:hover {
+  border-color: #195a5c;
+}
+
+.DFund-payment-method input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+.DFund-card-details,
+.DFund-bank-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.DFund-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.DFund-confirmation-details {
+  background: #e6f0ea;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.DFund-confirmation-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.DFund-confirmation-details li {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.DFund-form-navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.DFund-btn-prev,
+.DFund-btn-next,
+.DFund-btn-submit {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.DFund-btn-prev {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.DFund-btn-next,
+.DFund-btn-submit {
+  background: #195a5c !important;
+  color: white !important;
+  border: none;
+}
+
+.DFund-btn-submit:hover {
+  background: #14494a !important;
+}
+
+.DFund-btn-prev:hover {
+  background: #d0d0d0;
+}
+
+.DFund-btn-next:hover {
+  background: #14494a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .DFund-payment-form-container {
+    margin: 1rem;
+    padding: 1rem;
   }
-  
-  .payment-container h2 {
-    color: #2c3e50;
-    margin-bottom: 8px;
+
+  .DFund-amount-options {
+    grid-template-columns: 1fr;
   }
-  .payment-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  .DFund-form-row {
+    grid-template-columns: 1fr;
   }
-  
-  .payment-container h2 {
-    color: #2c3e50;
-    margin-bottom: 8px;
-  }
-  
-  .payment-container p {
-    color: #7f8c8d;
-    margin-bottom: 25px;
-  }
-  
-  .payment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .form-group label {
-    font-weight: 500;
-    color: #34495e;
-  }
-  
-  .form-group input, 
-  .form-group textarea {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-  }
-  
-  .form-group input:focus, 
-  .form-group textarea:focus {
-    border-color: #3498db;
-    outline: none;
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .half {
-    flex: 1;
-  }
-  
-  .card-details {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 4px;
-  }
-  
-  .card-details h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #2c3e50;
-  }
-  
-  .submit-button {
-    display: block; /* Allows centering */
-    width: 200px; /* Fixed width */
-    margin: 0 auto; /* Centers the button */
-    background-color: #1b429d;
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #3643a6;
-  }
-  
-  .submit-button:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-  }
-  
-  .error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .success-message {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 20px;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
-    .submit-button {
-        width: 100%; /* Full width on small screens */
-    }
-  }
-  .payment-container p {
-    color: #7f8c8d;
-    margin-bottom: 25px;
-  }
-  
-  .payment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .form-group label {
-    font-weight: 500;
-    color: #34495e;
-  }
-  
-  .form-group input, 
-  .form-group textarea {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-  }
-  
-  .form-group input:focus, 
-  .form-group textarea:focus {
-    border-color: #3498db;
-    outline: none;
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .half {
-    flex: 1;
-  }
-  
-  .card-details {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 4px;
-  }
-  
-  .card-details h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #2c3e50;
-  }
-  
-  .submit-button {
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #2ecc71;
-  }
-  
-  .submit-button:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-  }
-  
-  .error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .success-message {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 20px;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
+}
+
+.DFund-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.DFund-modal-content {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  text-align: center;
+  min-width: 300px;
+}
+
+.DFund-modal-content h2 {
+  color: #195a5c;
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(25,90,92,0.08);
+}
+
+.DFund-modal-content p {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.DFund-error-message {
+  color: #b71c1c;
+  font-size: 0.92rem;
+  text-align: center;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.DFund-btn-close {
+  background: #e0f2f1 !important;
+  color: #195a5c !important;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.DFund-btn-close:hover {
+  background: #e0e0e0 !important;
+}
+
+/* Only the custom amount input in step 1 should be smaller */
+.DFund-custom-amount input {
+  font-size: 0.92rem;
+} 
