@@ -1,7 +1,28 @@
 /* Add this to your existing CSS */
 .food-requests-container{
-  background-color: #e2e7e5;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #dce9e4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.Freq-top-search-container {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    width: 90%; /* Make it wide but with some margin on sides */
+    height: 100px; /* Increase the height */
+    padding: 20px; /* Add space inside the container */
+    margin: 20px auto; /* Add spacing above and center it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between child elements */
+    background-color: #e6e9e8;
+}
+
 .Freq-top-container {
     display: flex;
     justify-content: space-between;
@@ -51,6 +72,7 @@
         padding: 12px;
     }
 }
+
 .Freq-request-search {
     width: 100%;
     max-width: 400px;
@@ -60,7 +82,6 @@
     border-radius: 5px;
     outline: none;
     transition: all 0.3s ease-in-out;
-
     margin-left: 800px;
 }
 
@@ -70,19 +91,19 @@
 }
 
 .Freq-generatepdf-fr-button {
-    padding: 10px 15px;
-    margin-left: 10px;
-    font-size: 16px;
-    border: none;
-    background-color: #007bff;
+    padding: 10px 60px;
+    background-color: #195a5c;
     color: white;
+    border: none;
+    border-radius: 15px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+    font-size: 19px;
+    transition: background-color 0.3s;
+    margin-left: 90px;
 }
 
 .Freq-generatepdf-fr-button:hover {
-    background-color: #0056b3;
+    background-color: #3972a1;
 }
 
 .Freq-food-requests-container {
@@ -99,56 +120,31 @@
 
 .Freq-top-search-container {
     display: flex;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
-    justify-content: center;
 }
 
 .Freq-search-input {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 14px;
+    font-size: 18px;
     width: 400px;
-    transition: border-color 0.3s ease;
-}
-
-.Freq-search-input:focus {
-    outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
-}
-
-.Freq-search-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.Freq-search-button:hover {
-    background-color: #45a049;
 }
 
 .Freq-requests-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    margin-top: 20px;
 }
 
 .Freq-request-card {
     background: white;
-    max-width: 100%;
     padding: 15px;
     border-radius: 8px;
-    padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .Freq-request-card:hover {
@@ -160,35 +156,38 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .Freq-request-header h3 {
     margin: 0;
-    color: #333;
-    font-size: 1.2em;
+    color: #877f7f;
+    font-size: 1.4em;
 }
 
-.Freq-status-badge {
+.status-badge {
     padding: 5px 10px;
     border-radius: 15px;
     font-size: 0.9em;
     font-weight: 500;
 }
 
-.Freq-status-badge.pending {
+.status-badge.pending {
     background-color: #fff3cd;
     color: #856404;
+    font-size: 18px;
 }
 
-.Freq-status-badge.approved {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.Freq-status-badge.rejected {
+.status-badge.cancelled {
     background-color: #f8d7da;
     color: #721c24;
+    font-size: 18px;
+}
+
+.status-badge.completed {
+    background-color: #d4edda;
+    color: #155724;
+    font-size: 18px;
 }
 
 .Freq-request-details {
@@ -208,52 +207,38 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .Freq-update-button {
-    padding: 8px 15px;
-    background-color: #007bff;
+    padding: 8px 18px;
+    background-color: #1c7da6;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+    font-size: 17px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
 }
 
 .Freq-update-button:hover {
-    background-color: #0056b3;
+    background-color: #3381d4;
 }
 
 .Freq-delete-button {
-    padding: 8px 15px;
-    background-color: #dc3545;
+    padding: 8px 18px;
+    background-color: #d03245;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+    font-size: 17px;
+    transition: background-color 0.3s;
 }
 
 .Freq-delete-button:hover {
-    background-color: #c82333;
-}
-
-.Freq-food-request-button {
-    padding: 12px 24px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.Freq-food-request-button:hover {
-    background-color: #45a049;
+    background-color: #a91a2b;
 }
 
 .Freq-loading-container {
@@ -338,7 +323,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .Freq-delete-confirm-cancel:hover {
@@ -353,7 +338,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .Freq-delete-confirm-delete:hover {
@@ -431,7 +416,7 @@
 }
 
 .Freq-form-group textarea {
-    min-height: 140px;
+    min-height: 70px;
     resize: vertical;
 }
 
@@ -467,7 +452,7 @@
 
 .FReq-update-submit {
     background-color: #3b8bcd;
-    color: #c5c7cc;
+    color: #e1e3e9;
 }
 
 .FReq-update-submit:hover {
@@ -493,15 +478,14 @@
 .Freq-request-details-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .Freq-request-details-table th,
 .Freq-request-details-table td {
-  padding: 8px 10px;
+  padding: 8px;
   text-align: left;
   border-bottom: 1px solid #e0e0e0;
-  font-size: 16px;
 }
 
 .Freq-request-details-table th {
@@ -513,3 +497,9 @@
 .Freq-request-details-table tr:last-child td {
   border-bottom: none;
 }
+
+.Freq-search-icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+  }

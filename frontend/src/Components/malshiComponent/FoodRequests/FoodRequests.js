@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './FoodRequests.css';
 import { jsPDF } from 'jspdf';
+import FooterP from '../FooterP/FooterP';
 
 const URL = 'http://localhost:8090/requests';
 
@@ -32,6 +33,7 @@ function FoodRequests() {
         quantity: '',
         additionalNotes: ''
     });
+    const [updateSuccess, setUpdateSuccess] = useState("");
 
     const highlightText = (text, searchTerm) => {
         if (!searchTerm || !text) return text;
@@ -155,6 +157,8 @@ function FoodRequests() {
                 quantity: '',
                 additionalNotes: ''
             });
+            setUpdateSuccess("Request updated successfully!");
+            setTimeout(() => setUpdateSuccess(""), 3000);
         } catch (error) {
             console.error('Error updating request:', error);
             setError('Failed to update request');
@@ -291,8 +295,8 @@ function FoodRequests() {
     }
 
     return (
+        <div className="Freq-food-requests">
         <div className="food-requests-container">
-            <br/>
             <br/>
             <br/>
             <br/>
@@ -307,18 +311,37 @@ function FoodRequests() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="Freq-search-input"
                 />
-                <button onClick={handleManualSearch} className="Freq-search-button">
-                    Search
-                </button>
+                <img src="/Resources/malshiRes/searchM.png" alt="Search" className="Freq-search-icon" />
 
                 <button onClick={generatePDF} className="Freq-generatepdf-fr-button">Generate PDF</button>
             </div>
 
+            {updateSuccess && (
+                <div style={{
+                    background: '#8abfc1',
+                    color: '#195a5c',
+                    padding: '12px 20px',
+                    borderRadius: '8px',
+                    margin: '10px auto',
+                    maxWidth: '600px',
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                    fontSize: '18px',
+                    boxShadow: '0 2px 8px rgba(44, 62, 80, 0.10)'
+                }}>
+                    {updateSuccess}
+                </div>
+            )}
+
             {noResults ? (
                 <div className="Freq-no-results">
                     <p>No requests found matching your search.</p>
+                    <br/>
                 </div>
             ) : (
+                <div className="Freq-requests-header">
+                    <br/>
+                    <br/>
                 <div className="Freq-requests-grid">
                     {foodrequests.map((request) => (
                         request && (
@@ -366,9 +389,11 @@ function FoodRequests() {
                                     </tbody>
                                 </table>
                                 <div className="Freq-request-actions">
-                                    <button onClick={() => handleUpdateClick(request)} className="Freq-update-button">
-                                        Update
-                                    </button>
+                                    {!(request.status && ['completed', 'rejected', 'cancelled'].includes(request.status.toLowerCase())) && (
+                                        <button onClick={() => handleUpdateClick(request)} className="Freq-update-button">
+                                            Update
+                                        </button>
+                                    )}
                                     <button onClick={() => handleDeleteClick(request)} className="Freq-delete-button">
                                         Delete
                                     </button>
@@ -376,6 +401,7 @@ function FoodRequests() {
                             </div>
                         )
                     ))}
+                </div>
                 </div>
             )}
 
@@ -460,6 +486,11 @@ function FoodRequests() {
                     </div>
                 </div>
             )}
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <FooterP />
         </div>
     );
 }

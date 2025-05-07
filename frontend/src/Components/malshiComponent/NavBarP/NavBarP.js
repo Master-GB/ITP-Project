@@ -50,10 +50,12 @@ function RequestNavBar() {
           </button>
         </div>
 
-        <div className="req-nav-feedback">
-          <button className="req-nav-feedback-icon">
-            {/* If you have a feedback icon, use it here. Otherwise, just show text. */}
-            Feedback
+        <div className="req-nav-notifications">
+          <button className="req-nav-notification-icon" onClick={() => navigate('/rl/pfeedback')}>
+            <img
+              src="/Resources/gihanRes/donationRes/message.png"
+              alt="Notifications"
+            />
           </button>
         </div>
 
