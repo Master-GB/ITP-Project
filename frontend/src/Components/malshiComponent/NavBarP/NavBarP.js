@@ -10,7 +10,6 @@ function RequestNavBar() {
     navigate("/home");
   };
 
-  const navigate = useNavigate();
 
   return (
     <div>
