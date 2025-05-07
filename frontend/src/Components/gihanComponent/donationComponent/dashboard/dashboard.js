@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./dashboard.css";
+import ChatBox from "../../../imalshaComponent/Chatbot/Chatbot";
 import axios from "axios";
 
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -281,75 +282,77 @@ const AdvancedDonorDashboard = () => {
   }, [donations, filter]);
 
   return (
-    <div className="dashboard-background">
-    <div className="advanced-donor-dashboard">
-      <div className="header">
+    <div>
+    <ChatBox />
+    <div className="donor-dh-dashboard-background">
+    <div className="donor-dh-advanced-donor-dashboard">
+      <div className="donor-dh-header">
         <h1>Welcome, {user.name}!</h1>
         <p>Here's your donation activity overview</p>
       </div>
 
-      <div className="statistics">
-        <div className="statistics-row">
-          <div className="stat-card total-donations">
-            <i className="fas fa-donate stat-icon"></i>
+      <div className="donor-dh-statistics">
+        <div className="donor-dh-statistics-row">
+          <div className="donor-dh-stat-card donor-dh-total-donations">
+            <i className="fas fa-donate donor-dh-stat-icon"></i>
             <h2>Total Donations</h2>
             <p>{totalDonations}</p>
           </div>
-          <div className="stat-card completed">
-            <i className="fas fa-check-circle stat-icon"></i>
+          <div className="donor-dh-stat-card donor-dh-completed">
+            <i className="fas fa-check-circle donor-dh-stat-icon"></i>
             <h2>Completed</h2>
             <p>{totalCompleted}</p>
           </div>
-          <div className="stat-card pending">
-            <i className="fas fa-clock stat-icon"></i>
+          <div className="donor-dh-stat-card donor-dh-pending">
+            <i className="fas fa-clock donor-dh-stat-icon"></i>
             <h2>Pending</h2>
             <p>{totalPending}</p>
           </div>
-          <div className="stat-card cancel">
-            <i className="fas fa-cancel stat-icon"></i>
+          <div className="donor-dh-stat-card donor-dh-cancel">
+            <i className="fas fa-cancel donor-dh-stat-icon"></i>
             <h2>Cancel</h2>
             <p>{totalCancel}</p>
           </div>
         </div>
 
-        <div className="statistics-row">
-          <div className="stat-card total-food">
-            <i className="fas fa-utensils stat-icon"></i>
+        <div className="donor-dh-statistics-row">
+          <div className="donor-dh-stat-card donor-dh-total-food">
+            <i className="fas fa-utensils donor-dh-stat-icon"></i>
             <h2>Total Food Donated</h2>
-            <div className="values">
-              <span className="kg-value">{kgQuantity} kg</span>
-              <span className="unit-value">
+            <div className="donor-dh-values">
+              <span className="donor-dh-kg-value">{kgQuantity} kg</span>
+              <span className="donor-dh-unit-value">
                 {unitQuantity}
                 units
               </span>
             </div>
-            <div className="progress-bar">
+            <div className="donor-dh-progress-bar">
               <div
-                className="progress blue"
+                className="donor-dh-progress blue"
                 style={{ width: `${(kgQuantity / 500) * 100}%` }}
               ></div>
             </div>
           </div>
-          <div className="stat-card people-helped">
-            <i className="fas fa-users stat-icon"></i>
+          <div className="donor-dh-stat-card donor-dh-people-helped">
+            <i className="fas fa-users donor-dh-stat-icon"></i>
             <h2>People Helped</h2>
             <p>{Math.floor((kgQuantity + unitQuantity) / 2)}</p>
-            <div className="progress-bar">
+            <div className="donor-dh-progress-bar">
               <div
-                className="progress green"
+                className="donor-dh-progress g"
                 style={{
                   width: `${(Math.floor((kgQuantity + unitQuantity) / 2) / 500) * 100}%`,
                 }}
               ></div>
             </div>
           </div>
-          <div className="stat-card completion-rate">
-            <i className="fas fa-chart-line stat-icon"></i>
+          <div className="donor-dh-stat-card donor-dh-completion-rate">
+            <i className="fas fa-chart-line donor-dh-stat-icon"></i>
             <h2>Completion Rate</h2>
             <p>{completionRate}%</p>
-            <div className="progress-bar">
+            <div className="donor-dh-progress-bar">
               <div
-                className="progress green"
+                className="donor-dh-progress g"
                 style={{ width: `${completionRate}%` }}
               ></div>
             </div>
@@ -357,15 +360,15 @@ const AdvancedDonorDashboard = () => {
         </div>
       </div>
 
-      <div className="button-section">
+      <div className="donor-dh-button-section">
         <Link to="/dl/myDonate">
-          <button className="view-all-button">View All Donations</button>
+          <button className="donor-dh-view-all-button">View All Donations</button>
         </Link>
         <Link to="/dl/donate">
-          <button className="create-new-button">Create New Donation</button>
+          <button className="donor-dh-create-new-button">Create New Donation</button>
         </Link>
       </div>
-      <div className="recent-donations">
+      <div className="donor-dh-card donor-dh-recent-donations">
         <h2 >Recent Donations</h2>
         <table>
           <thead>
@@ -385,7 +388,7 @@ const AdvancedDonorDashboard = () => {
                   <td>{donation.foodItem}</td>
                   <td>{donation.finalQuantity}</td>
                   <td>
-                    <span className={`status status-${donation.status.toLowerCase()}`}>
+                    <span className={`donor-dh-status donor-dh-status-${donation.status.toLowerCase()}`}>
                       {donation.status}
                     </span>
                   </td>
@@ -395,19 +398,24 @@ const AdvancedDonorDashboard = () => {
         </table>
       </div>
 
-      <div className="chart-section">
-        <h2>Donation Trends</h2>
-        <div className="filter-section">
-          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-            <option value="year">Year</option>
-            <option value="month">Month</option>
-            <option value="week">Week</option>
-          </select>
+      <div className="donor-dh-card donor-dh-chart-section">
+      <div className="donor-dh-chart-header">Donation Trends</div>
+        <div className="donor-dh-card-over">  
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: 8 }}>
+            <div className="donor-dh-filter-section donor-dh-filter-right">
+              <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                <option value="year">Year</option>
+                <option value="month">Month</option>
+                <option value="week">Week</option>
+              </select>
+            </div>
+          </div>
+          <canvas ref={chartRef}></canvas>
         </div>
-        <canvas ref={chartRef}></canvas>
       </div>
-      <div className="map-section">
-        <h2>Donation Locations</h2>
+      <div className="donor-dh-card donor-dh-map-section">
+        <h2 className="donor-dh-map-header">Donation Locations</h2>
+        <div className="donor-dh-card-over"> 
         <MapContainer
           center={[6.9271, 79.8612]} 
           zoom={7} 
@@ -434,7 +442,9 @@ const AdvancedDonorDashboard = () => {
             )
           ))}
         </MapContainer>
+        </div>
       </div>
+    </div>
     </div>
     </div>
   );

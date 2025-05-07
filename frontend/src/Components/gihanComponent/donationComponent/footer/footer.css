@@ -1,103 +1,95 @@
-/* Ensure the body, root, and main content take full height */
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Ensure the page container takes full height */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Page container to hold content and footer */
-.page-container {
+.donor-foot-page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  min-height: 100vh;
 }
 
-/* Content wrapper to grow and push the footer down */
-.content-wrap {
-  flex: 1; /* This makes the content take up remaining space */
+.donor-foot-content-wrap {
+  flex: 1 0 auto;
 }
 
-/* Footer Container */
-.footer {
+.donor-foot-footer {
   background-color: #2c3e50;
   color: #ffffff;
   padding: 20px;
   font-family: Arial, sans-serif;
   width: 100%;
-  flex-shrink: 0; /* Prevent footer from shrinking */
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
-/* First Section */
-.footer-first-section {
+.donor-foot-footer-first-section {
   display: flex;
-  justify-content: space-between; /* Space out sections */
-  align-items: flex-start; /* Align items to the top */
-  gap: 20px; /* Add gap between sections */
-  flex-wrap: wrap; /* Ensure responsiveness */
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-/* Platform Information and Newsletter */
-.platform-and-newsletter {
-  flex: 1 1 40%; /* Take 40% of the width */
+.donor-foot-platform-and-newsletter {
+  flex: 1 1 40%;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Add gap between Platform Information and Newsletter */
+  gap: 10px;
 }
 
-/* Platform Information */
-.platform-info {
+.donor-foot-platform-info {
   text-align: left;
 }
 
-.platform-info .logo-container img {
+.donor-foot-platform-info .donor-foot-logo-container img {
   width: 80px;
   height: auto;
 }
 
-.platform-info .tagline {
+.donor-foot-platform-info .donor-foot-tagline {
   font-size: 14px;
   margin-top: 5px;
 }
 
-/* Newsletter Section */
-.newsletter-section {
+.donor-foot-newsletter-section {
   text-align: left;
 }
 
-.newsletter-section h2 {
+.donor-foot-newsletter-section h2 {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
-.newsletter-section p {
+.donor-foot-newsletter-section p {
   font-size: 14px;
   margin-bottom: 10px;
 }
 
-.newsletter-form {
+.donor-foot-newsletter-form {
   display: flex;
   gap: 10px;
 }
 
-.newsletter-form input {
+.donor-foot-newsletter-form input {
   padding: 8px;
   border: none;
   border-radius: 5px;
-  width: 100%; /* Make it responsive */
-  max-width: 250px; /* Set a max width for input */
+  width: 100%;
+  max-width: 250px;
 }
 
-.newsletter-form button {
+.donor-foot-newsletter-form button {
   padding: 8px 10px;
   background-color: #e67e22;
   color: #ffffff;
@@ -105,179 +97,168 @@ html, body {
   border-radius: 5px;
   cursor: pointer;
   width: 16%;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
-.newsletter-form button:hover {
+.donor-foot-newsletter-form button:hover {
   background-color: #d35400;
 }
 
-/* Right Sections: About Us, Donor Resources, and Contact Us */
-.right-sections {
+.donor-foot-right-sections {
   padding-right: 10px;
-  flex: 1 1 58%; /* Take 50% of the width */
+  flex: 1 1 58%;
   display: flex;
-  justify-content: space-between; /* Space out sections */
-  gap: 0px; /* Add gap between sections */
+  justify-content: space-between;
+  gap: 0px;
 }
 
-/* About Us, Donor Resources, and Contact Us */
-.about-us, .donor-resources, .contact-us {
-  flex: 1 1 30%; /* Equal width for all sections */
+.donor-foot-about-us, .donor-foot-donor-resources, .donor-foot-contact-us {
+  flex: 1 1 30%;
   text-align: left;
 }
 
-.contact-us{
+.donor-foot-contact-us {
   margin-right: 15px;
 }
 
-.about-us h3, .donor-resources h3, .contact-us h3 {
+.donor-foot-about-us h3,
+.donor-foot-donor-resources h3,
+.donor-foot-contact-us h3 {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-.about-us ul, .donor-resources ul, .contact-us ul {
+.donor-foot-about-us ul,
+.donor-foot-donor-resources ul,
+.donor-foot-contact-us ul {
   list-style: none;
   padding: 0;
 }
 
-.about-us ul li, .donor-resources ul li {
+.donor-foot-about-us ul li,
+.donor-foot-donor-resources ul li {
   margin-bottom: 8px;
 }
 
-.contact-us ul li {
-  display: flex; /* Use flexbox for alignment */
-  align-items: center; /* Vertically center align items */
-  gap: 9px; /* Add gap between icon and text */
-  color: #888; /* Grey color */
+.donor-foot-contact-us ul li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #888;
   font-size: 14px;
   margin-bottom: 2px;
 }
 
-.about-us ul li a, .donor-resources ul li a {
-  color: #888; /* Grey color */
+.donor-foot-about-us ul li a,
+.donor-foot-donor-resources ul li a {
+  color: #888;
   text-decoration: none;
   font-size: 14px;
 }
 
-.about-us ul li a:hover, .donor-resources ul li a:hover {
+.donor-foot-about-us ul li a:hover,
+.donor-foot-donor-resources ul li a:hover {
   text-decoration: underline;
 }
 
-/* Contact Us Icons */
-.contact-us ul li img {
-  width: 22px; /* Custom size for icons */
+.donor-foot-contact-us ul li img {
+  width: 22px;
   height: 22px;
   padding-top: 2px;
-  filter: brightness(0) invert(1); /* Change black to white */
-  vertical-align: middle; /* Align icons vertically with text */
+  filter: brightness(0) invert(1);
+  vertical-align: middle;
 }
 
-/* Horizontal Separator */
-.horizontal-separator {
+.donor-foot-horizontal-separator {
   width: 100%;
   height: 1px;
   background-color: #444;
   margin: 10px 0;
 }
 
-/* Second Section */
-.footer-second-section {
+.donor-foot-footer-second-section {
   margin-bottom: -10px;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Center items vertically */
-  flex-wrap: wrap; /* Ensure responsiveness */
+  align-items: center;
+  flex-wrap: wrap;
   width: 100%;
 }
 
-/* Social Media Links */
-.social-media {
+.donor-foot-social-media {
   flex: 1 1 30%;
   text-align: left;
 }
 
-.social-icons {
+.donor-foot-social-icons {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-/* Social Media Icons - Individual Sizes */
-.social-icons .facebook img {
-  width: 34px; /* Custom size for Facebook */
+.donor-foot-social-icons .donor-foot-facebook img {
+  width: 34px;
   height: 34px;
   margin-bottom: 2px;
 }
 
-.social-icons .twitter-x img {
-  width: 51px; /* Custom size for Twitter */
+.donor-foot-social-icons .donor-foot-twitter-x img {
+  width: 51px;
   height: 40px;
   padding-left: 7px;
 }
 
-.social-icons .insta img {
-  width: 50px; /* Custom size for Instagram */
+.donor-foot-social-icons .donor-foot-insta img {
+  width: 50px;
   height: 55px;
 }
 
-.social-icons .linkedin img {
-  width: 58px; /* Custom size for LinkedIn */
+.donor-foot-social-icons .donor-foot-linkedin img {
+  width: 58px;
   height: 58px;
 }
 
-/* Legal and Compliance */
-.legal-compliance {
+.donor-foot-legal-compliance {
   flex: 1 1 40%;
-  text-align: center; /* Center text */
+  text-align: center;
 }
 
-.legal-compliance .copyright {
+.donor-foot-legal-compliance .donor-foot-copyright {
   font-size: 12px;
   margin-bottom: 5px;
-  text-align: center; /* Center copyright text */
+  text-align: center;
 }
 
-.legal-links {
+.donor-foot-legal-links {
   display: flex;
-  justify-content: center; /* Center legal links */
+  justify-content: center;
   gap: 10px;
 }
 
-.legal-links a {
+.donor-foot-legal-links a {
   color: #ffffff;
   text-decoration: none;
   font-size: 12px;
 }
 
-.legal-links a:hover {
+.donor-foot-legal-links a:hover {
   text-decoration: underline;
 }
 
-/* Partner Logos */
-.partner-logos {
+.donor-foot-partner-logos {
   flex: 1 1 30%;
-  text-align: right; /* Align to the right corner */
+  text-align: right;
 }
 
-.logos {
+.donor-foot-logos {
   display: flex;
   gap: 10px;
-  justify-content: flex-end; /* Align logos to the right */
+  justify-content: flex-end;
 }
 
-/* Partner Logos - Individual Sizes */
-.logos img:nth-child(1) {
-  width: 20px; /* Custom size for Partner 1 */
-  height: auto;
-}
-
-.logos img:nth-child(2) {
-  width: 20px; /* Custom size for Partner 2 */
-  height: auto;
-}
-
-.logos img:nth-child(3) {
-  width: 20px; /* Custom size for Partner 3 */
+.donor-foot-logos img:nth-child(1),
+.donor-foot-logos img:nth-child(2),
+.donor-foot-logos img:nth-child(3) {
+  width: 50px;
   height: auto;
 }

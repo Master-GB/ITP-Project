@@ -1,5 +1,6 @@
+/* nav.css - with donor-nav prefix */
 
-.navbar {
+.donor-nav-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,11 +10,11 @@
   position: fixed;  
   top: 0;         
   left: 0;
-  width: 100%;     
+  width: 99%;     
   z-index: 1000;   
 }
 
-.overlay {
+.donor-nav-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -23,11 +24,11 @@
   z-index: 900;
 }
 
-.side-nav {
+.donor-nav-side-nav {
   position: relative;
 }
 
-.hamburger-menu {
+.donor-nav-hamburger-menu {
   background: none;
   border: none;
   color: white;
@@ -35,7 +36,7 @@
   cursor: pointer;
 }
 
-.side-nav-content {
+.donor-nav-side-nav-content {
     position: fixed;
     top: 0;
     left: 0px;
@@ -52,14 +53,14 @@
     align-items: center;
   }
   
-  .profile-container {
+  .donor-nav-profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
   }
   
-  .profile-photo-cover {
+  .donor-nav-profile-photo-cover {
     margin-top: 40px;
     width: 80px;
     height: 80px;
@@ -72,7 +73,7 @@
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3); 
   }
 
-.hamburger-menu {
+.donor-nav-hamburger-menu {
     background: none;
     border: none;
     color: white;
@@ -81,11 +82,11 @@
     transition: transform 0.3s ease-in-out;
   }
   
-  .hamburger-menu:hover {
+  .donor-nav-hamburger-menu:hover {
     transform: scale(1.2);
   }
 
-  .close-icon {
+  .donor-nav-close-icon {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -94,37 +95,37 @@
     cursor: pointer;
   }
 
-  .side-nav-links {
+  .donor-nav-side-nav-links {
     list-style: none;
     padding: 0;
     text-align: left;
     width: 100%;
   }
   
-  .side-nav-links li {
+  .donor-nav-side-nav-links li {
     padding: 10px 20px;
     transition: background 0.3s ease-in-out;
     border-radius: 5px;
   }
   
-  .side-nav-links li:hover {
+  .donor-nav-side-nav-links li:hover {
     background: rgba(255, 255, 255, 0.2);
   }
   
-  .profile-photo {
+  .donor-nav-profile-photo {
     width: 90px;
     height: 90px;
     border-radius: 50%;
   }
   
-  .profile-info {
+  .donor-nav-profile-info {
     text-align: center;
     margin-top: 0; 
     padding: 0; 
   }
   
   
-  .donor-name {
+  .donor-nav-donor-name {
     font-weight: bold;
     font-size: 20px;
     color: white;
@@ -133,7 +134,7 @@
     line-height: 1;
   }
   
-  .donor-email {
+  .donor-nav-donor-email {
     font-size: 12px;
     color: #aaa;
     margin: 0; 
@@ -141,7 +142,7 @@
     line-height: 1;
   }
   
-  .separator {
+  .donor-nav-separator {
     width: 90%;
     height: 3px;
     background-color: #555;
@@ -150,18 +151,18 @@
   }
   
 
-  .side-nav-links {
+  .donor-nav-side-nav-links {
     list-style: none;
     padding: 0;
     text-align: left;
     width: 100%;
   }
   
-  .side-nav-links li {
+  .donor-nav-side-nav-links li {
     padding: 10px 20px;
   }
   
-  .side-nav-links a {
+  .donor-nav-side-nav-links a {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -170,41 +171,40 @@
   }
 
 
-  .side-nav-links a:hover {
+  .donor-nav-side-nav-links a:hover {
     color: #2aaaef; 
   }
   
-  .side-nav-links .sign-out-btn {
+  .donor-nav-side-nav-links .donor-nav-sign-out-btn {
     width: 100%;
     background: none;
     border: none;
     color: white;
     font-size: 18px;
     text-align: left;
-
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.3s, color 0.3s;
   }
-  .side-nav-links .sign-out-btn:hover {
+  .donor-nav-side-nav-links .donor-nav-sign-out-btn:hover {
     color: red;
   }
 
-  .logo a {
+  .donor-nav-logo a {
   color: white;
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
 }
 
-.logo-container {
+.donor-nav-logo-container {
     display: flex;
     align-items: center;
     text-decoration: none;
     gap: 1px; 
   }
   
-  .logo-text {
+  .donor-nav-logo-text {
     padding-left:0px;
     display: flex;
     text-decoration: none;
@@ -213,7 +213,7 @@
     margin-left: -25px; 
   }
   
-  .top-text{
+  .donor-nav-top-text{
     font-size: 35px;
     font-weight: bold;
     color: rgb(246, 246, 246);
@@ -221,7 +221,7 @@
     padding-left:0px;
   }
 
-  .bottom-text{
+  .donor-nav-bottom-text{
     font-size: 35px;
     font-weight: bold;
     color: rgb(255, 255, 255);
@@ -230,27 +230,27 @@
   }
 
  
-  .lk-text {
+  .donor-nav-lk-text {
     font-size: 24px;
     font-weight: bold;
     color: rgb(255, 255, 255);
    }
   
   
-  .logo-img {
+  .donor-nav-logo-img {
     width: 80px; 
     height: auto;
   }
   
 
-.nav-links {
+.donor-nav-nav-links {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
 }
 
-.nav-links a {
+.donor-nav-nav-links a {
     color: white;
     text-decoration: none;
     margin: 0 15px;
@@ -259,32 +259,32 @@
     transition: color 0.3s ease-in-out;
   }
 
-.nav-links a:hover {
+.donor-nav-nav-links a:hover {
   color: #595d60;
 }
 
-.chatbot-icon img,
-.messages-icon img,
-.notification-icon img,
-.close-icon img,
-.search-icon img {
+.donor-nav-chatbot-icon img,
+.donor-nav-messages-icon img,
+.donor-nav-notification-icon img,
+.donor-nav-close-icon img,
+.donor-nav-search-icon img {
   transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-.chatbot-icon img:hover,
-.messages-icon img:hover,
-.notification-icon img:hover,
-.nav-search-icon:hover {
+.donor-nav-chatbot-icon img:hover,
+.donor-nav-messages-icon img:hover,
+.donor-nav-notification-icon img:hover,
+.donor-nav-nav-search-icon:hover {
   transform: scale(1.2); 
   filter: invert(0.7); 
 }
 
 
-.close-icon img:hover {
+.donor-nav-close-icon img:hover {
   transform: rotate(90deg); 
 }
 
-.nav-search-container {
+.donor-nav-nav-search-container {
   display: flex;
   align-items: center;
   background: white;
@@ -295,16 +295,17 @@
   margin-right: 20px;
 }
 
-.nav-search-input {
+.donor-nav-nav-search-input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 5px;
+  padding: 3px;
+  margin-right: 5px;
   font-size: 14px;
   background: transparent;
 }
 
-.nav-search-button {
+.donor-nav-nav-search-button {
   background: none;
   border: none;
   padding: 0;
@@ -314,48 +315,70 @@
   justify-content: center;
 }
 
-.nav-search-icon {
+.donor-nav-nav-search-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
 
 
-.ai-chatbot, .communicate, .notifications {
+.donor-nav-ai-chatbot, .donor-nav-communicate, .donor-nav-notifications {
   margin-left: 20px;
 }
 
 
-.chatbot-icon, .messages-icon, .notification-icon, .close-icon,.search-icon {
+.donor-nav-chatbot-icon, .donor-nav-messages-icon, .donor-nav-notification-icon, .donor-nav-close-icon,.donor-nav-search-icon {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
+    right: 10px;
   }
   
-  .messages-icon img,
-  .notification-icon img{
+  .donor-nav-messages-icon img,
+  .donor-nav-notification-icon img{
     width: 30px;
     height: 30px;
     cursor: pointer;
     filter: invert(1); 
-    margin-right: 50px;
-  }
+    margin-right: 25px;
+}
 
-  
+.donor-nav-notification-icon {
+  position: relative;
+}
 
-  .chatbot-icon img{
-    width: 50px;
-    height: 50px;
+.donor-nav-notification-badge {
+  position: absolute;
+  top: -8px;
+  right: 4px; /* add right margin */
+  background: red;
+  border-radius: 50%;
+  width: 13px; /* smaller width */
+  height: 15px; /* smaller height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  font-size: 8px; /* slightly larger for readability */
+  border: 2px solid white;
+  z-index: 2;
+  pointer-events: none;
+}
+
+  .donor-nav-chatbot-icon img{
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     filter: invert(1); 
     margin-left: 50px;
+    margin-right: 12px;
+    margin-top: 5px;
   }
 
-  .close-icon img{
+  .donor-nav-close-icon img{
     width: 40px;
     height: 40px;
     cursor: pointer;
   }
-
-  

@@ -5,6 +5,7 @@ import VolunteerNav from "./VolunteerNav";
 import VolunteerTasks from "./VolunteerTasks";
 import VolunteerFooter from "../Home/HomeFooter";
 import { FaTasks, FaCheckCircle, FaListOl, FaStar, FaClipboardList, FaUserCircle, FaQuoteLeft } from "react-icons/fa";
+import ChatBox from '../../imalshaComponent/Chatbot/Chatbot'; // ✅ Import ChatBox
 
 const VolunteerDStaffDashboard = () => {
   const { volunteerName } = useParams();
@@ -65,46 +66,47 @@ const VolunteerDStaffDashboard = () => {
   return (
     <>
       <VolunteerNav />
-      <div className="dashboard-main-content fade-in-dashboard">
-        <div className="dashboard-fullwidth volunteer-delivery-staff-dashboard">
+      <ChatBox /> {/* ✅ Add ChatBot here */}
+      <div className="volunteerdstaffdashboard-main-content volunteerdstaffdashboard-fade-in">
+        <div className="volunteerdstaffdashboard-fullwidth volunteerdstaffdashboard-container">
           {/* Modern Greeting Section */}
-          <h2 className="dashboard-title">
+          <h2 className="volunteerdstaffdashboard-title">
             <span role="img" aria-label="wave">👋</span> Welcome back !
-        </h2>
+          </h2>
         
-        {/* Stats Section */}
-          <div className="stats">
-            <div className="card" title="Active tasks assigned to you">
-              <FaTasks className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#1abc9c', marginBottom:8}}/>
+          {/* Stats Section */}
+          <div className="volunteerdstaffdashboard-stats">
+            <div className="volunteerdstaffdashboard-card" title="Active tasks assigned to you">
+              <FaTasks className="volunteerdstaffdashboard-animated-icon" style={{fontSize:'2.2rem', color:'#1abc9c', marginBottom:8}}/>
               <p>Tasks</p>
               <h3>{todayTasks}</h3>
-              <span className="green">Active tasks</span>
-          </div>
-            <div className="card" title="Number of tasks you have completed">
-              <FaCheckCircle className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#2ecc71', marginBottom:8}}/>
-            <p>Completed</p>
+              <span className="volunteerdstaffdashboard-green">Active tasks</span>
+            </div>
+            <div className="volunteerdstaffdashboard-card" title="Number of tasks you have completed">
+              <FaCheckCircle className="volunteerdstaffdashboard-animated-icon" style={{fontSize:'2.2rem', color:'#2ecc71', marginBottom:8}}/>
+              <p>Completed</p>
               <h3>{completedTasks}</h3>
-              <span className="green">{completionRate}% complete</span>
-          </div>
-            <div className="card" title="Total number of tasks assigned to you">
-              <FaListOl className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#3498db', marginBottom:8}}/>
+              <span className="volunteerdstaffdashboard-green">{completionRate}% complete</span>
+            </div>
+            <div className="volunteerdstaffdashboard-card" title="Total number of tasks assigned to you">
+              <FaListOl className="volunteerdstaffdashboard-animated-icon" style={{fontSize:'2.2rem', color:'#3498db', marginBottom:8}}/>
               <p>Total Tasks</p>
               <h3>{totalTasks}</h3>
-              <span className="green">All time</span>
-          </div>
-            <div className="card" title="Your performance rating based on completion rate">
-              <FaStar className="dashboard-animated-icon" style={{fontSize:'2.2rem', color:'#f39c12', marginBottom:8}}/>
-            <p>Performance Rating</p>
+              <span className="volunteerdstaffdashboard-green">All time</span>
+            </div>
+            <div className="volunteerdstaffdashboard-card" title="Your performance rating based on completion rate">
+              <FaStar className="volunteerdstaffdashboard-animated-icon" style={{fontSize:'2.2rem', color:'#f39c12', marginBottom:8}}/>
+              <p>Performance Rating</p>
               <h3>{performanceRating.toFixed(1)}</h3>
-              <span className="green">Based on completion rate</span>
+              <span className="volunteerdstaffdashboard-green">Based on completion rate</span>
             </div>
           </div>
 
           {/* Divider */}
-          <div className="dashboard-divider"></div>
+          <div className="volunteerdstaffdashboard-divider"></div>
 
-        {/* Current Tasks */}
-          <h3 className="section-title">
+          {/* Current Tasks */}
+          <h3 className="volunteerdstaffdashboard-section-title">
             <FaClipboardList style={{color:'#1abc9c', marginRight:10, verticalAlign:'middle'}}/>
             Current Tasks
           </h3>

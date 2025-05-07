@@ -292,38 +292,44 @@ function FoodRequests() {
 
     return (
         <div className="food-requests-container">
-
-            <div className="top-search-container">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div className="Freq-top-search-container">
+                
                 <input
                     type="text"
                     placeholder="Search by request code"
                     value={search}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="search-input"
+                    className="Freq-search-input"
                 />
-                <button onClick={handleManualSearch} className="search-button">
+                <button onClick={handleManualSearch} className="Freq-search-button">
                     Search
                 </button>
 
-                <button onClick={generatePDF} className="generatepdf-fr-button">Generate PDF</button>
+                <button onClick={generatePDF} className="Freq-generatepdf-fr-button">Generate PDF</button>
             </div>
 
             {noResults ? (
-                <div className="no-results">
+                <div className="Freq-no-results">
                     <p>No requests found matching your search.</p>
                 </div>
             ) : (
-                <div className="requests-grid">
+                <div className="Freq-requests-grid">
                     {foodrequests.map((request) => (
                         request && (
-                            <div key={request._id} className="request-card">
-                                <div className="request-header">
+                            <div key={request._id} className="Freq-request-card">
+                                <div className="Freq-request-header">
                                     <h3>{highlightMatch(request.requestCode || request.organizationName || 'N/A', search)}</h3>
                                     <span className={`status-badge ${request.status || 'pending'}`}>
                                         {request.status || 'Pending'}
                                     </span>
                                 </div>
-                                <table className="request-details-table">
+                                <table className="Freq-request-details-table">
                                     <tbody>
                                         <tr>
                                             <td><strong>Location:</strong></td>
@@ -359,11 +365,11 @@ function FoodRequests() {
                                         )}
                                     </tbody>
                                 </table>
-                                <div className="request-actions">
-                                    <button onClick={() => handleUpdateClick(request)} className="update-button">
+                                <div className="Freq-request-actions">
+                                    <button onClick={() => handleUpdateClick(request)} className="Freq-update-button">
                                         Update
                                     </button>
-                                    <button onClick={() => handleDeleteClick(request)} className="delete-button">
+                                    <button onClick={() => handleDeleteClick(request)} className="Freq-delete-button">
                                         Delete
                                     </button>
                                 </div>
@@ -374,18 +380,18 @@ function FoodRequests() {
             )}
 
             {showDeleteConfirm && selectedRequest && (
-                <div className="delete-confirm-overlay">
-                    <div className="delete-confirm-modal">
+                <div className="Freq-delete-confirm-overlay">
+                    <div className="Freq-delete-confirm-modal">
                         <h3>Confirm Delete</h3>
                         <p>Are you sure you want to delete this request?</p>
-                        <p className="delete-confirm-details">
+                        <p className="Freq-delete-confirm-details">
                             Request Code: {selectedRequest.requestCode || selectedRequest.organizationName || 'N/A'}
                         </p>
-                        <div className="delete-confirm-actions">
-                            <button onClick={handleCancelDelete} className="delete-confirm-cancel">
+                        <div className="Freq-delete-confirm-actions">
+                            <button onClick={handleCancelDelete} className="Freq-delete-confirm-cancel">
                                 Cancel
                             </button>
-                            <button onClick={deleteHandler} className="delete-confirm-delete">
+                            <button onClick={deleteHandler} className="Freq-delete-confirm-delete">
                                 Delete
                             </button>
                         </div>
@@ -394,11 +400,11 @@ function FoodRequests() {
             )}
 
             {showUpdateModal && selectedRequest && (
-                <div className="update-modal-overlay">
-                    <div className="update-modal">
+                <div className="Freq-update-modal-overlay">
+                    <div className="Freq-update-modal">
                         <h3>Update Request</h3>
-                        <div className="update-form">
-                            <div className="form-group">
+                        <div className="Freq-update-form">
+                            <div className="Freq-form-group">
                                 <label>Location:</label>
                                 <input
                                     type="text"
@@ -407,7 +413,7 @@ function FoodRequests() {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="Freq-form-group">
                                 <label>Contact Number:</label>
                                 <input
                                     type="text"
@@ -416,7 +422,7 @@ function FoodRequests() {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="Freq-form-group">
                                 <label>Food Type:</label>
                                 <input
                                     type="text"
@@ -425,7 +431,7 @@ function FoodRequests() {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="Freq-form-group">
                                 <label>Quantity:</label>
                                 <input
                                     type="text"
@@ -434,7 +440,7 @@ function FoodRequests() {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="Freq-form-group">
                                 <label>Additional Notes:</label>
                                 <textarea
                                     name="additionalNotes"
@@ -443,11 +449,11 @@ function FoodRequests() {
                                 />
                             </div>
                         </div>
-                        <div className="update-modal-actions">
-                            <button onClick={handleUpdateCancel} className="update-cancel">
+                        <div className="Freq-update-modal-actions">
+                            <button onClick={handleUpdateCancel} className="FReq-update-cancel">
                                 Cancel
                             </button>
-                            <button onClick={handleUpdateSubmit} className="update-submit">
+                            <button onClick={handleUpdateSubmit} className="FReq-update-submit">
                                 Update
                             </button>
                         </div>

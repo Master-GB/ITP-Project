@@ -94,7 +94,7 @@ function ViewTasks({ viewtasks }) {
         <span>{location}</span>
       </div>
       <div className="task-buttons">
-        <Link to={`/task/${_id}`}>
+        <Link to={`/vcl/task/${_id}`}>
           <button className="update-btn" title="Edit this task"><FaEdit style={{marginRight:6, verticalAlign:'middle'}}/>Update</button>
         </Link>
         <button className="delete-btn" onClick={deleteHandler} title="Delete this task"><FaTrash style={{marginRight:6, verticalAlign:'middle'}}/>Delete</button>

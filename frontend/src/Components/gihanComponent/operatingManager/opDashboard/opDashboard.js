@@ -5,6 +5,7 @@ import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import ChatBox from '../../../imalshaComponent/Chatbot/Chatbot';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
@@ -300,6 +301,8 @@ export default function OpDashboard() {
 
   return (
     <div>
+       <ChatBox />
+    <div>
           <h1>Operating Manger Dashboard</h1>
           <p className="subtitle">Here's your  activity overview</p>
         
@@ -377,11 +380,13 @@ export default function OpDashboard() {
       <div className="dashboard-charts-vertical">
         <div className="chart-card large-chart">
           <h3>Donations Over Time</h3>
+          <div className="opm-chart-over">
           <canvas ref={chartRef} height={340} width={900}></canvas>
+          </div>
         </div>
         <div className="chart-card large-chart">
           <div style={{ textAlign: 'center', marginBottom: 20, fontWeight: 700, fontSize: '1.5rem', color:'#2c3e50'}}>Status Breakdown</div>
-          <div className="centered-pie-canvas">
+          <div className="centered-pie-canvas opm-chart-over">
             <canvas ref={statusChartRef} height={300} width={300}></canvas>
           </div>
         </div>
@@ -389,6 +394,7 @@ export default function OpDashboard() {
       {/* Map Section: Donation Locations */}
       <div className="map-section chart-card large-chart">
         <h2>Donation Locations</h2>
+        <div className="opm-chart-over">
         <MapContainer center={[6.9271, 79.8612]} zoom={7} style={{ height: '500px', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {geocodedDonations.map((donation) => (
@@ -405,7 +411,9 @@ export default function OpDashboard() {
             )
           ))}
         </MapContainer>
+        </div>
       </div>
+    </div>
     </div>
     </div>
   );

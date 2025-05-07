@@ -1,6 +1,10 @@
 
+body .monitor-background{
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff);
+}
+
 .donor-analytics-dashboard {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,7 +12,7 @@
   
   
   .milestones-section {
-    padding-top: 50px;
+    padding-top: 80px;
     margin-bottom: 3rem;
   }
   
@@ -88,18 +92,20 @@
   }
   
   .filter-select {
-    padding: 0.5rem 1rem;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 1rem;
+    padding: 6px 40px 6px 10px;
     border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: white;
-    font-size: 0.9rem;
+    border: 1.5px solid #3385dc;
+    outline: none !important;
     cursor: pointer;
     transition: border-color 0.3s ease;
+    align-items: center;
+    width: 10%;
   }
   
-  .filter-select:hover {
-    border-color: #3498db;
-  }
+ 
   
   .chart-container {
     position: relative;
@@ -205,6 +211,7 @@
   border: 1px solid #ddd;
   font-size: 1rem;
   background: #f9f9f9;
+  outline: none !important;
 }
 .modal-actions {
   display: flex;

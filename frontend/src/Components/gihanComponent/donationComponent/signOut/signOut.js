@@ -4,19 +4,25 @@ import "./signOut.css";
 const SignOutDialog = ({ open, onConfirm, onCancel }) => {
   if (!open) return null;
   return (
-    <div className="signout-overlay">
-      <div className="signout-dialog">
-        <div className="signout-dialog-header">
+    <div className="donor-signO-signout-overlay">
+      <div className="donor-signO-signout-dialog">
+        <div className="donor-signO-signout-dialog-header">
           <h2>Sign Out</h2>
         </div>
-        <div className="signout-dialog-body">
+        <div className="donor-signO-signout-dialog-body">
           <p>Are you sure you want to sign out?</p>
         </div>
-        <div className="signout-dialog-actions">
-          <button className="signout-btn signout-ok" onClick={onConfirm}>
+        <div className="donor-signO-signout-dialog-actions">
+          <button
+            className="donor-signO-signout-btn donor-signO-signout-ok"
+            onClick={onConfirm}
+          >
             Ok
           </button>
-          <button className="signout-btn signout-cancel" onClick={onCancel}>
+          <button
+            className="donor-signO-signout-btn donor-signO-signout-cancel"
+            onClick={onCancel}
+          >
             Cancel
           </button>
         </div>

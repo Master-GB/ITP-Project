@@ -138,7 +138,7 @@ function CreateTask() {
     
     console.log(inputs);
     await sendRequest();
-    history("/viewtasks");
+    history("/vcl/viewtasks");
   };
 
   const sendRequest = async () => {

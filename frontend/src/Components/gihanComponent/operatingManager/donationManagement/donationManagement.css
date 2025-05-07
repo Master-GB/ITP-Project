@@ -2,6 +2,7 @@
 .operating-manager-container {
     padding: 20px;
     max-width: 1500px;
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
     margin: 0 auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
@@ -10,6 +11,7 @@
   .card-container {
     display: flex;
     justify-content: space-between;
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
     margin-bottom: 20px;
     margin-top: 25px;
     gap: 15px;
@@ -137,7 +139,7 @@
   .section-divider {
     border: 0 !important;
     height: 1px !important;
-    background-color: #6e6c6c !important;
+    background-color: #a69999 !important;
     margin: 20px 0;
   }
   
@@ -149,6 +151,7 @@
     gap: 4px;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 30px;
   }
   
   .sort-control, .filter-control, .search-control {
@@ -163,13 +166,15 @@
   .sort-control select, .filter-control select {
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
-    padding: 4px 12px !important;
+    padding: 4px 30px 4px 4px !important;
     border-radius: 4px !important;
     border: none !important;
     background-color: transparent !important;
     font-size: 14px !important;
     width: 100% !important;
+    outline: none !important;
   }
+
   
   .search-control {
     margin-left: auto;
@@ -193,11 +198,11 @@
     padding: 8px 12px 8px 32px;
     border-radius: 4px;
     border: none;
+    outline: none !important;
     width: 250px;
     font-size: 14px;
     background-color: transparent;
   }
-  
   /* Table Styles */
   .table-responsive-container {
     width: 100%;
@@ -219,11 +224,11 @@
   .donation-table th, .donation-table td {
     padding: 5px 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #cec5c5;
   }
   
   .donation-table th {
-    background-color: #f8f9fa;
+    background-color: #adb5bd;
     font-weight: 600;
     color: #333;
     position: sticky;
@@ -260,7 +265,8 @@
     background-color: #f8f9fa;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
   }
   
   .workflow-container h4 {
@@ -366,5 +372,10 @@
     
     .search-control input {
       width: 100%;
+      outline: none !important;
     }
+  }
+
+  .page-container-opm{
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
   }

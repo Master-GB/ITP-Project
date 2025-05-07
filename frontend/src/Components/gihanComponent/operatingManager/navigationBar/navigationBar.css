@@ -21,11 +21,12 @@
     margin-bottom: 0px;
   }
   
-  .organization-name-op {
-    margin: 0;
-    font-size: 1.4rem;
-    padding-top: 0px;
-    margin-top: 0px;
+  .organization-name-opm {
+    margin: 0 !important;
+    font-size: 1.4rem !important;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+    color: #ffffff;
   }
   
   .sidebar-divider {
@@ -64,38 +65,38 @@
     flex-direction: column;
   }
   
-  .profile-section {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  .profile-section-op {
+    display: flex !important;
+    align-items: center !important;
+    padding: 15px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s !important;
   }
   
-  .profile-section:hover {
-    background-color: #34495e;
+  .profile-section-op:hover {
+    background-color: #34495e !important;
   }
   
-  .profile-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
+  .profile-avatar-op {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    margin-right: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
   }
   
-  .profile-info h4 {
-    margin: 0;
-    font-size: 0.9rem;
+  .profile-info-op h4 {
+    margin: 0 !important;
+    font-size: 0.9rem !important;
   }
   
-  .profile-info p {
-    margin: 0;
-    font-size: 0.8rem;
-    color: #bdc3c7;
+  .profile-info-op p {
+    margin: 0 !important;
+    font-size: 0.8rem !important;
+    color: #bdc3c7 !important;
   }
   
   .sign-out {

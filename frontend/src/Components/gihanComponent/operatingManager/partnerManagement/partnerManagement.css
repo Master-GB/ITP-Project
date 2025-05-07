@@ -1,6 +1,6 @@
 /* Main Container */
 .partner-collab-container {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
   max-width: 1200px;
   height: 900px;
   margin: 0 auto;
@@ -331,7 +331,7 @@
 }
 
 .contact-notes {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
   padding: 12px;
   border-radius: 6px;
   margin-top: 15px;
@@ -362,7 +362,7 @@
 .empty-state {
   text-align: center;
   padding: 243px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
 }
 
 

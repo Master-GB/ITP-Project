@@ -29,7 +29,7 @@ const OperatingManagerSidebar = () => {
     <div className="operating-manager-sidebar">
       <div className="sidebar-header">
         <img src="/Resources/gihanRes/donationRes/mainlogo.png" alt="Organization Logo" className="sidebar-logo" />
-        <h2 className="organization-name-op">FoodShare Network</h2>
+        <h2 className="organization-name-opm">FoodShare Network</h2>
       </div>
       
       <hr className="sidebar-divider" />
@@ -52,11 +52,11 @@ const OperatingManagerSidebar = () => {
         <hr className="sidebar-divider" />
         
         {/* Profile Section */}
-        <Link to="/opl/operating-manager/profile" className="profile-section">
-          <div className="profile-avatar">
+        <Link to="/opl/operating-manager/profile" className="profile-section-op">
+          <div className="profile-avatar-op">
             <PersonIcon fontSize="medium" />
           </div>
-          <div className="profile-info">
+          <div className="profile-info-op">
             <h4>Gihan Bandara</h4>
             <p>Operating Manager</p>
           </div>

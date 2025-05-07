@@ -1,43 +1,71 @@
 /* dashboard.css */
+body .donor-dh-dashboard-background{
+  background: linear-gradient(135deg, #b4d2e8, #e6f7ff);
+}
 
-.advanced-donor-dashboard {
+.donor-dh-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 24px 24px 18px 24px;
+  margin-bottom: 32px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.donor-dh-card-over {
+  background: #f9fbff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(51,133,220,0.07);
+  padding: 18px 18px 12px 18px;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.donor-dh-card.donor-dh-chart-section .donor-dh-card-over:hover {
+  box-shadow: 0 8px 28px rgba(51,133,220,0.21);
+  transform: translateY(-3px) scale(1.025);
+}
+.donor-dh-card.donor-dh-map-section .donor-dh-card-over:hover {
+  box-shadow: 0 8px 28px rgba(51,133,220,0.21);
+  transform: translateY(-3px) scale(1.025);
+}
+
+
+.donor-dh-advanced-donor-dashboard {
     padding: 20px;
     max-width: 1300px;
     margin: 0 auto;
   }
   
-  .header {
+  .donor-dh-header {
     padding-top: 70px;
     text-align: left;
     margin-bottom: 30px;
   }
   
-  .header h1 {
+  .donor-dh-header h1 {
     margin-bottom: 2px;
     padding-bottom: 0px;
     margin: 0;
     font-size: 30px;
   }
   
-  .header p {
+  .donor-dh-header p {
     padding-top:0px ;
     margin-top: 0px;
     color: #1d1a1a;
   }
   
-  .statistics {
+  .donor-dh-statistics {
     display: flex;
     flex-direction: column;
     gap: 30px;
     margin-bottom: 30px;
   }
   
-  .statistics-row {
+  .donor-dh-statistics-row {
     display: flex;
     gap: 15px;
   }
   
-  .stat-card {
+  .donor-dh-stat-card {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -49,27 +77,27 @@
   }
 
   /* Values Container for Total Food Donated */
-.stat-card .values {
+.donor-dh-stat-card .donor-dh-values {
     display: flex;
     align-items: center; /* Align vertically */
     margin-top: 10px;
     gap: 30px; /* Gap between kg and unit */
   }
   
-  .stat-card .values .kg-value,
-  .stat-card .values .unit-value {
+  .donor-dh-stat-card .donor-dh-values .donor-dh-kg-value,
+  .donor-dh-stat-card .donor-dh-values .donor-dh-unit-value {
     font-size: 1.2rem; /* Smaller font size to fit within the card */
     font-weight: bold;
     color: #000; /* Black font color */
     white-space: nowrap; /* Prevent text from wrapping */
   }
   
-  .stat-card:hover {
+  .donor-dh-stat-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
-  .stat-icon {
+  .donor-dh-stat-icon {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -77,13 +105,13 @@
     color: #000; /* Black icon color */
   }
   
-  .stat-card h2 {
+  .donor-dh-stat-card h2 {
     margin: 0 0 10px;
     font-size: 1rem; /* Smaller font size */
     color: #666; /* Grey font color */
   }
   
-  .stat-card p {
+  .donor-dh-stat-card p {
     font-size: 1.8rem; /* Larger font size */
     font-weight: bold;
     margin: 0;
@@ -91,7 +119,7 @@
   }
   
   /* Progress Bar Styles (Second Section Only) */
-  .progress-bar {
+  .donor-dh-progress-bar {
     background: #e0e0e0;
     border-radius: 5px;
     height: 8px;
@@ -99,56 +127,60 @@
     overflow: hidden;
   }
   
-  .progress {
+  .donor-dh-progress {
     height: 100%;
     border-radius: 5px;
   }
   
-  .progress.blue {
+  .donor-dh-progress.blue {
     background: #007bff; /* Blue progress bar */
   }
-  
-  .progress.green {
+
+  .donor-dh-progress.g {
     background: #28a745; /* Green progress bar */
   }
+
   
   /* Hover Effects */
-  .stat-card.total-donations:hover {
+  .donor-dh-stat-card.donor-dh-total-donations:hover {
     background: #e3f2fd;
   }
   
-  .stat-card.completed:hover {
+  .donor-dh-stat-card.donor-dh-completed:hover {
     background: #e8f5e9;
   }
   
-  .stat-card.pending:hover {
+  .donor-dh-stat-card.donor-dh-pending:hover {
     background: #fff3e0;
   }
   
-  .stat-card.cancel:hover {
+  .donor-dh-stat-card.donor-dh-cancel:hover {
     background: #fbe9e7;
   }
   
-  .stat-card.total-food:hover {
+  .donor-dh-stat-card.donor-dh-total-food:hover {
     background: #f3e5f5;
   }
   
-  .stat-card.people-helped:hover {
+  .donor-dh-stat-card.donor-dh-people-helped:hover {
     background: #e0f7fa;
   }
   
-  .stat-card.completion-rate:hover {
+  .donor-dh-stat-card.donor-dh-completion-rate:hover {
     background: #fff8e1;
   }
 
   /* Button Section */
-.button-section {
+.donor-dh-button-section {
     display: flex;
     margin-top: 10px;
+    margin-bottom: 30px;
     gap: 5px; /* Gap between buttons */
   }
   
-  .button-section button {
+  
+  
+  .donor-dh-button-section button {
     padding: 5px 15px;
     border: none;
     border-radius: 5px;
@@ -159,104 +191,145 @@
   }
   
   /* View All Donation Button */
-  .button-section .view-all-button {
+  .donor-dh-button-section .donor-dh-view-all-button {
     background-color: #3385dc; /* Blue color */
     color: white;
   }
   
-  .button-section .view-all-button:hover {
+  .donor-dh-button-section .donor-dh-view-all-button:hover {
     background-color: #539ae7; /* Darker blue on hover */
     /*transform: translateY(-2px); /* Slight lift on hover */
   }
   
   /* Create New Donation Button */
-  .button-section .create-new-button {
+  .donor-dh-button-section .donor-dh-create-new-button {
     background-color:#3385dc; /* Green color */
     color: white;
   }
   
-  .button-section .create-new-button:hover {
+  .donor-dh-button-section .donor-dh-create-new-button:hover {
     background-color: #539ae7; /* Darker green on hover */
     /*transform: translateY(-2px); /* Slight lift on hover */
   }
   
  /* Recent Donations Table */
-.recent-donations {
-    margin-bottom: 30px;
+.donor-dh-recent-donations {
+    margin-bottom: 50px;
   }
 
-  .recent-donations h2 {
-    padding-top: 5px;
-    padding-bottom: 0px;
+  .donor-dh-recent-donations h2 {
+    padding-top: 0px;
+    padding-bottom: 8px;
+    font-size: 27px;
     margin-bottom: 0px;
-    margin-top: 30px;
+    margin-top: 8px;
   }
-  
-  .recent-donations table {
+
+  .donor-dh-chart-header .donor-dh-map-header{
+    padding-top: 0px;
+    padding-bottom: 8px;
+    font-size: 27px;
+    margin-bottom: 0px;
+    margin-top: 8px;
+  }
+  .donor-dh-map-header{
+    padding-top: 0px;
+    padding-bottom: 8px;
+    font-size: 27px;
+    margin-bottom: 7px;
+    margin-top: 7px;
+  }
+
+  .donor-dh-map-section{
+    margin-top: 50px;
+  }
+
+  .donor-dh-recent-donations table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 6px;
   }
   
-  .recent-donations th,
-  .recent-donations td {
+  .donor-dh-recent-donations th,
+  .donor-dh-recent-donations td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
   
-  .recent-donations th {
-    background: #f1f1f1;
+  .donor-dh-recent-donations th {
+    background: #a8a0a0;
   }
   
   /* Status Text Background Colors */
-  .recent-donations .status {
+  .donor-dh-recent-donations .donor-dh-status {
     padding: 5px 3px;
     border-radius: 5px;
     color: black; /* White text for better contrast */
     font-weight: bold;
   }
   
-  .recent-donations .status-pending {
+  .donor-dh-recent-donations .donor-dh-status-pending {
     border-radius: 15px;
     padding: 3px 5px;
     background-color: #ff44445b; /* Red */
   }
   
-  .recent-donations .status-collected {
+  .donor-dh-recent-donations .donor-dh-status-collected {
     border-radius: 15px;
     padding: 3px 5px;
     background-color:rgba(239, 47, 239, 0.341); /* Yellow */
   }
   
-  .recent-donations .status-packaging {
+  .donor-dh-recent-donations .donor-dh-status-packaging {
     border-radius: 15px;
     padding: 3px 5px;
     background-color:rgba(217, 127, 142, 0.371); /* Pink */
   }
   
-  .recent-donations .status-delivery {
+  .donor-dh-recent-donations .donor-dh-status-delivery {
     border-radius: 15px;
     padding: 3px 5px;
     background-color: #3399ff5e; /* Blue */
   }
   
-  .recent-donations .status-completed {
+  .donor-dh-recent-donations .donor-dh-status-completed {
     border-radius: 15px;
     padding: 3px 5px;
     background-color: #00cc6657; /* Green */
   }
 
-  .recent-donations .status-cancel {
+  .donor-dh-recent-donations .donor-dh-status-cancel {
     border-radius: 15px;
     padding: 3px 5px;
     background-color: #ff44445b;; 
   }
+
   
-  .chart-section {
-    margin-bottom: 30px;
-  }
   
-  .map-section {
+  .donor-dh-chart-section {
+  margin-bottom: 30px;
+}
+
+.donor-dh-chart-header {
+  text-align: center;
+  font-size: 27px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color: #222;
+}
+
+.donor-dh-filter-section select{
+  font-size: 1rem;
+padding: 6px 40px 6px 10px;
+border-radius: 8px;
+border: 1.5px solid #3385dc;
+outline: none !important;
+cursor: pointer;
+}
+
+  
+  .donor-dh-map-section {
     margin-bottom: 30px;
   }

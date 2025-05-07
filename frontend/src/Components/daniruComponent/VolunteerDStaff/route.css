@@ -1,0 +1,207 @@
+/* Add these styles to prevent navbar overlap */
+/* Keep all your existing CSS and add these at the top */
+
+/* Fix for navbar overlap */
+body {
+    padding-top: 80px; /* Match this with navbar height */
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 80px; /* Match this with body padding-top */
+  }
+  
+  /* Ensure content starts below navbar */
+  .map-container {
+    margin-top: 0;
+    padding-top: 20px; /* Space below navbar */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  /* Keep all your existing CSS below this point */
+  .map-title {
+    color: #1a73e8;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  .controls-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  }
+  
+  .location-info, .route-info {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 5px 0;
+    min-width: 200px;
+  }
+  
+  .transport-mode-selector {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0;
+  }
+  
+  .mode-toggle {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+  }
+  
+  .mode-toggle:hover {
+    background: #0d62c9;
+  }
+  
+  .mode-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    width: 200px;
+    overflow: hidden;
+  }
+  
+  .mode-option {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .mode-option:hover {
+    background: #f1f3f4;
+  }
+  
+  .mode-option.active {
+    background: #e8f0fe;
+    color: #1a73e8;
+  }
+  
+  .find-nearest-btn {
+    background: #34a853;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  
+  .find-nearest-btn:hover {
+    background: #2d9248;
+  }
+  
+  .loading, .error {
+    padding: 20px;
+    font-size: 1.2em;
+  }
+  
+  .error {
+    color: #d93025;
+  }
+  
+  .needy-list {
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  }
+  
+  .needy-list ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .needy-list li {
+    padding: 12px;
+    margin: 8px 0;
+    background: #f8f9fa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+  }
+  
+  .needy-list li:hover {
+    background: #e8f0fe;
+    border-left-color: #1a73e8;
+  }
+  
+  .needy-list li.active {
+    background: #e8f0fe;
+    border-left-color: #1a73e8;
+  }
+  
+  .food-req {
+    display: block;
+    color: #5f6368;
+    font-size: 0.9em;
+    margin-top: 4px;
+  }
+  
+  .info-window {
+    padding: 10px;
+    min-width: 200px;
+  }
+  
+  .info-window h3 {
+    color: #1a73e8;
+    margin-top: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .controls-panel {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .location-info, .route-info {
+      width: 100%;
+    }
+    
+    .transport-mode-selector {
+      width: 100%;
+    }
+    
+    .mode-options {
+      width: 100%;
+    }
+  }
