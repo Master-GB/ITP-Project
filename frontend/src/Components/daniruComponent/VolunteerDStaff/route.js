@@ -149,6 +149,10 @@ const Map = () => {
   return (
     <div>
         <VolunteerNav/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       <div className="map-container">
         <h1 className="map-title">Food Delivery Route Optimizer</h1>
 

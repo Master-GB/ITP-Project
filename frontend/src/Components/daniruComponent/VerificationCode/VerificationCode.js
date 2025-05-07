@@ -68,7 +68,12 @@ const VerificationCode = () => {
   };
 
   return (
-    <div className="verification-container">
+    <div className="verification-container" style={{ 
+      backgroundImage: `url(${process.env.PUBLIC_URL}/Resources/daniruRes/cc.jpg)`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <motion.div 
         className="verification-form-container"
         initial={{ opacity: 0, y: 20 }}
@@ -83,9 +88,9 @@ const VerificationCode = () => {
           <div className="verification-icon-container">
             <FaKey className="verification-icon" />
           </div>
-          <h2 className="verification-title">Verify Your Email</h2>
+          <h2 className="verification-title">Verify Your Confirmation</h2>
           <p className="verification-subtitle">
-            Please enter the verification code sent to your email
+            Please enter the verification code sent to your email address
           </p>
         </div>
 
@@ -124,8 +129,17 @@ const VerificationCode = () => {
             whileTap={{ scale: 0.98 }}
             disabled={isVerifying}
           >
-            {isVerifying ? 'Verifying...' : 'Verify Email'}
+            {isVerifying ? 'Verifying...' : 'Verify Confirmation'}
           </motion.button>
+
+          <div className="verification-footer">
+            <p className="verification-footer-text">
+              Haven't received the code? Please check your spam/junk folder.
+            </p>
+            <p className="verification-footer-text">
+              If you still don't see the email, please contact support.
+            </p>
+          </div>
         </form>
       </motion.div>
     </div>

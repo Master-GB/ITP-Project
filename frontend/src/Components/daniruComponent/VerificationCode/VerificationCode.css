@@ -3,13 +3,23 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 20px;
   position: relative;
 }
 
+.verification-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
 .verification-form-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: #6ebcae;
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -18,6 +28,7 @@
   text-align: center;
   position: relative;
   backdrop-filter: blur(10px);
+  z-index: 2;
 }
 
 .back-button {
@@ -60,14 +71,14 @@
 }
 
 .verification-title {
-  color: #2c3e50;
+  color: #ffffff;
   margin-bottom: 10px;
   font-size: 24px;
   font-weight: 600;
 }
 
 .verification-subtitle {
-  color: #7f8c8d;
+  color: #ffffff;
   margin-bottom: 30px;
   font-size: 14px;
 }
@@ -90,19 +101,20 @@
 .verification-input {
   width: 45px;
   height: 55px;
-  border: 2px solid #e1e1e1;
+  border: 2px solid #ffffff;
   border-radius: 12px;
   font-size: 24px;
   text-align: center;
   transition: all 0.3s ease;
-  background: #f8f9fa;
+  background: #ffffff;
+  color: #333333;
 }
 
 .verification-input:focus {
   outline: none;
-  border-color: #1abc9c;
-  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
-  background: white;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+  background: #ffffff;
 }
 
 .verification-error {
@@ -113,8 +125,8 @@
 }
 
 .verification-button {
-  background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
-  color: white;
+  background: #ffffff;
+  color: #6ebcae;
   padding: 15px 40px;
   border: none;
   border-radius: 12px;
@@ -130,7 +142,8 @@
 
 .verification-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+  background: #f8f8f8;
 }
 
 .resend-button {
@@ -150,7 +163,7 @@
 }
 
 .resend-button:hover:not(.disabled) {
-  background: rgba(26, 188, 156, 0.1);
+  background: rgba(31,38,135,0.37);
 }
 
 .resend-button.disabled {
@@ -193,4 +206,25 @@
 
 .verification-error {
   animation: shake 0.5s ease-in-out;
+}
+
+.verification-footer {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.verification-footer-text {
+  color: #666;
+  font-size: 14px;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.verification-footer-text:last-child {
+  margin-top: 8px;
+  color: #1abc9c;
+  font-weight: 500;
 }

@@ -60,6 +60,9 @@ import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
 import AboutUsHome from "./Components/daniruComponent/Home/AboutUs/AboutUs";
 import ContactUs from "./Components/daniruComponent/Home/ContactUs/ContactUs";
 import VerificationCode from "./Components/daniruComponent/VerificationCode/VerificationCode";
+import Feedback from "./Components/daniruComponent/VolunteerDStaff/Feedback";
+import FeedbackP from "./Components/daniruComponent/VolunteerPStaff/FeedbackP";
+
 
 
 // Malshi's components
@@ -227,6 +230,7 @@ const VolunteerDeliveryStaffLayout = () => (
         <Route path="/volunteertask" element={<VolunteerTask />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/route" element = {<VolunteerRoute/>}/>
+        <Route path="/feedback" element={<Feedback />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -245,6 +249,7 @@ const VolunteerPackingStaffLayout = () => (
         />
         <Route path="/volunteertask" element={<VolunteerPTask />} />
         <Route path="/packinginstructions" element={<PackingInstructions />} />
+        <Route path="/feedbackp" element={<FeedbackP />} />
       </Routes>
     </React.Fragment>
   </div>

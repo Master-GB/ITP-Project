@@ -46,35 +46,32 @@ const Nav = ({ volunteerName }) => {
             ☰
           </button>
           {isSideNavOpen && (
-            <div className="side-nav-content">
-              <button className="close-icon" onClick={toggleSideNav}>
+            <div className="daniru-side-nav-content">
+              <button className="daniru-close-icon" onClick={toggleSideNav}>
                 <img
                   src="/Resources/gihanRes/donationRes/cancel.png"
                   alt="Close"
                 />
               </button>
-
-              <div className="profile-container">
-                <div className="profile-photo-cover">
+              <div className="daniru-profile-container">
+                <div className="daniru-profile-photo-cover">
                   <img
                     src="/Resources/gihanRes/donationRes/dp.png"
                     alt="Profile"
-                    className="profile-photo"
+                    className="daniru-profile-photo"
                   />
                 </div>
-                <div className="profile-info">
-                  <p className="donor-name">Daniru Dodangoda</p>
-                  <p className="donor-email">daniru@gmail.com</p>
+                <div className="daniru-profile-info">
+                  <p className="daniru-donor-name">Daniru Dodangoda</p>
+                  <p className="daniru-donor-email">daniru@gmail.com</p>
                 </div>
               </div>
-
-              <div className="separator"></div>
-
-              <ul className="side-nav-links">
+              <div className="daniru-separator"></div>
+              <ul className="daniru-side-nav-links">
                 <li>
                   <Link to="/profile">Profile</Link>
                 </li>
-                <li className="sign-out">
+                <li className="daniru-sign-out">
                   <Link to="/sign-out">Sign Out</Link>
                 </li>
               </ul>
@@ -117,17 +114,9 @@ const Nav = ({ volunteerName }) => {
 </div>
 
           
-        <div className="ai-chatbot">
-          <button className="chatbot-icon" onClick={() => navigate('/ul/feedbackForm')}>
-            <img
-              src="/Resources/gihanRes/donationRes/AIBot.png"
-              alt="Chatbot"
-            />
-          </button>
-        </div>
 
         <div className="communicate">
-          <button className="messages-icon">
+          <button className="messages-icon" onClick={() => navigate('/vdsl/feedback')}>
             <img
               src="/Resources/gihanRes/donationRes/message.png"
               alt="Messages"
