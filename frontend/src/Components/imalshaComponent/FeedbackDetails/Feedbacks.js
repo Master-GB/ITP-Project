@@ -53,6 +53,17 @@ function Feedbacks() {
         loadFeedbacks();
     }, []);
 
+    const handleDelete = async (id) => {
+        if (!window.confirm('Are you sure you want to delete this feedback?')) return;
+        try {
+            await axios.delete(`http://localhost:8090/feedbacks/${id}`);
+            setFeedbacks(prev => prev.filter(fb => fb._id !== id));
+        } catch (err) {
+            alert('Failed to delete feedback');
+            console.error('Error deleting feedback:', err);
+        }
+    };
+
     if (loading) {
         return (
             <div>
@@ -86,6 +97,7 @@ function Feedbacks() {
                         <div key={feedback._id || i} className="feedback-card">
                             <p className="feedback-content">{feedback.message}</p>
                             <StarRating rating={feedback.rating} />
+                            <button className="delete-btn" style={{marginTop: '10px'}} onClick={() => handleDelete(feedback._id)}>Delete</button>
                         </div>
                     ))
                 )}
