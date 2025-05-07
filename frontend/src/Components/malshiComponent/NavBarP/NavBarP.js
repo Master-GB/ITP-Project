@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBarP.css";
 
+
 function RequestNavBar() {
   const navigate = useNavigate();
   const handleSignOut = () => {
     // Add your sign out logic here (e.g., clear tokens)
     navigate("/home");
   };
+
 
   return (
     <div>
@@ -28,11 +30,11 @@ function RequestNavBar() {
           </Link>
         </div>
 
-        <div className="req-nav-nav-links">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/add-requests">Add Request</Link>
-          <Link to="/display-requests">My Requests</Link>
-          <Link to="/funds">Funds</Link>
+        <div className="nav-links">
+          <Link to="/rl/dashboard">Dashboard</Link>
+          <Link to="/rl/add-requests">Add Request</Link>
+          <Link to="/rl/display-requests">My Requests</Link>
+          <Link to="/rl/funds">Funds</Link>
         </div>
 
         <div className="req-nav-nav-search-container">
@@ -49,6 +51,7 @@ function RequestNavBar() {
             />
           </button>
         </div>
+
 
         <div className="req-nav-notifications">
           <button className="req-nav-notification-icon" onClick={() => navigate('/rl/pfeedback')}>

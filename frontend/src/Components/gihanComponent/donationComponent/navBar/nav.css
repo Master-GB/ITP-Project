@@ -10,7 +10,7 @@
   position: fixed;  
   top: 0;         
   left: 0;
-  width: 100%;     
+  width: 99%;     
   z-index: 1000;   
 }
 
@@ -299,7 +299,8 @@
   flex: 1;
   border: none;
   outline: none;
-  padding: 5px;
+  padding: 3px;
+  margin-right: 5px;
   font-size: 14px;
   background: transparent;
 }
@@ -331,6 +332,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    right: 10px;
   }
   
   .donor-nav-messages-icon img,
@@ -339,17 +341,40 @@
     height: 30px;
     cursor: pointer;
     filter: invert(1); 
-    margin-right: 50px;
-  }
+    margin-right: 25px;
+}
 
-  
+.donor-nav-notification-icon {
+  position: relative;
+}
+
+.donor-nav-notification-badge {
+  position: absolute;
+  top: -8px;
+  right: 4px; /* add right margin */
+  background: red;
+  border-radius: 50%;
+  width: 13px; /* smaller width */
+  height: 15px; /* smaller height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  font-size: 8px; /* slightly larger for readability */
+  border: 2px solid white;
+  z-index: 2;
+  pointer-events: none;
+}
 
   .donor-nav-chatbot-icon img{
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     filter: invert(1); 
     margin-left: 50px;
+    margin-right: 12px;
+    margin-top: 5px;
   }
 
   .donor-nav-close-icon img{

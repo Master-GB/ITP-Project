@@ -26,6 +26,7 @@ import AboutUs from './Components/gihanComponent/donationComponent/aboutUs/about
 import Guidance from './Components/gihanComponent/donationComponent/guidance/guidance';
 import Support from './Components/gihanComponent/donationComponent/support/support';
 import Chat from './Components/gihanComponent/donationComponent/chat/chat';
+import FeedbackF from './Components/gihanComponent/donationComponent/feedbackF/FeedbackForm';
 
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
@@ -146,6 +147,7 @@ const DonorLayout = () => (
         <Route path = "/guidance" element ={<Guidance/>}/>
         <Route path = "/support" element ={<Support/>}/>
         <Route path="/chat" element={<Chat />} />
+        <Route path='/feedbackForm' element={<FeedbackF/>}/>
       </Routes>
     </div>
     <Footer />

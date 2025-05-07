@@ -202,11 +202,10 @@ function AddUser() {
                             >
                                 <option value="">Select Your Role</option>
                                 <option value="Donor">Donor</option>
-                                <option value="Volunteer Coordinator">Volunteer Coordinator</option>
                                 <option value="Volunteer Packing Staff">Volunteer Packing Staff</option>
                                 <option value="Volunteer Delivery Staff">Volunteer Delivery Staff</option>
                                 <option value="Operating Manager">Operating Manager</option>
-                                <option value="Admin">Admin</option>
+                                <option value="PartnerShip">PartnerShip</option>
                             </select>
                             {errors.role && <span className="imalshacompnant-adduser-error-text">{errors.role}</span>}
                         </div>

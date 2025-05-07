@@ -87,27 +87,35 @@ html, body {
   margin-bottom: 22px;
   color: #fff;
   font-size: 1rem;
-  gap: 20px;
+  white-space: nowrap;
+  padding: 0 15px;
 }
 
 .imalshacompnant-login-checkbox {
   margin-right: 8px;
+  vertical-align: middle;
 }
 
 .imalshacompnant-login-remember-label {
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
   color: #fff;
-  margin-right: 10px;
   cursor: pointer;
+  white-space: nowrap;
+  margin-top: 5px;
+  margin-right: 60px;
 }
 
 .imalshacompnant-login-forgot {
   color: #fff;
   text-decoration: underline;
   font-size: 1rem;
-  margin-left: auto;
   transition: color 0.2s;
   font-weight: 400;
+  white-space: nowrap;
+  margin-left: 20px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .imalshacompnant-login-forgot:hover {
@@ -159,12 +167,16 @@ html, body {
   }
   
   .imalshacompnant-login-options {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  
+  .imalshacompnant-login-remember-label {
+    margin-right: 10px;
   }
   
   .imalshacompnant-login-forgot {
-    align-self: flex-end;
+    margin-left: 10px;
   }
 }
