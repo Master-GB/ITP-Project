@@ -1,34 +1,15 @@
 import React from "react";
-import "./AboutUs.css";
+import "../VolunteerDStaff/VolunteerAboutUs.css";
 import { useNavigate } from "react-router-dom";
-import Home from "../Home";
-import HomeFooter from "../HomeFooter";
+import HomeFooter from "../Home/HomeFooter";
+import VolunteerPNav from "./VolunteerPNav";
 
 
 const AboutUs = () => {
     const navigate = useNavigate();
   return (
     <div>
-        {/* Modern Header with Logo and Site Name */}
-      <header className="home-modern-header">
-        <div className="home-header-content">
-          <img src="/resources/danirures/logo.png" alt="HodaHitha.lk Logo" className="home-site-logo" />
-          <span className="home-site-name">හොද හිත.lk</span>
-        </div>
-        <nav className="home-header-nav">
-          <a href="/home">Home</a>
-          <a href="/volunteerapplication">Be a Volunteer</a>
-          <a href="/about-us">About Us</a>
-          <a href="/contactus">Contact Us</a>
-        </nav>
-        <div className="home-header-auth-btns">
-          <button className="home-header-btn sign-in" onClick={() => navigate('/login')}>Sign In</button>
-          <button className="home-header-btn register" onClick={() => navigate('/AddUser')}>Register</button>
-          <div className="home-header-profile-icon">
-            <img src="/resources/danirures/profile.png" alt="Profile" />
-          </div>
-        </div>
-      </header>
+        <VolunteerPNav/>
     <div class = "aboutUs-back">
     <div className="about-us-container">
       <div className="about-us-header">

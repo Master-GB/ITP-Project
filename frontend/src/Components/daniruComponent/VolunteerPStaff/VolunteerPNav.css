@@ -23,7 +23,7 @@
   z-index: 900;
 }
 
-.side-nav {
+.daniru-side-nav {
   position: relative;
 }
 
@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.side-nav-content {
+.daniru-side-nav-content {
     position: fixed;
     top: 0;
     left: 0px;
@@ -52,14 +52,14 @@
     align-items: center;
   }
   
-  .profile-container {
+  .daniru-profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
   }
   
-  .profile-photo-cover {
+  .daniru-profile-photo-cover {
     margin-top: 40px;
     width: 80px;
     height: 80px;
@@ -85,46 +85,57 @@
     transform: scale(1.2);
   }
 
-  .close-icon {
+  .daniru-close-icon {
     position: absolute;
     top: 10px;
     right: 10px;
     background: none;
     border: none;
     cursor: pointer;
-  }
+    z-index: 2000; /* Ensure it stays above other elements */
+}
 
-  .side-nav-links {
+.daniru-close-icon img {
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.daniru-close-icon img:hover {
+    transform: rotate(90deg);
+}
+
+  .daniru-side-nav-links {
     list-style: none;
     padding: 0;
     text-align: left;
     width: 100%;
   }
   
-  .side-nav-links li {
+  .daniru-side-nav-links li {
     padding: 10px 20px;
     transition: background 0.3s ease-in-out;
     border-radius: 5px;
   }
   
-  .side-nav-links li:hover {
+  .daniru-side-nav-links li:hover {
     background: rgba(255, 255, 255, 0.2);
   }
   
-  .profile-photo {
+  .daniru-profile-photo {
     width: 90px;
     height: 90px;
     border-radius: 50%;
   }
   
-  .profile-info {
+  .daniru-profile-info {
     text-align: center;
     margin-top: 0; 
     padding: 0; 
   }
   
   
-  .donor-name {
+  .daniru-donor-name {
     font-weight: bold;
     font-size: 20px;
     color: white;
@@ -133,7 +144,7 @@
     line-height: 1;
   }
   
-  .donor-email {
+  .daniru-donor-email {
     font-size: 12px;
     color: #aaa;
     margin: 0; 
@@ -141,7 +152,7 @@
     line-height: 1;
   }
   
-  .separator {
+  .daniru-separator {
     width: 90%;
     height: 3px;
     background-color: #555;
@@ -150,18 +161,18 @@
   }
   
 
-  .side-nav-links {
+  .daniru-side-nav-links {
     list-style: none;
     padding: 0;
     text-align: left;
     width: 100%;
   }
   
-  .side-nav-links li {
+  .daniru-side-nav-links li {
     padding: 10px 20px;
   }
   
-  .side-nav-links a {
+  .daniru-side-nav-links a {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -170,11 +181,11 @@
   }
 
 
-  .side-nav-links a:hover {
+  .daniru-side-nav-links a:hover {
     color: #2aaaef; 
   }
   
-  .side-nav-links .sign-out a:hover {
+  .daniru-side-nav-links .sign-out a:hover {
     color: red; 
   }
 
@@ -275,7 +286,7 @@
 }
 
 
-.close-icon img:hover {
+.daniru-close-icon img:hover {
   transform: rotate(90deg); 
 }
 
@@ -414,5 +425,89 @@
   padding: 20px;
   text-align: center;
   color: #888;
+}
+
+.sign-out-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.sign-out-btn:hover {
+  color: #ff0000;
+}
+
+.logout-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logout-confirm-popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.logout-confirm-popup h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.logout-confirm-popup p {
+  margin: 15px 0;
+  color: #666;
+}
+
+.logout-confirm-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.confirm-btn {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #cc0000;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #d0d0d0;
 }
   

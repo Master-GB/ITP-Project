@@ -62,7 +62,10 @@ import ContactUs from "./Components/daniruComponent/Home/ContactUs/ContactUs";
 import VerificationCode from "./Components/daniruComponent/VerificationCode/VerificationCode";
 import Feedback from "./Components/daniruComponent/VolunteerDStaff/Feedback";
 import FeedbackP from "./Components/daniruComponent/VolunteerPStaff/FeedbackP";
-
+import VolunteerAboutUs from "./Components/daniruComponent/VolunteerDStaff/VolunteerAboutUs";
+import VolunteerContactUs from "./Components/daniruComponent/VolunteerDStaff/VolunteerContactUs";
+import VolunteerPAboutUs from "./Components/daniruComponent/VolunteerPStaff/VolunteerPAboutUs";
+import VolunteerPContactUs from "./Components/daniruComponent/VolunteerPStaff/VolunteerPContactUs";
 
 
 // Malshi's components
@@ -231,6 +234,8 @@ const VolunteerDeliveryStaffLayout = () => (
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/route" element = {<VolunteerRoute/>}/>
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="/volunteeraboutus" element={<VolunteerAboutUs />} />
+        <Route path="/volunteercontactus" element={<VolunteerContactUs />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -250,6 +255,8 @@ const VolunteerPackingStaffLayout = () => (
         <Route path="/volunteertask" element={<VolunteerPTask />} />
         <Route path="/packinginstructions" element={<PackingInstructions />} />
         <Route path="/feedbackp" element={<FeedbackP />} />
+        <Route path="/volunteerpaboutus" element={<VolunteerPAboutUs />} />
+        <Route path="/volunteerpcontactus" element={<VolunteerPContactUs />} />
       </Routes>
     </React.Fragment>
   </div>
