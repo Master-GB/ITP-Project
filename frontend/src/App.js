@@ -64,12 +64,12 @@ import VerificationCode from "./Components/daniruComponent/VerificationCode/Veri
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
 import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
 import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
-import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
 import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 import FooterP from './Components/malshiComponent/FooterP/FooterP';
 import DashboardP from './Components/malshiComponent/DashboardP/DashboardP';
+import PFeedback from './Components/malshiComponent/FeedBack/FeedbackP';
 
 
 //Sashini's components
@@ -181,11 +181,12 @@ const RequestsLayout = () => (
         {/* <Route path="/" element={<ProfileP />} /> */}
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
-        <Route path="/profile" element={<ProfileP />} />
         <Route path="/funds" element={<PaymentForm />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/display-requests/:id" element={<UpdateRequests />} />
         <Route path="/dashboard" element={<DashboardP />} />
+        <Route path="/pfeedback" element={<PFeedback />} />
+
       </Routes>
     </div>
   </div>
@@ -271,13 +272,13 @@ function App() {
       <Route path="/ul/*" element={<UserLayout />} />
       <Route path="/dl/*" element={<DonorLayout />} />
       <Route path="/opl/*" element={<OperatingManagerLayout />} />
-      <Route path="/h/*" element={<RequestsLayout />} />
+      <Route path="/*" element={<RequestsLayout />} />
       <Route path="/vcl/*" element={<VolunteerCoordinatorLayout />} />
       <Route path="/vdsl/*" element={<VolunteerDeliveryStaffLayout />} />
       <Route path="/vpsl/*" element={<VolunteerPackingStaffLayout />} />
       <Route path="/al/*" element={<AdminLayout />} />
       <Route path="/eet/*" element={<MapLayout/>} />
-      <Route path="/*" element={<HomeLayout/>} />
+      <Route path="/hh/*" element={<HomeLayout/>} />
     </Routes>
   );
 }

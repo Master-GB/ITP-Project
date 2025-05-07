@@ -52,11 +52,12 @@ function RequestNavBar() {
           </button>
         </div>
 
-        <div className="ai-chatbot">
-          <button className="chatbot-icon" onClick={() => navigate('/ul/feedbackForm')}>
+
+        <div className="req-nav-notifications">
+          <button className="req-nav-notification-icon" onClick={() => navigate('/rl/pfeedback')}>
             <img
-              src="/Resources/gihanRes/donationRes/AIBot.png"
-              alt="Chatbot"
+              src="/Resources/gihanRes/donationRes/message.png"
+              alt="Notifications"
             />
           </button>
         </div>

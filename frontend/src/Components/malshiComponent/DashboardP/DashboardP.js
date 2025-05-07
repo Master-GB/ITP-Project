@@ -31,6 +31,9 @@ function Dashboard() {
   const [recentRequests, setRecentRequests] = useState([]);
   const [currentDate, setCurrentDate] = useState("");
   const [quantityByDay, setQuantityByDay] = useState({ labels: [], data: [] });
+  const [foodRequests, setFoodRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Set current date
@@ -42,6 +45,38 @@ function Dashboard() {
       day: 'numeric' 
     }));
 
+    const loadRequests = async () => {
+      try {
+        const response = await axios.get('http://localhost:8090/requests');
+        const requests = response.data.requests || [];
+        setFoodRequests(requests);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+        setError('Failed to load requests');
+        setLoading(false);
+      }
+    };
+    loadRequests();
+  }, []);
+
+  useEffect(() => {
+    // Filter out requests that are not completed
+    const completedRequests = foodRequests.filter(request => request.status && request.status.toLowerCase() === 'completed');
+    const quantityByDate = {};
+    completedRequests.forEach(request => {
+      const date = new Date(request.createdAt).toLocaleDateString();
+      if (!quantityByDate[date]) {
+        quantityByDate[date] = 0;
+      }
+      quantityByDate[date] += parseInt(request.quantity) || 0;
+    });
+    const dates = Object.keys(quantityByDate).sort();
+    const quantities = dates.map(date => quantityByDate[date]);
+    setQuantityByDay({ labels: dates, data: quantities });
+  }, [foodRequests]);
+
+  useEffect(() => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get("http://localhost:8090/requests");
@@ -76,23 +111,6 @@ function Dashboard() {
           }));
 
         setRecentRequests(recent);
-
-        // Calculate quantity by day for the graph
-        const dayMap = {};
-        requests.forEach(req => {
-          const day = new Date(req.createdAt).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-          });
-          if (!dayMap[day]) dayMap[day] = 0;
-          dayMap[day] += Number(req.quantity) || 0;
-        });
-        const sortedDays = Object.keys(dayMap).sort((a, b) => new Date(a) - new Date(b));
-        setQuantityByDay({
-          labels: sortedDays,
-          data: sortedDays.map(day => dayMap[day])
-        });
       } catch (error) {
         console.error("Error fetching requests:", error);
       }
