@@ -36,10 +36,7 @@ const Chat = () => {
     };
   }, []);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
+  
   const handleSend = () => {
     if (input.trim()) {
       const msgObj = { text: input, userId };

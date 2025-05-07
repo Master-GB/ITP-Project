@@ -99,6 +99,7 @@ body .chatBac{
   font-size: 1rem;
   outline: none;
   margin-right: 8px;
+  outline: none !important;
 }
 
 .chat-send-btn {
