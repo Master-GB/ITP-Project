@@ -433,93 +433,129 @@ const InventoryManagement = () => {
 
   return (
     <div>
-          <h1>Inventory Management</h1>
-          <p className="subtitle">Manage food Inventory</p>
+
+<div className="opm-donation-my-donation-header">
+  <div className="opm-donation-my-donation-header-row">
+    <div className="opm-donation-my-donation-avatar">📦</div>
+    <h1 className="opm-donation-my-donation-title">Inventory Management</h1>
+  </div>
+  <div className="opm-donation-my-donation-tagline">Monitor, organize, and optimize your food inventory efficiently.</div>
+</div>
     
     <div className="inventory-container">
       <div className="dashboard-cards">
         <div className="card total-stock">
-          <h3>Total Stock</h3>
-          <div className="quantity-display">
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.totalStock.kg}</span>
-              <span className="unit">kg</span>
-            </div>
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.totalStock.units}</span>
-              <span className="unit">units</span>
-            </div>
-          </div>
+          <div className="summary-card-row">
+  <div className="summary-card-icon" title="Total Stock">📦</div>
+  <div className="summary-card-info">
+    <h3 className="h3-cart-title">Total Stock</h3>
+    <div className="quantity-display">
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.totalStock.kg}</span>
+        <span className="unit">kg</span>
+      </div>
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.totalStock.units}</span>
+        <span className="unit">units</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
         <div className="card recently-added">
-          <h3>Recently Added</h3>
-          <div className="quantity-display">
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.recentlyAdded.kg}</span>
-              <span className="unit">kg</span>
-            </div>
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.recentlyAdded.units}</span>
-              <span className="unit">units</span>
-            </div>
-          </div>
+          <div className="summary-card-row">
+  <div className="summary-card-icon" title="Recently Added">🆕</div>
+  <div className="summary-card-info">
+    <h3 className="h3-cart-title">Recently Added</h3>
+    <div className="quantity-display">
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.recentlyAdded.kg}</span>
+        <span className="unit">kg</span>
+      </div>
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.recentlyAdded.units}</span>
+        <span className="unit">units</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
         <div className="card pending-stock">
-          <h3>Pending Stock</h3>
-          <div className="quantity-display">
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.pendingStock.kg}</span>
-              <span className="unit">kg</span>
-            </div>
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.pendingStock.units}</span>
-              <span className="unit">units</span>
-            </div>
-          </div>
+          <div className="summary-card-row">
+  <div className="summary-card-icon" title="Pending Stock">⏳</div>
+  <div className="summary-card-info">
+    <h3 className="h3-cart-title">Pending Stock</h3>
+    <div className="quantity-display">
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.pendingStock.kg}</span>
+        <span className="unit">kg</span>
+      </div>
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.pendingStock.units}</span>
+        <span className="unit">units</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
         <div className="card completed-stock">
-          <h3>Completed</h3>
-          <div className="quantity-display">
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.completedStock.kg}</span>
-              <span className="unit">kg</span>
-            </div>
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.completedStock.units}</span>
-              <span className="unit">units</span>
-            </div>
-          </div>
+          <div className="summary-card-row">
+  <div className="summary-card-icon" title="Completed">✅</div>
+  <div className="summary-card-info">
+    <h3 className="h3-cart-title">Completed</h3>
+    <div className="quantity-display">
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.completedStock.kg}</span>
+        <span className="unit">kg</span>
+      </div>
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.completedStock.units}</span>
+        <span className="unit">units</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
         <div className="card expiring-soon">
-          <h3>Expiring Soon</h3>
-          <div className="quantity-display">
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.expiringSoon.kg}</span>
-              <span className="unit">kg</span>
-            </div>
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.expiringSoon.units}</span>
-              <span className="unit">units</span>
-            </div>
-          </div>
+          <div className="summary-card-row">
+  <div className="summary-card-icon" title="Expiring Soon">⌛</div>
+  <div className="summary-card-info">
+    <h3 className="h3-cart-title">Expiring Soon</h3>
+    <div className="quantity-display">
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.expiringSoon.kg}</span>
+        <span className="unit">kg</span>
+      </div>
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.expiringSoon.units}</span>
+        <span className="unit">units</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
         <div className="card expired-stock">
-          <h3>Expired Stock</h3>
-          <div className="quantity-display">
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.expiredStock.kg}</span>
-              <span className="unit">kg</span>
-            </div>
-            <div className="quantity-item">
-              <span className="value">{stockMetrics.expiredStock.units}</span>
-              <span className="unit">units</span>
-            </div>
-          </div>
+          <div className="summary-card-row">
+  <div className="summary-card-icon" title="Expired Stock">🚫</div>
+  <div className="summary-card-info">
+    <h3 className="h3-cart-title">Expired Stock</h3>
+    <div className="quantity-display">
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.expiredStock.kg}</span>
+        <span className="unit">kg</span>
+      </div>
+      <div className="quantity-item">
+        <span className="value">{stockMetrics.expiredStock.units}</span>
+        <span className="unit">units</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
