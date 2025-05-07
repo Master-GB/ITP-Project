@@ -48,11 +48,11 @@ function UpdateRequests() {
   };
 
   return (
-    <div className="update-form-container">
-      <h1 className="update-form-title">Update Food Request</h1>
+    <div className="FReq-update-form-container">
+      <h1 className="FReq-update-form-title">Update Food Request</h1>
       <form onSubmit={handleSubmit} className="update-form">
-        <div className="update-form-field">
-          <label className="update-form-label" htmlFor="org-name">Organization Name</label>
+        <div className="FReq-update-form-field">
+          <label className="FReq-update-form-label" htmlFor="org-name">Organization Name</label>
           <input 
             type="text" 
             id="org-name"
@@ -60,12 +60,12 @@ function UpdateRequests() {
             onChange={handleChange} 
             value={inputs.organizationName || ''} 
             required 
-            className="update-form-input"
+            className="FReq-update-form-input"
           />
         </div>
         
-        <div className="update-form-field">
-          <label className="update-form-label" htmlFor="location">Location</label>
+        <div className="FReq-update-form-field">
+          <label className="FReq-update-form-label" htmlFor="location">Location</label>
           <input 
             type="text" 
             id="location"
@@ -73,12 +73,12 @@ function UpdateRequests() {
             onChange={handleChange} 
             value={inputs.location || ''} 
             required 
-            className="update-form-input"
+            className="FReq-update-form-input"
           />
         </div>
         
-        <div className="update-form-field">
-          <label className="update-form-label" htmlFor="contact">Contact Number</label>
+        <div className="FReq-update-form-field">
+          <label className="FReq-update-form-label" htmlFor="contact">Contact Number</label>
           <input 
             type="text" 
             id="contact"
@@ -86,19 +86,19 @@ function UpdateRequests() {
             onChange={handleChange} 
             value={inputs.contactNumber || ''} 
             required 
-            className="update-form-input"
+            className="FReq-update-form-input"
           />
         </div>
         
-        <div className="update-form-field update-form-select-wrapper">
-          <label className="update-form-label" htmlFor="food-type">Food Type</label>
+        <div className="FReq-update-form-field update-form-select-wrapper">
+          <label className="FReq-update-form-label" htmlFor="food-type">Food Type</label>
           <select 
             id="food-type"
             name="foodType" 
             onChange={handleChange} 
             value={inputs.foodType || ''} 
             required
-            className="update-form-select"
+            className="FReq-update-form-select"
           >
             <option value="">-- Select Type --</option>
             <option value="Milk Rice">Milk Rice</option>
@@ -110,8 +110,8 @@ function UpdateRequests() {
           </select>
         </div>
         
-        <div className="update-form-field">
-          <label className="update-form-label" htmlFor="quantity">Quantity</label>
+        <div className="FReq-update-form-field">
+          <label className="FReq-update-form-label" htmlFor="quantity">Quantity</label>
           <input 
             type="text" 
             id="quantity"
@@ -119,24 +119,24 @@ function UpdateRequests() {
             onChange={handleChange} 
             value={inputs.quantity || ''} 
             required 
-            className="update-form-input"
+            className="FReq-update-form-input"
           />
         </div>
         
-        <div className="update-form-field update-form-field-full">
-          <label className="update-form-label" htmlFor="notes">Additional Notes</label>
+        <div className="FReq-update-form-field update-form-field-full">
+          <label className="FReq-update-form-label" htmlFor="notes">Additional Notes</label>
           <textarea 
             id="notes"
             name="additionalNotes" 
             onChange={handleChange} 
             value={inputs.additionalNotes || ''} 
-            className="update-form-textarea"
+            className="FReq-update-form-textarea"
           ></textarea>
         </div>
         
-        <div className="update-form-buttons">
-          <button type="button" onClick={handleCancel} className="update-form-button">Cancel</button>
-          <button type="submit" className="update-form-button update-form-button-primary">Update</button>
+        <div className="FReq-update-form-buttons">
+          <button type="button" onClick={handleCancel} className="FReq-update-form-button">Cancel</button>
+          <button type="submit" className="FReq-update-form-button update-form-button-primary">Update</button>
         </div>
       </form>
     </div>

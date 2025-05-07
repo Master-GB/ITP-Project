@@ -1,0 +1,101 @@
+/* Real User Profile Section Styles */
+
+.OPM-profile-donor-profile-back {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
+}
+
+.OPM-profile-donor-profile-section {
+  padding: 40px 16px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.OPM-profile-real-user-profile {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(60,60,60,0.13);
+  padding: 40px 32px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.OPM-profile-profile-avatar-large {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a90e2 60%, #357ab8 100%);
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 3px 16px rgba(74,144,226,0.15);
+  letter-spacing: 2px;
+}
+
+.OPM-profile-profile-info {
+  width: 100%;
+}
+
+.OPM-profile-profile-name {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2d3e50;
+  margin-bottom: 1.5rem;
+}
+
+.OPM-profile-profile-field {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.OPM-profile-profile-label {
+  min-width: 120px;
+  font-weight: 500;
+  color: #4a90e2;
+  font-size: 1.07rem;
+}
+
+.OPM-profile-profile-value {
+  color: #34495e;
+  font-size: 1.07rem;
+}
+
+.OPM-profile-donor-profile-loading,
+.OPM-profile-donor-profile-error,
+.OPM-profile-donor-profile-empty {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 600px) {
+  .OPM-profile-real-user-profile {
+    padding: 24px 8px;
+    max-width: 98vw;
+  }
+  .OPM-profile-profile-avatar-large {
+    width: 80px;
+    height: 80px;
+    font-size: 2.2rem;
+  }
+  .OPM-profile-profile-name {
+    font-size: 1.3rem;
+  }
+  .OPM-profile-profile-label,
+  .OPM-profile-profile-value {
+    font-size: 0.97rem;
+  }
+}

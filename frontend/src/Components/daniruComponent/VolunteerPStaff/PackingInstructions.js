@@ -2,6 +2,8 @@ import React from "react";
 import { FaBoxOpen, FaListOl, FaCubes, FaTape, FaCheckCircle } from "react-icons/fa";
 import "./PackingInstructions.css"; // updated import
 import VolunteerPNav from "./VolunteerPNav";
+import Home from "../VolunteerCDashboard";
+import HomeFooter from "../Home/HomeFooter"; // updated import
 
 const steps = [
   {
@@ -23,8 +25,10 @@ const steps = [
 
 const PackingInstructions = () => {
   return (
+    <div>
     <div className="to-packinginstructions-bg">
       <VolunteerPNav />
+      <br/>
       <div className="to-packinginstructions-container">
         <h1 className="to-packinginstructions-header-modern">
           <FaBoxOpen style={{marginRight: 10, color: '#1abc9c'}} />
@@ -41,6 +45,8 @@ const PackingInstructions = () => {
           ))}
         </div>
       </div>
+    </div>
+    <HomeFooter />
     </div>
   );
 };

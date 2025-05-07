@@ -27,6 +27,7 @@ import Guidance from './Components/gihanComponent/donationComponent/guidance/gui
 import Support from './Components/gihanComponent/donationComponent/support/support';
 import Chat from './Components/gihanComponent/donationComponent/chat/chat';
 import FeedbackF from './Components/gihanComponent/donationComponent/feedbackF/FeedbackForm';
+import DonorProfile from './Components/gihanComponent/donationComponent/donorProfile/donorProfile';
 
 
 import OperatingManagerSidebar from "./Components/gihanComponent/operatingManager/navigationBar/navigationBar";
@@ -35,6 +36,7 @@ import InventoryManagement from "./Components/gihanComponent/operatingManager/in
 import PartnerCollaboration from "./Components/gihanComponent/operatingManager/partnerManagement/partnerManagement";
 import OpDashboard from './Components/gihanComponent/operatingManager/opDashboard/opDashboard';
 import ChatOP from './Components/gihanComponent/operatingManager/chatOP/chatOP';
+import OPMProfile from './Components/gihanComponent/operatingManager/OPProfile/OPProfile';
 
 // Daniru's components
 import CreateTask from "./Components/daniruComponent/CreateTask";
@@ -58,18 +60,21 @@ import VolunteerRoute from "./Components/daniruComponent/VolunteerDStaff/route";
 import AboutUsHome from "./Components/daniruComponent/Home/AboutUs/AboutUs";
 import ContactUs from "./Components/daniruComponent/Home/ContactUs/ContactUs";
 import VerificationCode from "./Components/daniruComponent/VerificationCode/VerificationCode";
+import Feedback from "./Components/daniruComponent/VolunteerDStaff/Feedback";
+import FeedbackP from "./Components/daniruComponent/VolunteerPStaff/FeedbackP";
+
 
 
 // Malshi's components
 import NavBarP from './Components/malshiComponent/NavBarP/NavBarP';
 import FoodRequests from './Components/malshiComponent/FoodRequests/FoodRequests';
 import AddRequests from './Components/malshiComponent/AddRequests/AddRequests';
-import ProfileP from './Components/malshiComponent/ProfileP/ProfileP';
 import UpdateRequests from './Components/malshiComponent/UpdateRequests/UpdateRequests';
 import PaymentForm from "./Components/malshiComponent/PaymentForm/PaymentForm";
 import ThankYou from "./Components/malshiComponent/ThankYou/ThankYou";
 import FooterP from './Components/malshiComponent/FooterP/FooterP';
 import DashboardP from './Components/malshiComponent/DashboardP/DashboardP';
+import PFeedback from './Components/malshiComponent/FeedBack/FeedbackP';
 
 
 //Sashini's components
@@ -148,6 +153,7 @@ const DonorLayout = () => (
         <Route path = "/support" element ={<Support/>}/>
         <Route path="/chat" element={<Chat />} />
         <Route path='/feedbackForm' element={<FeedbackF/>}/>
+        <Route path='/profile' element={<DonorProfile/>}/>
       </Routes>
     </div>
     <Footer />
@@ -167,6 +173,7 @@ const OperatingManagerLayout = () => (
         <Route path="/inventoryManagement" element={<InventoryManagement />} />
         <Route path="/partnerManagement" element={<PartnerCollaboration />} />
         <Route path="/chatOP" element={<ChatOP />} />
+        <Route path="/profile" element={<OPMProfile />} />
       </Routes>
     </div>
   </div>
@@ -181,11 +188,12 @@ const RequestsLayout = () => (
         {/* <Route path="/" element={<ProfileP />} /> */}
         <Route path="/add-requests" element={<AddRequests />} />
         <Route path="/display-requests" element={<FoodRequests />} />
-        <Route path="/profile" element={<ProfileP />} />
         <Route path="/funds" element={<PaymentForm />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/display-requests/:id" element={<UpdateRequests />} />
         <Route path="/dashboard" element={<DashboardP />} />
+        <Route path="/pfeedback" element={<PFeedback />} />
+
       </Routes>
     </div>
   </div>
@@ -222,6 +230,7 @@ const VolunteerDeliveryStaffLayout = () => (
         <Route path="/volunteertask" element={<VolunteerTask />} />
         <Route path="/volunteerapplication" element={<VolunteerApplication />} />
         <Route path="/route" element = {<VolunteerRoute/>}/>
+        <Route path="/feedback" element={<Feedback />} />
       </Routes>
     </React.Fragment>
   </div>
@@ -240,6 +249,7 @@ const VolunteerPackingStaffLayout = () => (
         />
         <Route path="/volunteertask" element={<VolunteerPTask />} />
         <Route path="/packinginstructions" element={<PackingInstructions />} />
+        <Route path="/feedbackp" element={<FeedbackP />} />
       </Routes>
     </React.Fragment>
   </div>

@@ -13,7 +13,18 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import axios from "axios";
 const OperatingManagerSidebar = () => {
+  const [operatingManagerName, setOperatingManagerName] = useState("...");
+  React.useEffect(() => {
+    axios.get("http://localhost:8090/users")
+      .then(res => {
+        const users = res.data.users || [];
+        const opManager = users.find(user => user.role === "Operating Manager");
+        setOperatingManagerName(opManager ? opManager.name : "Operating Manager");
+      })
+      .catch(() => setOperatingManagerName("Operating Manager"));
+  }, []);
   const [showSignOut, setShowSignOut] = useState(false);
   const navigate = useNavigate();
   const navItems = [
@@ -52,13 +63,13 @@ const OperatingManagerSidebar = () => {
         <hr className="sidebar-divider" />
         
         {/* Profile Section */}
-        <Link to="/opl/operating-manager/profile" className="profile-section-op">
-          <div className="profile-avatar-op">
-            <PersonIcon fontSize="medium" />
+        <Link to="/opl/profile" className="profile-section-op">
+          <div className="profile-avatar-op" style={{backgroundColor: '#fff'}}>
+            <PersonIcon fontSize="medium" style={{color: '#2c3e50'}} />
           </div>
           <div className="profile-info-op">
-            <h4>Gihan Bandara</h4>
-            <p>Operating Manager</p>
+            <h4 style={{color: '#fff', textDecoration: 'none'}}>{operatingManagerName}</h4>
+            <p style={{color: '#fff', textDecoration: 'none'}}>Operating Manager</p>
           </div>
         </Link>
         

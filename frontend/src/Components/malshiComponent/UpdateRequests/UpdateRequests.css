@@ -1,4 +1,4 @@
-.update-form-container {
+.FReq-update-form-container {
   max-width: 600px;
   margin: 30px auto;
   padding: 25px;
@@ -8,7 +8,7 @@
   border: 1px solid #e9ecef;
 }
 
-.update-form-title {
+.FReq-update-form-title {
   text-align: center;
   color: #495057;
   margin-bottom: 20px;
@@ -17,32 +17,32 @@
   letter-spacing: 0.5px;
 }
 
-.update-form {
+.FReq-update-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
-.update-form-field {
+.FReq-update-form-field {
   display: flex;
   flex-direction: column;
 }
 
 /* Make notes field span both columns */
-.update-form-field-full {
+.FReq-update-form-field-full {
   grid-column: 1 / span 2;
 }
 
-.update-form-label {
+.FReq-update-form-label {
   font-weight: 500;
   margin-bottom: 6px;
   color: #495057;
   font-size: 14px;
 }
 
-.update-form-input,
-.update-form-select,
-.update-form-textarea {
+.FReq-update-form-input,
+.FReq-update-form-select,
+.FReq-update-form-textarea {
   padding: 10px 12px;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -51,24 +51,24 @@
   background-color: #fff;
 }
 
-.update-form-input:focus,
-.update-form-select:focus,
-.update-form-textarea:focus {
+.FReq-update-form-input:focus,
+.FReq-update-form-select:focus,
+.FReq-update-form-textarea:focus {
   outline: none;
   border-color: #6c757d;
   box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.15);
 }
 
-.update-form-textarea {
+.FReq-update-form-textarea {
   min-height: 80px;
   resize: vertical;
 }
 
-.update-form-select-wrapper {
+.FReq-update-form-select-wrapper {
   position: relative;
 }
 
-.update-form-select {
+.FReq-update-form-select {
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
@@ -76,7 +76,7 @@
   background-size: 14px;
 }
 
-.update-form-buttons {
+.FReq-update-form-buttons {
   grid-column: 1 / span 2;
   display: flex;
   justify-content: flex-end;
@@ -84,7 +84,7 @@
   margin-top: 10px;
 }
 
-.update-form-button {
+.FReq-update-form-button {
   padding: 10px 20px;
   background-color: #6c757d;
   color: white;
@@ -96,29 +96,29 @@
   transition: background-color 0.2s ease;
 }
 
-.update-form-button:hover {
+.FReq-update-form-button:hover {
   background-color: #5a6268;
 }
 
-.update-form-button-primary {
+.FReq-update-form-button-primary {
   background-color: #318d45;
 }
 
-.update-form-button-primary:hover {
+.FReq-update-form-button-primary:hover {
   background-color: #0b5ed7;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-  .update-form {
+  .FReq-update-form {
     grid-template-columns: 1fr;
   }
   
-  .update-form-field-full {
+  .FReq-update-form-field-full {
     grid-column: 1;
   }
   
-  .update-form-buttons {
+  .FReq-update-form-buttons {
       grid-column: 1 / span 2;
       display: flex;
       justify-content: center; /* This centers the buttons horizontally */
