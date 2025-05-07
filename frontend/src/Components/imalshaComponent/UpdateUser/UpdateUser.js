@@ -48,13 +48,13 @@ function UpdateUser() {
     };
 
     return (
-        <div className="update-form-container">
-            <h1 className="form-header">Update User</h1>
-            <form className="update-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label className="form-label" htmlFor="name">Name</label>
+        <div className="imalshacomponat">
+            <h1 className="imalshacomponat-form-header">Update User</h1>
+            <form className="imalshacomponat-update-form" onSubmit={handleSubmit}>
+                <div className="imalshacomponat-form-group">
+                    <label className="imalshacomponat-form-label" htmlFor="name">Name</label>
                     <input
-                        className="form-input"
+                        className="imalshacomponat-form-input"
                         type="text"
                         id="name"
                         name="name"
@@ -64,10 +64,10 @@ function UpdateUser() {
                     />
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label" htmlFor="email">Email</label>
+                <div className="imalshacomponat-form-group">
+                    <label className="imalshacomponat-form-label" htmlFor="email">Email</label>
                     <input
-                        className="form-input"
+                        className="imalshacomponat-form-input"
                         type="email"
                         id="email"
                         name="email"
@@ -77,10 +77,10 @@ function UpdateUser() {
                     />
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label" htmlFor="password">Password</label>
+                <div className="imalshacomponat-form-group">
+                    <label className="imalshacomponat-form-label" htmlFor="password">Password</label>
                     <input
-                        className="form-input"
+                        className="imalshacomponat-form-input"
                         type="password"
                         id="password"
                         name="password"
@@ -90,10 +90,10 @@ function UpdateUser() {
                     />
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label" htmlFor="role">Role</label>
+                <div className="imalshacomponat-form-group">
+                    <label className="imalshacomponat-form-label" htmlFor="role">Role</label>
                     <select
-                        className="form-select"
+                        className="imalshacomponat-form-select"
                         id="role"
                         name="role"
                         value={inputs.role || ""}
@@ -102,16 +102,16 @@ function UpdateUser() {
                     >
                         <option value="" disabled>Select Role</option>
                         <option value="Donor">Donor</option>
-                        <option value="Recipient">Recipient</option>
-                        <option value="Volunteer">Volunteer</option>
-                        <option value="Admin">Admin</option>
+                        <option value="PartnerShip">PartnerShip</option>
+                        <option value="Volunteer Packing Staff">Volunteer Packing Staff</option>
+                        <option value="Volunteer Delivery Staff">Volunteer Delivery Staff</option>
                     </select>
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label" htmlFor="contactNumber">Contact Number</label>
+                <div className="imalshacomponat-form-group">
+                    <label className="imalshacomponat-form-label" htmlFor="contactNumber">Contact Number</label>
                     <input
-                        className="form-input"
+                        className="imalshacomponat-form-input"
                         type="number"
                         id="contactNumber"
                         name="contactNumber"
@@ -121,10 +121,10 @@ function UpdateUser() {
                     />
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label" htmlFor="address">Address</label>
+                <div className="imalshacomponat-form-group">
+                    <label className="imalshacomponat-form-label" htmlFor="address">Address</label>
                     <textarea
-                        className="form-input form-textarea"
+                        className="imalshacomponat-form-input imalshacomponat-form-textarea"
                         id="address"
                         name="address"
                         value={inputs.address || ""}
@@ -133,7 +133,7 @@ function UpdateUser() {
                     />
                 </div>
 
-                <button className="submit-button" type="submit">
+                <button className="imalshacomponat-submit-button" type="submit">
                     Update User
                 </button>
             </form>

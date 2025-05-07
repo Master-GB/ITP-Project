@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ChatBox = () => {
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
+    if (!open) return;
     const scriptLoader = () => {
       const script = document.createElement("script");
       script.src = "https://www.chatbase.co/embed.min.js";
@@ -42,9 +45,34 @@ const ChatBox = () => {
         existingScript.remove();
       }
     };
-  }, []);
+  }, [open]);
 
-  return null; // No visual output, only script injection
+  return (
+    <>
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        style={{
+          position: "fixed",
+          bottom: 32,
+          right: 32,
+          zIndex: 1000,
+          width: 60,
+          height: 60,
+          borderRadius: "50%",
+          background: "#1976D2",
+          color: "#fff",
+          border: "none",
+          boxShadow: "0 4px 16px rgba(25,118,210,0.2)",
+          fontSize: 32,
+          cursor: "pointer"
+        }}
+        aria-label={open ? "Close Chatbot" : "Open Chatbot"}
+      >
+        {open ? "×" : "💬"}
+      </button>
+      {/* The Chatbase widget will appear when open, script is injected above */}
+    </>
+  );
 };
 
 export default ChatBox;

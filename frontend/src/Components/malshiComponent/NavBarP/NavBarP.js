@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./NavBarP.css";
+
 
 function RequestNavBar() {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
@@ -9,6 +10,8 @@ function RequestNavBar() {
     setIsSideNavOpen(!isSideNavOpen);
     document.body.classList.toggle("show-overlay", !isSideNavOpen);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -83,10 +86,10 @@ function RequestNavBar() {
         </div>
 
         <div className="nav-links">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/add-requests">Add Request</Link>
-          <Link to="/display-requests">My Requests</Link>
-          <Link to="/funds">Funds</Link>
+          <Link to="/rl/dashboard">Dashboard</Link>
+          <Link to="/rl/add-requests">Add Request</Link>
+          <Link to="/rl/display-requests">My Requests</Link>
+          <Link to="/rl/funds">Funds</Link>
         </div>
 
         <div className="nav-search-container">
@@ -114,7 +117,7 @@ function RequestNavBar() {
         </div>
 
         <div className="ai-chatbot">
-          <button className="chatbot-icon">
+          <button className="chatbot-icon" onClick={() => navigate('/ul/feedbackForm')}>
             <img
               src="/Resources/gihanRes/donationRes/AIBot.png"
               alt="Chatbot"
