@@ -1,12 +1,12 @@
 /* Real User Profile Section Styles */
 
-.donor-profile-back{
+.OPM-profile-donor-profile-back {
     height: 100%;
     width: 100%;
     background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
 }
 
-.donor-profile-section {
+.OPM-profile-donor-profile-section {
   padding: 40px 16px;
   min-height: 100vh;
   display: flex;
@@ -14,7 +14,7 @@
   justify-content: center;
 }
 
-.real-user-profile {
+.OPM-profile-real-user-profile {
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 4px 24px rgba(60,60,60,0.13);
@@ -27,7 +27,7 @@
   margin: auto;
 }
 
-.profile-avatar-large {
+.OPM-profile-profile-avatar-large {
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -43,11 +43,11 @@
   letter-spacing: 2px;
 }
 
-.profile-info {
+.OPM-profile-profile-info {
   width: 100%;
 }
 
-.profile-name {
+.OPM-profile-profile-name {
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
@@ -55,26 +55,26 @@
   margin-bottom: 1.5rem;
 }
 
-.profile-field {
+.OPM-profile-profile-field {
   display: flex;
   margin-bottom: 1rem;
 }
 
-.profile-label {
+.OPM-profile-profile-label {
   min-width: 120px;
   font-weight: 500;
   color: #4a90e2;
   font-size: 1.07rem;
 }
 
-.profile-value {
+.OPM-profile-profile-value {
   color: #34495e;
   font-size: 1.07rem;
 }
 
-.donor-profile-loading,
-.donor-profile-error,
-.donor-profile-empty {
+.OPM-profile-donor-profile-loading,
+.OPM-profile-donor-profile-error,
+.OPM-profile-donor-profile-empty {
   text-align: center;
   color: #888;
   font-size: 1.2rem;
@@ -82,20 +82,20 @@
 }
 
 @media (max-width: 600px) {
-  .real-user-profile {
+  .OPM-profile-real-user-profile {
     padding: 24px 8px;
     max-width: 98vw;
   }
-  .profile-avatar-large {
+  .OPM-profile-profile-avatar-large {
     width: 80px;
     height: 80px;
     font-size: 2.2rem;
   }
-  .profile-name {
+  .OPM-profile-profile-name {
     font-size: 1.3rem;
   }
-  .profile-label,
-  .profile-value {
+  .OPM-profile-profile-label,
+  .OPM-profile-profile-value {
     font-size: 0.97rem;
   }
 }
