@@ -404,6 +404,13 @@ const generateStatsPDF = async () => {
 
   return (
     <div className='monitor-background'>
+      <div className="donor-donation-my-donation-header">
+        <div className="donor-donation-my-donation-header-row">
+          <div className="donor-donation-my-donation-avatar">📈</div>
+          <h1 className="donor-donation-my-donation-title">Donation Analytics</h1>
+        </div>
+        <div className="donor-donation-my-donation-tagline">Visualize and track your donation impact</div>
+      </div>
     <div className="donor-analytics-dashboard">
       <section className="milestones-section">
         <h2>🏆Achievements</h2>
@@ -449,8 +456,8 @@ const generateStatsPDF = async () => {
 
       <section className="pdf-buttons">
         <button onClick={() => setDialogOpen(true)} className="pdf-button">
-          Download Donation History
-        </button>
+  Download Donation History
+</button>
 
         {/* Dialog for filtering and grouping before export */}
         {dialogOpen && (
@@ -478,35 +485,41 @@ const generateStatsPDF = async () => {
                 </select>
               </div>
               <div className="modal-section">
-  <label>Date Range:</label>
-  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-      <label style={{ fontSize: '0.95em', marginBottom: '2px', color: '#666' }}>Start Date</label>
-      <input className="startEnd-date-m" type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-    </div>
-    <span style={{margin: '0 8px', fontWeight: 'bold', color: '#888', alignSelf: 'center', lineHeight: '2.2'}}>-</span>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-      <label style={{ fontSize: '0.95em', marginBottom: '2px', color: '#666' }}>End Date</label>
-      <input className="startEnd-date-m" type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-    </div>
-  </div>
-</div>
-<div className="modal-actions" style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', marginTop: '1rem' }}>
-  <button onClick={() => {
-    setDialogOpen(false);
-    setFilterStatus('All');
-    setGroupCategory('All');
-    setStartDate('');
-    setEndDate('');
-  }} className="modal-cancel" style={{ flex: 1, marginRight: '10px' }}>Cancel</button>
-  <button onClick={handleExportPDF} className="modal-export" style={{ flex: 1, marginLeft: '10px' }}>Export PDF</button>
-</div>
+                <label>Date Range:</label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <label style={{ fontSize: '0.95em', marginBottom: '2px', color: '#666' }}>Start Date</label>
+                    <input className="startEnd-date-m" type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+                  </div>
+                  <span style={{margin: '0 8px', fontWeight: 'bold', color: '#888', alignSelf: 'center', lineHeight: '2.2'}}>-</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <label style={{ fontSize: '0.95em', marginBottom: '2px', color: '#666' }}>End Date</label>
+                    <input className="startEnd-date-m" type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+              <div className="modal-actions" style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', marginTop: '1rem' }}>
+                <button onClick={() => {
+                  setDialogOpen(false);
+                  setFilterStatus('All');
+                  setGroupCategory('All');
+                  setStartDate('');
+                  setEndDate('');
+                }} className="modal-cancel" style={{ flex: 1, marginRight: '10px' }}>
+                  <span className="button-icon">✖️</span>
+                  Cancel
+                </button>
+                <button onClick={handleExportPDF} className="modal-export" style={{ flex: 1, marginLeft: '10px' }}>
+                  <span className="button-icon">📤</span>
+                  Export
+                </button>
+              </div>
             </div>
           </div>
         )}
         <button onClick={generateStatsPDF} className="pdf-button">
-          Download Statistics Report
-        </button>
+  Download Statistics Report
+</button>
       </section>
 
       <section className="social-sharing">
@@ -523,15 +536,23 @@ const generateStatsPDF = async () => {
             <span>Facebook</span>
           </FacebookShareButton>
           
-          <TwitterShareButton
-            url={shareUrl}
-            title={shareTitle}
-            hashtags={["FoodDonation", "CommunityHelp"]}
+          {/* X (formerly Twitter) share button */}
+          <a
+            href={`https://x.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-button"
+            style={{ textDecoration: 'none' }}
           >
-            <TwitterIcon size={40} round />
-            <span>Twitter</span>
-          </TwitterShareButton>
+            {/* SVG X icon */}
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, borderRadius: '50%', background: '#000', color: '#fff', fontSize: 26 }}>
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="16" fill="#000"/>
+                <path d="M10 10L22 22M22 10L10 22" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
+              </svg>
+            </span>
+            <span>X</span>
+          </a>
           
           <LinkedinShareButton
             url={shareUrl}
@@ -544,15 +565,32 @@ const generateStatsPDF = async () => {
             <span>LinkedIn</span>
           </LinkedinShareButton>
 
-          <EmailShareButton
-            subject={shareTitle}
-            body={shareBody}
-            url={shareUrl}
+          {/* Instagram button (opens Instagram profile or home) */}
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-button"
+            style={{ textDecoration: 'none' }}
           >
-            <EmailIcon size={40} round />
-            <span>Email</span>
-          </EmailShareButton>
+            {/* SVG Instagram icon */}
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, borderRadius: '50%', background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)', color: '#fff', fontSize: 26 }}>
+              <svg width="26" height="26" viewBox="0 0 448 448" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="448" height="448" rx="224" fill="url(#ig-gradient)"/>
+                <defs>
+                  <radialGradient id="ig-gradient" cx="30%" cy="107%" r="150%" fx="30%" fy="107%">
+                    <stop offset="0%" stop-color="#fdf497"/>
+                    <stop offset="5%" stop-color="#fdf497"/>
+                    <stop offset="45%" stop-color="#fd5949"/>
+                    <stop offset="60%" stop-color="#d6249f"/>
+                    <stop offset="90%" stop-color="#285AEB"/>
+                  </radialGradient>
+                </defs>
+                <path d="M224 144c-44.1 0-80 35.9-80 80s35.9 80 80 80 80-35.9 80-80-35.9-80-80-80zm0 128c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm88-80c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16-16-7.2-16-16zm48-32c-1.7-35.3-9.9-66.7-36.1-92.9C338.7 41.9 307.3 33.7 272 32c-35.3-1.7-141.3-1.7-176.6 0C70.7 33.7 39.3 41.9 13.1 68.1-13.1 94.3-21.3 125.7-23 161c-1.7 35.3-1.7 141.3 0 176.6 1.7 35.3 9.9 66.7 36.1 92.9 26.2 26.2 57.6 34.4 92.9 36.1 35.3 1.7 141.3 1.7 176.6 0 35.3-1.7 66.7-9.9 92.9-36.1 26.2-26.2 34.4-57.6 36.1-92.9 1.7-35.3 1.7-141.3 0-176.6zm-48 218c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.7 9s-103.3 2.6-132.7-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.7s-2.6-103.3 9-132.7c7.8-19.6 22.9-34.7 42.5-42.5C118.7 41.9 188.5 44.5 222 44.5s103.3-2.6 132.7 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.7s2.6 103.3-9 132.7z" fill="#fff"/>
+              </svg>
+            </span>
+            <span>Instagram</span>
+          </a>
         </div>
       </section>
     </div>

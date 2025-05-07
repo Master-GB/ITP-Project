@@ -1,18 +1,18 @@
 
 
 .guidance-background {
-  background: linear-gradient(135deg, #b4d2e8, #e6f7ff);
+  background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
   min-height: 100vh;
   padding: 30px 0;
 }
 
 .guidance-container {
   max-width: 1100px;
-  margin: 70px auto 30px auto;
+  margin: 80px auto 30px auto !important;
   padding: 36px 22px 32px 22px;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.09);
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.5);
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
