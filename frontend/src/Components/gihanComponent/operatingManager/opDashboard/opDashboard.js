@@ -18,6 +18,13 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function OpDashboard() {
+  // Ensure the background gradient covers the whole page only on this dashboard
+  React.useEffect(() => {
+    document.body.classList.add('opm-dashboard-background');
+    return () => {
+      document.body.classList.remove('opm-dashboard-background');
+    };
+  }, []);
   const [geocodedDonations, setGeocodedDonations] = useState([]);
 
   // Dummy data for map (copied from dashboard.js)
@@ -300,11 +307,16 @@ export default function OpDashboard() {
   
 
   return (
-    <div>
+
+    
+    <div > 
        <ChatBox />
-    <div>
-          <h1>Operating Manger Dashboard</h1>
-          <p className="subtitle">Here's your  activity overview</p>
+       <div className="opm-dh-header">
+        <h1>Operating Manger Dashboard</h1>
+        <p>Here's your donation activity overview</p>
+      </div>
+    <div className="opm-dashboard-background">
+   
         
     <div className="op-dashboard-container">
       <div className="welcome-message-op">Welcome, Operating Manager! Have a great day managing food donations and making a difference. 🌟</div>
@@ -387,8 +399,8 @@ export default function OpDashboard() {
         <div className="chart-card large-chart">
           <div style={{ textAlign: 'center', marginBottom: 20, fontWeight: 700, fontSize: '1.5rem', color:'#2c3e50'}}>Status Breakdown</div>
           <div className="centered-pie-canvas opm-chart-over">
-            <canvas ref={statusChartRef} height={300} width={300}></canvas>
-          </div>
+  <canvas ref={statusChartRef} height={300} width={300}></canvas>
+</div>
         </div>
       </div>
       {/* Map Section: Donation Locations */}

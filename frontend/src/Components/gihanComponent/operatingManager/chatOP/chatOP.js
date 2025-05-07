@@ -35,9 +35,6 @@ const ChatOP = () => {
     };
   }, []);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
 
   const handleSend = () => {
     if (input.trim()) {
@@ -63,8 +60,13 @@ const ChatOP = () => {
 
   return (
     <div>
-          <h1>Messaging App</h1>
-          <p className="subtitle">Send Message To the Donor</p>
+          <div className="opm-donation-my-donation-header">
+  <div className="opm-donation-my-donation-header-row">
+    <div className="opm-donation-my-donation-avatar">💬</div>
+    <h1 className="opm-donation-my-donation-title">Chat With Donor</h1>
+  </div>
+  <div className="opm-donation-my-donation-tagline">Communicate instantly with your team and partners.</div>
+</div>
         
     <div className="chat-container chatop-container">
       <div className="chat-header">Operating Manager Chat</div>

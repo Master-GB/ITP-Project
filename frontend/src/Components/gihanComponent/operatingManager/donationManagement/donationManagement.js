@@ -308,8 +308,14 @@ const FoodDonationPage = () => {
 
   return (
     <div>
-          <h1>Food Donation Management</h1>
-          <p className="subtitle">Manage food donation requests from Donor</p>
+        
+        <div className="opm-donation-my-donation-header">
+  <div className="opm-donation-my-donation-header-row">
+    <div className="opm-donation-my-donation-avatar">🍽️</div>
+    <h1 className="opm-donation-my-donation-title">Donation Management</h1>
+  </div>
+  <div className="opm-donation-my-donation-tagline">Track, review, and manage food donations seamlessly.</div>
+</div>
         
     <div className="page-container-opm">
       <div className="card-container">
@@ -390,6 +396,7 @@ const FoodDonationPage = () => {
 
       <hr className="section-divider" />
 
+      <div className="donation-outer-card">
       <div className="table-controls-container">
         <div className="sort-control">
           <select
@@ -428,8 +435,9 @@ const FoodDonationPage = () => {
           </div>
         </div>
       </div>
-      <div className="table-responsive-container">
-        <table className="donation-table">
+      <div className="donation-inner-card">
+        <div className="table-responsive-container">
+          <table className="donation-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -484,6 +492,8 @@ const FoodDonationPage = () => {
             ))}
           </tbody>
         </table>
+        </div>
+      </div>
       </div>
 
       {selectedDonation &&
