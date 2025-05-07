@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './login.css';
 
 const Login = () => {
@@ -48,6 +48,9 @@ const Login = () => {
                 case 'Operating Manager':
                     navigate('/opl/dashboard');
                     break;
+                case 'PartnerShip':
+                    navigate('/rl/dashboard');
+                    break;
                 default:
                     navigate('/dashboard');
             }
@@ -66,7 +69,7 @@ const Login = () => {
                         <input
                             type="email"
                             name="email"
-                            placeholder="Username"
+                            placeholder="Email"
                             value={formData.email}
                             onChange={handleChange}
                             className="imalshacompnant-login-input"
@@ -91,7 +94,7 @@ const Login = () => {
                         </span>
                     </div>
                     <div className="imalshacompnant-login-options">
-                        <label>
+                        <label className="imalshacompnant-login-remember-label">
                             <input type="checkbox" className="imalshacompnant-login-checkbox" />
                             Remember Me
                         </label>
@@ -100,7 +103,7 @@ const Login = () => {
                     <button type="submit" className="imalshacompnant-login-btn">Login</button>
                 </form>
                 <p className="imalshacompnant-login-register">
-                    Don't have an account? <a href="/register">Register</a>
+                    Don't have an account? <Link to="/adduser">Register</Link>
                 </p>
             </div>
         </div>

@@ -4,13 +4,14 @@ body {
 }
 
 /* Modern styling for Update User form */
-.update-form-container {
+.imalshacomponat {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 48px 16px 32px 16px;
     min-height: 100vh;
+    width: 100vw;
+    background: none;
     animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
@@ -20,7 +21,7 @@ body {
 }
 
 /* Header Styling */
-.form-header {
+.imalshacomponat-form-header {
     font-size: 2.4rem;
     color: #1976D2;
     margin-bottom: 28px;
@@ -30,7 +31,7 @@ body {
     position: relative;
 }
 
-.form-header:after {
+.imalshacomponat-form-header:after {
     content: "";
     display: block;
     width: 60px;
@@ -41,29 +42,32 @@ body {
 }
 
 /* Form styling */
-.update-form {
-    width: 100%;
-    max-width: 500px;
+.imalshacomponat-update-form {
+    width: 800px;
+    max-width: 95vw;
     background: #fff;
-    border-radius: 18px;
-    padding: 36px 28px 28px 28px;
-    box-shadow: 0 4px 24px rgba(25,118,210,0.10);
-    transition: transform 0.18s, box-shadow 0.18s;
+    border-radius: 24px;
+    padding: 48px 40px 40px 40px;
+    box-shadow: 0 8px 32px rgba(25,118,210,0.16);
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: transform 0.18s, box-shadow 0.18s;
 }
 
-.update-form:hover {
+.imalshacomponat-update-form:hover {
     transform: translateY(-4px) scale(1.015);
     box-shadow: 0 8px 32px rgba(25,118,210,0.16);
 }
 
 /* Form group styling */
-.form-group {
+.imalshacomponat-form-group {
     margin-bottom: 22px;
 }
 
 /* Label styling */
-.form-label {
+.imalshacomponat-form-label {
     font-size: 15px;
     color: #34495e;
     margin-bottom: 8px;
@@ -73,7 +77,7 @@ body {
 }
 
 /* Input fields styling */
-.form-input, .form-select {
+.imalshacomponat-form-input, .imalshacomponat-form-select {
     width: 100%;
     padding: 13px 16px;
     border: 1.5px solid #dcdde1;
@@ -84,7 +88,7 @@ body {
     color: #2d3436;
 }
 
-.form-input:focus, .form-select:focus {
+.imalshacomponat-form-input:focus, .imalshacomponat-form-select:focus {
     border-color: #1976D2;
     box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     outline: none;
@@ -92,14 +96,14 @@ body {
 }
 
 /* Textarea specific styling */
-.form-textarea {
+.imalshacomponat-form-textarea {
     resize: vertical;
     min-height: 90px;
     font-family: inherit;
 }
 
 /* Select styling */
-.form-select {
+.imalshacomponat-form-select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231976D2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -109,8 +113,9 @@ body {
 }
 
 /* Submit button styling */
-.submit-button {
-    width: 100%;
+.imalshacomponat-submit-button {
+    align-self: center;
+    width: 220px;
     padding: 15px;
     background: linear-gradient(90deg, #1976D2 0%, #64b5f6 100%);
     color: white;
@@ -126,38 +131,34 @@ body {
     box-shadow: 0 4px 12px rgba(25,118,210,0.10);
 }
 
-.submit-button:hover {
+.imalshacomponat-submit-button:hover {
     background: linear-gradient(90deg, #1565c0 0%, #1976D2 100%);
     box-shadow: 0 8px 24px rgba(25,118,210,0.16);
     transform: translateY(-2px) scale(1.01);
 }
 
-.submit-button:active {
+.imalshacomponat-submit-button:active {
     transform: translateY(1px);
     box-shadow: 0 2px 6px rgba(25,118,210,0.10);
 }
 
 /* Add some invalid input feedback */
-.form-input:invalid:not(:placeholder-shown),
-.form-select:invalid:not(:placeholder-shown) {
+.imalshacomponat-form-input:invalid:not(:placeholder-shown),
+.imalshacomponat-form-select:invalid:not(:placeholder-shown) {
     border-color: #e74c3c;
 }
 
 /* Responsive design */
-@media (max-width: 700px) {
-    .update-form-container {
-        padding: 18px 2px 12px 2px;
+@media (max-width: 900px) {
+    .imalshacomponat-update-form {
+        width: 98vw;
+        padding: 24px 8px;
+        border-radius: 16px;
     }
-    
-    .update-form {
-        padding: 18px 4px 14px 4px;
-    }
-    
-    .form-header {
+    .imalshacomponat-form-header {
         font-size: 1.5rem;
     }
-    
-    .submit-button {
+    .imalshacomponat-submit-button {
         padding: 12px;
         font-size: 15px;
     }
