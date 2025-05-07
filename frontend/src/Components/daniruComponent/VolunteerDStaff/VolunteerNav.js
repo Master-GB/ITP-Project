@@ -7,6 +7,7 @@ const Nav = ({ volunteerName }) => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
 
   const toggleSideNav = () => {
@@ -36,9 +37,34 @@ const Nav = ({ volunteerName }) => {
     }
   };
 
+  const handleLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
+    setShowLogoutConfirm(false);
+    navigate('/home');
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
+
   return (
     <div>
       {isSideNavOpen && <div className="overlay" onClick={toggleSideNav}></div>}
+      {showLogoutConfirm && (
+        <div className="logout-confirm-overlay">
+          <div className="logout-confirm-popup">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to sign out?</p>
+            <div className="logout-confirm-buttons">
+              <button onClick={confirmLogout} className="confirm-btn">Yes, Sign Out</button>
+              <button onClick={cancelLogout} className="cancel-btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <nav className="navbar">
         <div className="side-nav">
@@ -71,8 +97,14 @@ const Nav = ({ volunteerName }) => {
                 <li>
                   <Link to="/profile">Profile</Link>
                 </li>
+                <li>
+                  <Link to="/vdsl/volunteeraboutus">About Us</Link>
+                </li>
+                <li>
+                  <Link to="/vdsl/volunteercontactus">Contact Us</Link>
+                </li>
                 <li className="daniru-sign-out">
-                  <Link to="/sign-out">Sign Out</Link>
+                  <button onClick={handleLogout} className="sign-out-btn">Sign Out</button>
                 </li>
               </ul>
             </div>
@@ -86,8 +118,11 @@ const Nav = ({ volunteerName }) => {
               alt="Logo"
               className="logo-img"
             />
-            <div className="logo-text">
-              <span className="top-text">HodaHitha.lk</span>
+            <div className="donor-nav-logo-text">
+              <span className="donor-nav-top-text">හොද</span>
+              <span className="donor-nav-bottom-text">
+                හිත<span className="donor-nav-lk-text">.lk</span>
+              </span>
             </div>
           </Link>
         </div>

@@ -7,6 +7,7 @@ const Nav = ({ volunteerName }) => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
 
   const toggleSideNav = () => {
@@ -36,9 +37,34 @@ const Nav = ({ volunteerName }) => {
     }
   };
 
+  const handleLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
+    setShowLogoutConfirm(false);
+    navigate('/home');
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
+
   return (
     <div>
       {isSideNavOpen && <div className="overlay" onClick={toggleSideNav}></div>}
+      {showLogoutConfirm && (
+        <div className="logout-confirm-overlay">
+          <div className="logout-confirm-popup">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to sign out?</p>
+            <div className="logout-confirm-buttons">
+              <button onClick={confirmLogout} className="confirm-btn">Yes, Sign Out</button>
+              <button onClick={cancelLogout} className="cancel-btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <nav className="navbar">
         <div className="side-nav">
@@ -46,36 +72,39 @@ const Nav = ({ volunteerName }) => {
             ☰
           </button>
           {isSideNavOpen && (
-            <div className="side-nav-content">
-              <button className="close-icon" onClick={toggleSideNav}>
+            <div className="daniru-side-nav-content">
+              <button className="daniru-close-icon" onClick={toggleSideNav}>
                 <img
                   src="/Resources/gihanRes/donationRes/cancel.png"
                   alt="Close"
                 />
               </button>
-
-              <div className="profile-container">
-                <div className="profile-photo-cover">
+              <div className="daniru-profile-container">
+                <div className="daniru-profile-photo-cover">
                   <img
                     src="/Resources/gihanRes/donationRes/dp.png"
                     alt="Profile"
-                    className="profile-photo"
+                    className="daniru-profile-photo"
                   />
                 </div>
-                <div className="profile-info">
-                  <p className="donor-name">Daniru Dodangoda</p>
-                  <p className="donor-email">daniru@gmail.com</p>
+                <div className="daniru-profile-info">
+                  <p className="daniru-donor-name">Daniru Dodangoda</p>
+                  <p className="daniru-donor-email">daniru@gmail.com</p>
                 </div>
               </div>
-
-              <div className="separator"></div>
-
-              <ul className="side-nav-links">
+              <div className="daniru-separator"></div>
+              <ul className="daniru-side-nav-links">
                 <li>
                   <Link to="/profile">Profile</Link>
                 </li>
-                <li className="sign-out">
-                  <Link to="/sign-out">Sign Out</Link>
+                <li>
+                  <Link to="/vpsl/volunteerpaboutus">About Us</Link>
+                </li>
+                <li>
+                  <Link to="/vpsl/volunteerpcontactus">Contact Us</Link>
+                </li>
+                <li className="daniru-sign-out">
+                  <button onClick={handleLogout} className="sign-out-btn">Sign Out</button>
                 </li>
               </ul>
             </div>
@@ -89,8 +118,11 @@ const Nav = ({ volunteerName }) => {
               alt="Logo"
               className="logo-img"
             />
-            <div className="logo-text">
-              <span className="top-text">HodaHitha.lk</span>
+            <div className="donor-nav-logo-text">
+              <span className="donor-nav-top-text">හොද</span>
+              <span className="donor-nav-bottom-text">
+                හිත<span className="donor-nav-lk-text">.lk</span>
+              </span>
             </div>
           </Link>
         </div>
