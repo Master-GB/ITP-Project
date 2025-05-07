@@ -131,42 +131,49 @@ return (
       </div>
     </div>
   </div>
-)}    
+)}    <div className="donor-donate-back-d">
       <div className="donor-donation-donate">
-      <div className="donor-donation-my-donation-container">
-        <div className="donor-donation-filter-search-container">
-          <div className="donor-donation-filter-container">
-            <label htmlFor="donor-donation-status-filter" class="donor-donation-fLabel">Filter by Status:</label>
-            <select 
-              className="donor-dh-filter-right"
-              id="donor-donation-status-filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="All">All</option>
-              <option value="Pending">Pending</option>
-              <option value="Collected">Collected</option>
-              <option value="Packaging">Packaging</option>
-              <option value="Delivery">Delivered</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancel">Cancel</option>
-            </select>
-          </div>
-
-          <div className="donor-donation-search-container">
-            <input
-              type="text"
-              placeholder="Search by food item..."
-              className="donor-donation-search-input"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button className="donor-donation-search-button">Search</button>
-          </div>
-        </div>
-
-        <table className="donor-donation-donation-table">
-          <thead>
+      <div className="donor-donation-my-donation-header">
+  <div className="donor-donation-my-donation-header-row">
+    <div className="donor-donation-my-donation-avatar">🍱</div>
+    <h1 className="donor-donation-my-donation-title">My Donations</h1>
+  </div>
+  <div className="donor-donation-my-donation-tagline">View, update, and track your food donations with ease.</div>
+</div>
+<div className="donor-donation-my-donation-container">
+        <div className="donor-donation-table-card">
+  <div className="donor-donation-filter-search-container">
+    <div className="donor-donation-filter-container">
+      <label htmlFor="donor-donation-status-filter" className="donor-donation-fLabel">Filter by Status:</label>
+      <select 
+        className="donor-dh-filter-right"
+        id="donor-donation-status-filter"
+        value={statusFilter}
+        onChange={(e) => setStatusFilter(e.target.value)}
+      >
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Collected">Collected</option>
+        <option value="Packaging">Packaging</option>
+        <option value="Delivery">Delivered</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancel">Cancel</option>
+      </select>
+    </div>
+    <div className="donor-donation-search-container">
+      <input
+        type="text"
+        placeholder="Search by food item..."
+        className="donor-donation-search-input"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <button className="donor-donation-search-button">Search</button>
+    </div>
+  </div>
+  <div className="donor-donation-inner-table-card">
+    <table className="donor-donation-donation-table">
+    <thead>
             <tr>
               <th>Food Category</th>
               <th>Food Item</th>
@@ -183,12 +190,11 @@ return (
             {filteredDonations.length > 0 ? (
               filteredDonations.map((donation, index) => (
                 <tr
-                  key={index}
-                  onClick={() => handleRowClick(donation)}
-                  className={
-                    selectedDonation?._id === donation._id ? "donor-donation-selected-row" : ""
-                  }
-                >
+                key={donation._id}
+                onClick={() => handleRowClick(donation)}
+                style={{ cursor: "pointer" }}
+                className={selectedDonation && selectedDonation._id === donation._id ? "row-selected donor-donation-selected-row" : ""}
+              >
                   <td>{donation.foodCategory}</td>
                   <td>{donation.foodItem}</td>
                   <td>{donation.storageCondition}</td>
@@ -202,21 +208,23 @@ return (
                     {donation.status}
                   </td>
                   <td>
-                  <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeleteModal({ open: true, donationId: donation._id });
-                      }}
-                      className="donor-donation-tab-delete-button"
-                    >
-                      Delete
-                    </button>
-                    {donation.status === "Pending" && (
-                      <Link to={`/dl/myDonate/${donation._id}`}>
-                        <button className="donor-donation-update-button">Edit</button>
-                      </Link>
-                    )}
-                  </td>
+  <div className="donor-donation-action-btn-group">
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        setDeleteModal({ open: true, donationId: donation._id });
+      }}
+      className="donor-donation-tab-delete-button"
+    >
+      Delete
+    </button>
+    {donation.status === "Pending" && (
+      <Link to={`/dl/myDonate/${donation._id}`}>
+        <button className="donor-donation-update-button">Edit</button>
+      </Link>
+    )}
+  </div>
+</td>
                 </tr>
               ))
             ) : (
@@ -225,7 +233,9 @@ return (
               </tr>
             )}
           </tbody>
-        </table>
+      </table>
+    </div>
+</div>
 
         {selectedDonation && selectedDonation.status !== "Cancel" && (
           <div className="donor-donation-donation-workflow-wrapper">
@@ -253,6 +263,7 @@ return (
           </div>
         )}
       </div>
+    </div>
     </div>
     </div>
     </>

@@ -1,6 +1,6 @@
 
 body .chatBac{
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important; /* Force the gradient */
+  background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
     min-height: 100vh !important; /* Force full height */
     padding: 20px !important; /* Force padding */
     margin: 0 !important; /* Remove default margin */
@@ -15,7 +15,7 @@ body .chatBac{
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 15px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 8px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   height: 600px;

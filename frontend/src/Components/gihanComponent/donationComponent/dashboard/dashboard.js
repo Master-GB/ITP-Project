@@ -322,13 +322,11 @@ const AdvancedDonorDashboard = () => {
             <div className="donor-dh-values">
               <span className="donor-dh-kg-value">{kgQuantity} kg</span>
               <span className="donor-dh-unit-value">
-                {unitQuantity}
-                units
-              </span>
+                {unitQuantity} units</span>
             </div>
             <div className="donor-dh-progress-bar">
               <div
-                className="donor-dh-progress blue"
+                className="donor-dh-progress g"
                 style={{ width: `${(kgQuantity / 500) * 100}%` }}
               ></div>
             </div>
