@@ -160,6 +160,7 @@ const Nav = () => {
               </button>
 
               <div className="donor-nav-profile-container">
+              <Link to="/dl/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="donor-nav-profile-photo-cover">
                   <img
                     src="/Resources/gihanRes/donationRes/dp.png"
@@ -171,6 +172,7 @@ const Nav = () => {
                   <p className="donor-nav-donor-name">{donor.name}</p>
                   <p className="donor-nav-donor-email">{donor.email}</p>
                 </div>
+                </Link>
               </div>
 
               <div className="donor-nav-separator"></div>
