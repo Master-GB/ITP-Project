@@ -6,15 +6,15 @@ import 'jspdf-autotable';
 import './inventoryManagement.css';
 
 const InventoryManagement = () => {
-  // Export PDF modal state and filter values
+  
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [exportCategory, setExportCategory] = useState("");
-  // Quantity filter: 'all' or 'gt1'
+  
   const [exportQuantityFilter, setExportQuantityFilter] = useState('all');
   const [exportDateFrom, setExportDateFrom] = useState("");
   const [exportDateTo, setExportDateTo] = useState("");
 
-  // Handler for filtered PDF download
+
   const resetExportFilters = () => {
     setExportCategory("");
     setExportQuantityFilter("all");
@@ -30,7 +30,7 @@ const InventoryManagement = () => {
       filtered = filtered.filter(d => new Date(d.donationDate) >= new Date(exportDateFrom));
     if (exportDateTo)
       filtered = filtered.filter(d => new Date(d.donationDate) <= new Date(exportDateTo));
-    // Apply quantity filter
+  
     if (exportQuantityFilter === 'gt1') {
       filtered = filtered.filter(d => {
         const q = (Number(d.quantityKg) || 0) + (Number(d.quantityUnit) || 0);
@@ -214,18 +214,16 @@ const InventoryManagement = () => {
         }
       }
 
-      // Expiry calculations for inventory
+    
       if (donation.expiryDate && (donation.status === "Collected" || donation.status === "Packaging")) {
         const expiryDate = new Date(donation.expiryDate);
         if (expiryDate > now && expiryDate <= next24h) {
-          // Expiring within next 24h
           if (unit === "kg") {
             totalExpiringSoonKg += quantity;
           } else if (unit === "unit") {
             totalExpiringSoonUnit += quantity;
           }
         } else if (expiryDate < now) {
-          // Already expired
           if (unit === "kg") {
             totalExpiredKg += quantity;
           } else if (unit === "unit") {
@@ -394,7 +392,6 @@ const InventoryManagement = () => {
     const title = 'Inventory Report';
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
-    // Center the title
     const pageWidth = doc.internal.pageSize.getWidth();
     const textWidth = doc.getTextWidth(title);
     const x = (pageWidth - textWidth) / 2;
@@ -572,7 +569,6 @@ const InventoryManagement = () => {
           Export Inventory
         </button>
 
-        {/* Export PDF Modal Dialog */}
         {showExportDialog && (
           <div className="modal-overlay">
             <div className="modal-dialog">
