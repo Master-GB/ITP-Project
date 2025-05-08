@@ -7,9 +7,9 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
-app.use(express.json()); // Needed for JSON REST API bodies
+app.use(express.json()); 
 
-// Mount notification REST API
+
 const notificationApi = require('./notification-api');
 app.use('/api/notifications', notificationApi);
 
@@ -21,7 +21,7 @@ const io = new Server(server, {
   }
 });
 
-// MongoDB connection (reuse .env MONGODB_URL)
+
 const URL = process.env.MONGODB_URL;
 mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -29,7 +29,7 @@ db.once('open', () => {
   console.log('MongoDB connected for chat!');
 });
 
-// Message schema/model
+
 const messageSchema = new mongoose.Schema({
   text: String,
   userId: String,
@@ -40,18 +40,17 @@ const Message = mongoose.model('Message', messageSchema);
 io.on('connection', async (socket) => {
   console.log('A user connected:', socket.id);
 
-  // Load last 50 messages from MongoDB
+
   const messages = await Message.find().sort({ createdAt: 1 }).limit(50);
   socket.emit('chat history', messages);
 
-  // Listen for new messages
+
   socket.on('chat message', async (msgObj) => {
     const msg = new Message({ text: msgObj.text, userId: msgObj.userId });
     await msg.save();
-    io.emit('chat message', msg); // Broadcast to all
+    io.emit('chat message', msg); 
   });
 
-  // Listen for clear chat event
   socket.on('clear chat', async () => {
     await Message.deleteMany({});
     io.emit('chat history', []);

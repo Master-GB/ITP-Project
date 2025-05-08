@@ -252,19 +252,19 @@ const AdvancedDonorDashboard = () => {
       chartInstance.current = new Chart(ctx, {
         type: "line",
         data: {
-          labels: labels, // Use dynamically generated labels
+          labels: labels, 
           datasets: [
             {
               label: "Quantity Donated (kg)",
-              data: labels.map((label) => groupedData.kg[label] || 0), // Map labels to kg data
-              borderColor: "rgba(255, 99, 132, 1)", // Pink color
+              data: labels.map((label) => groupedData.kg[label] || 0), 
+              borderColor: "rgba(255, 99, 132, 1)", 
               borderWidth: 2,
               fill: false,
             },
             {
               label: "Quantity Donated (units)",
-              data: labels.map((label) => groupedData.unit[label] || 0), // Map labels to unit data
-              borderColor: "rgba(128, 128, 128, 1)", // Grey color
+              data: labels.map((label) => groupedData.unit[label] || 0), 
+              borderColor: "rgba(128, 128, 128, 1)", 
               borderWidth: 2,
               fill: false,
             },
