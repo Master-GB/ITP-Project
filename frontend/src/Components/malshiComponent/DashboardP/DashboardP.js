@@ -168,10 +168,10 @@ function Dashboard() {
             <div className="recent-requests-header">
               <h2>Recent Requests</h2>
               <div className="recent-requests-actions">
-                <Link to="/display-requests" className="view-all-btn">
+                <Link to="/rl/display-requests" className="view-all-btn">
                   View All
                 </Link>
-                <Link to="/add-requests" className="add-request-btn">
+                <Link to="/rl/add-requests" className="add-request-btn">
                   <FaPlus /> Add Request
                 </Link>
               </div>
