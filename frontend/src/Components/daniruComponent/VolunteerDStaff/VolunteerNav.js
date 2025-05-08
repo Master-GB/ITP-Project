@@ -89,14 +89,11 @@ const Nav = ({ volunteerName }) => {
                 </div>
                 <div className="daniru-profile-info">
                   <p className="daniru-donor-name">Daniru Dodangoda</p>
-                  <p className="daniru-donor-email">daniru@gmail.com</p>
+                  <p className="daniru-donor-email">mastergba2001@gmail.com</p>
                 </div>
               </div>
               <div className="daniru-separator"></div>
               <ul className="daniru-side-nav-links">
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
                 <li>
                   <Link to="/vdsl/volunteeraboutus">About Us</Link>
                 </li>
