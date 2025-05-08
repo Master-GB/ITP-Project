@@ -255,57 +255,77 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 2000;
+  align-items: center;
+  z-index: 9999;
 }
 
 .DFund-modal-content {
-  background: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
   text-align: center;
-  min-width: 300px;
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .DFund-modal-content h2 {
   color: #195a5c;
-  margin-bottom: 1rem;
-  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  margin-bottom: 1.5rem;
   font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba(25,90,92,0.08);
+  font-weight: bold;
 }
 
 .DFund-modal-content p {
-  margin-bottom: 1.5rem;
   color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
-.DFund-error-message {
-  color: #b71c1c;
-  font-size: 0.92rem;
-  text-align: center;
-  margin-top: 4px;
+.DFund-email-status {
+  color: #195a5c !important;
   font-weight: 500;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  background: #e6f0ea;
+  border-radius: 8px;
+  font-size: 1.1rem !important;
 }
 
 .DFund-btn-close {
-  background: #e0f2f1 !important;
-  color: #195a5c !important;
+  background: #195a5c;
+  color: white;
   border: none;
-  border-radius: 20px;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
   font-weight: 600;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
 }
+
 .DFund-btn-close:hover {
-  background: #e0e0e0 !important;
+  background: #134445;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Only the custom amount input in step 1 should be smaller */

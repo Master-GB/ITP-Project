@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
+import emailjs from 'emailjs-com';
 import './PaymentForm.css';
 
 const PaymentForm = () => {
@@ -21,8 +22,14 @@ const PaymentForm = () => {
     branchCode: ''
   });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init("u6ow9c4c8XYvGsyXZ");
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -95,9 +102,13 @@ const PaymentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('Form submitted, validating step:', step);
     if (validateStep() && step === 4) {
+      console.log('Validation passed, showing success modal');
       setShowSuccess(true);
-      console.log('Form submitted:', formData);
+      setIsSendingEmail(true);
+      sendThankYouEmail();
+      console.log('Form data:', formData);
     }
   };
 
@@ -143,6 +154,51 @@ const PaymentForm = () => {
 
   const handleClose = () => {
     navigate('/rl/dashboard');
+  };
+
+  const sendThankYouEmail = () => {
+    console.log('Starting email sending process...');
+    console.log('Recipient email:', formData.email);
+    console.log('Recipient name:', formData.cardName);
+    console.log('Donation amount:', formData.amount);
+
+    if (!formData.email) {
+      console.error('No email address provided');
+      setIsSendingEmail(false);
+      return;
+    }
+
+    const templateParams = {
+      email: formData.email,
+      name: formData.cardName,
+      price: formData.amount,
+      cost: {
+        total: formData.amount
+      },
+      message: formData.message || 'Thank you for your generous donation. Your support helps us continue our mission of HodaHitha.lk',
+      website: "https://hodahitha.lk"
+    };
+
+    console.log('Sending email with params:', templateParams);
+
+    emailjs.send(
+      'service_44c73ud',
+      'template_iyp7pyl',
+      templateParams,
+      'u6ow9c4c8XYvGsyXZ'
+    )
+    .then((result) => {
+      console.log('Email sent successfully!');
+      console.log('Email sent to:', formData.email);
+      console.log('Response:', result.text);
+      setIsSendingEmail(false);
+    }, (error) => {
+      console.error('Failed to send email');
+      console.error('Error details:', error.text);
+      console.error('Recipient email:', formData.email);
+      console.error('Full error:', error);
+      setIsSendingEmail(false);
+    });
   };
 
   const renderStep = () => {
@@ -347,9 +403,13 @@ const PaymentForm = () => {
       {showSuccess && (
         <div className="DFund-modal-overlay">
           <div className="DFund-modal-content">
-            <h2>Fund Donation Successful</h2>
+            <h2>Fund Donation Successful!</h2>
             <p>Thank you for your generous donation to our fund!</p>
-            <button className="DFund-btn-next" onClick={handleSavePDF} style={{marginRight: '1rem'}}>Save as PDF</button>
+            {isSendingEmail ? (
+              <p className="DFund-email-status">Sending confirmation email...</p>
+            ) : (
+              <p className="DFund-email-status">Confirmation email has been sent to {formData.email}</p>
+            )}
             <button className="DFund-btn-close" onClick={handleClose}>Close</button>
           </div>
         </div>
