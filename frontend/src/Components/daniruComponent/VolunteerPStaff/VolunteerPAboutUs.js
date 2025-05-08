@@ -1,9 +1,16 @@
 import React from "react";
-import "./aboutUs.css";
+import "../VolunteerDStaff/VolunteerAboutUs.css";
+import { useNavigate } from "react-router-dom";
+import HomeFooter from "../Home/HomeFooter";
+import VolunteerPNav from "./VolunteerPNav";
+
 
 const AboutUs = () => {
+    const navigate = useNavigate();
   return (
-    <div class = "aboutUs-back-d">
+    <div>
+        <VolunteerPNav/>
+    <div class = "aboutUs-back">
     <div className="about-us-container">
       <div className="about-us-header">
         <h1>About Our Donation Platform</h1>
@@ -60,6 +67,8 @@ const AboutUs = () => {
         <p>Contact us: <a href="mailto:hithahoda@gmail.com">hithahoda@gmail.com</a></p>
       </div>
     </div>
+    </div>
+    <HomeFooter/>
     </div>
   );
 };

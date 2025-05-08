@@ -198,7 +198,7 @@ function VolunteerForm() {
        <header className="home-modern-header">
         <div className="home-header-content">
           <img src="/resources/danirures/logo.png" alt="HodaHitha.lk Logo" className="home-site-logo" />
-          <span className="home-site-name">HodaHitha.lk</span>
+          <span className="home-site-name">හොද හිත.lk</span>
         </div>
         <nav className="home-header-nav">
           <a href="/home">Home</a>

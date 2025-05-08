@@ -1,7 +1,7 @@
 .donor-feed-feedback-bg {
     min-height: 100vh;
     width: 100vw;
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
+    background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@
       padding: 40px 32px 32px 32px;
       background-color: #fff;
       border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       text-align: center;
       position: relative;
   }

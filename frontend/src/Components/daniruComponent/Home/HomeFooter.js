@@ -106,11 +106,11 @@ const Footer = () => {
         </div>
 
         {/* Partner Logos */}
-        <div className="daniru-partner-logos">
-          <div className="daniru-logos">
-            <img src="/path/to/partner1.png" alt="Partner 1" />
-            <img src="/path/to/partner2.png" alt="Partner 2" />
-            <img src="/path/to/partner3.png" alt="Partner 3" />
+        <div className="donor-foot-partner-logos">
+          <div className="donor-foot-logos">
+            <img src="/Resources/gihanRes/donationRes/footerRes/parLogo1.png" alt="Partner 1" />
+            <img src="/Resources/gihanRes/donationRes/footerRes/parLogo2.png" alt="Partner 2" />
+            <img src="/Resources/gihanRes/donationRes/footerRes/parLogo3.png" alt="Partner 3" />
           </div>
         </div>
       </div>

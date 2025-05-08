@@ -1,5 +1,5 @@
-body .aboutUs-back-d {
-   background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
+body .aboutUs-back {
+    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important; 
     min-height: 100vh !important; 
     padding: 20px !important;
     margin: 0 !important; 
@@ -8,11 +8,11 @@ body .aboutUs-back-d {
 
 .about-us-container {
   max-width: 1200px;
-  margin: 90px auto 40px auto !important;
+  margin: 80px auto 40px auto;
   padding: 40px 20px 32px 20px;
   background: #f9fafb;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.5) !important;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 

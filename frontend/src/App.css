@@ -44,7 +44,7 @@ footer {
 }
 
 .backgroundOp{
-   background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
+  background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%);
 }
 
 .operating-manager-content {
