@@ -42,6 +42,14 @@ const PartnerCollaborationPage = () => {
     : requests.filter(request => request.status === filter);
 
   return (
+    <div>
+       <div className="opm-donation-my-donation-header">
+  <div className="opm-donation-my-donation-header-row">
+    <div className="opm-donation-my-donation-avatar">🤝</div>
+    <h1 className="opm-donation-my-donation-title">Partner Management</h1>
+  </div>
+  <div className="opm-donation-my-donation-tagline">Collaborate and manage requests from partner organizations efficiently.</div>
+</div>
     <div className="partner-collab-container">
       <div className="header-section">
         <div>
@@ -203,6 +211,7 @@ const PartnerCollaborationPage = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

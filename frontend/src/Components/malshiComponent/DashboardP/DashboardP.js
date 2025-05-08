@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
+import ChatBox from "../../imalshaComponent/Chatbot/Chatbot";   
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,6 +23,7 @@ import {
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
 
 function Dashboard() {
   const [approvedRequests, setApprovedRequests] = useState(0);
@@ -121,6 +123,7 @@ function Dashboard() {
 
   return (
     <div className="p-dashboard-page">
+      <ChatBox/>
       <div className="req-dash-content-wrap">
         <br/>
         <br/> 
@@ -137,7 +140,7 @@ function Dashboard() {
           <div className="stats-grid">
             <div className="stat-card">
               <FaCheckCircle className="stat-icon" />
-              <h3>Approved Requests</h3>
+              <h3 className="req-dash-h3">Approved Requests</h3>
               <p>{approvedRequests}</p>
             </div>
             
@@ -165,10 +168,10 @@ function Dashboard() {
             <div className="recent-requests-header">
               <h2>Recent Requests</h2>
               <div className="recent-requests-actions">
-                <Link to="/display-requests" className="view-all-btn">
+                <Link to="/rl/display-requests" className="view-all-btn">
                   View All
                 </Link>
-                <Link to="/add-requests" className="add-request-btn">
+                <Link to="/rl/add-requests" className="add-request-btn">
                   <FaPlus /> Add Request
                 </Link>
               </div>

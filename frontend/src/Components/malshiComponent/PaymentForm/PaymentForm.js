@@ -1,230 +1,358 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { jsPDF } from 'jspdf';
 import './PaymentForm.css';
 
 const PaymentForm = () => {
-  const navigate = useNavigate();
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     amount: '',
-    cardName: '',
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    paymentMethod: 'dialog',
     cardNumber: '',
+    cardName: '',
     expiryDate: '',
     cvv: '',
-    email: ''
+    bankName: '',
+    accountNumber: '',
+    branchCode: ''
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
-    // Format card number with spaces
-    if (name === 'cardNumber') {
-      const formatted = value.replace(/\s/g, '').match(/.{1,4}/g)?.join(' ') || value;
-      setFormData({ ...formData, [name]: formatted });
-      return;
-    }
-    
-    // Format expiry date with slash
+    let newValue = value;
     if (name === 'expiryDate') {
-      const cleaned = value.replace(/\D/g, '');
-      if (cleaned.length <= 2) {
-        setFormData({ ...formData, [name]: cleaned });
-      } else {
-        const formatted = cleaned.slice(0, 2) + '/' + cleaned.slice(2, 4);
-        setFormData({ ...formData, [name]: formatted });
+      // Remove all non-digits and non-slash
+      let cleaned = value.replace(/[^0-9/]/g, '').slice(0, 5);
+      // Auto-insert slash after two digits
+      if (cleaned.length === 2 && !cleaned.includes('/')) {
+        cleaned = cleaned + '/';
+      } else if (cleaned.length > 2 && cleaned[2] !== '/') {
+        cleaned = cleaned.slice(0, 2) + '/' + cleaned.slice(2, 5);
       }
-      return;
+      newValue = cleaned.toUpperCase();
     }
-    
-    setFormData({ ...formData, [name]: value });
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: newValue
+    }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    
-    try {
-      // Validate form data
-      if (!validateForm()) {
-        setIsLoading(false);
-        return;
+  const validateStep = () => {
+    let newErrors = {};
+    if (step === 1) {
+      if (!formData.amount || isNaN(formData.amount) || Number(formData.amount) < 100) {
+        newErrors.amount = 'Please enter or select an amount (minimum Rs. 100).';
       }
-      
-      // Send payment data to backend
-      const response = await axios.post('/api/payments', formData);
-      
-      if (response.data.success) {
-        setSuccess(true);
-        // Clear form
-        setFormData({
-          amount: '',
-          cardName: '',
-          cardNumber: '',
-          expiryDate: '',
-          cvv: '',
-          email: ''
-        });
-        
-        // Redirect to thank you page after 2 seconds
-        setTimeout(() => {
-          navigate('/thank-you');
-        }, 2000);
+    } else if (step === 2) {
+      if (!formData.email || !/^\S+@\S+\.\S+$/.test(formData.email)) {
+        newErrors.email = 'Please enter a valid email address.';
+      }
+      if (!formData.phone || !/^\d{10}$/.test(formData.phone)) {
+        newErrors.phone = 'Please enter a valid 10-digit phone number.';
+      }
+    } else if (step === 3) {
+      if (!formData.cardNumber || !/^\d{16}$/.test(formData.cardNumber)) {
+        newErrors.cardNumber = 'Card number must be 16 digits.';
+      }
+      if (!formData.cardName || formData.cardName.length < 2) {
+        newErrors.cardName = 'Name on card is required.';
+      }
+      if (!formData.expiryDate || !/^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(formData.expiryDate)) {
+        newErrors.expiryDate = 'Expiry must be in MM/YY format.';
       } else {
-        setError(response.data.message || 'Payment failed. Please try again.');
+        // Check if expiry is in the future
+        const [mm, yy] = formData.expiryDate.split('/');
+        const expDate = new Date(`20${yy}`, mm);
+        const now = new Date();
+        if (expDate < now) {
+          newErrors.expiryDate = 'Expiry date must be in the future.';
+        }
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred. Please try again later.');
-    } finally {
-      setIsLoading(false);
+      if (!formData.cvv || !/^\d{3}$/.test(formData.cvv)) {
+        newErrors.cvv = 'CVV must be 3 digits.';
+      }
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const nextStep = () => {
+    if (validateStep()) {
+      setStep(prevStep => prevStep + 1);
     }
   };
-  
-  const validateForm = () => {
-    // Basic validation
-    if (!formData.amount || isNaN(formData.amount) || parseFloat(formData.amount) <= 0) {
-      setError('Please enter a valid amount');
-      return false;
+
+  const prevStep = () => {
+    setStep(prevStep => prevStep - 1);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateStep() && step === 4) {
+      setShowSuccess(true);
+      console.log('Form submitted:', formData);
     }
-    
-    if (!formData.cardName) {
-      setError('Please enter the name on card');
-      return false;
+  };
+
+  const handleSavePDF = () => {
+    const doc = new jsPDF();
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(26);
+    doc.text('Fund Donation Receipt', 105, 25, { align: 'center' });
+    // Underline
+    const textWidth = doc.getTextWidth('Fund Donation Receipt');
+    doc.setLineWidth(1.2);
+    doc.line(105 - textWidth / 2, 28, 105 + textWidth / 2, 28);
+
+    // Add page border
+    doc.setDrawColor(25, 90, 92);
+    doc.setLineWidth(2);
+    doc.rect(8, 8, 194, 281, 'S');
+
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Partnership Email: ${formData.email}`, 20, 45);
+    doc.text(`Partnership Name: ${formData.cardName}`, 20, 55);
+    doc.text(`Donation Amount: Rs. ${formData.amount}`, 20, 65);
+    doc.text(`Card Number: ${formData.cardNumber}`, 20, 75); // or mask as needed
+
+    // Green thank you message, larger and bold
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(60, 120, 60);
+    doc.text('Thank you for your generous donation to our fund!', 20, 105);
+
+    // Footer at the bottom of the page
+    doc.setTextColor(100);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    const date = new Date();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    doc.text(`Generated by Food Donation Platform`, 105, pageHeight - 18, { align: 'center' });
+    doc.text(`Report generated: ${date.toLocaleString()}`, 105, pageHeight - 12, { align: 'center' });
+
+    doc.save('fund-donation-receipt.pdf');
+  };
+
+  const handleClose = () => {
+    navigate('/rl/dashboard');
+  };
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <div className="DFund-step">
+            <h2>Select Donation Amount</h2>
+            <div className="DFund-amount-options">
+              <button
+                type="button"
+                className={`DFund-amount-btn ${formData.amount === '500' ? 'selected' : ''}`}
+                onClick={() => setFormData({ ...formData, amount: '500' })}
+              >
+                Rs. 500
+              </button>
+              <button
+                type="button"
+                className={`DFund-amount-btn ${formData.amount === '1000' ? 'selected' : ''}`}
+                onClick={() => setFormData({ ...formData, amount: '1000' })}
+              >
+                Rs. 1,000
+              </button>
+              <button
+                type="button"
+                className={`DFund-amount-btn ${formData.amount === '2000' ? 'selected' : ''}`}
+                onClick={() => setFormData({ ...formData, amount: '2000' })}
+              >
+                Rs. 2,000
+              </button>
+            </div>
+            <div className="DFund-custom-amount">
+              <input
+                type="number"
+                name="amount"
+                placeholder="Custom Amount"
+                value={formData.amount}
+                onChange={handleInputChange}
+                min="100"
+              />
+            </div>
+            {errors.amount && <div className="DFund-error-message">{errors.amount}</div>}
+          </div>
+        );
+
+      case 2:
+        return (
+          <div className="DFund-step">
+            <h2>Personal Information</h2>
+            <div className="DFund-form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+              {errors.email && <div className="DFund-error-message">{errors.email}</div>}
+            </div>
+            <div className="DFund-form-group">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleInputChange}
+                required
+                pattern="[0-9]{10}"
+                maxLength={10}
+              />
+              {errors.phone && <div className="DFund-error-message">{errors.phone}</div>}
+            </div>
+            <div className="DFund-form-group">
+              <textarea
+                name="message"
+                placeholder="Message (Optional)"
+                value={formData.message}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+        );
+
+      case 3:
+        return (
+          <div className="DFund-step">
+            <h2>Card Details</h2>
+            <div className="DFund-card-details">
+              <div className="DFund-form-group">
+                <input
+                  type="text"
+                  name="cardNumber"
+                  placeholder="Card Number"
+                  value={formData.cardNumber}
+                  onChange={handleInputChange}
+                  maxLength="16"
+                  required
+                />
+                {errors.cardNumber && <div className="DFund-error-message">{errors.cardNumber}</div>}
+              </div>
+              <div className="DFund-form-group">
+                <input
+                  type="text"
+                  name="cardName"
+                  placeholder="Name on Card"
+                  value={formData.cardName}
+                  onChange={handleInputChange}
+                  required
+                />
+                {errors.cardName && <div className="DFund-error-message">{errors.cardName}</div>}
+              </div>
+              <div className="DFund-form-row">
+                <div className="DFund-form-group">
+                  <input
+                    type="text"
+                    name="expiryDate"
+                    placeholder="MM/YY"
+                    value={formData.expiryDate}
+                    onChange={handleInputChange}
+                    maxLength="5"
+                    required
+                  />
+                  {errors.expiryDate && <div className="DFund-error-message">{errors.expiryDate}</div>}
+                </div>
+                <div className="DFund-form-group">
+                  <input
+                    type="text"
+                    name="cvv"
+                    placeholder="CVV"
+                    value={formData.cvv}
+                    onChange={handleInputChange}
+                    maxLength="3"
+                    required
+                  />
+                  {errors.cvv && <div className="DFund-error-message">{errors.cvv}</div>}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 4:
+        // No masking, show full card number
+        return (
+          <div className="DFund-step">
+            <h2>Confirm Your Donation</h2>
+            <div className="DFund-confirmation-details">
+              <p>Please confirm your donation details:</p>
+              <ul>
+                <li>Amount: Rs. {formData.amount}</li>
+                <li>Email: {formData.email}</li>
+                <li>Name on Card: {formData.cardName}</li>
+                <li>Card Number: {formData.cardNumber}</li>
+              </ul>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
     }
-    
-    if (!formData.cardNumber || formData.cardNumber.replace(/\s/g, '').length !== 16) {
-      setError('Please enter a valid 16-digit card number');
-      return false;
-    }
-    
-    if (!formData.expiryDate || !formData.expiryDate.match(/^\d{2}\/\d{2}$/)) {
-      setError('Please enter a valid expiry date (MM/YY)');
-      return false;
-    }
-    
-    if (!formData.cvv || !formData.cvv.match(/^\d{3}$/)) {
-      setError('Please enter a valid 3-digit CVV');
-      return false;
-    }
-    
-    if (!formData.email || !formData.email.match(/^\S+@\S+\.\S+$/)) {
-      setError('Please enter a valid email address');
-      return false;
-    }
-    
-    return true;
   };
 
   return (
-    <div className="payment-container">
-      <h2>Support Our Food Redistribution Initiative</h2>
-      <p>Your contribution helps us reduce food waste and support those in need.</p>
-      
-      {success ? (
-        <div className="success-message">
-          <h3>Thank you for your donation!</h3>
-          <p>Your payment was processed successfully. You'll be redirected shortly...</p>
-        </div>
+    <div className="DFund-payment-form-container">
+      <div className="DFund-progress-bar">
+        <div className={`DFund-progress-step ${step >= 1 ? 'active' : ''}`}>1</div>
+        <div className={`DFund-progress-step ${step >= 2 ? 'active' : ''}`}>2</div>
+        <div className={`DFund-progress-step ${step >= 3 ? 'active' : ''}`}>3</div>
+        <div className={`DFund-progress-step ${step >= 4 ? 'active' : ''}`}>4</div>
+      </div>
+
+      {step < 4 ? (
+        <>
+          {renderStep()}
+          <div className="DFund-form-navigation">
+            {step > 1 && (
+              <button type="button" onClick={prevStep} className="DFund-btn-prev">
+                Previous
+              </button>
+            )}
+            <button type="button" onClick={nextStep} className="DFund-btn-next">
+              Next
+            </button>
+          </div>
+        </>
       ) : (
-        <form onSubmit={handleSubmit} className="payment-form">
-          {error && <div className="error-message">{error}</div>}
-          
-          <div className="form-group">
-            <label htmlFor="amount">Donation Amount ($)</label>
-            <input
-              type="number"
-              id="amount"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              placeholder="Enter amount"
-              min="1"
-              step="0.01"
-              required
-            />
+        <form onSubmit={handleSubmit}>
+          {renderStep()}
+          <div className="DFund-form-navigation">
+            <button type="button" onClick={prevStep} className="DFund-btn-prev">
+              Previous
+            </button>
+            <button type="submit" className="DFund-btn-submit">
+              Complete Payment
+            </button>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your@email.com"
-              required
-            />
-          </div>
-          
-          <div className="card-details">
-            <h3>Payment Details</h3>
-            
-            <div className="form-group">
-              <label htmlFor="cardName">Name on Card</label>
-              <input
-                type="text"
-                id="cardName"
-                name="cardName"
-                value={formData.cardName}
-                onChange={handleChange}
-                placeholder="John Doe"
-                required
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="cardNumber">Card Number</label>
-              <input
-                type="text"
-                id="cardNumber"
-                name="cardNumber"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                placeholder="1234 5678 9012 3456"
-                maxLength="19"
-                required
-              />
-            </div>
-            
-            <div className="form-row">
-              <div className="form-group half">
-                <label htmlFor="expiryDate">Expiry Date</label>
-                <input
-                  type="text"
-                  id="expiryDate"
-                  name="expiryDate"
-                  value={formData.expiryDate}
-                  onChange={handleChange}
-                  placeholder="MM/YY"
-                  maxLength="5"
-                  required
-                />
-              </div>
-              
-              <div className="form-group half">
-                <label htmlFor="cvv">CVV</label>
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  value={formData.cvv}
-                  onChange={handleChange}
-                  placeholder="123"
-                  maxLength="3"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          
-          <button type="submit" className="submit-button" disabled={isLoading}>
-            {isLoading ? 'Processing...' : 'Donate Now'}
-          </button>
         </form>
+      )}
+
+      {showSuccess && (
+        <div className="DFund-modal-overlay">
+          <div className="DFund-modal-content">
+            <h2>Fund Donation Successful</h2>
+            <p>Thank you for your generous donation to our fund!</p>
+            <button className="DFund-btn-next" onClick={handleSavePDF} style={{marginRight: '1rem'}}>Save as PDF</button>
+            <button className="DFund-btn-close" onClick={handleClose}>Close</button>
+          </div>
+        </div>
       )}
     </div>
   );

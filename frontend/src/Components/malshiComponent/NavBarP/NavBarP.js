@@ -5,9 +5,20 @@ import "./NavBarP.css";
 
 function RequestNavBar() {
   const navigate = useNavigate();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   const handleSignOut = () => {
+    setShowConfirmModal(true);
+  };
+
+  const confirmSignOut = () => {
     // Add your sign out logic here (e.g., clear tokens)
+    setShowConfirmModal(false);
     navigate("/home");
+  };
+
+  const cancelSignOut = () => {
+    setShowConfirmModal(false);
   };
 
 
@@ -53,11 +64,11 @@ function RequestNavBar() {
         </div>
 
 
-        <div className="req-nav-notifications">
-          <button className="req-nav-notification-icon" onClick={() => navigate('/rl/pfeedback')}>
+        <div className="req-nav-feedback">
+          <button className="req-nav-feedback-icon" onClick={() => navigate('/rl/pfeedback')}>
             <img
-              src="/Resources/gihanRes/donationRes/message.png"
-              alt="Notifications"
+              src="/Resources/gihanRes/donationRes/rating_feedback.webp"
+              alt="feedback"
             />
           </button>
         </div>
@@ -77,6 +88,19 @@ function RequestNavBar() {
           </button>
         </div>
       </nav>
+
+      {showConfirmModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Confirm Sign Out</h2>
+            <p>Are you sure you want to sign out?</p>
+            <div className="modal-buttons">
+              <button onClick={confirmSignOut} className="confirm-btn">Yes, Sign Out</button>
+              <button onClick={cancelSignOut} className="cancel-btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

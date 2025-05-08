@@ -29,6 +29,14 @@ const OPMProfile = () => {
 
   const donor = donors[0];
   return (
+    <div>
+      <div className="opm-donation-my-donation-header">
+  <div className="opm-donation-my-donation-header-row">
+    <div className="opm-donation-my-donation-avatar">🧑‍💼</div>
+    <h1 className="opm-donation-my-donation-title">Operating Manager Profile</h1>
+  </div>
+  <div className="opm-donation-my-donation-tagline">View and manage your operating manager account details.</div>
+</div>
     <div className="OPM-profile-donor-profile-back">
       <div className="OPM-profile-donor-profile-section">
         <div className="OPM-profile-real-user-profile">
@@ -52,6 +60,7 @@ const OPMProfile = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

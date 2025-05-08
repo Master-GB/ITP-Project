@@ -2,7 +2,7 @@
 .operating-manager-container {
     padding: 20px;
     max-width: 1500px;
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
+    background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
     margin: 0 auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
@@ -11,7 +11,7 @@
   .card-container {
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
+    background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
     margin-bottom: 20px;
     margin-top: 25px;
     gap: 15px;
@@ -238,6 +238,7 @@
   
   .donation-table tr:hover {
     background-color: #f5f5f5;
+    cursor: pointer;
   }
   
   .selected-row {
@@ -251,6 +252,7 @@
     background-color: white;
     cursor: pointer;
     font-size: 14px;
+    outline: none !important;
   }
   
   .status-dropdown.pending { border-color: #e67e22; color: #e67e22; }
@@ -377,5 +379,52 @@
   }
 
   .page-container-opm{
-    background: linear-gradient(135deg, #b4d2e8, #e6f7ff) !important;
+    background: linear-gradient(135deg, #e0e7ef 0%, #f7fafc 100%) !important;
+  }
+
+  /* Donation Table Cards */
+  .donation-outer-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 28px 18px 18px 18px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .donation-inner-card {
+    background: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 10px 6px 6px 6px;
+    margin-top: 18px;
+    width: 100%;
+    max-width: 100%;
+    transition: box-shadow 0.25s, transform 0.22s;
+  }
+  .donation-inner-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    transform: translateY(-4px);
+  }
+
+  .donation-outer-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 28px 18px 18px 18px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: 100%;
+    max-width: 100%;
+    transition: box-shadow 0.28s, transform 0.22s;
+  }
+  .donation-outer-card:hover {
+    box-shadow: 0 10px 38px rgba(0,0,0,0.16);
+    transform: translateY(-5px);
+  }
+  @media (max-width: 900px) {
+    .donation-outer-card, .donation-inner-card {
+      padding: 8px 2vw;
+    }
   }

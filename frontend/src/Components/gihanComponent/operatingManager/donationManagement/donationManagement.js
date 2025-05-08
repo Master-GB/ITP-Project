@@ -52,7 +52,7 @@ const FoodDonationPage = () => {
     fetchDonations();
   }, [fetchDonations]);
 
-  // Ensure socketRef is initialized for real-time communication
+  
   useEffect(() => {
     socketRef.current = io(SOCKET_SERVER_URL);
     return () => {
@@ -60,7 +60,7 @@ const FoodDonationPage = () => {
     };
   }, []);
 
-  // Calculate Expiring Soon Donations (next 24h, not expired, not Completed/Cancel)
+  
   const getExpiringSoonDonationsCount = () => {
     const now = new Date();
     const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
@@ -184,13 +184,11 @@ const FoodDonationPage = () => {
   const handleStatusChange = async (id, newStatus) => {
     const originalStatus = donations.find((d) => d._id === id)?.status;
 
-    // Push notification if the status is changed and the new status is not 'Pending'
+  
     if (originalStatus && originalStatus !== newStatus && newStatus !== 'Pending') {
-    // Find displayId or fallback to id
     const donation = donations.find((d) => d._id === id);
     const displayId = donation?.displayId || id;
     let msg = `Donation #${displayId} status changed from ${originalStatus} to ${newStatus}`;
-    // Store notification in backend
     fetch('http://localhost:5000/api/notifications', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -263,7 +261,6 @@ const FoodDonationPage = () => {
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
-    // Use a dedicated userId for operating manager
     let userId = localStorage.getItem('chatOpUserId');
     if (!userId) {
       userId = 'op-' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
@@ -279,7 +276,6 @@ const FoodDonationPage = () => {
     }
     const msgObj = { text: fullMessage, userId };
 
-    // Emit to backend (same event as chat.js)
     socketRef.current.emit("chat message", msgObj);
     setMessage("");
     setShowSuccess(true);
@@ -308,8 +304,14 @@ const FoodDonationPage = () => {
 
   return (
     <div>
-          <h1>Food Donation Management</h1>
-          <p className="subtitle">Manage food donation requests from Donor</p>
+        
+        <div className="opm-donation-my-donation-header">
+  <div className="opm-donation-my-donation-header-row">
+    <div className="opm-donation-my-donation-avatar">🍽️</div>
+    <h1 className="opm-donation-my-donation-title">Donation Management</h1>
+  </div>
+  <div className="opm-donation-my-donation-tagline">Track, review, and manage food donations seamlessly.</div>
+</div>
         
     <div className="page-container-opm">
       <div className="card-container">
@@ -390,6 +392,7 @@ const FoodDonationPage = () => {
 
       <hr className="section-divider" />
 
+      <div className="donation-outer-card">
       <div className="table-controls-container">
         <div className="sort-control">
           <select
@@ -428,8 +431,9 @@ const FoodDonationPage = () => {
           </div>
         </div>
       </div>
-      <div className="table-responsive-container">
-        <table className="donation-table">
+      <div className="donation-inner-card">
+        <div className="table-responsive-container">
+          <table className="donation-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -484,6 +488,8 @@ const FoodDonationPage = () => {
             ))}
           </tbody>
         </table>
+        </div>
+      </div>
       </div>
 
       {selectedDonation &&
